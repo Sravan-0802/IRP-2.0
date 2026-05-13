@@ -83,7 +83,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto flex flex-col items-center"
+            className="w-3/4 mx-auto flex flex-col items-center"
           >
             <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 mb-6 px-4 py-1.5 text-sm font-medium rounded-full">
               First Assessment: 14th June 2026
