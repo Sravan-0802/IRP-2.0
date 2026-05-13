@@ -55,6 +55,15 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-accent selection:text-white">
+      {/* Announcement Banner */}
+      <div className="w-full bg-gradient-to-r from-blue-700 via-accent to-blue-500 py-2.5 text-center">
+        <p className="text-white text-sm font-semibold tracking-wide flex items-center justify-center gap-2">
+          <span className="inline-block w-2 h-2 rounded-full bg-white/70 animate-pulse" />
+          Summer 2026 IRP 2.0 Batch — Open Now!
+          <span className="hidden sm:inline text-white/70 font-normal">· First Assessment: 14th June 2026</span>
+          <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer" className="ml-2 underline underline-offset-2 text-white/90 hover:text-white font-semibold">Register →</a>
+        </p>
+      </div>
       {/* Sticky Nav */}
       <nav className="sticky top-0 z-50 w-full backdrop-blur-lg bg-background/80 border-b border-border/40">
         <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
