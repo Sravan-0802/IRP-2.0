@@ -1,0 +1,268 @@
+Business Requirements Document
+IRP 2.0 Internship Readiness Path: Replit Page 
+Document Owner: Student Success Team, NxtWave Academy Prepared For: Product Team Version: 1.0 Date: May 2026 Scope: YOG 2028 & 2029
+
+
+1. Purpose
+This document outlines the requirements for building a dedicated Replit page for the Internship Readiness Path 2.0 (IRP 2.0). The page will serve as the single source of truth for students on the IRP process, levels, eligibility, and timelines — and will integrate the Accounts Form for assessment registration.
+
+
+2. Background & Context
+IRP 2.0 is a redesigned internship readiness program built exclusively for YOG 2028 and 2029 students. Unlike the previous IRP (which had offline rounds and common assessments with senior batches), IRP 2.0 is:
+
+100% online
+Year-level tailored (assessments scoped to what 1st and 2nd year students have studied)
+Multi-level (Level 1 → Level 2 → Level 3 internship opportunities)
+
+Once a student clears both Level 1 and Level 2, they become eligible for internship opportunities (5K–10K stipend range). Students aiming for 25K+ stipend internships must additionally qualify for Level 3 — the Infinite Aura track — which is a curated path for top performers who clear both levels. Both pathways and their eligibility criteria must be clearly communicated on the page.
+
+
+3. Target Users
+User Type
+Description
+Primary
+YOG 2028 & 2029 students registered on NxtWave Academy
+Secondary
+Success Coaches referring students to the page
+Internal
+Student Success team for monitoring registration completions
+
+
+
+4. Page Goals
+Give students a clear, always-accessible overview of IRP 2.0
+Enable seamless registration via embedded/linked Accounts Form
+Reduce SC bandwidth spent on answering process/eligibility questions
+Serve as a reference page students can bookmark and return to
+
+
+5. Functional Requirements
+5.1 Page Sections
+The Replit page must contain the following sections in order:
+
+Section 1: Hero / Header
+
+Page title: "Internship Readiness Path 2.0"
+Subtitle: "Built for 1st & 2nd Year Students — YOG 2028 & 2029"
+Key callout: First Assessment Date — 14th June 2026
+CTA button: "Register Now" → links to Accounts Form (link TBD — to be updated once finalised)
+
+Section 2: What is IRP 2.0?
+
+Brief 2–3 line overview of what the program is
+Before vs. IRP 2.0 comparison (inline, not a separate slide)
+Before: Offline rounds, assessed with senior batches, common assessments
+IRP 2.0: 100% online, tailored by year level, multi-level structure
+
+Section 3: The Three Levels
+
+Must display all three levels with clear visual separation. Each level card should show:
+
+Level name & tag (Level 1: The Hustler, Level 2: The Main Character, Level 3: Infinite Aura)
+Timeline/when it happens
+Assessment sections with format, duration, and question count
+What you unlock by clearing that level
+
+Level 1 — The Hustler
+
+Date: 14th June 2026
+Assessment Sections:
+Python Programming + DSA: MCQ · 1.5 hrs · 4 questions
+FE (HTML, CSS, JS, React): MCQ · 30 mins · 30 questions
+Post-assessment (after MCQ, same day):
+FE Project: Build & submit a frontend project · 12 hours
+AI Mock Interview: Project + Resume review · 1 hour
+Human Mock Interview: Project + Resume review · 1 hour
+Unlocks: Eligibility to appear for Level 2
+
+Level 2 — The Main Character
+
+Timeline: After 1 month from Level 1
+Assessment Sections:
+BE (NodeJS + Express): MCQ · 20 mins · 20 questions
+Database (SQL, NoSQL, MongoDB): MCQ · 20 mins · 20 questions
+GenAI: MCQ · 20 mins · 20 questions
+Combined MCQ duration: 1 hour
+Full Stack + AI Project: 24 hours
+AI Mock Interview: Project + Resume review · 1 hour
+Human Mock Interview: Project + Resume review · 1 hour
+Unlocks: Level 3 Internship Opportunities (5K–10K stipend range)
+
+Level 3 — Infinite Aura
+
+Unlocks after clearing BOTH Level 1 & Level 2
+Benefits:
+Access to 25K+ stipend internship opportunities
+Mentorship from senior developers (Microsoft, Apple, Google, Salesforce)
+Interaction with NxtWave Founding Team
+Note: This is a curated track for top performers
+
+Section 4: Courses to Prepare
+
+Display as a two-column table (Level 1 / Level 2):
+
+Level 1 Courses
+Level 2 Courses
+Build your own Static Website
+Node JS
+Build your own Responsive Website
+Introduction to Databases
+Modern Responsive Web Design
+DBMS
+Build your own Dynamic Web Application
+MongoDB
+JS Essentials
+Generative AI
+Getting Started with React JS
+OOPs
+Programming Foundations
+—
+Data Structures & Algorithms — Level 1
+—
+
+
+Section 5: Pre-Assessment Checklist
+
+Study & Revise all concepts up to your year level
+Practice daily on the NxtWave platform
+Complete all mandatory courses before assessment date
+Submit NOC (No Objection Certificate) from your college — reach out to your Success Coach for help
+
+Section 6: Eligibility & Registration
+
+Who is eligible: YOG 2028 and YOG 2029 students only
+Mandatory first step: Complete Internship Profile Registration
+Important note (displayed prominently): "Completing Level 1 alone does not make you eligible for internship opportunities. Internship opportunities unlock only after clearing both Level 1 AND Level 2. Students aiming for 25K+ stipend internships must additionally qualify for Level 3 — the Infinite Aura track."
+Registration CTA: Embedded form or prominent button linking to Accounts Form (link TBD — to be updated once finalised)
+
+Section 7: FAQ
+
+Full, detailed FAQ section covering all common student queries on IRP 2.0
+Organised thematically — suggested groupings: Eligibility, Assessment Process, Skills & Preparation, Projects, Stipend & Opportunities, Registration & NOC, Where Opportunities Are Displayed, Courses & Platform
+Display format: Collapsible accordion; top 5–6 most-asked questions expanded by default, rest collapsed
+Header copy: "All Your IRP 2.0 Questions — Answered Here"
+Full FAQ content: Refer to the IRP 2.0 Comprehensive Document (Student-Facing) — FAQ section
+
+Section 8: Footer
+
+Contact: Reach your Success Coach for support
+NxtWave Academy branding
+
+
+5.2 Accounts Form Integration
+Current State: Registration form is an Accounts Form — link to be shared once finalised.
+
+Required State: The Accounts Form must be accessible directly from the Replit page via one of the following methods (product team to confirm preferred approach):
+
+Option
+Description
+Recommended?
+A. Embedded iFrame
+Embed the Accounts Form directly within the Replit page
+Preferred if form renders well in iFrame
+B. Prominent CTA Button
+Button on page links out to the form (new tab)
+Fallback option
+C. In-page form
+Rebuild the form fields natively in Replit
+Only if Accounts Form cannot be embedded
+
+
+Form fields to be captured (at minimum):
+
+Full Name
+YOG (Year of Graduation)
+Email ID
+Phone Number
+Which level they are registering for (Level 1 / Level 2)
+NOC submitted? (Yes/No)
+
+Post-submission:
+
+Confirmation message on screen
+Auto-email to student with registration confirmation and next steps
+
+
+5.3 Navigation & Access
+Page should be shareable via a clean URL (no query string clutter)
+Must be mobile-responsive — majority of students access on mobile
+Page should not require login to view content (open access)
+Registration form may require student ID / email for identification
+
+
+6. UI & Design Notes
+Element
+Guidance
+Color scheme
+NxtWave brand colors — dark teal (#1A4E4A) primary, teal (#2BBFAA) accent, white text
+Typography
+Clean sans-serif; headings bold, body readable on mobile
+Level cards
+Visually distinct cards per level — consider color-coded borders or header strips
+CTAs
+High-contrast buttons; "Register Now" most prominent element above the fold
+Layout
+Single-page scroll; section anchors for direct linking (e.g., /irp#level2)
+Icons/Visuals
+Use simple icons for each assessment type; avoid heavy images for load speed
+Mobile
+Stacked layout on mobile; hamburger nav if needed
+Accessibility
+Minimum contrast ratio of 4.5:1; all buttons keyboard navigable
+
+
+
+7. Out of Scope (for this version)
+Student login / dashboard integration
+Progress tracking per student
+Automated result notifications
+Payment or fee-related features
+Admin panel for managing registrations (tracking to be done via Accounts Form backend)
+
+
+8. Dependencies
+Dependency
+Owner
+Notes
+Accounts Form backend
+Product / Ops
+Existing form; integration method TBD
+FE Project brief
+Learning Outcomes team
+Required for Level 1 section
+Full Stack Project brief
+Learning Outcomes team
+Required for Level 2 section
+IRP 2.0 FAQ content
+Student Success
+See FAQ document
+NOC process details
+Placements team (Vaibhav)
+For checklist section
+
+
+
+9. Success Metrics
+% of eligible students (YOG 2028/2029) who complete registration via the page
+Reduction in SC queries related to "What is IRP?", "How to register?", "What is Level 1?"
+Page bounce rate (target: students spend enough time to read through all sections)
+Form completion rate vs. page visits
+
+
+10. Timeline
+Milestone
+Target Date
+BRD sign-off
+May 2026
+Design mockup review
+TBD
+Development complete
+Before 7th June 2026
+Internal review & QA
+7–10 June 2026
+Page live (student-facing)
+By 12th June 2026
+First assessment date
+14th June 2026
+
+
