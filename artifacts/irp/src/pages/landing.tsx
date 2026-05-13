@@ -100,10 +100,10 @@ export default function LandingPage() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8 py-6 rounded-full" onClick={() => scrollTo('register')}>
-                Register for IRP 2.0 <ArrowRight className="ml-2 h-5 w-5" />
+              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-6 py-3 rounded-full" onClick={() => scrollTo('register')}>
+                Register for IRP 2.0 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-blue-50 text-lg px-8 py-6 rounded-full" onClick={() => scrollTo('levels')}>
+              <Button variant="outline" className="border-border text-foreground hover:bg-blue-50 text-sm px-6 py-3 rounded-full" onClick={() => scrollTo('levels')}>
                 View the Path
               </Button>
             </div>
