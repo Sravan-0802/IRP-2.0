@@ -85,9 +85,14 @@ export default function LandingPage() {
             transition={{ duration: 0.5 }}
             className="w-3/4 mx-auto flex flex-col items-center"
           >
-            <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 mb-6 px-4 py-1.5 text-sm font-medium rounded-full">
-              First Assessment: 14th June 2026
-            </Badge>
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+              <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 px-4 py-1.5 text-sm font-medium rounded-full">
+                First Assessment: 14th June 2026
+              </Badge>
+              <Badge className="bg-blue-700 text-white hover:bg-blue-800 border-none px-4 py-1.5 text-sm font-medium rounded-full">
+                Summer 2026 Batch
+              </Badge>
+            </div>
             
             <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight">
               Internship Readiness <br className="hidden md:block"/>
