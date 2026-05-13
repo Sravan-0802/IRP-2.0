@@ -121,48 +121,43 @@ export default function LandingPage() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-primary/10 border-primary/20 backdrop-blur-sm text-foreground">
-                <CardHeader>
-                  <CardTitle className="text-xl flex items-center gap-2 text-muted-foreground">
-                    <Clock className="h-5 w-5" /> Before
-                  </CardTitle>
+              <Card className="bg-white border border-border text-foreground shadow-sm">
+                <CardHeader className="pb-3">
+                  <Badge variant="outline" className="w-fit mb-3 text-muted-foreground border-border">Before</Badge>
+                  <CardTitle className="text-2xl font-bold">The old IRP</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-red-500/20 p-1 rounded-full"><span className="h-2 w-2 block bg-red-500 rounded-full"></span></div>
-                    <span className="text-muted-foreground">Offline assessment rounds</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-red-500/20 p-1 rounded-full"><span className="h-2 w-2 block bg-red-500 rounded-full"></span></div>
-                    <span className="text-muted-foreground">Assessed alongside senior batches</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 bg-red-500/20 p-1 rounded-full"><span className="h-2 w-2 block bg-red-500 rounded-full"></span></div>
-                    <span className="text-muted-foreground">Common, generic assessments</span>
-                  </div>
+                  {[
+                    "Offline rounds with travel logistics",
+                    "Assessed alongside senior batches",
+                    "Common assessments — not year-specific",
+                    "Limited visibility into the path forward",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <CheckCircle2 className="h-5 w-5 text-muted-foreground/50 shrink-0 mt-0.5" />
+                      <span className="text-muted-foreground">{item}</span>
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
 
-              <Card className="bg-accent/10 border-accent/30 backdrop-blur-sm relative overflow-hidden text-foreground">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl"></div>
-                <CardHeader>
-                  <CardTitle className="text-xl flex items-center gap-2 text-accent">
-                    <Rocket className="h-5 w-5" /> IRP 2.0
-                  </CardTitle>
+              <Card className="bg-blue-50 border border-accent/20 relative overflow-hidden text-foreground shadow-sm">
+                <CardHeader className="pb-3">
+                  <Badge className="w-fit mb-3 bg-accent text-white border-none">Now</Badge>
+                  <CardTitle className="text-2xl font-bold">IRP 2.0</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-accent shrink-0" />
-                    <span className="font-medium text-foreground">100% Online process</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-accent shrink-0" />
-                    <span className="font-medium text-foreground">Tailored specifically by year level</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-accent shrink-0" />
-                    <span className="font-medium text-foreground">Multi-level structured assessment</span>
-                  </div>
+                  {[
+                    "100% online — assess from anywhere",
+                    "Tailored to your year (1st / 2nd)",
+                    "Multi-level structure with clear unlocks",
+                    "Direct path to 5K–25K+ stipend internships",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                      <span className="font-medium text-foreground">{item}</span>
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
             </div>
