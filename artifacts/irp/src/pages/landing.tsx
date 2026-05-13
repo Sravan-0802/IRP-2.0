@@ -56,13 +56,31 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-accent selection:text-white">
       {/* Announcement Banner */}
-      <div className="w-full bg-gradient-to-r from-blue-700 via-accent to-blue-500 py-2.5 text-center">
-        <p className="text-white text-sm font-semibold tracking-wide flex items-center justify-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-white/70 animate-pulse" />
-          Summer 2026 IRP 2.0 Batch — Open Now!
-          <span className="hidden sm:inline text-white/70 font-normal">· First Assessment: 14th June 2026</span>
-          <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer" className="ml-2 underline underline-offset-2 text-white/90 hover:text-white font-semibold">Register →</a>
-        </p>
+      <div className="w-full relative overflow-hidden bg-gradient-to-r from-blue-800 via-blue-600 to-blue-500 py-3 text-center">
+        {/* Shimmer sweep */}
+        <div className="absolute inset-0 -translate-x-full animate-[shimmer_2.5s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/15 to-transparent" style={{ animation: 'shimmer 2.5s ease-in-out infinite' }} />
+        <style>{`
+          @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+          }
+        `}</style>
+        <div className="relative flex items-center justify-center gap-3 flex-wrap px-4">
+          <span className="bg-white text-blue-700 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-widest shadow-sm">New</span>
+          <span className="text-white font-bold text-sm tracking-wide">
+            ✦ Summer 2026 IRP 2.0 Batch — Open Now!
+          </span>
+          <span className="hidden sm:block text-white/50 text-xs">|</span>
+          <span className="hidden sm:block text-white/80 text-xs">India's first year-level internship assessment for 1st & 2nd year students</span>
+          <a
+            href="https://bit.ly/Internship-registration"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-blue-700 text-xs font-bold px-3.5 py-1 rounded-full hover:bg-blue-50 transition-colors shadow-sm whitespace-nowrap"
+          >
+            Register Free →
+          </a>
+        </div>
       </div>
       {/* Sticky Nav */}
       <nav className="sticky top-0 z-50 w-full backdrop-blur-lg bg-background/80 border-b border-border/40">
