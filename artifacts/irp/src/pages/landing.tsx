@@ -116,7 +116,7 @@ export default function LandingPage() {
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">What is IRP 2.0?</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                IRP 2.0 is a multi-level online assessment path designed to evaluate your skills and connect you with high-paying internship opportunities ranging from ₹5K to ₹25K+ stipends.
+                IRP 2.0 is NxtWave Academy's structured program to help 1st and 2nd year students prepare for and access internship opportunities. It's built specifically for you — the assessments, projects, and interviews are all scoped to what you've studied at your current year level. <span className="font-semibold text-foreground">100% online. No offline rounds. No travel. No logistics.</span>
               </p>
             </div>
 
@@ -128,10 +128,10 @@ export default function LandingPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {[
-                    "Offline rounds with travel logistics",
-                    "Assessed alongside senior batches",
-                    "Common assessments — not year-specific",
-                    "Limited visibility into the path forward",
+                    "Assessed alongside 3rd, 4th & final year students",
+                    "Common assessments regardless of year",
+                    "Online + Offline rounds (travel required)",
+                    "One-size-fits-all process",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <CheckCircle2 className="h-5 w-5 text-muted-foreground/50 shrink-0 mt-0.5" />
@@ -148,10 +148,10 @@ export default function LandingPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {[
-                    "100% online — assess from anywhere",
-                    "Tailored to your year (1st / 2nd)",
-                    "Multi-level structure with clear unlocks",
-                    "Direct path to 5K–25K+ stipend internships",
+                    "Tailored assessments — only what you've studied",
+                    "Year-level appropriate content",
+                    "100% Online — attempt from anywhere",
+                    "Multi-level structure with progressive unlocks",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
@@ -408,16 +408,19 @@ export default function LandingPage() {
               <CardContent className="px-6 md:px-12 pb-10">
                 <div className="space-y-6">
                   {[
-                    "Study & Revise all concepts up to your year level.",
-                    "Practice daily on the NxtWave platform.",
-                    "Complete all mandatory courses before assessment date.",
-                    "Submit NOC (No Objection Certificate) from your college — reach out to your Success Coach for help."
+                    { title: "Study & Revise", detail: "Go through all concepts at your year level — Python, DSA basics, HTML, CSS, JavaScript, React." },
+                    { title: "Practice Regularly", detail: "Solve problems on the NxtWave platform every day. Consistency beats cramming." },
+                    { title: "Complete Pending Courses", detail: "All mandatory courses up to your current level must be completed before the assessment." },
+                    { title: "Submit Your NOC", detail: "Your No Objection Certificate from college must be submitted before you can participate in internship opportunities. Reach out to your Success Coach if you need help." },
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-4 p-4 rounded-lg bg-blue-50 border border-blue-100 shadow-sm">
                       <div className="bg-accent/20 p-2 rounded-full mt-0.5 shrink-0">
                         <CheckCircle2 className="h-5 w-5 text-accent" />
                       </div>
-                      <p className="text-lg font-medium leading-tight">{item}</p>
+                      <div>
+                        <p className="font-semibold text-foreground">{item.title}</p>
+                        <p className="text-sm text-muted-foreground mt-0.5">{item.detail}</p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -442,6 +445,24 @@ export default function LandingPage() {
                 Completing Level 1 alone does not make you eligible for internship opportunities. Internship opportunities unlock only after clearing both Level 1 AND Level 2. Students aiming for ₹25K+ stipend internships must additionally qualify for Level 3 — the Infinite Aura track.
               </AlertDescription>
             </Alert>
+
+            {/* Registration Steps */}
+            <div className="grid md:grid-cols-2 gap-6 mb-10">
+              <div className="flex gap-4 p-5 rounded-xl bg-white border border-border shadow-sm">
+                <div className="bg-accent text-white rounded-full w-8 h-8 flex items-center justify-center font-bold shrink-0 text-sm">1</div>
+                <div>
+                  <p className="font-semibold text-foreground mb-1">Complete Internship Profile Registration</p>
+                  <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer" className="text-accent text-sm font-medium hover:underline break-all">bit.ly/Internship-registration</a>
+                </div>
+              </div>
+              <div className="flex gap-4 p-5 rounded-xl bg-white border border-border shadow-sm">
+                <div className="bg-accent text-white rounded-full w-8 h-8 flex items-center justify-center font-bold shrink-0 text-sm">2</div>
+                <div>
+                  <p className="font-semibold text-foreground mb-1">Watch your email for updates</p>
+                  <p className="text-sm text-muted-foreground">Assessment schedules, preparation resources, and result communications will all come through email.</p>
+                </div>
+              </div>
+            </div>
 
             <Card className="border-border/50 shadow-xl bg-card text-card-foreground">
               <CardHeader className="border-b bg-muted/20 pb-6">
@@ -600,106 +621,147 @@ export default function LandingPage() {
 
             <Card className="bg-card text-card-foreground">
               <CardContent className="pt-6">
-                <Accordion type="multiple" defaultValue={["item-1", "item-2", "item-3", "item-4", "item-5"]} className="w-full">
-                  
-                  <div className="mb-6"><h3 className="font-bold text-lg text-primary border-b pb-2">Eligibility</h3></div>
+                <Accordion type="multiple" defaultValue={["item-1", "item-2", "item-4", "item-5", "item-8"]} className="w-full">
+
+                  <div className="mb-4"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Eligibility & Who Can Participate</h3></div>
                   <AccordionItem value="item-1">
-                    <AccordionTrigger className="text-left font-medium">1. Who is eligible for IRP 2.0?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">YOG 2028 and YOG 2029 students registered on NxtWave Academy.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Is IRP 2.0 for all students or only 1st and 2nd year students?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">IRP 2.0 is exclusively for YOG 2028 and YOG 2029 students — that's 1st and 2nd year students. If you recently completed your 2nd year, you are still eligible. If you are YOG 2027 or earlier, please connect with your Success Coach for the appropriate process.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-2">
-                    <AccordionTrigger className="text-left font-medium">2. Can YOG 2027 students participate?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">No, IRP 2.0 is exclusively for YOG 2028 and YOG 2029 students.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">I just completed my 2nd year. Am I eligible?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. YOG 2028 students who have just completed their 2nd year are eligible to participate in IRP 2.0.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-3">
-                    <AccordionTrigger className="text-left font-medium">3. Is registration mandatory before appearing for Level 1?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. You must complete Internship Profile Registration before the assessment date.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Are Smart Program students eligible?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">If you are a YOG 2028 or 2029 student under the Smart Program, check with your Success Coach — eligibility is determined by YOG, not program type.</AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-3b">
+                    <AccordionTrigger className="text-left font-medium">What is the minimum course completion required to be eligible?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">There is no fixed percentage threshold for eligibility to register. However, you are expected to have completed the courses relevant to the level you are appearing for before the assessment date.</AccordionContent>
                   </AccordionItem>
 
-                  <div className="mb-6 mt-8"><h3 className="font-bold text-lg text-primary border-b pb-2">Assessment Process</h3></div>
+                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Assessment Process & Structure</h3></div>
                   <AccordionItem value="item-4">
-                    <AccordionTrigger className="text-left font-medium">4. What is the format of Level 1?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">MCQ rounds (Python/DSA + Frontend), followed by a 12-hour FE Project and mock interviews, all on the same day.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Does clearing Level 1 make me eligible for internship opportunities?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">No. Clearing Level 1 alone does not make you eligible for internships. Internship opportunities unlock only after you clear both Level 1 and Level 2. Once you clear both, you become eligible for standard opportunities (₹5K–₹10K stipend range). If you are aiming for ₹25K+ stipend internships, you will additionally need to qualify for Level 3 — the Infinite Aura track.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-5">
-                    <AccordionTrigger className="text-left font-medium">5. What is the format of Level 2?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">MCQ rounds (Backend, Database, GenAI), followed by a 24-hour Full Stack + AI Project and mock interviews.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">What happens if I clear Level 1 but fail Level 2?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">You will not be eligible for internship opportunities until you clear Level 2 as well. Details on retake windows will be communicated separately.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-6">
-                    <AccordionTrigger className="text-left font-medium">6. Can I skip Level 1 and directly appear for Level 2?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">No. You must clear Level 1 before you're eligible for Level 2.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Can I attempt both Level 1 and Level 2 at the same time?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Level 2 is only accessible after you complete Level 1. Level 2 opens approximately one month after Level 1's assessment date.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-7">
-                    <AccordionTrigger className="text-left font-medium">7. How long after Level 1 is Level 2 conducted?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Approximately 1 month after Level 1.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Are all assessments online?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. All rounds under IRP 2.0 — MCQs, projects, AI Mock Interview, and Human Mock Interview — are 100% online. There are no offline rounds.</AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-7b">
+                    <AccordionTrigger className="text-left font-medium">Will there be a second attempt if I miss or fail the June 14th assessment?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Details on retake opportunities will be shared after the first assessment window. Watch your registered email for updates.</AccordionContent>
                   </AccordionItem>
 
-                  <div className="mb-6 mt-8"><h3 className="font-bold text-lg text-primary border-b pb-2">Skills & Preparation</h3></div>
+                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Skills & Preparation</h3></div>
                   <AccordionItem value="item-8">
-                    <AccordionTrigger className="text-left font-medium">8. What topics should I focus on for Level 1?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Python, DSA, HTML, CSS, JavaScript, and React JS.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">What skills do I need for Level 1?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Python (fundamentals), DSA Level 1, HTML, CSS, JavaScript (Essentials), and React (Getting Started). These map directly to the NxtWave courses listed in the Level 1 section.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-9">
-                    <AccordionTrigger className="text-left font-medium">9. What topics should I focus on for Level 2?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">NodeJS, Express, SQL, NoSQL, MongoDB, and Generative AI.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Is DSA Level 1 enough for the Python + DSA section?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. Level 1 covers DSA at a basic level — DSA Level 1 from the NxtWave platform is sufficient.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-10">
-                    <AccordionTrigger className="text-left font-medium">10. Where can I practice?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">On the NxtWave platform. Complete all mandatory courses listed in the "Courses to Prepare" section.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Should I learn DSA in Python or Java?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">The assessment default language is Python, and the DSA section is assessed in Python. You can also code in C++ or Java, but Python is recommended for alignment with the course content.</AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-10b">
+                    <AccordionTrigger className="text-left font-medium">Is GenAI mandatory for Level 2?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. GenAI is one of the three MCQ sections in Level 2, alongside Backend (NodeJS + Express) and Databases.</AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-10c">
+                    <AccordionTrigger className="text-left font-medium">Does communication matter in the interview?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. The Human Mock Interview evaluates not just your technical output but also how well you can explain your project and reasoning. Basic clear communication in English is important. Focus on explaining your thought process clearly — fluency is not the primary criteria.</AccordionContent>
                   </AccordionItem>
 
-                  <div className="mb-6 mt-8"><h3 className="font-bold text-lg text-primary border-b pb-2">Projects</h3></div>
+                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Projects</h3></div>
                   <AccordionItem value="item-11">
-                    <AccordionTrigger className="text-left font-medium">11. What is the FE Project in Level 1?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">A frontend project to be built and submitted within 12 hours on the same day as the MCQ.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Will there be a real project in IRP 2.0?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. Both levels involve a project submission: a Frontend Project in Level 1 (12 hours) and a Full Stack + AI Project in Level 2 (24 hours).</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-12">
-                    <AccordionTrigger className="text-left font-medium">12. What is the Full Stack + AI Project in Level 2?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">A comprehensive full-stack project with AI integration, to be submitted within 24 hours.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Can I use VS Code or other tools for the project rounds?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. You can use your preferred IDE (VS Code, etc.) for the project rounds. The submission format will be specified when the project brief is shared.</AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-12b">
+                    <AccordionTrigger className="text-left font-medium">Are remote internships valuable — or will I miss out by not working in-person?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Remote internships through NxtWave involve real deliverables and mentorship. The experience is comparable to in-person internships in terms of learning. You will work on actual company projects.</AccordionContent>
                   </AccordionItem>
 
-                  <div className="mb-6 mt-8"><h3 className="font-bold text-lg text-primary border-b pb-2">Stipend & Opportunities</h3></div>
+                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Stipend & Internship Opportunities</h3></div>
                   <AccordionItem value="item-13">
-                    <AccordionTrigger className="text-left font-medium">13. What internship stipend can I expect after clearing Level 1 and Level 2?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">₹5,000 to ₹10,000 per month.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Are the internships paid?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. Level 2 clearance gives access to internships in the ₹5K–₹10K/month stipend range. Level 3 (Infinite Aura track) gives access to ₹25K+ stipend opportunities.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-14">
-                    <AccordionTrigger className="text-left font-medium">14. How do I qualify for ₹25K+ stipend internships?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">By additionally qualifying for Level 3 (Infinite Aura track) after clearing both Level 1 and Level 2.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">If I clear both Level 1 and Level 2, what stipend can I expect?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Stipends vary by company and role. After clearing both levels, you become eligible for opportunities typically in the ₹5K–₹10K/month range. Top performers who reach Level 3 status can access ₹25K+ opportunities.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-15">
-                    <AccordionTrigger className="text-left font-medium">15. Does clearing only Level 1 make me eligible for internships?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">No. Internship opportunities unlock only after clearing both Level 1 AND Level 2.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">How long are the internships?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Typical duration is 3–4 months. Specific details will be shared when opportunities are released. Most internships are designed to be manageable alongside your college schedule.</AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-15b">
+                    <AccordionTrigger className="text-left font-medium">Will internships be remote or in-office?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Both options may be available depending on the company. Most opportunities in the current batch are remote or hybrid.</AccordionContent>
                   </AccordionItem>
 
-                  <div className="mb-6 mt-8"><h3 className="font-bold text-lg text-primary border-b pb-2">Registration & NOC</h3></div>
+                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Registration & NOC</h3></div>
                   <AccordionItem value="item-16">
-                    <AccordionTrigger className="text-left font-medium">16. What is NOC and why do I need it?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">A No Objection Certificate from your college confirming they permit you to pursue the internship. Reach out to your Success Coach for help obtaining it.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">How do I register for the assessment?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Complete your Internship Profile Registration at <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer" className="text-accent underline">bit.ly/Internship-registration</a>. Without registration, you will not be eligible to appear for assessments or access internship opportunities.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-17">
-                    <AccordionTrigger className="text-left font-medium">17. How do I register?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Complete the Internship Profile Registration using the form on this page or the registration link shared by your Success Coach.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Is the registration form the same as the feedback form from the Internship Readiness Meet?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">No. The registration form and the feedback form are separate links. Make sure you complete the registration form at the link above — not just the feedback form.</AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-17b">
+                    <AccordionTrigger className="text-left font-medium">Can I choose Level 1 now and also appear for Level 2 later?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. You will register for Level 1 first. Once Level 1 is cleared, you will register for Level 2 separately.</AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-17c">
+                    <AccordionTrigger className="text-left font-medium">Is NOC mandatory?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. A No Objection Certificate from your college is required to participate in internship opportunities. You can appear for the assessment without the NOC, but you need it to actually access and accept internship opportunities. Submit it as early as possible.</AccordionContent>
                   </AccordionItem>
 
-                  <div className="mb-6 mt-8"><h3 className="font-bold text-lg text-primary border-b pb-2">Where Opportunities Are Displayed</h3></div>
+                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Where Opportunities Are Displayed</h3></div>
                   <AccordionItem value="item-18">
-                    <AccordionTrigger className="text-left font-medium">18. Where will I see internship opportunities after qualifying?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Opportunities will be shared through the NxtWave platform and your Success Coach after you qualify.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Where will internship opportunities be shown after I clear the levels?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Internship opportunities will be displayed on the IRP 2.0 page — this will be your single destination for viewing and applying to opportunities. The Jobs Board used previously will not be used for IRP 2.0 opportunities.</AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-18b">
+                    <AccordionTrigger className="text-left font-medium">When will internship opportunities start appearing?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Opportunities will be made available after students have completed the Level 1 and Level 2 assessments and results are processed. Watch your email for updates.</AccordionContent>
                   </AccordionItem>
 
-                  <div className="mb-6 mt-8"><h3 className="font-bold text-lg text-primary border-b pb-2">Courses & Platform</h3></div>
+                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Courses & Platform</h3></div>
                   <AccordionItem value="item-19">
-                    <AccordionTrigger className="text-left font-medium">19. Are all the preparation courses free on the NxtWave platform?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes, all mandatory courses are available on the NxtWave Academy platform for registered students.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Where do I find the courses I need to study?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">All courses are available in your NxtWave Learning Portal. The course names mapped to Level 1 and Level 2 are listed in the "Courses to Prepare" section above.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-20">
-                    <AccordionTrigger className="text-left font-medium">20. What if I haven't completed all the courses yet?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Focus on completing the mandatory courses listed in the "Courses to Prepare" section before the assessment date.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">Does completing IRP contribute to Growth Cycle progress?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">IRP assessments and Growth Cycles are separate tracks. Completing courses in your Growth Cycle is important for IRP preparation, but IRP completion itself does not directly increment Growth Cycle progress.</AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-20b">
+                    <AccordionTrigger className="text-left font-medium">Will a preparation roadmap be provided?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. Preparation guidance will be shared through email and via your Success Coach. This page will also have course mapping details.</AccordionContent>
                   </AccordionItem>
                 </Accordion>
               </CardContent>
             </Card>
+            <p className="text-center text-sm text-muted-foreground mt-6">For any queries not covered here, reach out to your Success Coach or contact the NxtWave Academy Student Success team. <span className="text-xs">— Last Updated: May 2026</span></p>
           </div>
         </section>
 

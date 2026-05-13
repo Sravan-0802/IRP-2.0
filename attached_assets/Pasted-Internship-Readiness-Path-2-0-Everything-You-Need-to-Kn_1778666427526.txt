@@ -1,0 +1,274 @@
+Internship Readiness Path 2.0
+Everything You Need to Know — YOG 2028 & 2029
+
+What is IRP 2.0?
+The Internship Readiness Path (IRP 2.0) is NxtWave Academy's structured program to help 1st and 2nd year students prepare for and access internship opportunities. It's built specifically for you — the assessments, projects, and interviews are all scoped to what you've studied at your current year level.
+
+IRP 2.0 is 100% online. No offline rounds. No travel. No logistics.
+What's Different from Before?
+Before IRP 2.0
+IRP 2.0
+Assessed alongside 3rd, 4th & final year students
+Tailored assessments — only what you've studied
+Common assessments regardless of year
+Year-level appropriate content
+Online + Offline rounds (travel required)
+100% Online — attempt from anywhere
+One-size-fits-all process
+Multi-level structure with progressive unlocks
+
+
+
+Who Is This For?
+IRP 2.0 is designed for YOG 2028 and YOG 2029 students only (1st and 2nd year).
+
+If you are a 2027 or earlier graduate, the IRP 2.0 process does not apply to you — please connect with your Success Coach for the relevant placement or internship process for your batch.
+
+
+The IRP 2.0 Journey — Three Levels
+⚡ Level 1: The Hustler
+Assessment Date: 14th June 2026
+
+Level 1 is your entry point. It assesses your foundational frontend and programming skills.
+
+Assessment Sections:
+
+Section
+Format
+Duration
+Questions
+Python Programming + DSA
+MCQ
+1.5 hours
+4 questions
+FE (HTML, CSS, JS, React)
+MCQ
+30 minutes
+30 questions
+
+
+After the MCQ Assessment (same window):
+
+Round
+Description
+Duration
+FE Project
+Build and submit a frontend project
+12 hours
+AI Mock Interview
+Project + Resume review
+1 hour
+Human Mock Interview
+Project + Resume review
+1 hour
+
+
+Courses to prepare for Level 1:
+
+Build your own Static Website
+Build your own Responsive Website
+Modern Responsive Web Design
+Build your own Dynamic Web Application
+JS Essentials
+Getting Started with React JS
+Programming Foundations
+Data Structures & Algorithms — Level 1
+
+What Level 1 unlocks: Eligibility to appear for Level 2.
+
+⚠️ Important: Clearing Level 1 alone does NOT make you eligible for internship opportunities. Internship opportunities unlock only after clearing both Level 1 and Level 2. If you are aiming for 25K+ stipend internships, you will additionally need to qualify for Level 3 — the Infinite Aura track.
+
+
+🌟 Level 2: The Main Character
+Timeline: Approximately 1 month after Level 1
+
+Level 2 tests your backend, database, and GenAI skills — the full-stack layer.
+
+Assessment Sections:
+
+Section
+Format
+Duration
+Questions
+BE — NodeJS + Express
+MCQ
+20 minutes
+20 questions
+Database — SQL, NoSQL, MongoDB
+MCQ
+20 minutes
+20 questions
+GenAI
+MCQ
+20 minutes
+20 questions
+Combined MCQ Total
+
+
+1 hour
+60 questions
+
+
+After the MCQ Assessment:
+
+Round
+Description
+Duration
+Full Stack + AI Project
+Build and submit a full stack project with AI integration
+24 hours
+AI Mock Interview
+Project + Resume review
+1 hour
+Human Mock Interview
+Project + Resume review
+1 hour
+
+
+Courses to prepare for Level 2:
+
+Node JS
+Introduction to Databases
+DBMS
+MongoDB
+Generative AI
+
+What Level 2 unlocks: Internship opportunities (5K–10K stipend range) and access to Level 3 — Infinite Aura track.
+
+
+🌀 Level 3: Infinite Aura
+Eligibility: Clear BOTH Level 1 & Level 2
+
+Level 3 is the top 1% track. Once you clear both levels, here's what you get access to:
+
+🎯 Internship opportunities with 25K+ monthly stipend
+👨‍💻 Mentorship from senior developers at Microsoft, Apple, Google, and Salesforce
+🤝 Interactions with NxtWave's Founding Team
+
+Level 3 opportunities are curated — they go to students who have demonstrated readiness across the full IRP 2.0 path.
+
+
+How to Register
+Registration for IRP 2.0 is mandatory. Without completing registration, you will not be eligible to appear for the assessments or access internship opportunities.
+
+Step 1: Complete your Internship Profile Registration 👉 Registration link: To be shared shortly — watch your email for the link
+
+Step 2: Once registered, watch for further updates via email — assessment schedules, preparation resources, and result communications will all come through email.
+
+
+
+Pre-Assessment Checklist
+Before 14th June — make sure you've done all of this:
+
+✅ Study & Revise — Go through all concepts at your year level (Python, DSA basics, HTML, CSS, JavaScript, React)
+
+✅ Practice Regularly — Solve problems on the NxtWave platform every day. Consistency beats cramming.
+
+✅ Complete Pending Courses — All mandatory courses up to your current level must be completed before the assessment.
+
+✅ Submit Your NOC — Your No Objection Certificate from college must be submitted before you can participate in internship opportunities. Reach out to your Success Coach if you need help with this.
+
+
+Frequently Asked Questions
+
+📌 Eligibility & Who Can Participate
+Q: Is IRP 2.0 for all students or only 1st and 2nd year students? IRP 2.0 is exclusively for YOG 2028 and YOG 2029 students — that's 1st and 2nd year students. If you recently completed your 2nd year, you are still eligible. If you are YOG 2027 or earlier, please connect with your Success Coach for the appropriate process.
+
+Q: I just completed my 2nd year. Am I eligible? Yes. YOG 2028 students who have just completed their 2nd year are eligible to participate in IRP 2.0.
+
+Q: Are Smart Program students eligible? If you are a YOG 2028 or 2029 student under the Smart Program, check with your Success Coach — eligibility is determined by YOG, not program type.
+
+Q: What is the minimum course completion required to be eligible? There is no fixed percentage threshold for eligibility to register. However, you are expected to have completed the courses relevant to the level you are appearing for before the assessment date.
+
+
+📌 Assessment Process & Structure
+Q: Does clearing Level 1 make me eligible for internship opportunities? No. Clearing Level 1 alone does not make you eligible for internships. Internship opportunities unlock only after you clear both Level 1 and Level 2. Once you clear both, you become eligible for standard opportunities (5K–10K stipend range). If you are aiming for 25K+ stipend internships, you will additionally need to qualify for Level 3 — the Infinite Aura track.
+
+Q: What happens if I clear Level 1 but fail Level 2? You will not be eligible for internship opportunities until you clear Level 2 as well. Details on retake windows will be communicated separately.
+
+Q: Can I attempt both Level 1 and Level 2 assessments? Level 2 is only accessible after you complete Level 1. Level 2 opens approximately one month after Level 1's assessment date.
+
+Q: Are all assessments online? Yes. All rounds under IRP 2.0 — MCQs, projects, AI Mock Interview, and Human Mock Interview — are 100% online. There are no offline rounds.
+
+Q: Will the assessment on 14th June be online? Yes, the 14th June assessment (Level 1) is fully online.
+
+Q: Is there a deadline to complete all three levels? Specific deadlines will be communicated at each stage. The Level 1 assessment is on 14th June 2026. Level 2 will open approximately one month after that.
+
+Q: Will there be a second attempt if I miss or fail the June 14th assessment? Details on retake opportunities will be shared after the first assessment window. Watch your registered email for updates.
+
+
+📌 Skills & Preparation
+Q: What skills do I need for Level 1? You need: Python (fundamentals), DSA Level 1, HTML, CSS, JavaScript (Essentials), React (Getting Started). These map directly to the NxtWave courses listed in the Level 1 section above.
+
+Q: Is DSA Level 1 enough for the Python + DSA section? Yes. Level 1 covers DSA at a basic level — DSA Level 1 from the NxtWave platform is sufficient.
+
+Q: Should I learn DSA in Python or Java? The assessment default language is Python, and the DSA section is assessed in Python. You can also code in C++ or Java, but Python is recommended for alignment with the course content.
+
+Q: Is GenAI mandatory for Level 2? Yes. GenAI is one of the three MCQ sections in Level 2, alongside Backend (NodeJS + Express) and Databases.
+
+Q: Is HTML, CSS, and JavaScript enough for Level 1, or do I need more? For Level 1, you need HTML, CSS, JavaScript Essentials, and React basics — all covered in the NxtWave curriculum. That is the scope of the FE MCQ section.
+
+Q: Should I learn skills in parallel or one at a time? Complete courses in the order prescribed in your NxtWave learning path. For Level 1 preparation, prioritize completing the FE courses and DSA Level 1 first.
+
+Q: Does communication matter in the interview? Yes. The Human Mock Interview evaluates not just your technical output but also how well you can explain your project and reasoning. Basic clear communication in English is important.
+
+Q: What if my English communication is not strong? The Mock Interviews will assess you based on your project and problem-solving ability. Focus on explaining your thought process clearly — fluency is not the primary criteria.
+
+
+📌 Projects
+Q: Will there be a real project in IRP 2.0? Yes. Both levels involve a project submission: a Frontend Project in Level 1 (12 hours) and a Full Stack + AI Project in Level 2 (24 hours).
+
+Q: Do I actually get valuable experience through internships or is it just for certificates? NxtWave internship opportunities involve real project work at partner companies. You will gain hands-on experience with actual development tasks — not just certificates. Past students have worked on real products and received stipends.
+
+Q: Are remote internships valuable — or will I miss out by not working in-person? Remote internships through NxtWave involve real deliverables and mentorship. The experience is comparable to in-person internships in terms of learning. You will work on actual company projects.
+
+
+📌 Stipend & Internship Opportunities
+Q: Are the internships paid? Yes. Level 2 clearance gives access to internships in the 5K–10K/month stipend range. Level 3 (Infinite Aura track) gives access to 25K+ stipend opportunities.
+
+Q: If I clear both Level 1 and Level 2, what is the stipend I can expect? Stipends vary by company and role. After clearing both levels, you become eligible for opportunities typically in the 5K–10K/month range. Top performers who reach Level 3 status can access 25K+ opportunities.
+
+Q: Are there internships for specific domains like Data Analytics, AI/ML, or Cybersecurity? IRP 2.0 is focused on Full Stack and Frontend development opportunities. Internships in specific domains like Data Analytics or AI/ML may be available through separate channels — connect with your Success Coach for more clarity.
+
+Q: How long are the internships? Internship duration varies by company and role. Typical duration is 3–4 months. Specific details will be shared when opportunities are released.
+
+Q: Will internships be remote or in-office? Both options may be available depending on the company. Most opportunities in the current batch are remote or hybrid.
+
+Q: How many hours per day is expected during an internship? This varies by company. Most internships under IRP have structured working hours similar to a part-time or project-based engagement, designed to be manageable alongside your college schedule.
+
+
+📌 Registration & NOC
+Q: How do I register for the assessment? Complete your Internship Profile Registration here: https://bit.ly/Internship-registration
+
+Q: Is the registration form the same as the feedback form from the Internship Readiness Meet? No. The registration form and the feedback form are separate links. Make sure you complete the registration form (link above) — not just the feedback form.
+
+Q: Should I submit the form once or multiple times? Submit it once. If you are registering for Level 1, select Level 1 in the form. You do not need to resubmit for the same level.
+
+Q: Can I choose Level 1 now and also appear for Level 2 later? Yes. You will register for Level 1 first. Once Level 1 is cleared, you will register for Level 2 separately.
+
+Q: Is NOC mandatory? Yes. A No Objection Certificate from your college is required to participate in internship opportunities. This is separate from the assessment registration — you need both. Reach out to your Success Coach if you need support with the NOC process.
+
+Q: I haven't submitted my NOC yet. Can I still appear for the assessment? You can appear for the assessment without the NOC. However, the NOC is required to actually access and accept internship opportunities. Submit it as early as possible.
+
+
+📌 Where Opportunities Are Displayed
+Q: Where will internship opportunities be shown after I clear the levels? Internship opportunities will be displayed on the IRP 2.0 Replit page currently being built. This will be your single destination for viewing and applying to opportunities. The Jobs Board used previously will not be used for IRP 2.0 opportunities.
+
+Q: When will internship opportunities start appearing? Opportunities will be made available after students have completed the Level 1 and Level 2 assessments and results are processed. Watch your email for updates.
+
+
+📌 Courses & Platform
+Q: Where do I find the courses I need to study? All courses are available in your NxtWave Learning Portal. The course names mapped to Level 1 and Level 2 are listed in the "Courses to Prepare" section above.
+
+Q: Will a preparation roadmap be provided? Yes. Preparation guidance will be shared through email and via your Success Coach. The IRP 2.0 Replit page will also have course mapping details.
+
+Q: Does completing IRP contribute to Growth Cycle progress? IRP assessments and Growth Cycles are separate tracks. Completing courses in your Growth Cycle is important for IRP preparation, but IRP completion itself does not directly increment Growth Cycle progress.
+
+Q: Can I use VS Code or other tools for the project rounds? Yes. You can use your preferred IDE (VS Code, etc.) for the project rounds. The submission format will be specified when the project brief is shared.
+
+
+
+For any queries not covered here, reach out to your Success Coach or contact the NxtWave Academy Student Success team.
+
+Last Updated: May 2026
+
