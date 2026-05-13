@@ -728,7 +728,7 @@ export default function LandingPage() {
                         )}
                       />
 
-                      <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-lg rounded-xl font-bold">
+                      <Button type="submit" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-2.5 text-sm rounded-lg font-semibold">
                         Complete Registration
                       </Button>
                     </form>
