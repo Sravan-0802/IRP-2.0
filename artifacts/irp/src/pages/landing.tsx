@@ -58,8 +58,8 @@ export default function LandingPage() {
       {/* Sticky Nav */}
       <nav className="sticky top-0 z-50 w-full backdrop-blur-lg bg-background/80 border-b border-border/40">
         <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 font-bold text-xl tracking-tight cursor-pointer" onClick={() => scrollTo('hero')}>
-            <span className="text-accent">NxtWave</span> Academy
+          <div className="flex items-center cursor-pointer" onClick={() => scrollTo('hero')}>
+            <img src="/nxtwave-logo.png" alt="NxtWave Academy" className="h-8 w-auto" />
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
             <button onClick={() => scrollTo('about')} className="hover:text-accent transition-colors">About</button>
@@ -713,8 +713,8 @@ export default function LandingPage() {
       {/* Footer */}
       <footer id="footer" className="bg-primary py-12 border-t border-primary/80">
         <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2 font-bold text-xl tracking-tight text-white">
-            <span className="text-blue-200">NxtWave</span> Academy
+          <div className="flex items-center">
+            <img src="/nxtwave-logo.png" alt="NxtWave Academy" className="h-8 w-auto brightness-0 invert" />
           </div>
           <div className="text-blue-100 font-medium text-center md:text-left">
             <p className="flex items-center gap-2 justify-center md:justify-start">
