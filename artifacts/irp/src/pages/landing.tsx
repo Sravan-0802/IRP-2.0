@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { 
   ArrowRight, CheckCircle2, ChevronDown, Clock, Code, 
-  Database, FileCode2, Info, Rocket, Server, Star, Trophy, 
+  Database, ExternalLink, FileCode2, Info, Rocket, Server, Star, Trophy, 
   User, CheckCircle, Navigation
 } from "lucide-react";
 
@@ -359,100 +359,200 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Courses Section */}
+        {/* Courses Section — Path Layout */}
         <section id="courses" className="py-20 bg-blue-50">
-          <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Courses to Prepare</h2>
-              <p className="text-lg text-muted-foreground">Complete these mandatory courses on the NxtWave platform.</p>
+          <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+            <div className="text-center mb-14">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">Your Learning Path</h2>
+              <p className="text-muted-foreground">Courses to complete on the NxtWave platform — click any course to open it directly.</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-card text-card-foreground shadow-sm">
-                <CardHeader className="bg-blue-50/50 dark:bg-blue-900/10 border-b pb-4">
-                  <CardTitle className="flex items-center gap-2 text-xl">
-                    <Code className="h-5 w-5 text-blue-500" /> Level 1 Courses
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-6">
-                  <ul className="space-y-3">
-                    {[
-                      "Build your own Static Website",
-                      "Build your own Responsive Website",
-                      "Modern Responsive Web Design",
-                      "Build your own Dynamic Web Application",
-                      "JS Essentials",
-                      "Getting Started with React JS",
-                      "Programming Foundations",
-                      "Data Structures & Algorithms — Level 1"
-                    ].map((course, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <CheckCircle2 className="h-4 w-4 text-blue-500 shrink-0" />
-                        <span className="font-medium text-sm md:text-base">{course}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+            {/* Path */}
+            <div className="relative">
+              {/* Vertical connector line */}
+              <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-400 via-blue-500 to-purple-500 z-0" />
 
-              <Card className="bg-card text-card-foreground shadow-sm">
-                <CardHeader className="bg-accent/5 border-b pb-4">
-                  <CardTitle className="flex items-center gap-2 text-xl">
-                    <Database className="h-5 w-5 text-accent" /> Level 2 Courses
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-6">
-                  <ul className="space-y-3">
-                    {[
-                      "Node JS",
-                      "Introduction to Databases",
-                      "DBMS",
-                      "MongoDB",
-                      "Generative AI",
-                      "OOPs"
-                    ].map((course, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
-                        <span className="font-medium text-sm md:text-base">{course}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+              {/* LEVEL 1 */}
+              <div className="relative z-10 mb-10">
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-600 text-white flex flex-col items-center justify-center font-black text-xs md:text-sm shrink-0 shadow-lg ring-4 ring-blue-100">
+                    <span className="leading-none">L1</span>
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-blue-600">Level 1</span>
+                    <h3 className="text-lg font-bold text-foreground">The Hustler</h3>
+                  </div>
+                </div>
+                <div className="ml-16 md:ml-24 grid md:grid-cols-2 gap-4">
+                  {/* FE Track */}
+                  <div className="bg-white rounded-xl border border-blue-100 shadow-sm overflow-hidden">
+                    <div className="bg-blue-600 px-4 py-2.5 flex items-center gap-2">
+                      <Code className="h-4 w-4 text-white" />
+                      <span className="text-white text-sm font-bold">Frontend Track</span>
+                    </div>
+                    <ul className="divide-y divide-blue-50">
+                      {[
+                        { name: "Build your own Static Website", url: "https://learning.ccbp.in/cl-course/6d41f350-76d5-4337-9be0-3fe0b26b1b26" },
+                        { name: "Build your own Responsive Website", url: "https://learning.ccbp.in/cl-course/62e43c70-ee74-4afe-8d1c-26ca9c22947a" },
+                        { name: "Modern Responsive Web Design", url: "https://learning.ccbp.in/cl-course/1d571a66-be1e-49cd-a17f-5b3b22d6d751" },
+                        { name: "Build your own Dynamic Web App", url: "https://learning.ccbp.in/cl-course/c0d9b357-87a7-41e2-985f-affaef636499" },
+                        { name: "JS Essentials", url: "https://learning.ccbp.in/cl-course/7e0446da-981d-4faa-b02d-f4dc605dba66" },
+                        { name: "Introduction to React JS", url: "https://learning.ccbp.in/cl-course/40ab5ebd-3def-4faf-adca-3d39d921df1c" },
+                      ].map((c, i) => (
+                        <li key={i}>
+                          <a href={c.url} target="_blank" rel="noopener noreferrer"
+                            className="flex items-center justify-between gap-2 px-4 py-2.5 hover:bg-blue-50 transition-colors group">
+                            <span className="text-sm font-medium text-foreground group-hover:text-blue-700 transition-colors">{c.name}</span>
+                            <ExternalLink className="h-3.5 w-3.5 text-blue-400 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {/* DSA Track */}
+                  <div className="bg-white rounded-xl border border-blue-100 shadow-sm overflow-hidden">
+                    <div className="bg-blue-500 px-4 py-2.5 flex items-center gap-2">
+                      <Code className="h-4 w-4 text-white" />
+                      <span className="text-white text-sm font-bold">DSA Track</span>
+                    </div>
+                    <ul className="divide-y divide-blue-50">
+                      {[
+                        { name: "Programming Foundations", url: "https://learning.ccbp.in/cl-course/c6008f8d-cd91-4843-bb3f-b75d4beca046" },
+                        { name: "Data Structures & Algorithms — Level 1", url: "https://learning.ccbp.in/course?c_id=058b97cb-16db-4098-8b1e-3e7cbffe1db4" },
+                      ].map((c, i) => (
+                        <li key={i}>
+                          <a href={c.url} target="_blank" rel="noopener noreferrer"
+                            className="flex items-center justify-between gap-2 px-4 py-2.5 hover:bg-blue-50 transition-colors group">
+                            <span className="text-sm font-medium text-foreground group-hover:text-blue-700 transition-colors">{c.name}</span>
+                            <ExternalLink className="h-3.5 w-3.5 text-blue-400 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="px-4 pb-3 pt-3 bg-blue-50/60">
+                      <p className="text-xs text-muted-foreground">Python is the recommended language for the DSA assessment.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Unlock arrow */}
+              <div className="ml-16 md:ml-24 mb-6 flex items-center gap-2 text-xs font-semibold text-blue-500">
+                <ArrowRight className="h-4 w-4" />
+                Clear Level 1 to unlock Level 2
+              </div>
+
+              {/* LEVEL 2 */}
+              <div className="relative z-10 mb-10">
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-accent text-white flex flex-col items-center justify-center font-black text-xs md:text-sm shrink-0 shadow-lg ring-4 ring-accent/20">
+                    <span className="leading-none">L2</span>
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-accent">Level 2</span>
+                    <h3 className="text-lg font-bold text-foreground">The Main Character</h3>
+                  </div>
+                </div>
+                <div className="ml-16 md:ml-24">
+                  <div className="bg-white rounded-xl border border-accent/20 shadow-sm overflow-hidden">
+                    <div className="bg-accent px-4 py-2.5 flex items-center gap-2">
+                      <Database className="h-4 w-4 text-white" />
+                      <span className="text-white text-sm font-bold">Full-Stack + GenAI Track</span>
+                    </div>
+                    <ul className="divide-y divide-blue-50 grid sm:grid-cols-2">
+                      {[
+                        { name: "Node JS", url: "https://learning.ccbp.in/cl-course/d82d6905-6694-42c4-8c0c-bd2c887c1b53" },
+                        { name: "Introduction to Databases", url: "https://learning.ccbp.in/cl-course/25c1a72c-216e-47e1-9bc6-b2f16c66e0ca" },
+                        { name: "DBMS", url: "https://learning.ccbp.in/course?c_id=3ba04d30-7c3a-4d5d-8c23-6e3bfc093511" },
+                        { name: "MongoDB", url: "https://learning.ccbp.in/course?c_id=a5777f9b-1a9c-42a5-aab7-0182e80efca2&s_id=f09a898b-f8e3-4ded-a6c7-46184629ff3d&t_id=42d9584b-aee6-4eb6-b1ed-8f8de7a29633" },
+                        { name: "Generative AI", url: "https://learning.ccbp.in/course?c_id=b9811b34-585b-47e0-a0be-65f1081a74f2&s_id=64025833-d46d-4e7c-a7e0-a9c230a78b9d&t_id=096cf0ff-cdc5-4efb-9895-7c9aff0dbb1e" },
+                      ].map((c, i) => (
+                        <li key={i} className="border-blue-50">
+                          <a href={c.url} target="_blank" rel="noopener noreferrer"
+                            className="flex items-center justify-between gap-2 px-4 py-2.5 hover:bg-blue-50 transition-colors group">
+                            <span className="text-sm font-medium text-foreground group-hover:text-accent transition-colors">{c.name}</span>
+                            <ExternalLink className="h-3.5 w-3.5 text-accent/50 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Unlock arrow */}
+              <div className="ml-16 md:ml-24 mb-6 flex items-center gap-2 text-xs font-semibold text-purple-500">
+                <ArrowRight className="h-4 w-4" />
+                Clear Level 1 + Level 2 to unlock Level 3
+              </div>
+
+              {/* LEVEL 3 */}
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-purple-600 text-white flex flex-col items-center justify-center font-black text-xs md:text-sm shrink-0 shadow-lg ring-4 ring-purple-100">
+                    <span className="leading-none">L3</span>
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-600">Level 3</span>
+                    <h3 className="text-lg font-bold text-foreground">Infinite Aura — Top 1%</h3>
+                  </div>
+                </div>
+                <div className="ml-16 md:ml-24">
+                  <div className="bg-white rounded-xl border border-purple-100 shadow-sm overflow-hidden">
+                    <div className="bg-purple-600 px-4 py-2.5 flex items-center gap-2">
+                      <Trophy className="h-4 w-4 text-white" />
+                      <span className="text-white text-sm font-bold">Advanced DSA Track</span>
+                    </div>
+                    <ul className="divide-y divide-purple-50 grid sm:grid-cols-2">
+                      {[
+                        { name: "DSA — Level 2", url: "https://learning.ccbp.in/course?c_id=229cbe49-f4c4-4aa2-bcc6-55ea3e15e159" },
+                        { name: "DSA — Level 3", url: "https://learning.ccbp.in/course?c_id=68d141a9-3a73-4bc3-8d8c-cfff7ec8a4be&s_id=696cf715-22e7-4587-ac63-6c5df7427ad5&t_id=009e5ade-f694-4a42-8dbf-544f06a4da1e" },
+                        { name: "LeetCode Rating", url: "https://leetcode.com" },
+                        { name: "CodeChef Rating", url: "https://www.codechef.com" },
+                      ].map((c, i) => (
+                        <li key={i} className="border-purple-50">
+                          <a href={c.url} target="_blank" rel="noopener noreferrer"
+                            className="flex items-center justify-between gap-2 px-4 py-2.5 hover:bg-purple-50 transition-colors group">
+                            <span className="text-sm font-medium text-foreground group-hover:text-purple-700 transition-colors">{c.name}</span>
+                            <ExternalLink className="h-3.5 w-3.5 text-purple-400 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="px-4 py-3 bg-purple-50/60 flex items-center gap-2">
+                      <Trophy className="h-4 w-4 text-purple-500 shrink-0" />
+                      <p className="text-xs text-purple-700 font-medium">Unlocks ₹25K+ stipend internships + elite mentorship from Microsoft, Apple, Google & Salesforce</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Checklist Section */}
-        <section id="checklist" className="py-20">
+        <section id="checklist" className="py-12">
           <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-            <Card className="bg-primary/20 border-primary/30 backdrop-blur-sm overflow-hidden text-foreground">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent pointer-events-none" />
-              <CardHeader className="text-center pb-8 pt-10">
-                <CardTitle className="text-3xl font-bold">Pre-Assessment Checklist</CardTitle>
-                <CardDescription className="text-lg text-muted-foreground mt-2">Ensure you've completed these steps before assessment day.</CardDescription>
-              </CardHeader>
-              <CardContent className="px-6 md:px-12 pb-10">
-                <div className="space-y-6">
-                  {[
-                    { title: "Study & Revise", detail: "Go through all concepts at your year level — Python, DSA basics, HTML, CSS, JavaScript, React." },
-                    { title: "Practice Regularly", detail: "Solve problems on the NxtWave platform every day. Consistency beats cramming." },
-                    { title: "Complete Pending Courses", detail: "All mandatory courses up to your current level must be completed before the assessment." },
-                    { title: "Submit Your NOC", detail: "Your No Objection Certificate from college must be submitted before you can participate in internship opportunities. Reach out to your Success Coach if you need help." },
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-4 p-4 rounded-lg bg-blue-50 border border-blue-100 shadow-sm">
-                      <div className="bg-accent/20 p-2 rounded-full mt-0.5 shrink-0">
-                        <CheckCircle2 className="h-5 w-5 text-accent" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-foreground">{item.title}</p>
-                        <p className="text-sm text-muted-foreground mt-0.5">{item.detail}</p>
-                      </div>
-                    </div>
-                  ))}
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">Before 14th June — Check These Off</h2>
+              <p className="text-sm text-muted-foreground">Your pre-assessment checklist</p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {[
+                { title: "Study & Revise", detail: "Python, DSA basics, HTML, CSS, JS, React — all year-level concepts.", icon: "📖" },
+                { title: "Practice Regularly", detail: "Solve problems on NxtWave daily. Consistency beats cramming.", icon: "💻" },
+                { title: "Complete Pending Courses", detail: "All mandatory courses for your level must be done before assessment.", icon: "✅" },
+                { title: "Submit Your NOC", detail: "Required from college before you can accept internship opportunities.", icon: "📄" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-blue-50 border border-blue-100">
+                  <span className="text-xl shrink-0">{item.icon}</span>
+                  <div>
+                    <p className="font-semibold text-sm text-foreground">{item.title}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{item.detail}</p>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              ))}
+            </div>
           </div>
         </section>
 
