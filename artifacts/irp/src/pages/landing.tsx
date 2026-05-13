@@ -54,7 +54,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-accent selection:text-black">
+    <div className="min-h-screen bg-background text-foreground selection:bg-accent selection:text-white">
       {/* Sticky Nav */}
       <nav className="sticky top-0 z-50 w-full backdrop-blur-lg bg-background/80 border-b border-border/40">
         <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
@@ -103,7 +103,7 @@ export default function LandingPage() {
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8 py-6 rounded-full" onClick={() => scrollTo('register')}>
                 Register for IRP 2.0 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-white/5 text-lg px-8 py-6 rounded-full" onClick={() => scrollTo('levels')}>
+              <Button size="lg" variant="outline" className="border-border text-foreground hover:bg-blue-50 text-lg px-8 py-6 rounded-full" onClick={() => scrollTo('levels')}>
                 View the Path
               </Button>
             </div>
@@ -111,7 +111,7 @@ export default function LandingPage() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 bg-black/20">
+        <section id="about" className="py-20 bg-blue-50">
           <div className="container mx-auto px-4 md:px-6 max-w-6xl">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">What is IRP 2.0?</h2>
@@ -338,7 +338,7 @@ export default function LandingPage() {
         </section>
 
         {/* Courses Section */}
-        <section id="courses" className="py-20 bg-black/20">
+        <section id="courses" className="py-20 bg-blue-50">
           <div className="container mx-auto px-4 md:px-6 max-w-5xl">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Courses to Prepare</h2>
@@ -418,7 +418,7 @@ export default function LandingPage() {
                     "Complete all mandatory courses before assessment date.",
                     "Submit NOC (No Objection Certificate) from your college — reach out to your Success Coach for help."
                   ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-4 p-4 rounded-lg bg-black/20 border border-white/5 shadow-sm">
+                    <div key={i} className="flex items-start gap-4 p-4 rounded-lg bg-blue-50 border border-blue-100 shadow-sm">
                       <div className="bg-accent/20 p-2 rounded-full mt-0.5 shrink-0">
                         <CheckCircle2 className="h-5 w-5 text-accent" />
                       </div>
@@ -432,7 +432,7 @@ export default function LandingPage() {
         </section>
 
         {/* Registration Section */}
-        <section id="register" className="py-24 bg-black/30 relative">
+        <section id="register" className="py-24 bg-blue-50 relative">
           <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent pointer-events-none" />
           <div className="container mx-auto px-4 md:px-6 max-w-3xl relative z-10">
             <div className="text-center mb-10">
@@ -711,17 +711,17 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer id="footer" className="bg-black py-12 border-t border-border">
+      <footer id="footer" className="bg-primary py-12 border-t border-primary/80">
         <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
-            <span className="text-accent">NxtWave</span> Academy
+          <div className="flex items-center gap-2 font-bold text-xl tracking-tight text-white">
+            <span className="text-blue-200">NxtWave</span> Academy
           </div>
-          <div className="text-muted-foreground font-medium text-center md:text-left">
+          <div className="text-blue-100 font-medium text-center md:text-left">
             <p className="flex items-center gap-2 justify-center md:justify-start">
               <Navigation className="h-4 w-4" /> Reach your Success Coach for support
             </p>
           </div>
-          <div className="text-muted-foreground text-sm">
+          <div className="text-blue-200 text-sm">
             © {new Date().getFullYear()} NxtWave Academy. All rights reserved.
           </div>
         </div>
