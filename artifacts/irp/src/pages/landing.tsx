@@ -89,7 +89,7 @@ export default function LandingPage() {
               First Assessment: 14th June 2026
             </Badge>
             
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight">
               Internship Readiness <br className="hidden md:block"/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Path 2.0</span>
             </h1>
