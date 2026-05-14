@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { 
-  ArrowRight, CheckCircle2, ChevronDown, Clock, Code, 
-  Database, ExternalLink, FileCode2, Info, Rocket, Server, Star, Trophy, 
-  User, CheckCircle, Navigation
+  ArrowRight, BookOpen, CheckCircle2, ChevronDown, Clock, Code, 
+  Database, ExternalLink, FileCode2, FileText, Info, Menu, Rocket, Server, Star, Terminal, Trophy, 
+  User, CheckCircle, Navigation, X, XCircle
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -31,6 +31,9 @@ const formSchema = z.object({
 
 export default function LandingPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const allFaqItems = ["item-1","item-2","item-3","item-3b","item-4","item-5","item-6","item-7","item-7b","item-8","item-9","item-10","item-10b","item-10c","item-11","item-12","item-12b","item-13","item-14","item-15","item-15b","item-16","item-17","item-17b","item-17c","item-18","item-18b","item-19","item-20","item-20b"];
+  const [faqValues, setFaqValues] = useState<string[]>(["item-1","item-4","item-8","item-11","item-13","item-16","item-18","item-19"]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -68,10 +71,38 @@ export default function LandingPage() {
             <button onClick={() => scrollTo('checklist')} className="hover:text-accent transition-colors">Checklist</button>
             <button onClick={() => scrollTo('faq')} className="hover:text-accent transition-colors">FAQ</button>
           </div>
-          <Button onClick={() => scrollTo('register')} className="bg-accent text-accent-foreground hover:bg-accent/90">
-            Register Now
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button onClick={() => scrollTo('register')} className="bg-accent text-accent-foreground hover:bg-accent/90">
+              Register Now
+            </Button>
+            <button
+              className="md:hidden p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              onClick={() => setMenuOpen(o => !o)}
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
+        {menuOpen && (
+          <div className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur-lg px-4 py-2 flex flex-col">
+            {[
+              { id: 'about', label: 'About' },
+              { id: 'levels', label: 'Levels' },
+              { id: 'courses', label: 'Courses' },
+              { id: 'checklist', label: 'Checklist' },
+              { id: 'faq', label: 'FAQ' },
+            ].map(({ id, label }) => (
+              <button key={id} onClick={() => { scrollTo(id); setMenuOpen(false); }}
+                className="text-left text-base font-medium text-muted-foreground hover:text-accent py-3 border-b border-border/20 last:border-0 transition-colors">
+                {label}
+              </button>
+            ))}
+            <Button onClick={() => { scrollTo('register'); setMenuOpen(false); }} className="bg-accent text-accent-foreground hover:bg-accent/90 my-3 w-full">
+              Register Now
+            </Button>
+          </div>
+        )}
       </nav>
 
       <main>
@@ -103,16 +134,16 @@ export default function LandingPage() {
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl">
-              Built exclusively for 1st & 2nd Year Students (YOG 2028 & 2029). 
-              Launch your career with guaranteed internship opportunities.
+              Built for 1st & 2nd year students (YOG 2028 & 2029). Earn your
+              first stipend internship — fully online, fully merit-based.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
               <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-6 py-3 rounded-full" onClick={() => scrollTo('register')}>
                 Register for IRP 2.0 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" className="border-border text-foreground hover:bg-blue-50 text-sm px-6 py-3 rounded-full" onClick={() => scrollTo('levels')}>
-                View the Path
+              <Button variant="outline" className="border-border text-foreground hover:bg-blue-50 text-sm px-6 py-3 rounded-full flex items-center gap-1" onClick={() => scrollTo('levels')}>
+                See the 3 Levels <ChevronDown className="h-4 w-4" />
               </Button>
             </div>
           </motion.div>
@@ -142,7 +173,7 @@ export default function LandingPage() {
                     "One-size-fits-all process",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-muted-foreground/50 shrink-0 mt-0.5" />
+                      <XCircle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
                       <span className="text-muted-foreground">{item}</span>
                     </div>
                   ))}
@@ -193,7 +224,7 @@ export default function LandingPage() {
                     <div className="flex justify-between items-start mb-2">
                       <Badge variant="outline" className="bg-blue-50 text-blue-700 hover:bg-blue-50 border-blue-200">Level 1</Badge>
                       <span className="text-sm font-semibold text-muted-foreground flex items-center gap-1">
-                        <Clock className="h-3 w-3" /> 14 Jun '26
+                        <Clock className="h-3 w-3" /> 14 June 2026
                       </span>
                     </div>
                     <CardTitle className="text-2xl font-bold">The Hustler</CardTitle>
@@ -204,7 +235,7 @@ export default function LandingPage() {
                       <ul className="space-y-3">
                         <li className="flex flex-col">
                           <span className="font-medium text-foreground">Python + DSA</span>
-                          <span className="text-muted-foreground text-xs">MCQ • 1.5 hrs • 4 Qs</span>
+                          <span className="text-muted-foreground text-xs">MCQ • 1.5 hrs • 40 Qs</span>
                         </li>
                         <li className="flex flex-col">
                           <span className="font-medium text-foreground">Frontend (HTML, CSS, JS, React)</span>
@@ -333,7 +364,20 @@ export default function LandingPage() {
                         </li>
                       </ul>
                     </div>
+                    <div>
+                      <h4 className="font-semibold mb-3 flex items-center gap-2 border-b pb-2 text-purple-700"><User className="h-4 w-4 text-purple-500" /> Elite Mentors From</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {["Microsoft", "Apple", "Google", "Salesforce"].map((brand) => (
+                          <span key={brand} className="text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 text-purple-700 border border-purple-200">{brand}</span>
+                        ))}
+                      </div>
+                    </div>
                   </CardContent>
+                  <CardFooter className="bg-purple-50/60 mt-auto pt-4 rounded-b-xl border-t border-purple-100">
+                    <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }} className="text-sm font-medium text-purple-700 flex items-center gap-2 hover:underline">
+                      <Trophy className="h-4 w-4" /> See Infinite Aura eligibility →
+                    </a>
+                  </CardFooter>
                 </Card>
               </motion.div>
             </div>
@@ -515,18 +559,18 @@ export default function LandingPage() {
         <section id="checklist" className="py-12">
           <div className="container mx-auto px-4 md:px-6 max-w-4xl">
             <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">Before 14th June — Check These Off</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">Before 14 June 2026 — Check These Off</h2>
               <p className="text-sm text-muted-foreground">Your pre-assessment checklist</p>
             </div>
             <div className="grid sm:grid-cols-2 gap-3">
               {[
-                { title: "Study & Revise", detail: "Python, DSA basics, HTML, CSS, JS, React — all year-level concepts.", icon: "📖" },
-                { title: "Practice Regularly", detail: "Solve problems on NxtWave daily. Consistency beats cramming.", icon: "💻" },
-                { title: "Complete Pending Courses", detail: "All mandatory courses for your level must be done before assessment.", icon: "✅" },
-                { title: "Submit Your NOC", detail: "Required from college before you can accept internship opportunities.", icon: "📄" },
+                { title: "Study & Revise", detail: "Python, DSA basics, HTML, CSS, JS, React — all year-level concepts.", Icon: BookOpen },
+                { title: "Practice Regularly", detail: "Solve problems on NxtWave daily. Consistency beats cramming.", Icon: Terminal },
+                { title: "Complete Pending Courses", detail: "All mandatory courses for your level must be done before assessment.", Icon: CheckCircle2 },
+                { title: "Submit Your NOC", detail: "Required from college before you can accept internship opportunities.", Icon: FileText },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-blue-50 border border-blue-100">
-                  <span className="text-xl shrink-0">{item.icon}</span>
+                  <item.Icon className="h-5 w-5 text-accent shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-sm text-foreground">{item.title}</p>
                     <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{item.detail}</p>
@@ -560,7 +604,9 @@ export default function LandingPage() {
                 <div className="bg-accent text-white rounded-full w-8 h-8 flex items-center justify-center font-bold shrink-0 text-sm">1</div>
                 <div>
                   <p className="font-semibold text-foreground mb-1">Complete Internship Profile Registration</p>
-                  <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer" className="text-accent text-sm font-medium hover:underline break-all">bit.ly/Internship-registration</a>
+                  <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent bg-accent/10 hover:bg-accent/20 px-3 py-1.5 rounded-lg transition-colors">
+                    Open Registration Form <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
                 </div>
               </div>
               <div className="flex gap-4 p-5 rounded-xl bg-white border border-border shadow-sm">
@@ -709,9 +755,15 @@ export default function LandingPage() {
                         )}
                       />
 
-                      <Button type="submit" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-2.5 text-sm rounded-lg font-semibold">
-                        Complete Registration
-                      </Button>
+                      <div className="space-y-3">
+                        <Button type="submit" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-2.5 text-sm rounded-lg font-semibold">
+                          Complete Registration
+                        </Button>
+                        <p className="text-xs text-muted-foreground">
+                          We will only use this information to contact you about IRP 2.0.{" "}
+                          <a href="https://www.nxtwave.tech/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent">Privacy policy</a>.
+                        </p>
+                      </div>
                     </form>
                   </Form>
                 )}
@@ -729,7 +781,12 @@ export default function LandingPage() {
 
             <Card className="bg-card text-card-foreground">
               <CardContent className="pt-6">
-                <Accordion type="multiple" defaultValue={["item-1", "item-2", "item-4", "item-5", "item-8"]} className="w-full">
+                <div className="flex justify-end gap-3 mb-4 text-sm">
+                  <button onClick={() => setFaqValues(allFaqItems)} className="text-accent hover:underline font-medium">Expand all</button>
+                  <span className="text-muted-foreground">·</span>
+                  <button onClick={() => setFaqValues([])} className="text-muted-foreground hover:text-foreground hover:underline">Collapse all</button>
+                </div>
+                <Accordion type="multiple" value={faqValues} onValueChange={setFaqValues} className="w-full">
 
                   <div className="mb-4"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Eligibility & Who Can Participate</h3></div>
                   <AccordionItem value="item-1">
