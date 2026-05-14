@@ -559,8 +559,7 @@ export default function LandingPage() {
         <section id="checklist" className="py-12">
           <div className="container mx-auto px-4 md:px-6 max-w-4xl">
             <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">Before 14 June 2026 — Check These Off</h2>
-              <p className="text-sm text-muted-foreground">Your pre-assessment checklist</p>
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">Pre-Assessment Checklist</h2>
             </div>
             <div className="grid sm:grid-cols-2 gap-3">
               {[
