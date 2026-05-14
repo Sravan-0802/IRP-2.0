@@ -107,48 +107,67 @@ export default function LandingPage() {
 
       <main>
         {/* Hero Section */}
-        <section id="hero" className="relative min-h-[75vh] overflow-hidden flex flex-col items-center justify-center text-center px-4">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-200/60 via-indigo-100/30 to-background"></div>
+        <section id="hero" className="relative overflow-hidden px-4 py-10 md:py-16">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-200/60 via-indigo-100/30 to-background"></div>
           <div className="absolute top-[-80px] left-[-120px] w-[420px] h-[420px] rounded-full bg-gradient-to-br from-blue-400/20 to-indigo-400/10 blur-3xl -z-10" />
           <div className="absolute bottom-[-60px] right-[-80px] w-[350px] h-[350px] rounded-full bg-gradient-to-br from-accent/15 to-purple-400/10 blur-3xl -z-10" />
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-3/4 mx-auto flex flex-col items-center"
-          >
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
-              <Badge className="bg-blue-700 text-white border-none px-4 py-1.5 text-sm font-semibold rounded-full">
-                ✦ Summer 2026 IRP 2.0 Batch — Open Now!
-              </Badge>
-              <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer">
-                <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 px-4 py-1.5 text-sm font-medium rounded-full cursor-pointer flex items-center gap-1.5">
-                  First Assessment: 14th June 2026
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </Badge>
-              </a>
+
+          <div className="container mx-auto max-w-6xl">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              {/* Left — text */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex-1 flex flex-col items-start text-left"
+              >
+                <div className="flex flex-row flex-wrap items-center gap-2 mb-5">
+                  <Badge className="bg-blue-700 text-white border-none px-4 py-1.5 text-sm font-semibold rounded-full whitespace-nowrap">
+                    ✦ Summer 2026 IRP 2.0 Batch — Open Now!
+                  </Badge>
+                  <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer">
+                    <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 px-4 py-1.5 text-sm font-medium rounded-full cursor-pointer flex items-center gap-1.5 whitespace-nowrap">
+                      First Assessment: 14th June 2026
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </Badge>
+                  </a>
+                </div>
+
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-5 leading-tight">
+                  Internship Readiness<br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Path 2.0</span>
+                </h1>
+
+                <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg">
+                  Built for 1st &amp; 2nd year students (YOG 2028 &amp; 2029). Earn your
+                  first stipend internship — fully online, fully merit-based.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-6 py-3 rounded-full" onClick={() => scrollTo('register')}>
+                    Register for IRP 2.0 <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                  <Button variant="outline" className="border-border text-foreground hover:bg-blue-50 text-sm px-6 py-3 rounded-full flex items-center gap-1" onClick={() => scrollTo('levels')}>
+                    See the 3 Levels <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </div>
+              </motion.div>
+
+              {/* Right — illustration */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="flex-1 flex items-center justify-center"
+              >
+                <img
+                  src="/hero-illustration.png"
+                  alt="Students climbing toward internship goal"
+                  className="w-full max-w-md md:max-w-lg object-contain mix-blend-multiply"
+                />
+              </motion.div>
             </div>
-            
-            <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight">
-              Internship Readiness <br className="hidden md:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Path 2.0</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl">
-              Built for 1st & 2nd year students (YOG 2028 & 2029). Earn your
-              first stipend internship — fully online, fully merit-based.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-              <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-6 py-3 rounded-full" onClick={() => scrollTo('register')}>
-                Register for IRP 2.0 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button variant="outline" className="border-border text-foreground hover:bg-blue-50 text-sm px-6 py-3 rounded-full flex items-center gap-1" onClick={() => scrollTo('levels')}>
-                See the 3 Levels <ChevronDown className="h-4 w-4" />
-              </Button>
-            </div>
-          </motion.div>
+          </div>
         </section>
 
         {/* About Section */}
