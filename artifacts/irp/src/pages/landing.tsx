@@ -612,7 +612,7 @@ export default function LandingPage() {
                 {
                   num: "02",
                   title: "Practice Regularly",
-                  detail: "Solve practice on platforms like Codeforces, LeetCode, or GeeksforGeeks.",
+                  detail: "Regularly solve problems on our learning portal. In parallel, practise on LeetCode, CodeChef, and GeeksforGeeks to enhance your skill set.",
                   gradient: "from-teal-400 to-emerald-500",
                   bg: "bg-teal-50",
                 },
