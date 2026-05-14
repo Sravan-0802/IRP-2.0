@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { 
   ArrowRight, BookOpen, CheckCircle2, ChevronDown, Clock, Code, 
   Database, ExternalLink, FileCode2, FileText, Info, Menu, Rocket, Server, Star, Terminal, Trophy, 
@@ -13,41 +10,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-const formSchema = z.object({
-  fullName: z.string().min(2, "Name must be at least 2 characters"),
-  yog: z.enum(["2028", "2029"], { required_error: "Please select your year of graduation" }),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  level: z.enum(["Level 1", "Level 2"], { required_error: "Please select a level" }),
-  nocSubmitted: z.enum(["Yes", "No"], { required_error: "Please indicate if you have submitted NOC" }),
-});
-
 export default function LandingPage() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const allFaqItems = ["item-1","item-2","item-3","item-3b","item-4","item-5","item-6","item-7","item-7b","item-8","item-9","item-10","item-10b","item-10c","item-11","item-12","item-12b","item-13","item-14","item-15","item-15b","item-16","item-17","item-17b","item-17c","item-18","item-18b","item-19","item-20","item-20b"];
   const [faqValues, setFaqValues] = useState<string[]>(["item-1","item-4","item-8","item-11","item-13","item-16","item-18","item-19"]);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      fullName: "",
-      email: "",
-      phone: "",
-    },
-  });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitted(true);
-    console.log(values);
-  }
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -691,157 +660,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <Card className="border-border/50 shadow-xl bg-card text-card-foreground">
-              <CardHeader className="border-b bg-muted/20 pb-6">
-                <CardTitle className="text-2xl">Internship Profile Registration</CardTitle>
-                <CardDescription>This is a mandatory first step before appearing for assessments.</CardDescription>
-              </CardHeader>
-              <CardContent className="pt-8">
-                {isSubmitted ? (
-                  <div className="text-center py-12">
-                    <div className="mx-auto w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mb-6">
-                      <CheckCircle2 className="h-8 w-8 text-accent" />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-2">Registration Submitted!</h3>
-                    <p className="text-muted-foreground">Check your email for next steps and assessment details.</p>
-                    <Button variant="outline" className="mt-8" onClick={() => setIsSubmitted(false)}>Submit another</Button>
-                  </div>
-                ) : (
-                  <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <FormField
-                          control={form.control}
-                          name="fullName"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Full Name</FormLabel>
-                              <FormControl>
-                                <Input placeholder="John Doe" className="bg-background" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="yog"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Year of Graduation (YOG)</FormLabel>
-                              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
-                                  <SelectTrigger className="bg-background">
-                                    <SelectValue placeholder="Select YOG" />
-                                  </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                  <SelectItem value="2028">2028</SelectItem>
-                                  <SelectItem value="2029">2029</SelectItem>
-                                </SelectContent>
-                              </Select>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-                      
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <FormField
-                          control={form.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Email ID</FormLabel>
-                              <FormControl>
-                                <Input type="email" placeholder="john@example.com" className="bg-background" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="phone"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Phone Number</FormLabel>
-                              <FormControl>
-                                <Input type="tel" placeholder="+91 9876543210" className="bg-background" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <FormField
-                        control={form.control}
-                        name="level"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Which level are you registering for?</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger className="bg-background">
-                                  <SelectValue placeholder="Select Level" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="Level 1">Level 1</SelectItem>
-                                <SelectItem value="Level 2">Level 2</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="nocSubmitted"
-                        render={({ field }) => (
-                          <FormItem className="space-y-3">
-                            <FormLabel>Have you submitted NOC from your college?</FormLabel>
-                            <FormControl>
-                              <RadioGroup
-                                onValueChange={field.onChange}
-                                defaultValue={field.value}
-                                className="flex space-x-6"
-                              >
-                                <FormItem className="flex items-center space-x-2 space-y-0">
-                                  <FormControl>
-                                    <RadioGroupItem value="Yes" />
-                                  </FormControl>
-                                  <FormLabel className="font-normal cursor-pointer">Yes</FormLabel>
-                                </FormItem>
-                                <FormItem className="flex items-center space-x-2 space-y-0">
-                                  <FormControl>
-                                    <RadioGroupItem value="No" />
-                                  </FormControl>
-                                  <FormLabel className="font-normal cursor-pointer">No</FormLabel>
-                                </FormItem>
-                              </RadioGroup>
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <div className="space-y-3">
-                        <Button type="submit" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-2.5 text-sm rounded-lg font-semibold">
-                          Complete Registration
-                        </Button>
-                        <p className="text-xs text-muted-foreground">
-                          We will only use this information to contact you about IRP 2.0.{" "}
-                          <a href="https://www.nxtwave.tech/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent">Privacy policy</a>.
-                        </p>
-                      </div>
-                    </form>
-                  </Form>
-                )}
-              </CardContent>
-            </Card>
           </div>
         </section>
 
