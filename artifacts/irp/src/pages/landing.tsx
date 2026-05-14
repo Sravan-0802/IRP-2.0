@@ -254,182 +254,153 @@ export default function LandingPage() {
         </section>
 
         {/* Levels Section */}
-        <section id="levels" className="py-24 bg-gradient-to-b from-white via-blue-50/20 to-white">
+        <section id="levels" className="py-20 bg-gradient-to-b from-white via-blue-50/20 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-accent to-indigo-500">The Three Levels</h2>
-              <p className="text-lg text-muted-foreground">Progress through the ranks to unlock top opportunities.</p>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-accent to-indigo-500">The Three Levels</h2>
+              <p className="text-base text-muted-foreground">Progress through the ranks to unlock top opportunities.</p>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-8">
+            <div className="flex flex-col lg:flex-row items-stretch gap-0">
+
               {/* Level 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                <Card className="h-full border-t-4 border-t-blue-500 relative flex flex-col bg-gradient-to-b from-white to-blue-50/60">
-                  <CardHeader className="pb-4">
-                    <div className="flex justify-between items-start mb-2">
-                      <Badge variant="outline" className="bg-blue-50 text-blue-700 hover:bg-blue-50 border-blue-200">Level 1</Badge>
-                      <span className="text-sm font-semibold text-muted-foreground flex items-center gap-1">
-                        <Clock className="h-3 w-3" /> 14 June 2026
-                      </span>
+              <motion.div className="flex-1 flex flex-col"
+                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}>
+                <Card className="flex-1 flex flex-col rounded-2xl border border-slate-200 shadow-sm bg-white overflow-hidden">
+                  {/* Icon header */}
+                  <div className="flex flex-col items-center pt-8 pb-4 px-6">
+                    <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-3">
+                      <User className="h-7 w-7 text-blue-600" />
                     </div>
-                    <CardTitle className="text-2xl font-bold">The Hustler</CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-1 text-sm space-y-6">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs">Level 1</Badge>
+                      <span className="text-xs text-muted-foreground font-medium">14 June 2026</span>
+                    </div>
+                    <CardTitle className="text-xl font-bold text-center">The Hustler</CardTitle>
+                  </div>
+                  <CardContent className="flex-1 text-sm space-y-5 px-6 pb-4">
                     <div>
-                      <h4 className="font-semibold mb-3 flex items-center gap-2 border-b pb-2"><FileCode2 className="h-4 w-4" /> Assessment Format</h4>
-                      <ul className="space-y-3">
-                        <li className="flex flex-col">
-                          <span className="font-medium text-foreground">Python + DSA</span>
-                          <span className="text-muted-foreground text-xs">MCQ • 1.5 hrs • 40 Qs</span>
-                        </li>
-                        <li className="flex flex-col">
-                          <span className="font-medium text-foreground">Frontend (HTML, CSS, JS, React)</span>
-                          <span className="text-muted-foreground text-xs">MCQ • 30 mins • 30 Qs</span>
-                        </li>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><FileCode2 className="h-3.5 w-3.5" /> Assessment Format</h4>
+                      <ul className="space-y-2.5">
+                        <li><p className="font-medium text-foreground text-sm">Python + DSA</p><p className="text-muted-foreground text-xs">MCQ • 1.5 hrs • 40 Qs</p></li>
+                        <li><p className="font-medium text-foreground text-sm">Frontend (HTML, CSS, JS, React)</p><p className="text-muted-foreground text-xs">MCQ • 30 mins • 30 Qs</p></li>
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-3 flex items-center gap-2 border-b pb-2"><User className="h-4 w-4" /> Post-Assessment</h4>
-                      <ul className="space-y-2 text-muted-foreground">
-                        <li className="flex items-start gap-2"><div className="w-1 h-1 rounded-full bg-blue-500 mt-2 shrink-0" /> FE Project Build (12 hrs)</li>
-                        <li className="flex items-start gap-2"><div className="w-1 h-1 rounded-full bg-blue-500 mt-2 shrink-0" /> AI Mock Interview (1 hr)</li>
-                        <li className="flex items-start gap-2"><div className="w-1 h-1 rounded-full bg-blue-500 mt-2 shrink-0" /> Human Mock Interview (1 hr)</li>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><User className="h-3.5 w-3.5" /> Post-Assessment</h4>
+                      <ul className="space-y-1.5 text-muted-foreground text-sm">
+                        {["FE Project Build (12 hrs)", "AI Mock Interview (1 hr)", "Human Mock Interview (1 hr)"].map((item, i) => (
+                          <li key={i} className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />{item}</li>
+                        ))}
                       </ul>
                     </div>
                   </CardContent>
-                  <CardFooter className="bg-blue-50/50 mt-auto pt-4 rounded-b-xl border-t border-border/50">
-                    <p className="text-sm font-medium text-blue-700 flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4" /> Unlocks Eligibility for Level 2
-                    </p>
+                  <CardFooter className="bg-blue-50/60 border-t border-blue-100 px-6 py-3 mt-auto">
+                    <p className="text-xs font-semibold text-blue-700 flex items-center gap-1.5"><CheckCircle className="h-3.5 w-3.5" /> Unlocks Eligibility for Level 2</p>
                   </CardFooter>
                 </Card>
               </motion.div>
+
+              {/* Arrow connector */}
+              <div className="hidden lg:flex items-center justify-center px-2 shrink-0">
+                <ArrowRight className="h-6 w-6 text-slate-300" />
+              </div>
 
               {/* Level 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Card className="h-full border-t-4 border-t-accent relative flex flex-col shadow-lg shadow-accent/10 bg-gradient-to-b from-white to-accent/5">
-                  <div className="absolute -top-3 -right-3">
-                    <Badge className="bg-accent text-accent-foreground border-none shadow-md">Crucial Stage</Badge>
-                  </div>
-                  <CardHeader className="pb-4">
-                    <div className="flex justify-between items-start mb-2">
-                      <Badge variant="outline" className="bg-accent/10 text-accent hover:bg-accent/10 border-accent/20">Level 2</Badge>
-                      <span className="text-sm font-semibold text-muted-foreground flex items-center gap-1">
-                        <Clock className="h-3 w-3" /> ~1 Month After L1
-                      </span>
+              <motion.div className="flex-1 flex flex-col"
+                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}>
+                <Card className="flex-1 flex flex-col rounded-2xl border border-accent/30 shadow-md shadow-accent/10 bg-white overflow-hidden">
+                  <div className="flex flex-col items-center pt-8 pb-4 px-6">
+                    <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-3">
+                      <span className="text-accent font-bold text-base font-mono">&lt;/&gt;</span>
                     </div>
-                    <CardTitle className="text-2xl font-bold">The Main Character</CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-1 text-sm space-y-6">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Badge variant="outline" className="bg-accent/10 text-accent border-accent/20 text-xs">Level 2</Badge>
+                      <Badge className="bg-accent text-white border-none text-xs px-2 py-0">Crucial Stage</Badge>
+                    </div>
+                    <span className="text-xs text-muted-foreground mb-1">~1 Month After L1</span>
+                    <CardTitle className="text-xl font-bold text-center">The Main Character</CardTitle>
+                  </div>
+                  <CardContent className="flex-1 text-sm space-y-5 px-6 pb-4">
                     <div>
-                      <h4 className="font-semibold mb-3 flex items-center gap-2 border-b pb-2"><Server className="h-4 w-4" /> Assessment Format (1 hr total)</h4>
-                      <ul className="space-y-3">
-                        <li className="flex flex-col">
-                          <span className="font-medium text-foreground">Backend (NodeJS + Express)</span>
-                          <span className="text-muted-foreground text-xs">MCQ • 20 mins • 20 Qs</span>
-                        </li>
-                        <li className="flex flex-col">
-                          <span className="font-medium text-foreground">Database (SQL, NoSQL, Mongo)</span>
-                          <span className="text-muted-foreground text-xs">MCQ • 20 mins • 20 Qs</span>
-                        </li>
-                        <li className="flex flex-col">
-                          <span className="font-medium text-foreground">GenAI</span>
-                          <span className="text-muted-foreground text-xs">MCQ • 20 mins • 20 Qs</span>
-                        </li>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><Server className="h-3.5 w-3.5" /> Assessment Format (1 hr total)</h4>
+                      <ul className="space-y-2.5">
+                        <li><p className="font-medium text-foreground text-sm">Backend (NodeJS + Express)</p><p className="text-muted-foreground text-xs">MCQ • 20 mins • 20 Qs</p></li>
+                        <li><p className="font-medium text-foreground text-sm">Database (SQL, NoSQL, Mongo)</p><p className="text-muted-foreground text-xs">MCQ • 20 mins • 20 Qs</p></li>
+                        <li><p className="font-medium text-foreground text-sm">GenAI</p><p className="text-muted-foreground text-xs">MCQ • 20 mins • 20 Qs</p></li>
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-3 flex items-center gap-2 border-b pb-2"><User className="h-4 w-4" /> Post-Assessment</h4>
-                      <ul className="space-y-2 text-muted-foreground">
-                        <li className="flex items-start gap-2"><div className="w-1 h-1 rounded-full bg-accent mt-2 shrink-0" /> Full Stack + AI Project (24 hrs)</li>
-                        <li className="flex items-start gap-2"><div className="w-1 h-1 rounded-full bg-accent mt-2 shrink-0" /> AI Mock Interview (1 hr)</li>
-                        <li className="flex items-start gap-2"><div className="w-1 h-1 rounded-full bg-accent mt-2 shrink-0" /> Human Mock Interview (1 hr)</li>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><User className="h-3.5 w-3.5" /> Post-Assessment</h4>
+                      <ul className="space-y-1.5 text-muted-foreground text-sm">
+                        {["Full Stack + AI Project (24 hrs)", "AI Mock Interview (1 hr)", "Human Mock Interview (1 hr)"].map((item, i) => (
+                          <li key={i} className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />{item}</li>
+                        ))}
                       </ul>
                     </div>
                   </CardContent>
-                  <CardFooter className="bg-accent/5 mt-auto pt-4 rounded-b-xl border-t border-accent/10">
-                    <p className="text-sm font-bold text-accent flex items-center gap-2">
-                      <Trophy className="h-4 w-4" /> Unlocks Internships (₹5K–₹10K)
-                    </p>
+                  <CardFooter className="bg-accent/5 border-t border-accent/10 px-6 py-3 mt-auto">
+                    <p className="text-xs font-bold text-accent flex items-center gap-1.5"><Trophy className="h-3.5 w-3.5" /> Unlocks Internships (₹5K–₹10K)</p>
                   </CardFooter>
                 </Card>
               </motion.div>
 
+              {/* Arrow connector */}
+              <div className="hidden lg:flex items-center justify-center px-2 shrink-0">
+                <ArrowRight className="h-6 w-6 text-slate-300" />
+              </div>
+
               {/* Level 3 */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <Card className="h-full border-t-4 border-t-purple-500 relative flex flex-col bg-gradient-to-b from-white to-purple-50 dark:from-card dark:to-purple-900/10">
-                  <CardHeader className="pb-4">
-                    <div className="flex justify-between items-start mb-2">
-                      <Badge variant="outline" className="bg-purple-100 text-purple-700 hover:bg-purple-100 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-800">Level 3</Badge>
-                      <span className="text-xs font-semibold text-purple-600 dark:text-purple-400">Curated Track</span>
+              <motion.div className="flex-1 flex flex-col"
+                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}>
+                <Card className="flex-1 flex flex-col rounded-2xl border border-purple-200 shadow-sm bg-white overflow-hidden">
+                  <div className="flex flex-col items-center pt-8 pb-4 px-6">
+                    <div className="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center mb-3">
+                      <Trophy className="h-7 w-7 text-purple-600" />
                     </div>
-                    <CardTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400">Infinite Aura</CardTitle>
-                    <CardDescription>Unlocks after clearing BOTH L1 & L2.</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-1 text-sm space-y-6">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200 text-xs">Level 3</Badge>
+                      <span className="text-xs font-semibold text-purple-500">Curated Track</span>
+                    </div>
+                    <CardTitle className="text-xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-500">Infinite Aura</CardTitle>
+                    <p className="text-xs text-muted-foreground mt-1 text-center">Unlocks after clearing BOTH L1 &amp; L2.</p>
+                  </div>
+                  <CardContent className="flex-1 text-sm space-y-5 px-6 pb-4">
                     <div>
-                      <h4 className="font-semibold mb-3 flex items-center gap-2 border-b pb-2"><Star className="h-4 w-4 text-purple-500" /> Exclusive Benefits</h4>
-                      <ul className="space-y-4">
-                        <li className="flex items-start gap-3">
-                          <div className="bg-purple-100 dark:bg-purple-900/40 p-2 rounded-md shrink-0">
-                            <Trophy className="h-4 w-4 text-purple-600 dark:text-purple-400" />
-                          </div>
-                          <div>
-                            <span className="font-medium text-foreground block">₹25K+ Stipend Internships</span>
-                            <span className="text-muted-foreground text-xs">Access to premium opportunities</span>
-                          </div>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="bg-purple-100 dark:bg-purple-900/40 p-2 rounded-md shrink-0">
-                            <User className="h-4 w-4 text-purple-600 dark:text-purple-400" />
-                          </div>
-                          <div>
-                            <span className="font-medium text-foreground block">Elite Mentorship</span>
-                            <span className="text-muted-foreground text-xs">Mentors from Microsoft, Apple, Google, Salesforce</span>
-                          </div>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="bg-purple-100 dark:bg-purple-900/40 p-2 rounded-md shrink-0">
-                            <CheckCircle2 className="h-4 w-4 text-purple-600 dark:text-purple-400" />
-                          </div>
-                          <div>
-                            <span className="font-medium text-foreground block">Founding Team Access</span>
-                            <span className="text-muted-foreground text-xs">Interact with NxtWave leadership</span>
-                          </div>
-                        </li>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><Star className="h-3.5 w-3.5 text-purple-500" /> Exclusive Benefits</h4>
+                      <ul className="space-y-3">
+                        {[
+                          { Icon: Trophy, title: "₹25K+ Stipend Internships", sub: "Access to premium opportunities" },
+                          { Icon: User, title: "Elite Mentorship", sub: "Mentors from Microsoft, Apple, Google, Salesforce" },
+                          { Icon: CheckCircle2, title: "Founding Team Access", sub: "Interact with NxtWave leadership" },
+                        ].map(({ Icon, title, sub }, i) => (
+                          <li key={i} className="flex items-start gap-2.5">
+                            <div className="bg-purple-100 p-1.5 rounded-md shrink-0 mt-0.5"><Icon className="h-3.5 w-3.5 text-purple-600" /></div>
+                            <div><p className="font-medium text-foreground text-sm">{title}</p><p className="text-muted-foreground text-xs">{sub}</p></div>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-3 flex items-center gap-2 border-b pb-2 text-purple-700"><User className="h-4 w-4 text-purple-500" /> Elite Mentors From</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {["Microsoft", "Apple", "Google", "Salesforce"].map((brand) => (
-                          <span key={brand} className="text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 text-purple-700 border border-purple-200">{brand}</span>
+                      <h4 className="font-semibold mb-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2">Elite Mentors From</h4>
+                      <div className="flex flex-wrap gap-1.5">
+                        {["Microsoft", "Apple", "Google", "Salesforce"].map((b) => (
+                          <span key={b} className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-200">{b}</span>
                         ))}
                       </div>
                     </div>
                   </CardContent>
-                  <CardFooter className="bg-purple-50/60 mt-auto pt-4 rounded-b-xl border-t border-purple-100">
-                    <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }} className="text-sm font-medium text-purple-700 flex items-center gap-2 hover:underline">
-                      <Trophy className="h-4 w-4" /> See Infinite Aura eligibility →
+                  <CardFooter className="bg-purple-50/60 border-t border-purple-100 px-6 py-3 mt-auto">
+                    <a href="#faq" onClick={(e) => { e.preventDefault(); scrollTo('faq'); }} className="text-xs font-medium text-purple-700 flex items-center gap-1.5 hover:underline">
+                      <Trophy className="h-3.5 w-3.5" /> See Infinite Aura eligibility →
                     </a>
                   </CardFooter>
                 </Card>
               </motion.div>
+
             </div>
           </div>
         </section>
