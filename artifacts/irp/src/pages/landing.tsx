@@ -177,7 +177,7 @@ export default function LandingPage() {
                   src="/hero-illustration.png"
                   alt="Students climbing toward internship goal"
                   className="relative w-auto object-contain object-bottom mix-blend-multiply select-none"
-                  style={{ height: "75%", marginBottom: "-2px" }}
+                  style={{ height: "90%", marginBottom: "-2px" }}
                 />
               </motion.div>
 
