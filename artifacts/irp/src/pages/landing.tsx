@@ -190,7 +190,7 @@ export default function LandingPage() {
           <div className="container mx-auto px-4 md:px-6 max-w-6xl">
 
             {/* Two-column header */}
-            <div className="flex flex-col md:flex-row items-center gap-6 mb-12">
+            <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
               <div className="flex-[3]">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-blue-700">What is IRP 2.0?</h2>
                 <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-center md:text-left">
