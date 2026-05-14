@@ -107,18 +107,29 @@ export default function LandingPage() {
 
       <main>
         {/* Hero Section */}
-        <section id="hero" className="relative overflow-hidden bg-white">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-100/80 via-white to-white"></div>
+        <section id="hero" className="relative overflow-hidden bg-white h-[420px] md:h-[460px]">
+          {/* Background gradients */}
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_80%_at_0%_50%,_#dbeafe_0%,_transparent_70%)]" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_40%_60%_at_100%_80%,_#e0e7ff_0%,_transparent_60%)]" />
+          {/* Decorative dots */}
+          <div className="absolute top-6 right-[48%] -z-10 grid grid-cols-5 gap-2 opacity-20">
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div key={i} className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+            ))}
+          </div>
+          {/* Floating accent ring */}
+          <div className="absolute -top-10 -left-10 w-56 h-56 rounded-full border-[20px] border-blue-100/50 -z-10" />
+          <div className="absolute bottom-0 left-[30%] w-32 h-32 rounded-full border-[12px] border-indigo-100/40 -z-10" />
 
-          <div className="container mx-auto max-w-6xl px-6 md:px-10">
-            <div className="flex flex-col md:flex-row items-stretch min-h-[320px] md:min-h-[360px] gap-0">
+          <div className="container mx-auto max-w-6xl px-6 md:px-10 h-full">
+            <div className="flex flex-row items-stretch h-full gap-0">
 
               {/* Left — text, centred vertically */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex-[55_55_0%] flex flex-col justify-center py-8 pr-0 md:pr-4"
+                className="flex-[55_55_0%] flex flex-col justify-center py-8 pr-0 md:pr-6"
               >
                 <div className="flex flex-row items-center gap-2 mb-4 flex-wrap">
                   <Badge className="bg-blue-700 text-white border-none px-3 py-1 text-xs font-semibold rounded-full whitespace-nowrap">
@@ -144,7 +155,7 @@ export default function LandingPage() {
                 </p>
 
                 <div className="flex flex-row gap-3 flex-wrap">
-                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-5 py-2.5 rounded-full" onClick={() => scrollTo('register')}>
+                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-5 py-2.5 rounded-full shadow-md shadow-accent/20" onClick={() => scrollTo('register')}>
                     Register for IRP 2.0 <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                   <Button variant="outline" className="border-border text-foreground hover:bg-blue-50 text-sm px-5 py-2.5 rounded-full" onClick={() => scrollTo('levels')}>
@@ -153,18 +164,20 @@ export default function LandingPage() {
                 </div>
               </motion.div>
 
-              {/* Right — illustration flush to bottom */}
+              {/* Right — illustration, 75% of section height */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.15 }}
-                className="flex-[45_45_0%] hidden md:flex items-end justify-start"
+                className="flex-[45_45_0%] hidden md:flex items-end justify-center relative"
               >
+                {/* soft glow under illustration */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-12 bg-blue-300/20 blur-2xl rounded-full" />
                 <img
                   src="/hero-illustration.png"
                   alt="Students climbing toward internship goal"
-                  className="w-auto object-contain object-bottom mix-blend-multiply select-none"
-                  style={{ height: "75%", maxHeight: "300px", marginBottom: "-2px" }}
+                  className="relative w-auto object-contain object-bottom mix-blend-multiply select-none"
+                  style={{ height: "75%", marginBottom: "-2px" }}
                 />
               </motion.div>
 
