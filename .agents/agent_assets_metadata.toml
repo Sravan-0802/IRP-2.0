@@ -30,3 +30,9 @@ id = "PcWWgPcqWIIya1_dmLrkf"
 uri = "file://artifacts/irp/public/about-journey.png"
 type = "image"
 title = "mountain journey path illustration"
+
+[[generated]]
+id = "1zkaHUwAmqZPRNb5_vXpa"
+uri = "file://artifacts/irp/public/about-student.png"
+type = "image"
+title = "student with laptop graduation illustration"

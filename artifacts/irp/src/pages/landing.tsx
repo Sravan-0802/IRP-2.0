@@ -190,19 +190,19 @@ export default function LandingPage() {
           <div className="container mx-auto px-4 md:px-6 max-w-6xl">
 
             {/* Two-column header */}
-            <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
-              <div className="flex-1">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-blue-700">What is IRP 2.0?</h2>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+            <div className="flex flex-col md:flex-row items-center gap-6 mb-12">
+              <div className="flex-[3]">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-blue-700">What is IRP 2.0?</h2>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-center md:text-left">
                   IRP 2.0 is NxtWave Academy's structured program to help 1st and 2nd year students prepare for and access internship opportunities. It's built specifically for you — the assessments, projects, and interviews are all scoped to what you've studied at your current year level.{" "}
                   <span className="font-semibold text-accent">100% online. No offline rounds. No travel. No logistics.</span>
                 </p>
               </div>
-              <div className="flex-1 flex items-center justify-center">
+              <div className="flex-[2] flex items-center justify-center">
                 <img
-                  src="/about-journey.png"
-                  alt="Career journey illustration"
-                  className="w-full max-w-sm md:max-w-md object-contain mix-blend-multiply select-none"
+                  src="/about-student.png"
+                  alt="Student with laptop illustration"
+                  className="w-full max-w-[220px] md:max-w-[260px] object-contain mix-blend-multiply select-none"
                 />
               </div>
             </div>
