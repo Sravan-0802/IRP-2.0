@@ -455,11 +455,11 @@ export default function LandingPage() {
                       ))}
                     </ul>
                   </div>
-                  {/* DSA Track */}
+                  {/* Coding Track */}
                   <div className="bg-white rounded-xl border border-blue-100 shadow-sm overflow-hidden">
                     <div className="bg-blue-500 px-4 py-2.5 flex items-center gap-2">
                       <Code className="h-4 w-4 text-white" />
-                      <span className="text-white text-sm font-bold">DSA Track</span>
+                      <span className="text-white text-sm font-bold">Coding Track</span>
                     </div>
                     <ul className="divide-y divide-blue-50">
                       {[
@@ -475,9 +475,6 @@ export default function LandingPage() {
                         </li>
                       ))}
                     </ul>
-                    <div className="px-4 pb-3 pt-3 bg-blue-50/60">
-                      <p className="text-xs text-muted-foreground">Python is the recommended language for the DSA assessment.</p>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -499,21 +496,41 @@ export default function LandingPage() {
                     <h3 className="text-lg font-bold text-foreground">The Main Character</h3>
                   </div>
                 </div>
-                <div className="ml-16 md:ml-24">
+                <div className="ml-16 md:ml-24 grid md:grid-cols-2 gap-4">
+                  {/* Backend Track */}
                   <div className="bg-white rounded-xl border border-accent/20 shadow-sm overflow-hidden">
                     <div className="bg-accent px-4 py-2.5 flex items-center gap-2">
                       <Database className="h-4 w-4 text-white" />
-                      <span className="text-white text-sm font-bold">Full-Stack + GenAI Track</span>
+                      <span className="text-white text-sm font-bold">Backend Track</span>
                     </div>
-                    <ul className="divide-y divide-blue-50 grid sm:grid-cols-2">
+                    <ul className="divide-y divide-blue-50">
                       {[
-                        { name: "Node JS", url: "https://learning.ccbp.in/cl-course/d82d6905-6694-42c4-8c0c-bd2c887c1b53" },
                         { name: "Introduction to Databases", url: "https://learning.ccbp.in/cl-course/25c1a72c-216e-47e1-9bc6-b2f16c66e0ca" },
                         { name: "DBMS", url: "https://learning.ccbp.in/course?c_id=3ba04d30-7c3a-4d5d-8c23-6e3bfc093511" },
+                        { name: "Node JS", url: "https://learning.ccbp.in/cl-course/d82d6905-6694-42c4-8c0c-bd2c887c1b53" },
                         { name: "MongoDB", url: "https://learning.ccbp.in/course?c_id=a5777f9b-1a9c-42a5-aab7-0182e80efca2&s_id=f09a898b-f8e3-4ded-a6c7-46184629ff3d&t_id=42d9584b-aee6-4eb6-b1ed-8f8de7a29633" },
+                      ].map((c, i) => (
+                        <li key={i}>
+                          <a href={c.url} target="_blank" rel="noopener noreferrer"
+                            className="flex items-center justify-between gap-2 px-4 py-2.5 hover:bg-blue-50 transition-colors group">
+                            <span className="text-sm font-medium text-foreground group-hover:text-accent transition-colors">{c.name}</span>
+                            <ExternalLink className="h-3.5 w-3.5 text-accent/50 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {/* Generative AI Track */}
+                  <div className="bg-white rounded-xl border border-accent/20 shadow-sm overflow-hidden">
+                    <div className="bg-accent px-4 py-2.5 flex items-center gap-2">
+                      <Star className="h-4 w-4 text-white" />
+                      <span className="text-white text-sm font-bold">Generative AI Track</span>
+                    </div>
+                    <ul className="divide-y divide-blue-50">
+                      {[
                         { name: "Generative AI", url: "https://learning.ccbp.in/course?c_id=b9811b34-585b-47e0-a0be-65f1081a74f2&s_id=64025833-d46d-4e7c-a7e0-a9c230a78b9d&t_id=096cf0ff-cdc5-4efb-9895-7c9aff0dbb1e" },
                       ].map((c, i) => (
-                        <li key={i} className="border-blue-50">
+                        <li key={i}>
                           <a href={c.url} target="_blank" rel="noopener noreferrer"
                             className="flex items-center justify-between gap-2 px-4 py-2.5 hover:bg-blue-50 transition-colors group">
                             <span className="text-sm font-medium text-foreground group-hover:text-accent transition-colors">{c.name}</span>
