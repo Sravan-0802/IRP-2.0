@@ -600,8 +600,6 @@ export default function LandingPage() {
                       <span>
                         Upload your No Objection Certificate obtained from your college.{" "}
                         <a href="#" className="text-violet-600 underline underline-offset-2 hover:text-violet-800 font-medium">Submit form &amp; performa here</a>
-                        {" "}·{" "}
-                        <a href="#" className="text-violet-600 underline underline-offset-2 hover:text-violet-800 font-medium">Download NOC Format</a>
                       </span>
                     ),
                     gradient: "from-violet-500 to-purple-600",
