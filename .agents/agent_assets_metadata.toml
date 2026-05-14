@@ -1,0 +1,20 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Fg0RR0lqNMQx_hhwq_jtb"
+uri = "file://artifacts/irp/public/hero-student-desk.png"
+type = "image"
+title = "hero student desk illustration"
+
+[[generated]]
+id = "85rWKdWTxH2nY2xc_J2KD"
+uri = "file://artifacts/irp/public/hero-career-ladder.png"
+type = "image"
+title = "hero career ladder illustration"
+
+[[generated]]
+id = "KPIwtgI_SIcVy5FCpuAG-"
+uri = "file://artifacts/irp/public/hero-dashboard.png"
+type = "image"
+title = "hero dashboard illustration"
