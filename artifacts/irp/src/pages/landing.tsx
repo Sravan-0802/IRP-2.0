@@ -70,8 +70,8 @@ export default function LandingPage() {
           <span className="text-white font-bold text-sm tracking-wide">
             ✦ Summer 2026 IRP 2.0 Batch — Open Now!
           </span>
-          <span className="hidden sm:block text-white/50 text-xs">|</span>
-          <span className="hidden sm:block text-white/80 text-xs">India's first year-level internship assessment for 1st & 2nd year students</span>
+          <span className="text-white/50 text-xs">·</span>
+          <span className="text-white/90 text-xs font-medium">First Assessment: 14th June 2026</span>
           <a
             href="https://bit.ly/Internship-registration"
             target="_blank"
