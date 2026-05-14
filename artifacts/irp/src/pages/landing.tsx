@@ -612,7 +612,7 @@ export default function LandingPage() {
                 {
                   num: "02",
                   title: "Practice Regularly",
-                  detail: "Regularly solve problems on our learning portal. In parallel, practise on LeetCode, CodeChef, and GeeksforGeeks to enhance your skill set.",
+                  detail: "Regularly solve problems on our learning portal. In parallel, practice on LeetCode, CodeChef, and GeeksforGeeks to strengthen your problem-solving and programming skills.",
                   gradient: "from-teal-400 to-emerald-500",
                   bg: "bg-teal-50",
                 },
