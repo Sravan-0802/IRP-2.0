@@ -107,65 +107,67 @@ export default function LandingPage() {
 
       <main>
         {/* Hero Section */}
-        <section id="hero" className="relative overflow-hidden px-4 py-10 md:py-16">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-200/60 via-indigo-100/30 to-background"></div>
-          <div className="absolute top-[-80px] left-[-120px] w-[420px] h-[420px] rounded-full bg-gradient-to-br from-blue-400/20 to-indigo-400/10 blur-3xl -z-10" />
-          <div className="absolute bottom-[-60px] right-[-80px] w-[350px] h-[350px] rounded-full bg-gradient-to-br from-accent/15 to-purple-400/10 blur-3xl -z-10" />
+        <section id="hero" className="relative overflow-hidden bg-white">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-100/80 via-white to-white"></div>
 
-          <div className="container mx-auto max-w-6xl">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-              {/* Left — text */}
+          <div className="container mx-auto max-w-6xl px-6 md:px-10">
+            <div className="flex flex-col md:flex-row items-stretch min-h-[320px] md:min-h-[360px]">
+
+              {/* Left — text, centred vertically */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex-1 flex flex-col items-start text-left"
+                className="flex-[55_55_0%] flex flex-col justify-center py-8 pr-0 md:pr-8"
               >
-                <div className="flex flex-row flex-wrap items-center gap-2 mb-5">
-                  <Badge className="bg-blue-700 text-white border-none px-4 py-1.5 text-sm font-semibold rounded-full whitespace-nowrap">
+                <div className="flex flex-row items-center gap-2 mb-4 flex-wrap">
+                  <Badge className="bg-blue-700 text-white border-none px-3 py-1 text-xs font-semibold rounded-full whitespace-nowrap">
                     ✦ Summer 2026 IRP 2.0 Batch — Open Now!
                   </Badge>
                   <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer">
-                    <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 px-4 py-1.5 text-sm font-medium rounded-full cursor-pointer flex items-center gap-1.5 whitespace-nowrap">
+                    <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 px-3 py-1 text-xs font-medium rounded-full cursor-pointer flex items-center gap-1 whitespace-nowrap">
                       First Assessment: 14th June 2026
-                      <ExternalLink className="h-3.5 w-3.5" />
+                      <ExternalLink className="h-3 w-3" />
                     </Badge>
                   </a>
                 </div>
 
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-5 leading-tight">
-                  Internship Readiness<br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Path 2.0</span>
+                <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-3 leading-[1.1]">
+                  Internship Readiness
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500">Path 2.0</span>
                 </h1>
 
-                <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg">
-                  Built for 1st &amp; 2nd year students (YOG 2028 &amp; 2029). Earn your
-                  first stipend internship — fully online, fully merit-based.
+                <p className="text-base md:text-lg text-muted-foreground mb-6 max-w-md leading-relaxed">
+                  Built exclusively for 1st &amp; 2nd Year Students (YOG 2028 &amp; 2029).
+                  Earn your first stipend internship — fully online, fully merit-based.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-6 py-3 rounded-full" onClick={() => scrollTo('register')}>
+                <div className="flex flex-row gap-3 flex-wrap">
+                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-5 py-2.5 rounded-full" onClick={() => scrollTo('register')}>
                     Register for IRP 2.0 <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                  <Button variant="outline" className="border-border text-foreground hover:bg-blue-50 text-sm px-6 py-3 rounded-full flex items-center gap-1" onClick={() => scrollTo('levels')}>
-                    See the 3 Levels <ChevronDown className="h-4 w-4" />
+                  <Button variant="outline" className="border-border text-foreground hover:bg-blue-50 text-sm px-5 py-2.5 rounded-full" onClick={() => scrollTo('levels')}>
+                    View the Path
                   </Button>
                 </div>
               </motion.div>
 
-              {/* Right — illustration */}
+              {/* Right — illustration flush to bottom */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.15 }}
-                className="flex-1 flex items-center justify-center"
+                className="flex-[45_45_0%] hidden md:flex items-end justify-end"
               >
                 <img
                   src="/hero-illustration.png"
                   alt="Students climbing toward internship goal"
-                  className="w-full max-w-md md:max-w-lg object-contain mix-blend-multiply"
+                  className="w-full max-w-[480px] object-contain object-bottom mix-blend-multiply select-none"
+                  style={{ marginBottom: "-2px" }}
                 />
               </motion.div>
+
             </div>
           </div>
         </section>
