@@ -601,36 +601,45 @@ export default function LandingPage() {
               <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent" />
             </div>
             <div className="grid sm:grid-cols-2 gap-5">
-              {[
-                {
-                  num: "01",
-                  title: "Study & Revision",
-                  detail: "From: DSA basics, HTML, CSS, JS, OOP — all your core concepts.",
-                  gradient: "from-blue-500 to-blue-600",
-                  bg: "bg-blue-50",
-                },
-                {
-                  num: "02",
-                  title: "Practice Regularly",
-                  detail: "Regularly solve problems on our learning portal. In parallel, practice on LeetCode, CodeChef, and GeeksforGeeks to strengthen your problem-solving and programming skills.",
-                  gradient: "from-teal-400 to-emerald-500",
-                  bg: "bg-teal-50",
-                },
-                {
-                  num: "03",
-                  title: "Complete Pending Courses",
-                  detail: "All incomplete courses for your level must be done before assessment.",
-                  gradient: "from-orange-400 to-amber-500",
-                  bg: "bg-orange-50",
-                },
-                {
-                  num: "04",
-                  title: "Submit Your NOC",
-                  detail: "Pay, find more college before you can access internship opportunities.",
-                  gradient: "from-violet-500 to-purple-600",
-                  bg: "bg-violet-50",
-                },
-              ].map((item, i) => (
+              {(
+                [
+                  {
+                    num: "01",
+                    title: "Study & Revision",
+                    detail: "From: DSA basics, HTML, CSS, JS, OOP — all your core concepts.",
+                    gradient: "from-blue-500 to-blue-600",
+                    bg: "bg-blue-50",
+                  },
+                  {
+                    num: "02",
+                    title: "Practice Regularly",
+                    detail: "Solve problems on the NxtWave platform every day. Consistency beats cramming.",
+                    gradient: "from-teal-400 to-emerald-500",
+                    bg: "bg-teal-50",
+                  },
+                  {
+                    num: "03",
+                    title: "Complete Pending Courses",
+                    detail: "All incomplete courses for your level must be done before assessment.",
+                    gradient: "from-orange-400 to-amber-500",
+                    bg: "bg-orange-50",
+                  },
+                  {
+                    num: "04",
+                    title: "Submit Your NOC",
+                    detail: (
+                      <span>
+                        Upload your No Objection Certificate obtained from your college.{" "}
+                        <a href="#" className="text-violet-600 underline underline-offset-2 hover:text-violet-800 font-medium">Submit form &amp; performa here</a>
+                        {" "}·{" "}
+                        <a href="#" className="text-violet-600 underline underline-offset-2 hover:text-violet-800 font-medium">Download NOC Format</a>
+                      </span>
+                    ),
+                    gradient: "from-violet-500 to-purple-600",
+                    bg: "bg-violet-50",
+                  },
+                ] as { num: string; title: string; detail: React.ReactNode; gradient: string; bg: string }[]
+              ).map((item, i) => (
                 <div key={i} className="flex items-start gap-5 p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
                   <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${item.gradient} flex items-center justify-center shrink-0`}>
                     <span className="text-white font-bold text-lg">{item.num}</span>
