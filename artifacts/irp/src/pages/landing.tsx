@@ -593,23 +593,50 @@ export default function LandingPage() {
         </section>
 
         {/* Checklist Section */}
-        <section id="checklist" className="py-12 bg-gradient-to-b from-white via-blue-50/30 to-white">
-          <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent">Pre-Assessment Checklist</h2>
+        <section id="checklist" className="py-16 bg-gradient-to-b from-white via-blue-50/30 to-white">
+          <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent inline-block">Pre-Assessment Checklist</h2>
+              <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent" />
             </div>
-            <div className="grid sm:grid-cols-2 gap-3">
+            <div className="grid sm:grid-cols-2 gap-5">
               {[
-                { title: "Study & Revise", detail: "Python, DSA basics, HTML, CSS, JS, React — all year-level concepts.", Icon: BookOpen },
-                { title: "Practice Regularly", detail: "Solve problems on NxtWave daily. Consistency beats cramming.", Icon: Terminal },
-                { title: "Complete Pending Courses", detail: "All mandatory courses for your level must be done before assessment.", Icon: CheckCircle2 },
-                { title: "Submit Your NOC", detail: "Required from college before you can accept internship opportunities.", Icon: FileText },
+                {
+                  num: "01",
+                  title: "Study & Revision",
+                  detail: "From: DSA basics, HTML, CSS, JS, OOP — all your core concepts.",
+                  gradient: "from-blue-500 to-blue-600",
+                  bg: "bg-blue-50",
+                },
+                {
+                  num: "02",
+                  title: "Practice Regularly",
+                  detail: "Solve practice on platforms like Codeforces, LeetCode, or GeeksforGeeks.",
+                  gradient: "from-teal-400 to-emerald-500",
+                  bg: "bg-teal-50",
+                },
+                {
+                  num: "03",
+                  title: "Complete Pending Courses",
+                  detail: "All incomplete courses for your level must be done before assessment.",
+                  gradient: "from-orange-400 to-amber-500",
+                  bg: "bg-orange-50",
+                },
+                {
+                  num: "04",
+                  title: "Submit Your NOC",
+                  detail: "Pay, find more college before you can access internship opportunities.",
+                  gradient: "from-violet-500 to-purple-600",
+                  bg: "bg-violet-50",
+                },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50/80 border border-blue-100 shadow-sm">
-                  <item.Icon className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-sm text-foreground">{item.title}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{item.detail}</p>
+                <div key={i} className="flex items-start gap-5 p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                  <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${item.gradient} flex items-center justify-center shrink-0`}>
+                    <span className="text-white font-bold text-lg">{item.num}</span>
+                  </div>
+                  <div className="pt-1">
+                    <p className="font-bold text-base text-foreground mb-1">{item.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.detail}</p>
                   </div>
                 </div>
               ))}
