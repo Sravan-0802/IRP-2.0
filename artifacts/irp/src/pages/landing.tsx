@@ -281,9 +281,9 @@ export default function LandingPage() {
                   </div>
                   <CardContent className="flex-1 text-sm space-y-5 px-6 pb-4">
                     <div>
-                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><FileCode2 className="h-3.5 w-3.5" /> Assessment Format</h4>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><FileCode2 className="h-3.5 w-3.5" /> Assessment Format (2 hrs total)</h4>
                       <ul className="space-y-2.5">
-                        <li><p className="font-medium text-foreground text-sm">Python + DSA</p><p className="text-muted-foreground text-xs">MCQ • 1.5 hrs • 40 Qs</p></li>
+                        <li><p className="font-medium text-foreground text-sm">Python + DSA</p><p className="text-muted-foreground text-xs">MCQ • 90 mins • 40 Qs</p></li>
                         <li><p className="font-medium text-foreground text-sm">Frontend (HTML, CSS, JS, React)</p><p className="text-muted-foreground text-xs">MCQ • 30 mins • 30 Qs</p></li>
                       </ul>
                     </div>
@@ -342,7 +342,7 @@ export default function LandingPage() {
                     </div>
                   </CardContent>
                   <CardFooter className="bg-accent/5 border-t border-accent/10 px-6 py-3 mt-auto">
-                    <p className="text-xs font-bold text-accent flex items-center gap-1.5"><Trophy className="h-3.5 w-3.5" /> Unlocks Internships (₹5K–₹10K)</p>
+                    <p className="text-xs font-bold text-accent flex items-center gap-1.5"><Trophy className="h-3.5 w-3.5" /> Unlocks Internships (₹5K–₹15K)</p>
                   </CardFooter>
                 </Card>
               </motion.div>
