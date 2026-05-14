@@ -108,7 +108,9 @@ export default function LandingPage() {
       <main>
         {/* Hero Section */}
         <section id="hero" className="relative min-h-[75vh] overflow-hidden flex flex-col items-center justify-center text-center px-4">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/40 via-background to-background"></div>
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-200/60 via-indigo-100/30 to-background"></div>
+          <div className="absolute top-[-80px] left-[-120px] w-[420px] h-[420px] rounded-full bg-gradient-to-br from-blue-400/20 to-indigo-400/10 blur-3xl -z-10" />
+          <div className="absolute bottom-[-60px] right-[-80px] w-[350px] h-[350px] rounded-full bg-gradient-to-br from-accent/15 to-purple-400/10 blur-3xl -z-10" />
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -150,17 +152,17 @@ export default function LandingPage() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 bg-blue-50">
+        <section id="about" className="py-20 bg-gradient-to-b from-blue-50 via-indigo-50/40 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-6xl">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">What is IRP 2.0?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-blue-700">What is IRP 2.0?</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 IRP 2.0 is NxtWave Academy's structured program to help 1st and 2nd year students prepare for and access internship opportunities. It's built specifically for you — the assessments, projects, and interviews are all scoped to what you've studied at your current year level. <span className="font-semibold text-foreground">100% online. No offline rounds. No travel. No logistics.</span>
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-white border border-border text-foreground shadow-sm">
+              <Card className="bg-gradient-to-br from-white to-slate-50 border border-border text-foreground shadow-sm">
                 <CardHeader className="pb-3">
                   <Badge variant="outline" className="w-fit mb-3 text-muted-foreground border-border">Before</Badge>
                   <CardTitle className="text-2xl font-bold">The old IRP</CardTitle>
@@ -180,7 +182,7 @@ export default function LandingPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-blue-50 border border-accent/20 relative overflow-hidden text-foreground shadow-sm">
+              <Card className="bg-gradient-to-br from-blue-50 to-indigo-100/60 border border-accent/20 relative overflow-hidden text-foreground shadow-sm">
                 <CardHeader className="pb-3">
                   <Badge className="w-fit mb-3 bg-accent text-white border-none">Now</Badge>
                   <CardTitle className="text-2xl font-bold">IRP 2.0</CardTitle>
@@ -204,10 +206,10 @@ export default function LandingPage() {
         </section>
 
         {/* Levels Section */}
-        <section id="levels" className="py-24">
+        <section id="levels" className="py-24 bg-gradient-to-b from-white via-blue-50/20 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-6xl">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">The Three Levels</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-accent to-indigo-500">The Three Levels</h2>
               <p className="text-lg text-muted-foreground">Progress through the ranks to unlock top opportunities.</p>
             </div>
 
@@ -219,7 +221,7 @@ export default function LandingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <Card className="h-full border-t-4 border-t-blue-500 relative flex flex-col">
+                <Card className="h-full border-t-4 border-t-blue-500 relative flex flex-col bg-gradient-to-b from-white to-blue-50/60">
                   <CardHeader className="pb-4">
                     <div className="flex justify-between items-start mb-2">
                       <Badge variant="outline" className="bg-blue-50 text-blue-700 hover:bg-blue-50 border-blue-200">Level 1</Badge>
@@ -267,7 +269,7 @@ export default function LandingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Card className="h-full border-t-4 border-t-accent relative flex flex-col shadow-lg shadow-accent/5">
+                <Card className="h-full border-t-4 border-t-accent relative flex flex-col shadow-lg shadow-accent/10 bg-gradient-to-b from-white to-accent/5">
                   <div className="absolute -top-3 -right-3">
                     <Badge className="bg-accent text-accent-foreground border-none shadow-md">Crucial Stage</Badge>
                   </div>
@@ -385,10 +387,10 @@ export default function LandingPage() {
         </section>
 
         {/* Courses Section — Path Layout */}
-        <section id="courses" className="py-20 bg-blue-50">
+        <section id="courses" className="py-20 bg-gradient-to-b from-blue-50 via-indigo-50/30 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-4xl">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold mb-3">Your Learning Path</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent">Your Learning Path</h2>
               <p className="text-muted-foreground">Courses to complete on the NxtWave platform — click any course to open it directly.</p>
             </div>
 
@@ -556,10 +558,10 @@ export default function LandingPage() {
         </section>
 
         {/* Checklist Section */}
-        <section id="checklist" className="py-12">
+        <section id="checklist" className="py-12 bg-gradient-to-b from-white via-blue-50/30 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-4xl">
             <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">Pre-Assessment Checklist</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent">Pre-Assessment Checklist</h2>
             </div>
             <div className="grid sm:grid-cols-2 gap-3">
               {[
@@ -568,7 +570,7 @@ export default function LandingPage() {
                 { title: "Complete Pending Courses", detail: "All mandatory courses for your level must be done before assessment.", Icon: CheckCircle2 },
                 { title: "Submit Your NOC", detail: "Required from college before you can accept internship opportunities.", Icon: FileText },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-blue-50 border border-blue-100">
+                <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50/80 border border-blue-100 shadow-sm">
                   <item.Icon className="h-5 w-5 text-accent shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-sm text-foreground">{item.title}</p>
@@ -581,11 +583,11 @@ export default function LandingPage() {
         </section>
 
         {/* Registration Section */}
-        <section id="register" className="py-24 bg-blue-50 relative">
+        <section id="register" className="py-24 bg-gradient-to-br from-blue-50 via-indigo-50/40 to-white relative">
           <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent pointer-events-none" />
           <div className="container mx-auto px-4 md:px-6 max-w-3xl relative z-10">
             <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">Eligibility & Registration</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent">Eligibility & Registration</h2>
               <p className="text-lg text-muted-foreground">Exclusively for YOG 2028 and YOG 2029 students.</p>
             </div>
 
@@ -772,10 +774,10 @@ export default function LandingPage() {
         </section>
 
         {/* FAQ Section */}
-        <section id="faq" className="py-24">
+        <section id="faq" className="py-24 bg-gradient-to-b from-white via-slate-50/60 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-4xl">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">All Your IRP 2.0 Questions — Answered Here</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-slate-800 via-blue-700 to-accent">All Your IRP 2.0 Questions — Answered Here</h2>
             </div>
 
             <Card className="bg-card text-card-foreground">
