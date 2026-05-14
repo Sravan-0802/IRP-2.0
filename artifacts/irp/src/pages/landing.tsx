@@ -55,21 +55,6 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-accent selection:text-white">
-      {/* Announcement Banner */}
-      <div className="w-full relative overflow-hidden bg-gradient-to-r from-blue-800 via-blue-600 to-blue-500 py-3 text-center">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent" style={{ animation: 'shimmer 2.5s ease-in-out infinite' }} />
-        <style>{`@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }`}</style>
-        <div className="relative flex items-center justify-center gap-3 flex-wrap px-4">
-          <span className="bg-white text-blue-700 text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-widest shadow-sm">New</span>
-          <span className="text-white font-bold text-sm tracking-wide">✦ Summer 2026 IRP 2.0 Batch — Open Now!</span>
-          <span className="text-white/50 text-xs">·</span>
-          <span className="text-white/90 text-xs font-medium">First Assessment: 14th June 2026</span>
-          <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer"
-            className="bg-white text-blue-700 text-xs font-bold px-3.5 py-1 rounded-full hover:bg-blue-50 transition-colors shadow-sm whitespace-nowrap">
-            Register Free →
-          </a>
-        </div>
-      </div>
       {/* Sticky Nav */}
       <nav className="sticky top-0 z-50 w-full backdrop-blur-lg bg-background/80 border-b border-border/40">
         <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
@@ -100,9 +85,14 @@ export default function LandingPage() {
             transition={{ duration: 0.5 }}
             className="w-3/4 mx-auto flex flex-col items-center"
           >
-            <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 mb-6 px-4 py-1.5 text-sm font-medium rounded-full">
-              First Assessment: 14th June 2026
-            </Badge>
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+              <Badge className="bg-blue-700 text-white border-none px-4 py-1.5 text-sm font-semibold rounded-full">
+                ✦ Summer 2026 IRP 2.0 Batch — Open Now!
+              </Badge>
+              <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 px-4 py-1.5 text-sm font-medium rounded-full">
+                First Assessment: 14th June 2026
+              </Badge>
+            </div>
             
             <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight">
               Internship Readiness <br className="hidden md:block"/>
