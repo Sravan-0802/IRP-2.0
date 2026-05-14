@@ -111,14 +111,14 @@ export default function LandingPage() {
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-100/80 via-white to-white"></div>
 
           <div className="container mx-auto max-w-6xl px-6 md:px-10">
-            <div className="flex flex-col md:flex-row items-stretch min-h-[320px] md:min-h-[360px]">
+            <div className="flex flex-col md:flex-row items-stretch min-h-[320px] md:min-h-[360px] gap-0">
 
               {/* Left — text, centred vertically */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex-[55_55_0%] flex flex-col justify-center py-8 pr-0 md:pr-8"
+                className="flex-[55_55_0%] flex flex-col justify-center py-8 pr-0 md:pr-4"
               >
                 <div className="flex flex-row items-center gap-2 mb-4 flex-wrap">
                   <Badge className="bg-blue-700 text-white border-none px-3 py-1 text-xs font-semibold rounded-full whitespace-nowrap">
@@ -158,12 +158,12 @@ export default function LandingPage() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.15 }}
-                className="flex-[45_45_0%] hidden md:flex items-end justify-end"
+                className="flex-[45_45_0%] hidden md:flex items-end justify-start"
               >
                 <img
                   src="/hero-illustration.png"
                   alt="Students climbing toward internship goal"
-                  className="w-full max-w-[480px] object-contain object-bottom mix-blend-multiply select-none"
+                  className="w-full max-w-[500px] object-contain object-bottom mix-blend-multiply select-none"
                   style={{ marginBottom: "-2px" }}
                 />
               </motion.div>
