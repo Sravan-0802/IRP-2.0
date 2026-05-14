@@ -173,22 +173,35 @@ export default function LandingPage() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 bg-gradient-to-b from-blue-50 via-indigo-50/40 to-white">
+        <section id="about" className="py-16 bg-gradient-to-b from-blue-50 via-indigo-50/40 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-blue-700">What is IRP 2.0?</h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                IRP 2.0 is NxtWave Academy's structured program to help 1st and 2nd year students prepare for and access internship opportunities. It's built specifically for you — the assessments, projects, and interviews are all scoped to what you've studied at your current year level. <span className="font-semibold text-foreground">100% online. No offline rounds. No travel. No logistics.</span>
-              </p>
+
+            {/* Two-column header */}
+            <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
+              <div className="flex-1">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-blue-700">What is IRP 2.0?</h2>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  IRP 2.0 is NxtWave Academy's structured program to help 1st and 2nd year students prepare for and access internship opportunities. It's built specifically for you — the assessments, projects, and interviews are all scoped to what you've studied at your current year level.{" "}
+                  <span className="font-semibold text-accent">100% online. No offline rounds. No travel. No logistics.</span>
+                </p>
+              </div>
+              <div className="flex-1 flex items-center justify-center">
+                <img
+                  src="/about-journey.png"
+                  alt="Career journey illustration"
+                  className="w-full max-w-sm md:max-w-md object-contain mix-blend-multiply select-none"
+                />
+              </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-gradient-to-br from-white to-slate-50 border border-border text-foreground shadow-sm">
-                <CardHeader className="pb-3">
-                  <Badge variant="outline" className="w-fit mb-3 text-muted-foreground border-border">Before</Badge>
+            {/* Before / Now cards */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="bg-white border border-border text-foreground shadow-sm rounded-2xl overflow-hidden">
+                <CardHeader className="pb-2 pt-6 px-6">
+                  <Badge variant="outline" className="w-fit mb-3 text-red-500 border-red-200 bg-red-50 text-xs font-semibold">Before</Badge>
                   <CardTitle className="text-2xl font-bold">The old IRP</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3 px-6 pb-6">
                   {[
                     "Assessed alongside 3rd, 4th & final year students",
                     "Common assessments regardless of year",
@@ -197,18 +210,18 @@ export default function LandingPage() {
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <XCircle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground">{item}</span>
+                      <span className="text-muted-foreground text-sm">{item}</span>
                     </div>
                   ))}
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-blue-50 to-indigo-100/60 border border-accent/20 relative overflow-hidden text-foreground shadow-sm">
-                <CardHeader className="pb-3">
-                  <Badge className="w-fit mb-3 bg-accent text-white border-none">Now</Badge>
+              <Card className="bg-white border border-accent/20 text-foreground shadow-sm rounded-2xl overflow-hidden">
+                <CardHeader className="pb-2 pt-6 px-6">
+                  <Badge variant="outline" className="w-fit mb-3 text-accent border-accent/30 bg-accent/5 text-xs font-semibold">Now</Badge>
                   <CardTitle className="text-2xl font-bold">IRP 2.0</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3 px-6 pb-6">
                   {[
                     "Tailored assessments — only what you've studied",
                     "Year-level appropriate content",
@@ -216,13 +229,14 @@ export default function LandingPage() {
                     "Multi-level structure with progressive unlocks",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                      <span className="font-medium text-foreground">{item}</span>
+                      <CheckCircle2 className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                      <span className="text-foreground text-sm font-medium">{item}</span>
                     </div>
                   ))}
                 </CardContent>
               </Card>
             </div>
+
           </div>
         </section>
 

@@ -24,3 +24,9 @@ id = "NGidZ-yEjU7Qeg_gZXDf1"
 uri = "file://artifacts/irp/public/hero-illustration.png"
 type = "image"
 title = "students climbing stairs hero"
+
+[[generated]]
+id = "PcWWgPcqWIIya1_dmLrkf"
+uri = "file://artifacts/irp/public/about-journey.png"
+type = "image"
+title = "mountain journey path illustration"
