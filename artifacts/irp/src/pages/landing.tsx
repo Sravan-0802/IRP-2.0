@@ -105,12 +105,6 @@ export default function LandingPage() {
                   <Badge className="bg-blue-700 text-white border-none px-3 py-1 text-xs font-semibold rounded-full whitespace-nowrap">
                     ✦ Summer 2026 IRP 2.0 Batch — Open Now!
                   </Badge>
-                  <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer">
-                    <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 px-3 py-1 text-xs font-medium rounded-full cursor-pointer flex items-center gap-1 whitespace-nowrap">
-                      First Assessment: 14th June 2026
-                      <ExternalLink className="h-3 w-3" />
-                    </Badge>
-                  </a>
                 </div>
 
                 <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-3 leading-[1.1]">
