@@ -106,30 +106,34 @@ export default function LandingPage() {
                     ✦ Summer 2026 IRP 2.0 Batch — Open Now!
                   </Badge>
                   <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer">
-                    <Badge className="bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 px-3 py-1 text-xs font-medium rounded-full cursor-pointer flex items-center gap-1 whitespace-nowrap">
-                      First Assessment: 14th June 2026
+                    <Badge className="bg-white text-accent hover:bg-accent/5 border border-accent/40 px-3 py-1 text-xs font-semibold rounded-full cursor-pointer flex items-center gap-1.5 whitespace-nowrap shadow-sm">
+                      📅 First Assessment: 14th June 2026
                       <ExternalLink className="h-3 w-3" />
                     </Badge>
                   </a>
                 </div>
 
+                <p className="text-xs font-bold uppercase tracking-widest text-accent mb-2">Internship Readiness Path 2.0</p>
                 <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-3 leading-[1.1]">
-                  Internship Readiness
+                  Land your first paid internship
                   <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500">Path 2.0</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500">in your 1st or 2nd year.</span>
                 </h1>
 
-                <p className="text-base md:text-lg text-muted-foreground mb-6 max-w-md leading-relaxed">
-                  Built exclusively for 1st &amp; 2nd Year Students (YOG 2028 &amp; 2029).
-                  Earn your first stipend internship — fully online, fully merit-based.
+                <p className="text-base md:text-lg text-muted-foreground mb-2 max-w-md leading-relaxed">
+                  For 1st and 2nd year students (YOG 2028 &amp; 2029, i.e. Year of Graduation). 100% online, merit-based assessments that unlock real paid internships.
                 </p>
+                <p className="text-xs text-slate-500 mb-5 max-w-md">No referrals, no quotas, no fees — your performance decides.</p>
 
                 <div className="flex flex-row gap-3 flex-wrap">
-                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-5 py-2.5 rounded-full shadow-md shadow-accent/20" onClick={() => scrollTo('register')}>
-                    Register for IRP 2.0 <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <div className="flex flex-col gap-1">
+                    <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-5 py-2.5 rounded-full shadow-md shadow-accent/20" onClick={() => scrollTo('register')}>
+                      Register for IRP 2.0 <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                    <p className="text-xs text-muted-foreground text-center">Free to register · Takes 2 minutes</p>
+                  </div>
                   <Button variant="outline" className="border-border text-foreground hover:bg-blue-50 text-sm px-5 py-2.5 rounded-full" onClick={() => scrollTo('levels')}>
-                    View the Path
+                    See the 3 Levels
                   </Button>
                 </div>
               </motion.div>
@@ -158,10 +162,10 @@ export default function LandingPage() {
         {/* Testimonials Section */}
         {(() => {
           const testimonials = [
-            { name: "Ravi Kumar",   yog: "YOG 2028", img: "https://i.pravatar.cc/300?img=12", quote: "Cleared in the first attempt and got placed within 3 weeks!", company: "TCS iON",            stipend: "₹10K/month", stipendColor: "bg-accent" },
-            { name: "Sneha Reddy",  yog: "YOG 2029", img: "https://i.pravatar.cc/300?img=47", quote: "I never thought a 1st-year student could land a real internship. IRP made it step by step.", company: "Capgemini",           stipend: "₹12K/month", stipendColor: "bg-teal-500" },
-            { name: "Arjun Mehta",  yog: "YOG 2028", img: "https://i.pravatar.cc/300?img=33", quote: "DSA and JS practice every day for 3 weeks made all the difference. Highly recommend IRP!", company: "Infosys Springboard", stipend: "₹8K/month",  stipendColor: "bg-violet-500" },
-            { name: "Priya Nair",   yog: "YOG 2029", img: "https://i.pravatar.cc/300?img=56", quote: "From zero internship experience to an offer letter — IRP 2.0 literally changed my college journey.", company: "Wipro",             stipend: "₹10K/month", stipendColor: "bg-orange-500" },
+            { name: "Ravi Kumar",   yog: "YOG 2026", img: "https://i.pravatar.cc/300?img=12", quote: "Cleared in the first attempt and got placed within 3 weeks. The structured levels made all the difference.", company: "TCS iON",            role: "Frontend Intern", college: "JNTUH", stipend: "₹10K/month" },
+            { name: "Sneha Reddy",  yog: "YOG 2027", img: "https://i.pravatar.cc/300?img=47", quote: "I never thought a 1st-year student could land a real internship. IRP broke it down step by step and I just followed the path.", company: "Capgemini",           role: "Full Stack Intern", college: "Osmania University", stipend: "₹12K/month" },
+            { name: "Arjun Mehta",  yog: "YOG 2026", img: "https://i.pravatar.cc/300?img=33", quote: "DSA and JS practice every day for 3 weeks made all the difference. The mock interviews prepared me for the real thing.", company: "Infosys Springboard", role: "Software Intern", college: "VIT Vellore", stipend: "₹8K/month" },
+            { name: "Priya Nair",   yog: "YOG 2027", img: "https://i.pravatar.cc/300?img=56", quote: "From zero internship experience to an offer letter — IRP changed my college journey. The project rounds were challenging but worth it.", company: "Wipro",             role: "React Intern", college: "MVSR Engineering College", stipend: "₹10K/month" },
           ];
           const perPage = 3;
           const maxIdx = testimonials.length - perPage;
@@ -174,11 +178,12 @@ export default function LandingPage() {
                 <div className="text-center mb-10">
                   <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent inline-block">Students Who Made It</h2>
                   <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent" />
-                  <p className="text-muted-foreground mt-4 text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
+                  <p className="text-muted-foreground mt-4 text-base">Real outcomes from IRP 1.0 graduates — this is what IRP 2.0 is built on.</p>
+                  <p className="text-xs text-slate-400 mt-1">Testimonials from IRP 1.0 batch. IRP 2.0 first assessment: 14th June 2026.</p>
                 </div>
 
                 <div className="relative flex items-center gap-3">
-                  <button onClick={prev} disabled={tIdx === 0} className="shrink-0 w-9 h-9 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                  <button aria-label="Previous testimonial" onClick={prev} disabled={tIdx === 0} className="shrink-0 w-9 h-9 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
                     <ChevronDown className="h-4 w-4 rotate-90" />
                   </button>
 
@@ -190,7 +195,8 @@ export default function LandingPage() {
                             <img src={t.img} alt={t.name} className="w-16 h-16 rounded-full object-cover object-top border-2 border-white shadow" />
                             <div className="text-center">
                               <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
-                              <p className="text-xs text-muted-foreground">{t.yog}</p>
+                              <p className="text-xs text-muted-foreground">{t.college}</p>
+                              <p className="text-xs text-slate-400">{t.yog}</p>
                             </div>
                           </div>
                           <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-1">
@@ -199,21 +205,24 @@ export default function LandingPage() {
                         </div>
                         <p className="text-sm text-muted-foreground leading-relaxed flex-1">"{t.quote}"</p>
                         <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-                          <span className="text-xs font-bold text-slate-700">{t.company}</span>
-                          <span className={`text-xs font-bold text-white ${t.stipendColor} px-2.5 py-1 rounded-full`}>{t.stipend}</span>
+                          <div>
+                            <p className="text-xs font-bold text-slate-700">{t.company}</p>
+                            <p className="text-xs text-slate-400">{t.role}</p>
+                          </div>
+                          <span className="text-xs font-bold text-white bg-accent px-2.5 py-1 rounded-full">{t.stipend}</span>
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <button onClick={next} disabled={tIdx >= maxIdx} className="shrink-0 w-9 h-9 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                  <button aria-label="Next testimonial" onClick={next} disabled={tIdx >= maxIdx} className="shrink-0 w-9 h-9 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
                     <ChevronDown className="h-4 w-4 -rotate-90" />
                   </button>
                 </div>
 
                 <div className="flex justify-center gap-2 mt-6">
                   {Array.from({ length: maxIdx + 1 }).map((_, i) => (
-                    <button key={i} onClick={() => setTIdx(i)} className={`w-2 h-2 rounded-full transition-colors ${i === tIdx ? "bg-accent" : "bg-slate-300"}`} />
+                    <button key={i} aria-label={`Go to testimonial ${i + 1}`} onClick={() => setTIdx(i)} className={`w-2 h-2 rounded-full transition-colors ${i === tIdx ? "bg-accent" : "bg-slate-300"}`} />
                   ))}
                 </div>
               </div>
@@ -256,6 +265,7 @@ export default function LandingPage() {
                     "Common assessments regardless of year",
                     "Online + Offline rounds (travel required)",
                     "One-size-fits-all process",
+                    "Limited internship access in early years",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <XCircle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
@@ -276,6 +286,7 @@ export default function LandingPage() {
                     "Year-level appropriate content",
                     "100% Online — attempt from anywhere",
                     "Multi-level structure with progressive unlocks",
+                    "₹5K–₹25K+ paid internships starting in 1st/2nd year",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <CheckCircle2 className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
@@ -354,7 +365,7 @@ export default function LandingPage() {
                     </div>
                     <div className="flex items-center gap-2 mb-1">
                       <Badge variant="outline" className="bg-accent/10 text-accent border-accent/20 text-xs">Level 2</Badge>
-                      <Badge className="bg-accent text-white border-none text-xs px-2 py-0">Crucial Stage</Badge>
+                      <Badge className="bg-accent text-white border-none text-xs px-2 py-0">Unlocks Internships</Badge>
                     </div>
                     <CardTitle className="text-xl font-bold text-center">The Main Character</CardTitle>
                   </div>
@@ -641,7 +652,7 @@ export default function LandingPage() {
                   {
                     num: "01",
                     title: "Study & Revision",
-                    detail: "From: DSA basics, HTML, CSS, JS, OOP — all your core concepts.",
+                    detail: "Topics: DSA basics, HTML, CSS, JS, OOP — all your core concepts.",
                     gradient: "from-blue-500 to-blue-600",
                     bg: "bg-blue-50",
                   },
@@ -665,7 +676,7 @@ export default function LandingPage() {
                     detail: (
                       <span>
                         Upload your No Objection Certificate obtained from your college.{" "}
-                        <a href="#" className="text-violet-600 underline underline-offset-2 hover:text-violet-800 font-medium">Submit form here</a>
+                        <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs font-semibold text-white bg-violet-600 hover:bg-violet-700 px-2.5 py-1 rounded-lg transition-colors mt-1">Submit NOC Form <ExternalLink className="h-3 w-3" /></a>
                       </span>
                     ),
                     gradient: "from-violet-500 to-purple-600",
@@ -774,10 +785,6 @@ export default function LandingPage() {
                     <AccordionTrigger className="text-left font-medium">Are all assessments online?</AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">Yes. All rounds under IRP 2.0 — MCQs, projects, AI Mock Interview, and Human Mock Interview — are 100% online. There are no offline rounds.</AccordionContent>
                   </AccordionItem>
-                  <AccordionItem value="item-7">
-                    <AccordionTrigger className="text-left font-medium">Will the assessment on 14th June be online?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes, the 14th June assessment (Level 1) is fully online.</AccordionContent>
-                  </AccordionItem>
                   <AccordionItem value="item-7b">
                     <AccordionTrigger className="text-left font-medium">Is there a deadline to complete all three levels?</AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">Specific deadlines will be communicated at each stage.</AccordionContent>
@@ -864,7 +871,7 @@ export default function LandingPage() {
                   <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Registration & NOC</h3></div>
                   <AccordionItem value="item-16">
                     <AccordionTrigger className="text-left font-medium">How do I register for the assessment?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Complete your Internship Profile Registration here. Link will be updated soon!</AccordionContent>
+                    <AccordionContent className="text-muted-foreground">Complete your Internship Profile Registration using the link in the Registration section above. Takes about 2 minutes.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-16b">
                     <AccordionTrigger className="text-left font-medium">Should I submit the form once or multiple times?</AccordionTrigger>
@@ -914,6 +921,16 @@ export default function LandingPage() {
                     <AccordionTrigger className="text-left font-medium">Can I use VS Code or other tools for the project rounds?</AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">Yes. You can use your preferred IDE (VS Code, etc.) for the project rounds. The submission format will be specified when the project brief is shared.</AccordionContent>
                   </AccordionItem>
+
+                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">After the Assessment</h3></div>
+                  <AccordionItem value="item-21">
+                    <AccordionTrigger className="text-left font-medium">What if I'm not selected? Can I try again in the next cycle?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Yes. If you do not clear a level, you can attempt it again in the next available batch. Retake windows and upcoming batch details will be communicated via your registered email after results are published. Keep improving your skills in the meantime — the same structured preparation path applies.</AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-22">
+                    <AccordionTrigger className="text-left font-medium">Will I receive feedback on my assessment performance?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">Result details will be shared via email. For specific feedback on your performance, you can reach out through the Help Desk or your Success Coach.</AccordionContent>
+                  </AccordionItem>
                 </Accordion>
               </CardContent>
             </Card>
@@ -935,9 +952,10 @@ export default function LandingPage() {
                     {
                       icon: User,
                       title: "Success Coach",
-                      desc: "Contact your assigned Success Coach for personalized guidance.",
+                      desc: "Contact your assigned Success Coach for personalized guidance on your preparation.",
                       link: null,
                       linkLabel: null,
+                      sub: null,
                     },
                     {
                       icon: BookOpen,
@@ -945,13 +963,15 @@ export default function LandingPage() {
                       desc: "Reach out to Help Desk for any placement-related queries.",
                       link: null,
                       linkLabel: null,
+                      sub: null,
                     },
                     {
                       icon: CheckCircle2,
                       title: "Email Support",
-                      desc: null,
+                      desc: "We reply within 24 hours, Mon–Sat.",
                       link: "mailto:support@nxtwave.tech",
                       linkLabel: "support@nxtwave.tech",
+                      sub: null,
                     },
                   ].map(({ icon: Icon, title, desc, link, linkLabel }, i) => (
                     <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100">
@@ -961,7 +981,7 @@ export default function LandingPage() {
                       <div>
                         <p className="font-semibold text-sm text-foreground mb-0.5">{title}</p>
                         {desc && <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>}
-                        {link && <a href={link} className="text-xs text-accent underline underline-offset-2 hover:text-accent/80">{linkLabel}</a>}
+                        {link && <a href={link} className="text-xs font-semibold text-accent underline underline-offset-2 hover:text-accent/80">{linkLabel}</a>}
                       </div>
                     </div>
                   ))}
