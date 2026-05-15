@@ -289,7 +289,6 @@ export default function LandingPage() {
                       <Badge variant="outline" className="bg-accent/10 text-accent border-accent/20 text-xs">Level 2</Badge>
                       <Badge className="bg-accent text-white border-none text-xs px-2 py-0">Crucial Stage</Badge>
                     </div>
-                    <span className="text-xs text-muted-foreground mb-1">~1 Month After L1</span>
                     <CardTitle className="text-xl font-bold text-center">The Main Character</CardTitle>
                   </div>
                   <CardContent className="flex-1 text-sm flex flex-col gap-5 px-6 pb-4">
