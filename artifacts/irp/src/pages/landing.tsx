@@ -920,6 +920,57 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Contact & Help Section */}
+        <section className="py-12 bg-white">
+          <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+            <Card className="border-border/50 shadow-sm">
+              <CardContent className="pt-6 pb-6">
+                <div className="flex items-center gap-2 mb-1">
+                  <BookOpen className="h-5 w-5 text-accent" />
+                  <h3 className="text-lg font-bold text-foreground">Contact & Help</h3>
+                </div>
+                <p className="text-sm text-muted-foreground mb-5">For assistance regarding the Placement Journey, students can:</p>
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {[
+                    {
+                      icon: User,
+                      title: "Success Coach",
+                      desc: "Contact your assigned Success Coach for personalized guidance.",
+                      link: null,
+                      linkLabel: null,
+                    },
+                    {
+                      icon: BookOpen,
+                      title: "Help Desk",
+                      desc: "Reach out to Help Desk for any placement-related queries.",
+                      link: null,
+                      linkLabel: null,
+                    },
+                    {
+                      icon: CheckCircle2,
+                      title: "Email Support",
+                      desc: null,
+                      link: "mailto:support@nxtwave.tech",
+                      linkLabel: "support@nxtwave.tech",
+                    },
+                  ].map(({ icon: Icon, title, desc, link, linkLabel }, i) => (
+                    <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                      <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                        <Icon className="h-4 w-4 text-accent" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-sm text-foreground mb-0.5">{title}</p>
+                        {desc && <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>}
+                        {link && <a href={link} className="text-xs text-accent underline underline-offset-2 hover:text-accent/80">{linkLabel}</a>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
       </main>
 
       {/* Footer */}
