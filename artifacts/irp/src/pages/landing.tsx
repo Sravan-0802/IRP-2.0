@@ -662,7 +662,7 @@ export default function LandingPage() {
                     title: "Submit Your NOC",
                     detail: (
                       <span>
-                        Upload your No Objection Certificate obtained from your college.{" "}
+                        Once you clear the assessment round(s), you will be required to submit a valid NOC before you can proceed to accept any internship opportunity. Upload your No Objection Certificate obtained from your college.{" "}
                         <a href="#" className="text-violet-600 underline underline-offset-2 hover:text-violet-800 font-medium">Submit form here</a>
                       </span>
                     ),
