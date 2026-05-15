@@ -921,7 +921,7 @@ export default function LandingPage() {
         </section>
 
         {/* Contact & Help Section */}
-        <section className="py-12 bg-white">
+        <section className="pt-4 pb-10 bg-white">
           <div className="container mx-auto px-4 md:px-6 max-w-4xl">
             <Card className="border-border/50 shadow-sm">
               <CardContent className="pt-6 pb-6">
