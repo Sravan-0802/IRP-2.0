@@ -599,22 +599,44 @@ export default function LandingPage() {
                       <Trophy className="h-4 w-4 text-white" />
                       <span className="text-white text-sm font-bold">Advanced DSA Track</span>
                     </div>
-                    <ul className="divide-y divide-purple-50 grid sm:grid-cols-2">
-                      {[
-                        { name: "DSA — Level 2", url: "https://learning.ccbp.in/course?c_id=229cbe49-f4c4-4aa2-bcc6-55ea3e15e159" },
-                        { name: "DSA — Level 3", url: "https://learning.ccbp.in/course?c_id=68d141a9-3a73-4bc3-8d8c-cfff7ec8a4be&s_id=696cf715-22e7-4587-ac63-6c5df7427ad5&t_id=009e5ade-f694-4a42-8dbf-544f06a4da1e" },
-                        { name: "LeetCode Rating", url: "https://leetcode.com" },
-                        { name: "CodeChef Rating", url: "https://www.codechef.com" },
-                      ].map((c, i) => (
-                        <li key={i} className="border-purple-50">
-                          <a href={c.url} target="_blank" rel="noopener noreferrer"
-                            className="flex items-center justify-between gap-2 px-4 py-2.5 hover:bg-purple-50 transition-colors group">
-                            <span className="text-sm font-medium text-foreground group-hover:text-purple-700 transition-colors">{c.name}</span>
-                            <ExternalLink className="h-3.5 w-3.5 text-purple-400 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-purple-100">
+                      {/* Left — NxtWave DSA Courses */}
+                      <div>
+                        <p className="px-4 pt-2.5 pb-1 text-xs font-semibold text-purple-500 uppercase tracking-wide">NxtWave Courses</p>
+                        <ul className="divide-y divide-purple-50">
+                          {[
+                            { name: "DSA — Level 2", url: "https://learning.ccbp.in/course?c_id=229cbe49-f4c4-4aa2-bcc6-55ea3e15e159" },
+                            { name: "DSA — Level 3", url: "https://learning.ccbp.in/course?c_id=68d141a9-3a73-4bc3-8d8c-cfff7ec8a4be&s_id=696cf715-22e7-4587-ac63-6c5df7427ad5&t_id=009e5ade-f694-4a42-8dbf-544f06a4da1e" },
+                          ].map((c, i) => (
+                            <li key={i}>
+                              <a href={c.url} target="_blank" rel="noopener noreferrer"
+                                className="flex items-center justify-between gap-2 px-4 py-2.5 hover:bg-purple-50 transition-colors group">
+                                <span className="text-sm font-medium text-foreground group-hover:text-purple-700 transition-colors">{c.name}</span>
+                                <ExternalLink className="h-3.5 w-3.5 text-purple-400 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      {/* Right — Practice Platforms */}
+                      <div>
+                        <p className="px-4 pt-2.5 pb-1 text-xs font-semibold text-purple-500 uppercase tracking-wide">Practice Platforms</p>
+                        <ul className="divide-y divide-purple-50">
+                          {[
+                            { name: "LeetCode", url: "https://leetcode.com" },
+                            { name: "CodeChef", url: "https://www.codechef.com" },
+                          ].map((c, i) => (
+                            <li key={i}>
+                              <a href={c.url} target="_blank" rel="noopener noreferrer"
+                                className="flex items-center justify-between gap-2 px-4 py-2.5 hover:bg-purple-50 transition-colors group">
+                                <span className="text-sm font-medium text-foreground group-hover:text-purple-700 transition-colors">{c.name}</span>
+                                <ExternalLink className="h-3.5 w-3.5 text-purple-400 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                     <div className="px-4 py-3 bg-purple-50/60 flex items-center gap-2">
                       <Trophy className="h-4 w-4 text-purple-500 shrink-0" />
                       <p className="text-xs text-purple-700 font-medium">Unlocks ₹25K+ stipend internships + elite mentorship from Microsoft, Apple, Google & Salesforce</p>
