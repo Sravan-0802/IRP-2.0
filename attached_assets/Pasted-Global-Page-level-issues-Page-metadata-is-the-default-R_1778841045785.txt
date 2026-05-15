@@ -1,0 +1,158 @@
+Global / Page-level issues
+
+Page metadata is the default Replit placeholder.
+
+<meta name="description"> and OG/Twitter descriptions read: "IRP 2.0 – Internship Readiness Path — built on Replit. Update this description to reflect the app." Replace with a real description (e.g., "NxtWave Academy's Internship Readiness Path 2.0 — a 100% online, year-tailored program that helps 1st and 2nd year students earn their first stipend internship.").
+Add an OG image (a hero/branded image) so previews on WhatsApp, LinkedIn, etc. don't render a generic Replit thumbnail.
+Set a favicon (currently the default Replit one).
+
+
+No footer.
+
+Add a real footer with: NxtWave logo, copyright, privacy policy, terms, contact email, social links, and a small site map (About / Levels / Courses / FAQ). Right now the page just ends after "Contact & Help."
+
+
+Nav doesn't show which section is active.
+
+As the user scrolls, highlight the active section in the top nav. Also consider sticky nav with a subtle background blur so it remains readable on top of light sections.
+
+
+Mobile nav.
+
+I couldn't see a hamburger menu in the desktop view — verify that the top nav collapses cleanly on mobile and that the "Register Now" button stays accessible.
+
+
+Accessibility.
+
+Make sure every heading uses semantic <h1>/<h2>/<h3> in order (one H1 per page).
+Carousel arrows on testimonials show as bare button elements with no accessible name — add aria-label="Next testimonial" / "Previous testimonial".
+Color contrast: some lighter blue/lavender text (badges, "Submit form here", section subtitles) is close to failing WCAG AA on white. Darken slightly.
+
+
+
+Hero section
+
+The two badges at top ("Summer 2026 IRP 2.0 Batch — Open Now!" and "First Assessment: 14th June 2026") look almost identical in styling. Differentiate them: make the date badge a clearly clickable chip (e.g., outlined with a calendar icon) so it reads as "the key date" vs. an announcement banner.
+Headline could carry more weight.
+
+Current: "Internship Readiness Path 2.0" then a subline. The 2 lines compete for attention.
+Try a benefit-first H1: "Land your first paid internship in your 1st or 2nd year." Keep "Internship Readiness Path 2.0" as a small eyebrow above it.
+
+
+Subline can be tightened. Current:
+
+"Built exclusively for 1st & 2nd Year Students (YOG 2028 & 2029). Earn your first stipend internship — fully online, fully merit-based."
+Suggested: "For 1st and 2nd year students (YOG 2028 & 2029). 100% online, merit-based assessments that unlock real paid internships."
+
+
+Add trust strip directly under the hero.
+
+"10,000+ students | ₹5K–₹25K+ stipends | Mentors from Microsoft, Apple, Google, Salesforce." This gives instant social proof above the fold.
+
+
+Add a microcopy hint under the primary CTA.
+
+E.g., "Free to register · Takes 2 minutes." Right now the "Register for IRP 2.0" button is unsupported.
+
+
+"View the Path" CTA wording is vague. Rename to "See the 3 Levels" or "How it works" — it makes the action concrete.
+
+"Students Who Made It" (testimonials)
+This is the section that hurts credibility the most.
+
+The avatars look AI/stock-photo generated. For a real placement program, ambiguous faces undermine trust. Replace with real student photos (with consent) or, if not available yet, use neutral initial-based avatars and a small "Verified IRP 2.0 student" badge rather than generic faces.
+The 3 testimonials are very short and structurally identical ("Cleared in X / made a difference / recommend"). Add specifics that are hard to fake: which college, which year, the exact role they got, and a one-line "what they did differently." Specificity is what makes testimonials believable.
+Add the company logo (TCS iON / Capgemini / Infosys Springboard) instead of just the name in text — it's much more visually credible.
+Cross-check: Are these real student outcomes? IRP 2.0 is described as the "Summer 2026" batch with the first assessment on 14 June 2026 — so claims like "Cleared in the first attempt and got placed within 3 weeks" can't be true for IRP 2.0 yet. If they're from IRP 1.0, label them "From IRP 1.0 graduates" so you don't mislead. Otherwise this is a credibility risk if a student notices the timeline.
+The stipend tag colors (blue/teal/purple) look randomized. Either use one consistent brand color or use color meaningfully (e.g., higher stipend = deeper color).
+
+"What is IRP 2.0?" + Before/Now comparison
+
+The "100% online. No offline rounds. No travel. No logistics." line is the strongest selling point in this section — pull it out into a visual bar of 4 icons + labels above or below the paragraph instead of leaving it inside prose.
+The "Before / Now" comparison is good but could be sharper.
+
+Add a row count parity: right now I see "Before" has 4 negatives and "Now" has 4 positives, but they don't perfectly mirror each other. Re-align them as 4 one-to-one rows so a user can read across (Before row 1 ↔ Now row 1) and feel the contrast.
+Add a 5th compelling row: "Before: Limited internship access in early years → Now: ₹5K–₹25K+ paid internships starting in 1st/2nd year."
+
+
+
+"The Three Levels"
+
+Levels 1 and 2 cards show concrete assessment formats; Level 3 doesn't show an assessment — it just lists benefits. Add a short "How you qualify" block to Level 3 (e.g., "Top 1% performers across L1 + L2 + DSA Level 2/3 + LeetCode/CodeChef ratings") so it doesn't feel like a marketing box vs. the other two information-dense cards.
+The L2 card calls itself "Crucial Stage." That's value-laden but doesn't say what's crucial. Either remove the badge or replace with a concrete one like "Unlocks Internships."
+Arrows between cards (›) are nice but visually tiny. Make them slightly larger and animate on scroll so the progression feels guided.
+"Unlocks Eligibility for Level 2" / "Unlocks Internships (₹5K–₹15K)" / "See Infinite Aura eligibility →" are inconsistent in tone and treatment. Make all three the same component (a "What it unlocks" pill at the bottom of each card) with parallel phrasing:
+
+L1: "Unlocks Level 2"
+L2: "Unlocks ₹5K–₹15K internships"
+L3: "Unlocks ₹25K+ internships + elite mentorship"
+
+
+Times like "MCQ • 90 mins • 40 Qs" are great, but consider showing the total time per level as a bigger number ("2 hrs total" already exists — good, keep that consistent for Level 2 with "1 hr total").
+
+"Your Learning Path"
+
+The Level 1 card has 6 frontend courses + 2 coding courses, so the right column is half-empty. Add filler or rebalance: e.g., add "Python Programming" to the coding track (which it already implies in Level 1 assessment) so the column heights match.
+Same issue in Level 2: the Generative AI track has only 1 course ("Generative AI") while the Backend track has 4. The empty right column looks broken. Either split GenAI into "Prompt Engineering / LLM Basics / Building with GenAI" sub-items, or merge GenAI into the same card.
+In Level 3, the Advanced DSA Track lists "LeetCode Rating" and "CodeChef Rating" as if they were courses on the NxtWave platform. They're external metrics — separate them into a "Practice Platforms" sub-section so it's clear they're not courses to click.
+Subtitle says "click any course to open it directly" — verify every course row is actually a hyperlink and styled like one (cursor pointer, subtle underline on hover, external-link icon for clarity).
+The vertical timeline line (purple) between L1 → L2 → L3 is a nice touch. Add small "Locked" tags or padlock icons next to L2 and L3 if the user hasn't progressed, to reinforce the unlock metaphor visually.
+
+Pre-Assessment Checklist
+
+The 4 cards work well, but step 4 ("Submit Your NOC") has a critical action ("Submit form here") rendered as a small purple text-link. Convert it to a button so the user actually sees they need to act.
+Step 1 says "From: DSA basics, HTML, CSS, JS, OOP — all your core concepts." The word "From:" is confusing — replace with "Topics:" or "Cover:".
+Add a 5th item or roll into the existing ones: "Take the AI Mock Interview at least once before the real one." This is the single biggest preparation lever you offer and it's hidden in the level cards.
+
+Eligibility & Registration
+
+The "Important Notice" box is well-placed. But the actual registration is split into a 2-step row ("Complete Internship Profile Registration" → "Watch your email"). Step 2 isn't really an action — it's a passive instruction. Demote it to small grey copy under Step 1, or replace with a concrete step like "Submit NOC (if required)."
+The "Open Registration Form" link goes to bit.ly/Internship-registration. Two concerns: (a) bit.ly links look untrustworthy on a serious career page — use a branded URL (e.g., nxtwave.tech/irp/register). (b) The FAQ literally says "Link will be updated soon!" — fix that copy as soon as the real link is set.
+The card has no completion-time hint. Add: "Takes about 2 minutes."
+
+FAQ
+This section is strong (lots of substance, well-categorized). Tightening suggestions:
+
+The category labels ("ELIGIBILITY & WHO CAN PARTICIPATE", etc.) are in light blue uppercase — easy to skim past. Make them slightly more prominent (bolder, a touch darker) so users can navigate to the right cluster faster.
+Add a short search/filter on top of the FAQ ("Search FAQs…"). With 25+ questions, search beats accordion scrolling.
+Some answers reference "the Help Section," "Help Desk," "Success Coach" — link these to actual pages/forms instead of leaving them as words.
+Question copy nits:
+
+"Is IRP 2.0 for all students or only 1st and 2nd year students?" — simplify to "Who is eligible for IRP 2.0?"
+"Should I submit the form once or multiple times?" — answer should be visible without expanding; this is a basic doubt.
+"Will the assessment on 14th June be online?" is redundant with "Are all assessments online?" — consolidate.
+"What if my English communication is not strong?" — make the answer empathetic and concrete (e.g., resources, mock-interview practice).
+
+
+Add a final FAQ: "What if I'm not selected? Can I try again next cycle?" Students worry about this and it's not covered.
+
+Contact & Help
+
+Currently a flat list of three options (Success Coach / Help Desk / Email Support). Make Email Support a real mailto:support@nxtwave.tech link and add expected response time ("We reply within 24 hours, Mon–Sat").
+Add a WhatsApp/community link if you have one — this is the de-facto channel for Indian student programs and will reduce email volume.
+
+Content / copy themes to address across the page
+
+Tone consistency. The page mixes formal placement-program language ("Tailored assessments — only what you've studied") with Gen-Z slang ("The Hustler", "The Main Character", "Infinite Aura", "Top 1%"). That's fine as a brand voice, but make sure it's intentional — right now it shifts mid-page. Decide whether the Gen-Z naming is "the brand" or just level labels, and dial the rest of the copy accordingly.
+Numbers are your strongest assets. ₹5K–₹15K, ₹25K+, "2 hrs total," "12 hrs," "24 hrs," "100% online," "1st & 2nd year only." Surface these higher (hero trust strip) and reuse them in CTAs ("Unlock ₹25K+ internships →").
+Define jargon on first use. "YOG 2028" appears in the hero — first-year students may not know "YOG = Year of Graduation." Add "(Year of Graduation)" the first time.
+The phrase "fully merit-based" is great but unsupported. Add a one-liner: "No referrals, no quotas, no fees — your performance decides."
+Many sections end with a CTA ("Open Registration Form", "Submit form here", "See Infinite Aura eligibility →"). Audit them so the page has clear primary funnels (Register → NOC → Prepare). Right now CTAs feel scattered.
+
+Visual / UI polish
+
+The hero illustration is sharp; the "What is IRP 2.0?" illustration is also good — but they're in different art styles. Pick one illustration style throughout (both or neither) so the page feels cohesive.
+The Level cards use 3 different accent colors (blue / blue / purple). The Learning Path uses blue header bars and a separate purple bar for L3. Standardize: L1 = blue, L2 = teal/green, L3 = purple. Apply that color system consistently to the level cards, learning path tracks, and the "unlocks" pills.
+There's a lot of whitespace between major sections, which is fine, but the testimonial section's light-blue background creates a soft transition while other sections jump from white to white with no separator. Add subtle section dividers or background tints to make the page feel structured rather than scroll-heavy.
+The avatar style on testimonials (round, dark photos) is heavier visually than the cards around them — match the visual weight.
+Some text is light grey on white in body paragraphs (e.g., FAQ answers). Use a slightly darker grey for readability.
+
+Short prioritized "do these first" list
+If you only have time for 5 fixes, I'd do these:
+
+Fix meta tags, OG image, and favicon (5 minutes, big SEO/share win).
+Replace stock-looking testimonial faces with real students or remove faces entirely.
+Add a trust strip under the hero (stipend range + mentor brands + "1st/2nd year only").
+Turn "Submit form here" and "Open Registration Form" into prominent buttons, not text links, and replace the bit.ly URL.
+Rebalance the Learning Path cards so right columns aren't half-empty, and make L3 visually mirror L1/L2 (add an "assessment / how to qualify" block).
+
