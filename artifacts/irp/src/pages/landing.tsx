@@ -717,6 +717,14 @@ export default function LandingPage() {
               </div>
             </div>
 
+            <div className="flex justify-center">
+              <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-8 py-2.5 rounded-full shadow-md shadow-accent/20">
+                  Register Now <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </a>
+            </div>
+
           </div>
         </section>
 
