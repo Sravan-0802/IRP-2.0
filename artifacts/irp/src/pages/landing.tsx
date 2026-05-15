@@ -230,8 +230,7 @@ export default function LandingPage() {
               <div className="flex-[3]">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-blue-700">What is IRP 2.0?</h2>
                 <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-center md:text-left">
-                  IRP 2.0 is NxtWave Academy's structured program to help 1st and 2nd year students prepare for and access internship opportunities. It's built specifically for you — the assessments, projects, and interviews are all scoped to what you've studied at your current year level.{" "}
-                  <span className="font-semibold text-accent">100% online. No offline rounds. No travel. No logistics.</span>
+                  IRP 2.0 is NxtWave Academy's structured program to help 1st and 2nd year students prepare for and access internship opportunities. It's built specifically for you — the assessments, projects, and interviews are all scoped to what you've studied at your current year level.
                 </p>
               </div>
               <div className="flex-[2] flex items-center justify-center">
@@ -405,27 +404,26 @@ export default function LandingPage() {
                   </div>
                   <CardContent className="flex-1 text-sm flex flex-col gap-5 px-6 pb-4">
                     <div className="min-h-[160px]">
-                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><Star className="h-3.5 w-3.5 text-purple-500" /> Exclusive Benefits</h4>
-                      <ul className="space-y-3">
-                        {[
-                          { Icon: Trophy, title: "₹25K+ Stipend Internships", sub: "Access to premium opportunities" },
-                          { Icon: User, title: "Elite Mentorship", sub: "Mentors from Microsoft, Apple, Google, Salesforce" },
-                          { Icon: CheckCircle2, title: "Founding Team Access", sub: "Interact with NxtWave leadership" },
-                        ].map(({ Icon, title, sub }, i) => (
-                          <li key={i} className="flex items-start gap-2.5">
-                            <div className="bg-purple-100 p-1.5 rounded-md shrink-0 mt-0.5"><Icon className="h-3.5 w-3.5 text-purple-600" /></div>
-                            <div><p className="font-medium text-foreground text-sm">{title}</p><p className="text-muted-foreground text-xs">{sub}</p></div>
-                          </li>
-                        ))}
+                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><Trophy className="h-3.5 w-3.5 text-purple-500" /> How to Qualify</h4>
+                      <ul className="space-y-2.5">
+                        <li><p className="font-medium text-foreground text-sm">Clear Level 1 + Level 2</p><p className="text-muted-foreground text-xs">Pass both assessments &amp; projects</p></li>
+                        <li><p className="font-medium text-foreground text-sm">AI + Human Mock Interview</p><p className="text-muted-foreground text-xs">At each level • 1 hr each</p></li>
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2">Elite Mentors From</h4>
-                      <div className="flex flex-wrap gap-1.5">
-                        {["Microsoft", "Apple", "Google", "Salesforce"].map((b) => (
-                          <span key={b} className="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 border border-purple-200">{b}</span>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><Star className="h-3.5 w-3.5 text-purple-500" /> Exclusive Benefits</h4>
+                      <ul className="space-y-1.5">
+                        {[
+                          { Icon: Trophy, title: "₹25K+ Stipend Internships", sub: "Access to premium opportunities" },
+                          { Icon: User, title: "Elite Mentorship", sub: "Mentors from Microsoft, Apple, Google" },
+                          { Icon: CheckCircle2, title: "Founding Team Access", sub: "Interact with NxtWave leadership" },
+                        ].map(({ Icon, title, sub }, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <div className="bg-purple-100 p-1 rounded-md shrink-0 mt-0.5"><Icon className="h-3 w-3 text-purple-600" /></div>
+                            <div><p className="font-medium text-foreground text-xs">{title}</p><p className="text-muted-foreground text-xs">{sub}</p></div>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
                   </CardContent>
                   <CardFooter className="bg-purple-50/60 border-t border-purple-100 px-6 py-3 mt-auto">
