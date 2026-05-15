@@ -155,25 +155,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Stats Strip */}
-        <section className="py-6 bg-white border-y border-slate-100">
-          <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-              {[
-                { value: "500+", label: "Internships Secured" },
-                { value: "3 Levels", label: "Structured Path" },
-                { value: "₹8K–15K", label: "Monthly Stipend" },
-                { value: "100%", label: "Merit-Based" },
-              ].map(({ value, label }) => (
-                <div key={label} className="flex flex-col items-center gap-1">
-                  <span className="text-2xl font-extrabold text-accent">{value}</span>
-                  <span className="text-xs text-muted-foreground font-medium">{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* About Section */}
         <section id="about" className="py-16 bg-gradient-to-b from-blue-50 via-indigo-50/40 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-6xl">
@@ -745,6 +726,25 @@ export default function LandingPage() {
             </section>
           );
         })()}
+
+        {/* Stats Strip */}
+        <section className="py-6 bg-white border-y border-slate-100">
+          <div className="container mx-auto px-4 md:px-6 max-w-4xl">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+              {[
+                { value: "500+", label: "Internships Secured" },
+                { value: "3 Levels", label: "Structured Path" },
+                { value: "₹8K–15K", label: "Monthly Stipend" },
+                { value: "100%", label: "Merit-Based" },
+              ].map(({ value, label }) => (
+                <div key={label} className="flex flex-col items-center gap-1">
+                  <span className="text-2xl font-extrabold text-accent">{value}</span>
+                  <span className="text-xs text-muted-foreground font-medium">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* FAQ Section */}
         <section id="faq" className="pt-24 pb-8 bg-gradient-to-b from-white via-slate-50/60 to-white">
