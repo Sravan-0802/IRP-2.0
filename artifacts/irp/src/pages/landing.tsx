@@ -661,6 +661,74 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
+          <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent inline-block">Students Who Made It</h2>
+              <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent" />
+              <p className="text-muted-foreground mt-4 text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[
+                {
+                  name: "Ravi Kumar",
+                  yog: "YOG 2028",
+                  company: "TCS iON",
+                  stipend: "₹10K/month",
+                  quote: "IRP 2.0 gave me a clear path. I focused on the Level 1 courses, cleared the assessment in the first attempt, and got placed within 3 weeks.",
+                  initials: "RK",
+                  color: "bg-blue-500",
+                },
+                {
+                  name: "Sneha Reddy",
+                  yog: "YOG 2029",
+                  company: "Capgemini",
+                  stipend: "₹12K/month",
+                  quote: "I never thought a 1st-year student could land a real internship. The structured levels made it feel achievable step by step.",
+                  initials: "SR",
+                  color: "bg-teal-500",
+                },
+                {
+                  name: "Arjun Mehta",
+                  yog: "YOG 2028",
+                  company: "Infosys Springboard",
+                  stipend: "₹8K/month",
+                  quote: "The assessment was tough but fair. Practicing DSA and JS daily for 3 weeks made all the difference. Highly recommend IRP to every junior.",
+                  initials: "AM",
+                  color: "bg-violet-500",
+                },
+                {
+                  name: "Priya Nair",
+                  yog: "YOG 2029",
+                  company: "Wipro",
+                  stipend: "₹10K/month",
+                  quote: "From zero internship experience to an offer letter — IRP 2.0 literally changed my college journey. The mentor sessions in Infinite Aura were gold.",
+                  initials: "PN",
+                  color: "bg-orange-500",
+                },
+              ].map((t, i) => (
+                <div key={i} className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow p-6 gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-11 h-11 rounded-full ${t.color} flex items-center justify-center shrink-0`}>
+                      <span className="text-white font-bold text-sm">{t.initials}</span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm text-foreground leading-tight">{t.name}</p>
+                      <p className="text-xs text-muted-foreground">{t.yog}</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">"{t.quote}"</p>
+                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-xs font-semibold text-foreground">{t.company}</span>
+                    <span className="text-xs font-bold text-accent">{t.stipend}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section id="faq" className="py-24 bg-gradient-to-b from-white via-slate-50/60 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-4xl">
