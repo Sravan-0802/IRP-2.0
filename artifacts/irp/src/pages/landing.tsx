@@ -669,62 +669,92 @@ export default function LandingPage() {
               <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent" />
               <p className="text-muted-foreground mt-4 text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {[
-                {
-                  name: "Ravi Kumar",
-                  yog: "YOG 2028",
-                  company: "TCS iON",
-                  stipend: "₹10K/month",
-                  quote: "IRP 2.0 gave me a clear path. I focused on the Level 1 courses, cleared the assessment in the first attempt, and got placed within 3 weeks.",
-                  initials: "RK",
-                  color: "bg-blue-500",
-                },
-                {
-                  name: "Sneha Reddy",
-                  yog: "YOG 2029",
-                  company: "Capgemini",
-                  stipend: "₹12K/month",
-                  quote: "I never thought a 1st-year student could land a real internship. The structured levels made it feel achievable step by step.",
-                  initials: "SR",
-                  color: "bg-teal-500",
-                },
-                {
-                  name: "Arjun Mehta",
-                  yog: "YOG 2028",
-                  company: "Infosys Springboard",
-                  stipend: "₹8K/month",
-                  quote: "The assessment was tough but fair. Practicing DSA and JS daily for 3 weeks made all the difference. Highly recommend IRP to every junior.",
-                  initials: "AM",
-                  color: "bg-violet-500",
-                },
-                {
-                  name: "Priya Nair",
-                  yog: "YOG 2029",
-                  company: "Wipro",
-                  stipend: "₹10K/month",
-                  quote: "From zero internship experience to an offer letter — IRP 2.0 literally changed my college journey. The mentor sessions in Infinite Aura were gold.",
-                  initials: "PN",
-                  color: "bg-orange-500",
-                },
-              ].map((t, i) => (
-                <div key={i} className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow p-6 gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-11 h-11 rounded-full ${t.color} flex items-center justify-center shrink-0`}>
-                      <span className="text-white font-bold text-sm">{t.initials}</span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-sm text-foreground leading-tight">{t.name}</p>
-                      <p className="text-xs text-muted-foreground">{t.yog}</p>
-                    </div>
+            {/* Masonry grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
+
+              {/* Featured card — left, tall */}
+              <div className="lg:row-span-2 flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                <div className="relative h-64 bg-gradient-to-br from-blue-400 to-blue-600 flex items-end justify-start p-5">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                    <span className="text-white font-black text-[120px] leading-none select-none">RK</span>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">"{t.quote}"</p>
-                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-xs font-semibold text-foreground">{t.company}</span>
-                    <span className="text-xs font-bold text-accent">{t.stipend}</span>
+                  <span className="relative text-5xl text-white/40 font-serif leading-none select-none">"</span>
+                </div>
+                <div className="flex flex-col flex-1 p-5 gap-3">
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">"IRP 2.0 gave me a clear path and helped me get placed quickly."</p>
+                  <div>
+                    <p className="font-semibold text-sm text-foreground">Ravi Kumar</p>
+                    <p className="text-xs text-muted-foreground">YOG 2028</p>
+                  </div>
+                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                    <span className="text-xs font-bold text-slate-700">TCS iON</span>
+                    <span className="text-xs font-bold text-white bg-accent px-2.5 py-1 rounded-full">₹10K/month</span>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Top-right two cards */}
+              <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                <div className="relative h-36 bg-gradient-to-br from-teal-400 to-emerald-500 flex items-end justify-start p-4">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                    <span className="text-white font-black text-[80px] leading-none select-none">SR</span>
+                  </div>
+                  <span className="relative text-4xl text-white/40 font-serif leading-none select-none">"</span>
+                </div>
+                <div className="p-4 flex flex-col gap-2">
+                  <p className="text-sm text-muted-foreground leading-relaxed">"The structured levels made it feel achievable step by step."</p>
+                  <div>
+                    <p className="font-semibold text-sm text-foreground">Sneha Reddy</p>
+                    <p className="text-xs text-muted-foreground">YOG 2029</p>
+                  </div>
+                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                    <span className="text-xs font-bold text-slate-700">Capgemini</span>
+                    <span className="text-xs font-bold text-white bg-teal-500 px-2.5 py-1 rounded-full">₹12K/month</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                <div className="relative h-36 bg-gradient-to-br from-violet-400 to-purple-600 flex items-end justify-start p-4">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                    <span className="text-white font-black text-[80px] leading-none select-none">AM</span>
+                  </div>
+                  <span className="relative text-4xl text-white/40 font-serif leading-none select-none">"</span>
+                </div>
+                <div className="p-4 flex flex-col gap-2">
+                  <p className="text-sm text-muted-foreground leading-relaxed">"Practicing DSA and JS daily for 3 weeks made all the difference."</p>
+                  <div>
+                    <p className="font-semibold text-sm text-foreground">Arjun Mehta</p>
+                    <p className="text-xs text-muted-foreground">YOG 2028</p>
+                  </div>
+                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                    <span className="text-xs font-bold text-slate-700">Infosys Springboard</span>
+                    <span className="text-xs font-bold text-white bg-violet-500 px-2.5 py-1 rounded-full">₹8K/month</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom-right wide card spanning 2 cols */}
+              <div className="lg:col-span-2 flex flex-row bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                <div className="relative w-36 shrink-0 bg-gradient-to-br from-orange-400 to-amber-500 flex items-end justify-start p-4">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                    <span className="text-white font-black text-[80px] leading-none select-none">PN</span>
+                  </div>
+                  <span className="relative text-4xl text-white/40 font-serif leading-none select-none">"</span>
+                </div>
+                <div className="flex flex-col flex-1 p-5 gap-2 justify-between">
+                  <p className="text-sm text-muted-foreground leading-relaxed">"From zero internship experience to an offer letter — IRP 2.0 literally changed my college journey."</p>
+                  <div>
+                    <p className="font-semibold text-sm text-foreground">Priya Nair</p>
+                    <p className="text-xs text-muted-foreground">YOG 2029</p>
+                  </div>
+                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                    <span className="text-xs font-bold text-slate-700">Wipro</span>
+                    <span className="text-xs font-bold text-white bg-orange-500 px-2.5 py-1 rounded-full">₹10K/month</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
