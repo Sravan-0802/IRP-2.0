@@ -661,94 +661,75 @@ export default function LandingPage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
-          <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent inline-block">Students Who Made It</h2>
-              <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent" />
-              <p className="text-muted-foreground mt-4 text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
-            </div>
-            {/* Masonry grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
-
-              {/* Featured card — left, tall */}
-              <div className="lg:row-span-2 flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                <div className="relative h-64 overflow-hidden">
-                  <img src="https://i.pravatar.cc/400?img=12" alt="Ravi Kumar" className="w-full h-full object-cover object-top" />
-                  <span className="absolute bottom-3 left-4 text-5xl text-white/70 font-serif leading-none select-none drop-shadow">"</span>
+        {(() => {
+          const testimonials = [
+            { name: "Ravi Kumar",   yog: "YOG 2028", img: "https://i.pravatar.cc/300?img=12", quote: "Cleared in the first attempt and got placed within 3 weeks!", company: "TCS iON",            stipend: "₹10K/month", stipendColor: "bg-accent" },
+            { name: "Sneha Reddy",  yog: "YOG 2029", img: "https://i.pravatar.cc/300?img=47", quote: "I never thought a 1st-year student could land a real internship. IRP made it step by step.", company: "Capgemini",           stipend: "₹12K/month", stipendColor: "bg-teal-500" },
+            { name: "Arjun Mehta",  yog: "YOG 2028", img: "https://i.pravatar.cc/300?img=33", quote: "DSA and JS practice every day for 3 weeks made all the difference. Highly recommend IRP!", company: "Infosys Springboard", stipend: "₹8K/month",  stipendColor: "bg-violet-500" },
+            { name: "Priya Nair",   yog: "YOG 2029", img: "https://i.pravatar.cc/300?img=56", quote: "From zero internship experience to an offer letter — IRP 2.0 literally changed my college journey.", company: "Wipro",             stipend: "₹10K/month", stipendColor: "bg-orange-500" },
+          ];
+          const perPage = 3;
+          const maxIdx = testimonials.length - perPage;
+          const [tIdx, setTIdx] = React.useState(0);
+          const prev = () => setTIdx(i => Math.max(0, i - 1));
+          const next = () => setTIdx(i => Math.min(maxIdx, i + 1));
+          const visible = testimonials.slice(tIdx, tIdx + perPage);
+          return (
+            <section className="py-20 bg-blue-50/60">
+              <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+                <div className="text-center mb-10">
+                  <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent inline-block">Students Who Made It</h2>
+                  <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent" />
+                  <p className="text-muted-foreground mt-4 text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
                 </div>
-                <div className="flex flex-col flex-1 p-5 gap-3">
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">"IRP 2.0 gave me a clear path and helped me get placed quickly."</p>
-                  <div>
-                    <p className="font-semibold text-sm text-foreground">Ravi Kumar</p>
-                    <p className="text-xs text-muted-foreground">YOG 2028</p>
+
+                <div className="relative flex items-center gap-3">
+                  {/* Prev arrow */}
+                  <button onClick={prev} disabled={tIdx === 0} className="shrink-0 w-9 h-9 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                    <ChevronDown className="h-4 w-4 rotate-90" />
+                  </button>
+
+                  {/* Cards */}
+                  <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-5">
+                    {visible.map((t, i) => (
+                      <div key={tIdx + i} className="flex flex-col bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow p-5 gap-3">
+                        <div className="flex items-start justify-between">
+                          <div className="flex flex-col items-center gap-2">
+                            <img src={t.img} alt={t.name} className="w-16 h-16 rounded-full object-cover object-top border-2 border-white shadow" />
+                            <div className="text-center">
+                              <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
+                              <p className="text-xs text-muted-foreground">{t.yog}</p>
+                            </div>
+                          </div>
+                          <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-1">
+                            <span className="text-accent font-serif text-xl leading-none font-bold">"</span>
+                          </div>
+                        </div>
+                        <p className="text-sm text-muted-foreground leading-relaxed flex-1">"{t.quote}"</p>
+                        <div className="flex items-center justify-between pt-3 border-t border-slate-100">
+                          <span className="text-xs font-bold text-slate-700">{t.company}</span>
+                          <span className={`text-xs font-bold text-white ${t.stipendColor} px-2.5 py-1 rounded-full`}>{t.stipend}</span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-                    <span className="text-xs font-bold text-slate-700">TCS iON</span>
-                    <span className="text-xs font-bold text-white bg-accent px-2.5 py-1 rounded-full">₹10K/month</span>
-                  </div>
+
+                  {/* Next arrow */}
+                  <button onClick={next} disabled={tIdx >= maxIdx} className="shrink-0 w-9 h-9 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                    <ChevronDown className="h-4 w-4 -rotate-90" />
+                  </button>
+                </div>
+
+                {/* Dots */}
+                <div className="flex justify-center gap-2 mt-6">
+                  {Array.from({ length: maxIdx + 1 }).map((_, i) => (
+                    <button key={i} onClick={() => setTIdx(i)} className={`w-2 h-2 rounded-full transition-colors ${i === tIdx ? "bg-accent" : "bg-slate-300"}`} />
+                  ))}
                 </div>
               </div>
-
-              {/* Top-right two cards */}
-              <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                <div className="relative h-36 overflow-hidden">
-                  <img src="https://i.pravatar.cc/400?img=47" alt="Sneha Reddy" className="w-full h-full object-cover object-top" />
-                  <span className="absolute bottom-2 left-3 text-4xl text-white/70 font-serif leading-none select-none drop-shadow">"</span>
-                </div>
-                <div className="p-4 flex flex-col gap-2">
-                  <p className="text-sm text-muted-foreground leading-relaxed">"The structured levels made it feel achievable step by step."</p>
-                  <div>
-                    <p className="font-semibold text-sm text-foreground">Sneha Reddy</p>
-                    <p className="text-xs text-muted-foreground">YOG 2029</p>
-                  </div>
-                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-                    <span className="text-xs font-bold text-slate-700">Capgemini</span>
-                    <span className="text-xs font-bold text-white bg-teal-500 px-2.5 py-1 rounded-full">₹12K/month</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                <div className="relative h-36 overflow-hidden">
-                  <img src="https://i.pravatar.cc/400?img=33" alt="Arjun Mehta" className="w-full h-full object-cover object-top" />
-                  <span className="absolute bottom-2 left-3 text-4xl text-white/70 font-serif leading-none select-none drop-shadow">"</span>
-                </div>
-                <div className="p-4 flex flex-col gap-2">
-                  <p className="text-sm text-muted-foreground leading-relaxed">"Practicing DSA and JS daily for 3 weeks made all the difference."</p>
-                  <div>
-                    <p className="font-semibold text-sm text-foreground">Arjun Mehta</p>
-                    <p className="text-xs text-muted-foreground">YOG 2028</p>
-                  </div>
-                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-                    <span className="text-xs font-bold text-slate-700">Infosys Springboard</span>
-                    <span className="text-xs font-bold text-white bg-violet-500 px-2.5 py-1 rounded-full">₹8K/month</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom-right wide card spanning 2 cols */}
-              <div className="lg:col-span-2 flex flex-row bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                <div className="relative w-36 shrink-0 overflow-hidden">
-                  <img src="https://i.pravatar.cc/400?img=56" alt="Priya Nair" className="w-full h-full object-cover object-top" />
-                  <span className="absolute bottom-2 left-3 text-4xl text-white/70 font-serif leading-none select-none drop-shadow">"</span>
-                </div>
-                <div className="flex flex-col flex-1 p-5 gap-2 justify-between">
-                  <p className="text-sm text-muted-foreground leading-relaxed">"From zero internship experience to an offer letter — IRP 2.0 literally changed my college journey."</p>
-                  <div>
-                    <p className="font-semibold text-sm text-foreground">Priya Nair</p>
-                    <p className="text-xs text-muted-foreground">YOG 2029</p>
-                  </div>
-                  <div className="flex items-center justify-between pt-2 border-t border-slate-100">
-                    <span className="text-xs font-bold text-slate-700">Wipro</span>
-                    <span className="text-xs font-bold text-white bg-orange-500 px-2.5 py-1 rounded-full">₹10K/month</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
+            </section>
+          );
+        })()}
 
         {/* FAQ Section */}
         <section id="faq" className="py-24 bg-gradient-to-b from-white via-slate-50/60 to-white">
