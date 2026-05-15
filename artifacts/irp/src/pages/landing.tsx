@@ -913,7 +913,6 @@ export default function LandingPage() {
                 </Accordion>
               </CardContent>
             </Card>
-            <p className="text-center text-sm text-muted-foreground mt-6">For any queries not covered here, reach out to your Success Coach or contact the NxtWave Academy Student Success team. <span className="text-xs">— Last Updated: May 2026</span></p>
           </div>
         </section>
 
