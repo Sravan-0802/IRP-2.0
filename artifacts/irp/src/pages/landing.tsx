@@ -674,11 +674,9 @@ export default function LandingPage() {
 
               {/* Featured card — left, tall */}
               <div className="lg:row-span-2 flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                <div className="relative h-64 bg-gradient-to-br from-blue-400 to-blue-600 flex items-end justify-start p-5">
-                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                    <span className="text-white font-black text-[120px] leading-none select-none">RK</span>
-                  </div>
-                  <span className="relative text-5xl text-white/40 font-serif leading-none select-none">"</span>
+                <div className="relative h-64 overflow-hidden">
+                  <img src="https://i.pravatar.cc/400?img=12" alt="Ravi Kumar" className="w-full h-full object-cover object-top" />
+                  <span className="absolute bottom-3 left-4 text-5xl text-white/70 font-serif leading-none select-none drop-shadow">"</span>
                 </div>
                 <div className="flex flex-col flex-1 p-5 gap-3">
                   <p className="text-sm text-muted-foreground leading-relaxed flex-1">"IRP 2.0 gave me a clear path and helped me get placed quickly."</p>
@@ -695,11 +693,9 @@ export default function LandingPage() {
 
               {/* Top-right two cards */}
               <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                <div className="relative h-36 bg-gradient-to-br from-teal-400 to-emerald-500 flex items-end justify-start p-4">
-                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                    <span className="text-white font-black text-[80px] leading-none select-none">SR</span>
-                  </div>
-                  <span className="relative text-4xl text-white/40 font-serif leading-none select-none">"</span>
+                <div className="relative h-36 overflow-hidden">
+                  <img src="https://i.pravatar.cc/400?img=47" alt="Sneha Reddy" className="w-full h-full object-cover object-top" />
+                  <span className="absolute bottom-2 left-3 text-4xl text-white/70 font-serif leading-none select-none drop-shadow">"</span>
                 </div>
                 <div className="p-4 flex flex-col gap-2">
                   <p className="text-sm text-muted-foreground leading-relaxed">"The structured levels made it feel achievable step by step."</p>
@@ -715,11 +711,9 @@ export default function LandingPage() {
               </div>
 
               <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                <div className="relative h-36 bg-gradient-to-br from-violet-400 to-purple-600 flex items-end justify-start p-4">
-                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                    <span className="text-white font-black text-[80px] leading-none select-none">AM</span>
-                  </div>
-                  <span className="relative text-4xl text-white/40 font-serif leading-none select-none">"</span>
+                <div className="relative h-36 overflow-hidden">
+                  <img src="https://i.pravatar.cc/400?img=33" alt="Arjun Mehta" className="w-full h-full object-cover object-top" />
+                  <span className="absolute bottom-2 left-3 text-4xl text-white/70 font-serif leading-none select-none drop-shadow">"</span>
                 </div>
                 <div className="p-4 flex flex-col gap-2">
                   <p className="text-sm text-muted-foreground leading-relaxed">"Practicing DSA and JS daily for 3 weeks made all the difference."</p>
@@ -736,11 +730,9 @@ export default function LandingPage() {
 
               {/* Bottom-right wide card spanning 2 cols */}
               <div className="lg:col-span-2 flex flex-row bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                <div className="relative w-36 shrink-0 bg-gradient-to-br from-orange-400 to-amber-500 flex items-end justify-start p-4">
-                  <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                    <span className="text-white font-black text-[80px] leading-none select-none">PN</span>
-                  </div>
-                  <span className="relative text-4xl text-white/40 font-serif leading-none select-none">"</span>
+                <div className="relative w-36 shrink-0 overflow-hidden">
+                  <img src="https://i.pravatar.cc/400?img=56" alt="Priya Nair" className="w-full h-full object-cover object-top" />
+                  <span className="absolute bottom-2 left-3 text-4xl text-white/70 font-serif leading-none select-none drop-shadow">"</span>
                 </div>
                 <div className="flex flex-col flex-1 p-5 gap-2 justify-between">
                   <p className="text-sm text-muted-foreground leading-relaxed">"From zero internship experience to an offer letter — IRP 2.0 literally changed my college journey."</p>
