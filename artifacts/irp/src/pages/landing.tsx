@@ -121,7 +121,7 @@ export default function LandingPage() {
 
                 <p className="text-base md:text-lg text-muted-foreground mb-6 max-w-md leading-relaxed">
                   Built exclusively for 1st &amp; 2nd Year Students (YOG 2028 &amp; 2029).
-                  Earn your first stipend internship — fully online, fully merit-based.
+                  Earn your first stipend internship through NxtWave Academy's structured assessments and tailored path!
                 </p>
 
                 <div className="flex flex-row gap-3 flex-wrap">
