@@ -168,10 +168,10 @@ export default function LandingPage() {
               color: "bg-accent",
               role: "AI Automation Engineer · Django Developer · SDE",
               company: "Scomedia, Playto & Bellcorp Studio",
-              stipend: "₹10K–₹15K/month",
-              stipendColor: "bg-accent",
-              quote: "The placement team provided excellent support and answered doubts multiple times. Start from Day 1, be active on GitHub — interviewers check your profile. Projects speak louder than any other credential. Build consistently and understand core functionality clearly.",
-              advice: ["Start working from Day 1", "Be active on GitHub", "Build projects consistently"],
+              stipend: "₹10k – ₹15k",
+              duration: "6, 2, 6 months",
+              rating: 5,
+              quote: "The placement team provided excellent support and answered doubts multiple times. Started working from Day 1, built projects, and kept my GitHub active — that made all the difference!",
             },
             {
               name: "Malaya Kumar Pradhan",
@@ -180,10 +180,10 @@ export default function LandingPage() {
               color: "bg-teal-500",
               role: "MERN Intern",
               company: "Chirpn IT Solutions",
-              stipend: "₹5K–₹10K/month",
-              stipendColor: "bg-teal-500",
-              quote: "The process was challenging and required strong coding preparation. Use AI for learning, not for coding for you. Software development is about solving problems under pressure and understanding system architecture. Learn from every rejection and keep improving.",
-              advice: ["Strengthen coding skills", "Use AI to learn, not to code", "Learn from every rejection"],
+              stipend: "₹5k – ₹10k",
+              duration: "6 months",
+              rating: 4,
+              quote: "I improved my MERN skills and learned system design from scratch. This internship taught me that real development is about solving problems and understanding how systems work together.",
             },
             {
               name: "Abhay Soni",
@@ -192,10 +192,10 @@ export default function LandingPage() {
               color: "bg-violet-500",
               role: "Associate Engineer",
               company: "Bellcorp Studio",
-              stipend: "₹5K–₹10K/month",
-              stipendColor: "bg-violet-500",
-              quote: "Started with building a movie ticket booking system, followed by interviews. Learned real-world collaboration, debugging, structured API integration, and software development practices. Focus on strong fundamentals and don't get overwhelmed by too many technologies.",
-              advice: ["Focus on strong fundamentals", "Build practical projects", "Stay patient and consistent"],
+              stipend: "₹5k – ₹10k",
+              duration: "6 months",
+              rating: 5,
+              quote: "Built a movie ticket booking system, worked on admin console, APIs, and MERN stack. Learned how real projects work, how teams collaborate, and how to debug and integrate APIs efficiently.",
             },
             {
               name: "Ashlesh Bathina",
@@ -204,10 +204,10 @@ export default function LandingPage() {
               color: "bg-orange-500",
               role: "Software Developer Intern",
               company: "2xCabs",
-              stipend: "₹5K–₹10K/month",
-              stipendColor: "bg-orange-500",
-              quote: "Revised JavaScript and MERN fundamentals before the rounds. Improved technical understanding, confidence, communication, and problem-solving skills. The internship provided real-world exposure. Start early — preparation makes you industry-ready.",
-              advice: ["Start early", "Focus on DSA, DBMS, OOPs", "Practice problem solving"],
+              stipend: "₹5k – ₹10k",
+              duration: "6 months",
+              rating: 5,
+              quote: "The process included TR1 and TR2 + HR rounds. I revised MERN fundamentals and improved my technical knowledge, confidence, and communication. This internship gave me real-world exposure and helped me grow a lot.",
             },
             {
               name: "Yelkur Pujitha",
@@ -216,61 +216,78 @@ export default function LandingPage() {
               color: "bg-pink-500",
               role: "Associate Software Engineer",
               company: "Bellcorp Studio",
-              stipend: "₹10K–₹15K/month",
-              stipendColor: "bg-pink-500",
-              quote: "Transitioned from academic projects to production-level development. Worked on authentication, API integrations, React, MongoDB, and REST APIs. Consistency matters more than perfection — use GitHub and LinkedIn effectively and learn from every mistake.",
-              advice: ["Build consistently", "Use GitHub & LinkedIn", "Consistency over perfection"],
+              stipend: "₹10k – ₹15k",
+              duration: "6 months",
+              rating: 5,
+              quote: "Worked on authentication, API integrations, frontend-backend integration with React, MongoDB, and REST APIs. Learned professional workflows, collaboration, and how to adapt in a real-world environment.",
             },
           ];
+
+          const TestimonialCard = ({ t }: { t: typeof testimonials[0] }) => (
+            <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow p-5 gap-3">
+              {/* Header row */}
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex items-center gap-3">
+                  <div className={`w-12 h-12 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm shrink-0 shadow`}>{t.initials}</div>
+                  <div>
+                    <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
+                    <p className="text-xs font-semibold text-accent">{t.yog}</p>
+                    <p className="text-xs text-muted-foreground leading-tight">{t.role}</p>
+                    <p className="text-xs text-slate-400">{t.company}</p>
+                  </div>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-accent font-serif text-xl leading-none font-bold">"</span>
+                </div>
+              </div>
+              {/* Quote */}
+              <p className="text-sm text-slate-600 leading-relaxed flex-1">{t.quote}</p>
+              {/* Stats row */}
+              <div className="flex items-center gap-4 text-xs text-slate-500 border-t border-slate-100 pt-3">
+                <div className="flex items-center gap-1">
+                  <Trophy className="h-3.5 w-3.5 text-slate-400" />
+                  <span className="font-medium text-slate-700">Stipend</span>
+                  <span>{t.stipend}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Clock className="h-3.5 w-3.5 text-slate-400" />
+                  <span className="font-medium text-slate-700">Duration</span>
+                  <span>{t.duration}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400" />
+                  <span>{t.rating}/5</span>
+                </div>
+              </div>
+              {/* Badge */}
+              <div>
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent bg-accent/10 px-3 py-1 rounded-full">Through NxtWave</span>
+              </div>
+            </div>
+          );
+
           return (
-            <section className="py-20 bg-blue-50/60">
-              <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-                <div className="text-center mb-10">
-                  <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent inline-block">Students Who Made It</h2>
-                  <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent" />
-                  <p className="text-muted-foreground mt-4 text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
+            <section className="py-20 bg-slate-50">
+              <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+                {/* Section heading */}
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-accent mb-3">
+                    <Star className="h-3.5 w-3.5 fill-accent" /> Success Stories
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-black text-foreground mb-3">
+                    Students Who <span className="text-accent">Made It</span>
+                  </h2>
+                  <div className="mx-auto h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent mb-4" />
+                  <p className="text-muted-foreground text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
                 </div>
 
-                <div className="relative">
-                  <button onClick={() => scrollTestimonials("left")} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors">
-                    <ChevronLeft className="h-4 w-4" />
-                  </button>
-                  <div ref={testimonialsRef} className="flex gap-5 overflow-x-auto pb-3 snap-x snap-mandatory scrollbar-hide">
-                  {testimonials.map((t, i) => (
-                    <div key={i} className="flex flex-col bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow p-6 gap-4 shrink-0 w-[300px] snap-start">
-                      {/* Header */}
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-12 h-12 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm shrink-0`}>{t.initials}</div>
-                          <div>
-                            <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
-                            <p className="text-xs text-muted-foreground">{t.yog}</p>
-                            <p className="text-xs text-slate-400 mt-0.5">{t.role}</p>
-                          </div>
-                        </div>
-                        <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                          <span className="text-accent font-serif text-xl leading-none font-bold">"</span>
-                        </div>
-                      </div>
-                      {/* Quote */}
-                      <p className="text-sm text-muted-foreground leading-relaxed flex-1">"{t.quote}"</p>
-                      {/* Advice pills */}
-                      <div className="flex flex-wrap gap-1.5">
-                        {t.advice.map((a, j) => (
-                          <span key={j} className="text-xs bg-slate-50 border border-slate-200 text-slate-600 px-2 py-0.5 rounded-full">{a}</span>
-                        ))}
-                      </div>
-                      {/* Footer */}
-                      <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-                        <span className="text-xs font-bold text-slate-700">{t.company}</span>
-                        <span className={`text-xs font-bold text-white ${t.stipendColor} px-2.5 py-1 rounded-full`}>{t.stipend}</span>
-                      </div>
-                    </div>
-                  ))}
-                  </div>
-                  <button onClick={() => scrollTestimonials("right")} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors">
-                    <ChevronRight className="h-4 w-4" />
-                  </button>
+                {/* Row 1 — 3 cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
+                  {testimonials.slice(0, 3).map((t, i) => <TestimonialCard key={i} t={t} />)}
+                </div>
+                {/* Row 2 — 2 cards centered */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+                  {testimonials.slice(3).map((t, i) => <TestimonialCard key={i} t={t} />)}
                 </div>
               </div>
             </section>
