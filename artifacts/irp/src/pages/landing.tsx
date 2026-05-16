@@ -169,7 +169,7 @@ export default function LandingPage() {
               role: "AI Automation Engineer · Django Developer · SDE",
               company: "Scomedia, Playto & Bellcorp Studio",
               stipend: "₹10k – ₹15k",
-              duration: "6, 2, 6 months",
+              duration: "6 months",
               rating: 5,
               quote: "The placement team provided excellent support and answered doubts multiple times. Started working from Day 1, built projects, and kept my GitHub active — that made all the difference!",
             },
@@ -243,19 +243,20 @@ export default function LandingPage() {
               {/* Quote */}
               <p className="text-sm text-slate-600 leading-relaxed flex-1">{t.quote}</p>
               {/* Stats row */}
-              <div className="flex items-center gap-4 text-xs text-slate-500 border-t border-slate-100 pt-3">
-                <div className="flex items-center gap-1">
-                  <Trophy className="h-3.5 w-3.5 text-slate-400" />
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500 border-t border-slate-100 pt-3">
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  <Trophy className="h-3.5 w-3.5 text-slate-400 shrink-0" />
                   <span className="font-medium text-slate-700">Stipend</span>
                   <span>{t.stipend}</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Clock className="h-3.5 w-3.5 text-slate-400" />
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  <Clock className="h-3.5 w-3.5 text-slate-400 shrink-0" />
                   <span className="font-medium text-slate-700">Duration</span>
                   <span>{t.duration}</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400" />
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400 shrink-0" />
+                  <span className="font-medium text-slate-700">Rating</span>
                   <span>{t.rating}/5</span>
                 </div>
               </div>
