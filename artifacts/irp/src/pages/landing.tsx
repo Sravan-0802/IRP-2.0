@@ -505,10 +505,9 @@ export default function LandingPage() {
                       <span className="text-xs font-semibold text-purple-500">Curated Track</span>
                     </div>
                     <CardTitle className="text-xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-500">Infinite Aura</CardTitle>
-                    <p className="text-xs text-muted-foreground mt-1 text-center">Unlocks after clearing BOTH L1 &amp; L2.</p>
                   </div>
                   <CardContent className="flex-1 text-sm flex flex-col gap-5 px-6 pb-4">
-                    <div className="min-h-[200px]">
+                    <div className="min-h-[240px]">
                       <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><Trophy className="h-3.5 w-3.5 text-purple-500" /> How to Qualify</h4>
                       <ul className="space-y-2.5">
                         <li><p className="font-medium text-foreground text-sm">Clear Level 1 + Level 2</p><p className="text-muted-foreground text-xs">Pass both assessments &amp; projects</p></li>
