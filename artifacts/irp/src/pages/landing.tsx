@@ -203,6 +203,7 @@ export default function LandingPage() {
               name: "Ashlesh Bathina",
               yog: "YOG 2027",
               initials: "AB",
+              img: "/ashlesh-bathina.png",
               color: "bg-orange-500",
               role: "Software Developer Intern",
               company: "2xCabs",
