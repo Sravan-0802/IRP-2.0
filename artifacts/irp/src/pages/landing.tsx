@@ -520,7 +520,6 @@ export default function LandingPage() {
                         {[
                           { Icon: Trophy, title: "₹25K+ Stipend Internships", sub: "Access to premium opportunities" },
                           { Icon: User, title: "Elite Mentorship", sub: "Mentors from Microsoft, Apple, Google" },
-                          { Icon: CheckCircle2, title: "Founding Team Access", sub: "Interact with NxtWave leadership" },
                         ].map(({ Icon, title, sub }, i) => (
                           <li key={i} className="flex items-start gap-2">
                             <div className="bg-purple-100 p-1 rounded-md shrink-0 mt-0.5"><Icon className="h-3 w-3 text-purple-600" /></div>
