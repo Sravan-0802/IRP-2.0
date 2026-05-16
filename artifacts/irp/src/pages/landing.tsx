@@ -758,8 +758,8 @@ export default function LandingPage() {
                   },
                   {
                     num: "04",
-                    title: "Submit Your NOC",
-                    detail: "Once you clear the assessment round(s), you will be required to submit a valid NOC before you can proceed to accept any internship opportunity.",
+                    title: "Build Your Profile",
+                    detail: "LinkedIn, GitHub, LeetCode, CodeChef — make sure your profiles are updated and active.",
                     gradient: "from-violet-500 to-purple-600",
                     bg: "bg-violet-50",
                   },
@@ -975,16 +975,12 @@ export default function LandingPage() {
                     <AccordionContent className="text-muted-foreground">Yes. You will register for Level 1 first. Once Level 1 is cleared, you will register for Level 2 separately.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-17b">
-                    <AccordionTrigger className="text-left font-medium">What is an NOC and why is it required?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">A No Objection Certificate (NOC) is an official letter from your college stating that they have no objection to you pursuing an internship while enrolled as a student. Most internship opportunities shared through IRP 2.0 are full-time commitments — students are expected to work 5–6 days a week, up to 9 hours a day. Since this runs alongside your college schedule, companies require confirmation from your institution that they are aware of and have no objection to your participation.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-17c">
-                    <AccordionTrigger className="text-left font-medium">Is NOC mandatory?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. A No Objection Certificate from your college is required to participate in internship opportunities. This is separate from the assessment registration — you need both.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-17d">
-                    <AccordionTrigger className="text-left font-medium">I haven't submitted my NOC yet. Can I still appear for the assessment?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">You can appear for the assessment without the NOC. However, the NOC is required to actually access and accept internship opportunities. Submit it as early as possible.</AccordionContent>
+                    <AccordionTrigger className="text-left font-medium">What is an NOC, why is it required, and how does it work in the IRP 2.0 process?</AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      <p>A No Objection Certificate (NOC) is an official letter from your college confirming they have no objection to you pursuing an internship while enrolled as a student.</p>
+                      <p className="mt-2">IRP 2.0 internship opportunities are full-time commitments — 5 to 6 days a week, up to 9 hours a day. Companies require this letter to confirm your college is aware and has no objections. Without it, you cannot accept any internship opportunity even after clearing the assessments.</p>
+                      <p className="mt-2">You do not need the NOC to appear for the assessments. Submit each registration form only once.</p>
+                    </AccordionContent>
                   </AccordionItem>
 
                   <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Where Opportunities Are Displayed</h3></div>
