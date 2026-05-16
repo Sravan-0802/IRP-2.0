@@ -190,6 +190,7 @@ export default function LandingPage() {
               name: "Abhay Soni",
               yog: "YOG 2027",
               initials: "AS",
+              img: "/abhay-soni.png",
               color: "bg-violet-500",
               role: "Associate Engineer",
               company: "Bellcorp Studio",
