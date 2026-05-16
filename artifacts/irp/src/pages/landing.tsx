@@ -225,9 +225,9 @@ export default function LandingPage() {
                   <p className="text-muted-foreground mt-4 text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
                   {testimonials.map((t, i) => (
-                    <div key={i} className="flex flex-col bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow p-6 gap-4">
+                    <div key={i} className="flex flex-col bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow p-6 gap-4 shrink-0 w-[85vw] sm:w-[340px] snap-start">
                       {/* Header */}
                       <div className="flex items-start justify-between">
                         <div className="flex items-center gap-3">
