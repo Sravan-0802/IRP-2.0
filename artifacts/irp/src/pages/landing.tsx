@@ -988,19 +988,7 @@ export default function LandingPage() {
                     <AccordionContent className="text-muted-foreground">This varies by company. Most internships under IRP have structured working hours similar to a full-time engagement (5–6 days a week; 9 hours a day). Hence getting an NOC from your college authorities is mandatory.</AccordionContent>
                   </AccordionItem>
 
-                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Registration & NOC</h3></div>
-                  <AccordionItem value="item-16">
-                    <AccordionTrigger className="text-left font-medium">How do I register for the assessment?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Complete your Internship Profile Registration here. Link will be updated soon!</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-16b">
-                    <AccordionTrigger className="text-left font-medium">Should I submit the form once or multiple times?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Submit the registration form only once. If you are registering for Level 1, select Level 1 in the form. You do not need to resubmit for the same level.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-17">
-                    <AccordionTrigger className="text-left font-medium">Can I choose Level 1 now and also appear for Level 2 later?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. You will register for Level 1 first. Once Level 1 is cleared, you will register for Level 2 separately.</AccordionContent>
-                  </AccordionItem>
+                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">NOC</h3></div>
                   <AccordionItem value="item-17b">
                     <AccordionTrigger className="text-left font-medium">What is an NOC, why is it required, and how does it work in the IRP 2.0 process?</AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">
