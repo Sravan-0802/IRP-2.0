@@ -303,7 +303,7 @@ export default function LandingPage() {
                     className="flex gap-5 overflow-x-auto scrollbar-hide pb-2 snap-x snap-mandatory"
                   >
                     {testimonials.map((t, i) => (
-                      <div key={i} className="min-w-[85vw] sm:min-w-[calc(33.333%-14px)] snap-start flex-shrink-0">
+                      <div key={i} className="w-[85vw] md:w-[calc((100%-40px)/3)] flex-none snap-start">
                         <TestimonialCard t={t} />
                       </div>
                     ))}
