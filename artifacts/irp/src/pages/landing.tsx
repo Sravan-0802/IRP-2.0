@@ -780,7 +780,7 @@ export default function LandingPage() {
                   {
                     num: "03",
                     title: "Complete Pending Courses",
-                    detail: "All incomplete courses for your level must be done before assessment.",
+                    detail: "It is always a good idea to try to finish all the courses for each level before assessment.",
                     gradient: "from-orange-400 to-amber-500",
                     bg: "bg-orange-50",
                   },
