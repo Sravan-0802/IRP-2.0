@@ -260,10 +260,6 @@ export default function LandingPage() {
                   <span>{t.rating}/5</span>
                 </div>
               </div>
-              {/* Badge */}
-              <div>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent bg-accent/10 px-3 py-1 rounded-full">Through NxtWave</span>
-              </div>
             </div>
           );
 
