@@ -286,14 +286,41 @@ export default function LandingPage() {
                   <p className="text-muted-foreground text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
                 </div>
 
-                {/* Row 1 — 3 cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
-                  {testimonials.slice(0, 3).map((t, i) => <TestimonialCard key={i} t={t} />)}
+                {/* Carousel */}
+                <div className="relative">
+                  {/* Left arrow */}
+                  <button
+                    onClick={() => scrollTestimonials("left")}
+                    className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 hidden md:flex w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md items-center justify-center hover:bg-accent hover:text-white hover:border-accent transition-colors"
+                    aria-label="Previous"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+
+                  {/* Scrollable track */}
+                  <div
+                    ref={testimonialsRef}
+                    className="flex gap-5 overflow-x-auto scrollbar-hide pb-2 snap-x snap-mandatory"
+                  >
+                    {testimonials.map((t, i) => (
+                      <div key={i} className="min-w-[85vw] sm:min-w-[calc(33.333%-14px)] snap-start flex-shrink-0">
+                        <TestimonialCard t={t} />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Right arrow */}
+                  <button
+                    onClick={() => scrollTestimonials("right")}
+                    className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 hidden md:flex w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md items-center justify-center hover:bg-accent hover:text-white hover:border-accent transition-colors"
+                    aria-label="Next"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
                 </div>
-                {/* Row 2 — 2 cards centered */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
-                  {testimonials.slice(3).map((t, i) => <TestimonialCard key={i} t={t} />)}
-                </div>
+
+                {/* Mobile swipe hint */}
+                <p className="text-center text-xs text-slate-400 mt-3 md:hidden">Swipe to see more →</p>
               </div>
             </section>
           );
