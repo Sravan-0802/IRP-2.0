@@ -1,0 +1,61 @@
+3. Abhay Soni
+
+Year of Graduation: 2027
+College: Allenhouse Institute of Technology
+Company Interned: Bellcorp Studio
+Role: Associate Engineer
+Stipend: 5k–10k
+Duration: 6 months
+
+Experience:
+Started with an assignment to build a movie ticket booking system, followed by interviews. Worked on frontend admin console modules, API integrations, and backend testing using MERN stack. Learned real-world collaboration, debugging, structured API integration, and software development practices.
+
+Advice:
+
+Focus on strong fundamentals
+Don’t get overwhelmed by too many technologies
+Build practical projects
+Use AI wisely for learning
+Improve communication skills
+Stay patient and consistent
+4. Ashlesh Bathina
+
+Year of Graduation: 2027
+College: Pydah College of Engineering
+Company Interned: 2xCabs
+Role: Software Developer Intern
+Stipend: 5k–10k
+Duration: 6 months
+
+Experience:
+The process involved TR1 and a combined TR2 + HR round. Revised JavaScript and MERN fundamentals. Improved technical understanding, confidence, communication, and problem-solving skills. The internship provided real-world exposure and growth opportunities.
+
+Advice:
+
+Start internship preparation early
+Focus on DSA, DBMS, OOPs, OS, and development stack
+Build projects consistently
+Practice problem solving
+Improve communication
+Start early to become industry-ready
+5. Yelkur Pujitha
+
+Year of Graduation: 2027
+College: B V Raju Institute of Technology
+Company Interned: Bellcorp Studio
+Role: Associate Software Engineer
+Stipend: 10k–15k
+Duration: 6 months
+
+Experience:
+The internship was challenging but rewarding. Transitioned from academic projects to production-level development. Worked on authentication systems, API integrations, frontend-backend integration, React, MongoDB, and REST APIs. Learned professional workflows, collaboration, debugging, reviews, and adaptability.
+
+Advice:
+
+Start early and build consistently
+Work on practical projects
+Learn fundamentals deeply
+Use GitHub and LinkedIn effectively
+Join hackathons and workshops
+Learn from mistakes and rejections
+Consistency matters more than perfection

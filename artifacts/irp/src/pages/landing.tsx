@@ -179,6 +179,42 @@ export default function LandingPage() {
               quote: "The process was challenging and required strong coding preparation. Use AI for learning, not for coding for you. Software development is about solving problems under pressure and understanding system architecture. Learn from every rejection and keep improving.",
               advice: ["Strengthen coding skills", "Use AI to learn, not to code", "Learn from every rejection"],
             },
+            {
+              name: "Abhay Soni",
+              yog: "YOG 2027",
+              initials: "AS",
+              color: "bg-violet-500",
+              role: "Associate Engineer",
+              company: "Bellcorp Studio",
+              stipend: "₹5K–₹10K/month",
+              stipendColor: "bg-violet-500",
+              quote: "Started with building a movie ticket booking system, followed by interviews. Learned real-world collaboration, debugging, structured API integration, and software development practices. Focus on strong fundamentals and don't get overwhelmed by too many technologies.",
+              advice: ["Focus on strong fundamentals", "Build practical projects", "Stay patient and consistent"],
+            },
+            {
+              name: "Ashlesh Bathina",
+              yog: "YOG 2027",
+              initials: "AB",
+              color: "bg-orange-500",
+              role: "Software Developer Intern",
+              company: "2xCabs",
+              stipend: "₹5K–₹10K/month",
+              stipendColor: "bg-orange-500",
+              quote: "Revised JavaScript and MERN fundamentals before the rounds. Improved technical understanding, confidence, communication, and problem-solving skills. The internship provided real-world exposure. Start early — preparation makes you industry-ready.",
+              advice: ["Start early", "Focus on DSA, DBMS, OOPs", "Practice problem solving"],
+            },
+            {
+              name: "Yelkur Pujitha",
+              yog: "YOG 2027",
+              initials: "YP",
+              color: "bg-pink-500",
+              role: "Associate Software Engineer",
+              company: "Bellcorp Studio",
+              stipend: "₹10K–₹15K/month",
+              stipendColor: "bg-pink-500",
+              quote: "Transitioned from academic projects to production-level development. Worked on authentication, API integrations, React, MongoDB, and REST APIs. Consistency matters more than perfection — use GitHub and LinkedIn effectively and learn from every mistake.",
+              advice: ["Build consistently", "Use GitHub & LinkedIn", "Consistency over perfection"],
+            },
           ];
           return (
             <section className="py-20 bg-blue-50/60">
@@ -189,7 +225,7 @@ export default function LandingPage() {
                   <p className="text-muted-foreground mt-4 text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {testimonials.map((t, i) => (
                     <div key={i} className="flex flex-col bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow p-6 gap-4">
                       {/* Header */}
