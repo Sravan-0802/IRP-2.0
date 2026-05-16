@@ -167,7 +167,7 @@ export default function LandingPage() {
               initials: "CP",
               img: "/pavan-surya.png",
               color: "bg-accent",
-              role: "AI Automation Engineer · Django Developer · SDE",
+              role: "AI Automation Engineer",
               company: "Scomedia, Playto & Bellcorp Studio",
               stipend: "₹10k – ₹15k",
               duration: "6 months",
