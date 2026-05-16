@@ -165,6 +165,7 @@ export default function LandingPage() {
               name: "Chintada Pavan Surya",
               yog: "YOG 2027",
               initials: "CP",
+              img: "/pavan-surya.png",
               color: "bg-accent",
               role: "AI Automation Engineer · Django Developer · SDE",
               company: "Scomedia, Playto & Bellcorp Studio",
