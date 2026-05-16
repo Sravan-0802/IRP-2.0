@@ -155,16 +155,31 @@ export default function LandingPage() {
         {/* Testimonials Section */}
         {(() => {
           const testimonials = [
-            { name: "Ravi Kumar",   yog: "YOG 2028", img: "https://i.pravatar.cc/300?img=12", quote: "Cleared in the first attempt and got placed within 3 weeks!", company: "TCS iON",            stipend: "₹10K/month", stipendColor: "bg-accent" },
-            { name: "Sneha Reddy",  yog: "YOG 2029", img: "https://i.pravatar.cc/300?img=47", quote: "I never thought a 1st-year student could land a real internship. IRP made it step by step.", company: "Capgemini",           stipend: "₹12K/month", stipendColor: "bg-teal-500" },
-            { name: "Arjun Mehta",  yog: "YOG 2028", img: "https://i.pravatar.cc/300?img=33", quote: "DSA and JS practice every day for 3 weeks made all the difference. Highly recommend IRP!", company: "Infosys Springboard", stipend: "₹8K/month",  stipendColor: "bg-violet-500" },
-            { name: "Priya Nair",   yog: "YOG 2029", img: "https://i.pravatar.cc/300?img=56", quote: "From zero internship experience to an offer letter — IRP 2.0 literally changed my college journey.", company: "Wipro",             stipend: "₹10K/month", stipendColor: "bg-orange-500" },
+            {
+              name: "Chintada Pavan Surya",
+              yog: "YOG 2027",
+              initials: "CP",
+              color: "bg-accent",
+              role: "AI Automation Engineer · Django Developer · SDE",
+              company: "Scomedia, Playto & Bellcorp Studio",
+              stipend: "₹10K–₹15K/month",
+              stipendColor: "bg-accent",
+              quote: "The placement team provided excellent support and answered doubts multiple times. Start from Day 1, be active on GitHub — interviewers check your profile. Projects speak louder than any other credential. Build consistently and understand core functionality clearly.",
+              advice: ["Start working from Day 1", "Be active on GitHub", "Build projects consistently"],
+            },
+            {
+              name: "Malaya Kumar Pradhan",
+              yog: "YOG 2027",
+              initials: "MK",
+              color: "bg-teal-500",
+              role: "MERN Intern",
+              company: "Chirpn IT Solutions",
+              stipend: "₹5K–₹10K/month",
+              stipendColor: "bg-teal-500",
+              quote: "The process was challenging and required strong coding preparation. Use AI for learning, not for coding for you. Software development is about solving problems under pressure and understanding system architecture. Learn from every rejection and keep improving.",
+              advice: ["Strengthen coding skills", "Use AI to learn, not to code", "Learn from every rejection"],
+            },
           ];
-          const perPage = 3;
-          const maxIdx = testimonials.length - perPage;
-          const prev = () => setTIdx(i => Math.max(0, i - 1));
-          const next = () => setTIdx(i => Math.min(maxIdx, i + 1));
-          const visible = testimonials.slice(tIdx, tIdx + perPage);
           return (
             <section className="py-20 bg-blue-50/60">
               <div className="container mx-auto px-4 md:px-6 max-w-5xl">
@@ -174,43 +189,37 @@ export default function LandingPage() {
                   <p className="text-muted-foreground mt-4 text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
                 </div>
 
-                <div className="relative flex items-center gap-3">
-                  <button onClick={prev} disabled={tIdx === 0} className="shrink-0 w-9 h-9 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
-                    <ChevronDown className="h-4 w-4 rotate-90" />
-                  </button>
-
-                  <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-5">
-                    {visible.map((t, i) => (
-                      <div key={tIdx + i} className="flex flex-col bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow p-5 gap-3">
-                        <div className="flex items-start justify-between">
-                          <div className="flex flex-col items-center gap-2">
-                            <img src={t.img} alt={t.name} className="w-16 h-16 rounded-full object-cover object-top border-2 border-white shadow" />
-                            <div className="text-center">
-                              <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
-                              <p className="text-xs text-muted-foreground">{t.yog}</p>
-                            </div>
-                          </div>
-                          <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-1">
-                            <span className="text-accent font-serif text-xl leading-none font-bold">"</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {testimonials.map((t, i) => (
+                    <div key={i} className="flex flex-col bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow p-6 gap-4">
+                      {/* Header */}
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-12 h-12 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm shrink-0`}>{t.initials}</div>
+                          <div>
+                            <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
+                            <p className="text-xs text-muted-foreground">{t.yog}</p>
+                            <p className="text-xs text-slate-400 mt-0.5">{t.role}</p>
                           </div>
                         </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed flex-1">"{t.quote}"</p>
-                        <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-                          <span className="text-xs font-bold text-slate-700">{t.company}</span>
-                          <span className={`text-xs font-bold text-white ${t.stipendColor} px-2.5 py-1 rounded-full`}>{t.stipend}</span>
+                        <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                          <span className="text-accent font-serif text-xl leading-none font-bold">"</span>
                         </div>
                       </div>
-                    ))}
-                  </div>
-
-                  <button onClick={next} disabled={tIdx >= maxIdx} className="shrink-0 w-9 h-9 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
-                    <ChevronDown className="h-4 w-4 -rotate-90" />
-                  </button>
-                </div>
-
-                <div className="flex justify-center gap-2 mt-6">
-                  {Array.from({ length: maxIdx + 1 }).map((_, i) => (
-                    <button key={i} onClick={() => setTIdx(i)} className={`w-2 h-2 rounded-full transition-colors ${i === tIdx ? "bg-accent" : "bg-slate-300"}`} />
+                      {/* Quote */}
+                      <p className="text-sm text-muted-foreground leading-relaxed flex-1">"{t.quote}"</p>
+                      {/* Advice pills */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {t.advice.map((a, j) => (
+                          <span key={j} className="text-xs bg-slate-50 border border-slate-200 text-slate-600 px-2 py-0.5 rounded-full">{a}</span>
+                        ))}
+                      </div>
+                      {/* Footer */}
+                      <div className="flex items-center justify-between pt-3 border-t border-slate-100">
+                        <span className="text-xs font-bold text-slate-700">{t.company}</span>
+                        <span className={`text-xs font-bold text-white ${t.stipendColor} px-2.5 py-1 rounded-full`}>{t.stipend}</span>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
