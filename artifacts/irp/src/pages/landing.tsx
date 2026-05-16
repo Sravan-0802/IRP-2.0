@@ -177,6 +177,7 @@ export default function LandingPage() {
               name: "Malaya Kumar Pradhan",
               yog: "YOG 2027",
               initials: "MK",
+              img: "/malaya-kumar.png",
               color: "bg-teal-500",
               role: "MERN Intern",
               company: "Chirpn IT Solutions",
@@ -228,7 +229,10 @@ export default function LandingPage() {
               {/* Header row */}
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-3">
-                  <div className={`w-12 h-12 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm shrink-0 shadow`}>{t.initials}</div>
+                  {'img' in t && t.img
+                    ? <img src={t.img as string} alt={t.name} className="w-12 h-12 rounded-full object-cover object-top shrink-0 shadow border-2 border-white" />
+                    : <div className={`w-12 h-12 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm shrink-0 shadow`}>{t.initials}</div>
+                  }
                   <div>
                     <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
                     <p className="text-xs font-semibold text-accent">{t.yog}</p>
