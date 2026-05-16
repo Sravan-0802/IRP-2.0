@@ -385,7 +385,7 @@ export default function LandingPage() {
                     <CardTitle className="text-xl font-bold text-center">The Hustler</CardTitle>
                   </div>
                   <CardContent className="flex-1 text-sm flex flex-col gap-5 px-6 pb-4">
-                    <div className="min-h-[160px]">
+                    <div className="min-h-[200px]">
                       <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><FileCode2 className="h-3.5 w-3.5" /> Assessment Format (2 hrs total)</h4>
                       <ul className="space-y-2.5">
                         <li><p className="font-medium text-foreground text-sm">Python + DSA</p><p className="text-muted-foreground text-xs">MCQ • 90 mins • 40 Qs</p></li>
@@ -428,7 +428,7 @@ export default function LandingPage() {
                     <CardTitle className="text-xl font-bold text-center">The Main Character</CardTitle>
                   </div>
                   <CardContent className="flex-1 text-sm flex flex-col gap-5 px-6 pb-4">
-                    <div className="min-h-[160px]">
+                    <div className="min-h-[200px]">
                       <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><Server className="h-3.5 w-3.5" /> Assessment Format (1 hr total)</h4>
                       <ul className="space-y-2.5">
                         <li><p className="font-medium text-foreground text-sm">Backend (NodeJS + Express)</p><p className="text-muted-foreground text-xs">MCQ • 20 mins • 20 Qs</p></li>
@@ -473,7 +473,7 @@ export default function LandingPage() {
                     <p className="text-xs text-muted-foreground mt-1 text-center">Unlocks after clearing BOTH L1 &amp; L2.</p>
                   </div>
                   <CardContent className="flex-1 text-sm flex flex-col gap-5 px-6 pb-4">
-                    <div className="min-h-[160px]">
+                    <div className="min-h-[200px]">
                       <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><Trophy className="h-3.5 w-3.5 text-purple-500" /> How to Qualify</h4>
                       <ul className="space-y-2.5">
                         <li><p className="font-medium text-foreground text-sm">Clear Level 1 + Level 2</p><p className="text-muted-foreground text-xs">Pass both assessments &amp; projects</p></li>
