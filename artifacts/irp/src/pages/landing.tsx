@@ -216,6 +216,7 @@ export default function LandingPage() {
               name: "Yelkur Pujitha",
               yog: "YOG 2027",
               initials: "YP",
+              img: "/yelkur-pujitha.png",
               color: "bg-pink-500",
               role: "Associate Software Engineer",
               company: "Bellcorp Studio",
