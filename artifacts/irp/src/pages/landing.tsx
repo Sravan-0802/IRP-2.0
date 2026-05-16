@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { 
-  ArrowRight, BookOpen, CheckCircle2, ChevronDown, Clock, Code, 
+  ArrowRight, BookOpen, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Clock, Code, 
   Database, ExternalLink, FileCode2, FileText, Info, Menu, Rocket, Server, Star, Terminal, Trophy, 
   User, CheckCircle, Navigation, X, XCircle
 } from "lucide-react";
@@ -16,6 +16,12 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 export default function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [tIdx, setTIdx] = useState(0);
+  const testimonialsRef = useRef<HTMLDivElement>(null);
+  const scrollTestimonials = (dir: "left" | "right") => {
+    if (!testimonialsRef.current) return;
+    const cardW = testimonialsRef.current.querySelector("div")?.offsetWidth ?? 340;
+    testimonialsRef.current.scrollBy({ left: dir === "right" ? cardW + 20 : -(cardW + 20), behavior: "smooth" });
+  };
   const allFaqItems = ["item-1","item-2","item-3","item-3b","item-4","item-5","item-6","item-7","item-7b","item-7c","item-7d","item-8","item-9","item-10","item-10b","item-10c","item-10d","item-10e","item-10f","item-11","item-11b","item-11c","item-12","item-13","item-13b","item-14","item-15","item-15b","item-15c","item-16","item-16b","item-17","item-17b","item-17c","item-17d","item-18","item-18b","item-19","item-20","item-20b","item-20c"];
   const [faqValues, setFaqValues] = useState<string[]>(["item-1","item-4","item-8","item-11","item-13","item-16","item-18","item-19"]);
 
@@ -225,9 +231,13 @@ export default function LandingPage() {
                   <p className="text-muted-foreground mt-4 text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
                 </div>
 
-                <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
+                <div className="relative">
+                  <button onClick={() => scrollTestimonials("left")} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors">
+                    <ChevronLeft className="h-4 w-4" />
+                  </button>
+                  <div ref={testimonialsRef} className="flex gap-5 overflow-x-auto pb-3 snap-x snap-mandatory scrollbar-hide">
                   {testimonials.map((t, i) => (
-                    <div key={i} className="flex flex-col bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow p-6 gap-4 shrink-0 w-[85vw] sm:w-[340px] snap-start">
+                    <div key={i} className="flex flex-col bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow p-6 gap-4 shrink-0 w-[300px] snap-start">
                       {/* Header */}
                       <div className="flex items-start justify-between">
                         <div className="flex items-center gap-3">
@@ -257,6 +267,10 @@ export default function LandingPage() {
                       </div>
                     </div>
                   ))}
+                  </div>
+                  <button onClick={() => scrollTestimonials("right")} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-500 hover:text-accent hover:border-accent transition-colors">
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
             </section>
