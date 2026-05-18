@@ -159,69 +159,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* What is IRP 2.0 Section */}
-        <section className="py-20 bg-slate-50">
-          <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-            {/* Heading + illustration */}
-            <div className="flex flex-col md:flex-row items-center gap-10 mb-14">
-              <div className="flex-1">
-                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">What is IRP 2.0?</h2>
-                <p className="text-base text-slate-600 leading-relaxed max-w-xl">
-                  IRP 2.0 is NxtWave Academy's structured program to help 1st and 2nd year students prepare for and access internship opportunities. It's built specifically for you — the assessments, projects, and interviews are all scoped to what you've studied at your current year level.
-                </p>
-              </div>
-              <div className="flex-shrink-0 w-64 md:w-72">
-                <img src="/about-student.png" alt="IRP 2.0 illustration" className="w-full object-contain" />
-              </div>
-            </div>
-
-            {/* Before / Now cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Before card */}
-              <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-7">
-                <span className="inline-block text-xs font-bold text-red-500 border border-red-200 bg-red-50 rounded-full px-3 py-0.5 mb-4">Before</span>
-                <h3 className="text-xl font-black text-foreground mb-5">The old IRP</h3>
-                <ul className="space-y-3">
-                  {[
-                    "Assessed alongside 3rd, 4th & final year students",
-                    "Common assessments regardless of year",
-                    "Online + Offline rounds (travel required)",
-                    "One-size-fits-all process",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
-                      <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full border-2 border-red-300 flex items-center justify-center">
-                        <svg className="w-2.5 h-2.5 text-red-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Now card */}
-              <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-7">
-                <span className="inline-block text-xs font-bold text-accent border border-accent/20 bg-accent/5 rounded-full px-3 py-0.5 mb-4">Now</span>
-                <h3 className="text-xl font-black text-foreground mb-5">IRP 2.0</h3>
-                <ul className="space-y-3">
-                  {[
-                    "Tailored assessments — only what you've studied",
-                    "Year-level appropriate content",
-                    "100% Online — attempt from anywhere",
-                    "Multi-level structure with progressive unlocks",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
-                      <span className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center">
-                        <svg className="w-3 h-3 text-accent" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Levels Section */}
         <section id="levels" className="py-20 bg-gradient-to-b from-white via-blue-50/20 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-6xl">
