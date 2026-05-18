@@ -158,174 +158,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        {(() => {
-          const testimonials = [
-            {
-              name: "Chintada Pavan Surya",
-              yog: "YOG 2027",
-              initials: "CP",
-              img: "/pavan-surya.png",
-              color: "bg-accent",
-              role: "AI Automation Engineer",
-              company: "Scomedia, Playto & Bellcorp Studio",
-              stipend: "₹10k – ₹15k",
-              duration: "6 months",
-              rating: 5,
-              quote: "The placement team provided excellent support and answered doubts multiple times. Started working from Day 1, built projects, and kept my GitHub active — that made all the difference!",
-            },
-            {
-              name: "Malaya Kumar Pradhan",
-              yog: "YOG 2027",
-              initials: "MK",
-              img: "/malaya-kumar.png",
-              color: "bg-teal-500",
-              role: "MERN Intern",
-              company: "Chirpn IT Solutions",
-              stipend: "₹5k – ₹10k",
-              duration: "6 months",
-              rating: 4,
-              quote: "I improved my MERN skills and learned system design from scratch. This internship taught me that real development is about solving problems and understanding how systems work together.",
-            },
-            {
-              name: "Abhay Soni",
-              yog: "YOG 2027",
-              initials: "AS",
-              img: "/abhay-soni.png",
-              color: "bg-violet-500",
-              role: "Associate Engineer",
-              company: "Bellcorp Studio",
-              stipend: "₹5k – ₹10k",
-              duration: "6 months",
-              rating: 5,
-              quote: "Built a movie ticket booking system, worked on admin console, APIs, and MERN stack. Learned how real projects work, how teams collaborate, and how to debug and integrate APIs efficiently.",
-            },
-            {
-              name: "Ashlesh Bathina",
-              yog: "YOG 2027",
-              initials: "AB",
-              img: "/ashlesh-bathina.png",
-              color: "bg-orange-500",
-              role: "Software Developer Intern",
-              company: "2xCabs",
-              stipend: "₹5k – ₹10k",
-              duration: "6 months",
-              rating: 5,
-              quote: "The process included TR1 and TR2 + HR rounds. I revised MERN fundamentals and improved my technical knowledge, confidence, and communication. This internship gave me real-world exposure and helped me grow a lot.",
-            },
-            {
-              name: "Yelkur Pujitha",
-              yog: "YOG 2027",
-              initials: "YP",
-              img: "/yelkur-pujitha.png",
-              color: "bg-pink-500",
-              role: "Associate Software Engineer",
-              company: "Bellcorp Studio",
-              stipend: "₹10k – ₹15k",
-              duration: "6 months",
-              rating: 5,
-              quote: "Worked on authentication, API integrations, frontend-backend integration with React, MongoDB, and REST APIs. Learned professional workflows, collaboration, and how to adapt in a real-world environment.",
-            },
-          ];
-
-          const TestimonialCard = ({ t }: { t: typeof testimonials[0] }) => (
-            <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow p-5 gap-3">
-              {/* Header row */}
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex items-center gap-3">
-                  {'img' in t && t.img
-                    ? <img src={t.img as string} alt={t.name} className="w-12 h-12 rounded-full object-cover object-top shrink-0 shadow border-2 border-white" />
-                    : <div className={`w-12 h-12 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm shrink-0 shadow`}>{t.initials}</div>
-                  }
-                  <div>
-                    <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
-                    <p className="text-xs font-semibold text-accent">{t.yog}</p>
-                    <p className="text-xs text-muted-foreground leading-tight">{t.role}</p>
-                    <p className="text-xs text-slate-400">{t.company}</p>
-                  </div>
-                </div>
-                <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="text-accent font-serif text-xl leading-none font-bold">"</span>
-                </div>
-              </div>
-              {/* Quote */}
-              <p className="text-sm text-slate-600 leading-relaxed flex-1">{t.quote}</p>
-              {/* Stats row */}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500 border-t border-slate-100 pt-3">
-                <div className="flex items-center gap-1 whitespace-nowrap">
-                  <Trophy className="h-3.5 w-3.5 text-slate-400 shrink-0" />
-                  <span className="font-medium text-slate-700">Stipend</span>
-                  <span>{t.stipend}</span>
-                </div>
-                <div className="flex items-center gap-1 whitespace-nowrap">
-                  <Clock className="h-3.5 w-3.5 text-slate-400 shrink-0" />
-                  <span className="font-medium text-slate-700">Duration</span>
-                  <span>{t.duration}</span>
-                </div>
-                <div className="flex items-center gap-1 whitespace-nowrap">
-                  <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400 shrink-0" />
-                  <span className="font-medium text-slate-700">Rating</span>
-                  <span>{t.rating}/5</span>
-                </div>
-              </div>
-            </div>
-          );
-
-          return (
-            <section className="py-20 bg-slate-50">
-              <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-                {/* Section heading */}
-                <div className="text-center mb-12">
-                  <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-accent mb-3">
-                    <Star className="h-3.5 w-3.5 fill-accent" /> Success Stories
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-black text-foreground mb-3">
-                    Students Who <span className="text-accent">Made It</span>
-                  </h2>
-                  <div className="mx-auto h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent mb-4" />
-                  <p className="text-muted-foreground text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
-                </div>
-
-                {/* Carousel */}
-                <div className="relative">
-                  {/* Left arrow */}
-                  <button
-                    onClick={() => scrollTestimonials("left")}
-                    className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 hidden md:flex w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md items-center justify-center hover:bg-accent hover:text-white hover:border-accent transition-colors"
-                    aria-label="Previous"
-                  >
-                    <ChevronLeft className="h-5 w-5" />
-                  </button>
-
-                  {/* Scrollable track */}
-                  <div
-                    ref={testimonialsRef}
-                    className="flex gap-5 overflow-x-auto scrollbar-hide pb-2 snap-x snap-mandatory"
-                  >
-                    {testimonials.map((t, i) => (
-                      <div key={i} className="w-[85vw] md:w-[calc((100%-40px)/3)] flex-none snap-start">
-                        <TestimonialCard t={t} />
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Right arrow */}
-                  <button
-                    onClick={() => scrollTestimonials("right")}
-                    className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 hidden md:flex w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md items-center justify-center hover:bg-accent hover:text-white hover:border-accent transition-colors"
-                    aria-label="Next"
-                  >
-                    <ChevronRight className="h-5 w-5" />
-                  </button>
-                </div>
-
-                {/* Mobile swipe hint */}
-                <p className="text-center text-xs text-slate-400 mt-3 md:hidden">Swipe to see more →</p>
-              </div>
-            </section>
-          );
-        })()}
-
         {/* About Section */}
         <section id="about" className="py-16 bg-gradient-to-b from-blue-50 via-indigo-50/40 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-6xl">
@@ -750,6 +582,161 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+
+        {/* Testimonials Section */}
+        {(() => {
+          const testimonials = [
+            {
+              name: "Chintada Pavan Surya",
+              yog: "YOG 2027",
+              initials: "CP",
+              img: "/pavan-surya.png",
+              color: "bg-accent",
+              role: "AI Automation Engineer",
+              company: "Scomedia, Playto & Bellcorp Studio",
+              stipend: "₹10k – ₹15k",
+              duration: "6 months",
+              rating: 5,
+              quote: "The placement team provided excellent support and answered doubts multiple times. Started working from Day 1, built projects, and kept my GitHub active — that made all the difference!",
+            },
+            {
+              name: "Malaya Kumar Pradhan",
+              yog: "YOG 2027",
+              initials: "MK",
+              img: "/malaya-kumar.png",
+              color: "bg-teal-500",
+              role: "MERN Intern",
+              company: "Chirpn IT Solutions",
+              stipend: "₹5k – ₹10k",
+              duration: "6 months",
+              rating: 4,
+              quote: "I improved my MERN skills and learned system design from scratch. This internship taught me that real development is about solving problems and understanding how systems work together.",
+            },
+            {
+              name: "Abhay Soni",
+              yog: "YOG 2027",
+              initials: "AS",
+              img: "/abhay-soni.png",
+              color: "bg-violet-500",
+              role: "Associate Engineer",
+              company: "Bellcorp Studio",
+              stipend: "₹5k – ₹10k",
+              duration: "6 months",
+              rating: 5,
+              quote: "Built a movie ticket booking system, worked on admin console, APIs, and MERN stack. Learned how real projects work, how teams collaborate, and how to debug and integrate APIs efficiently.",
+            },
+            {
+              name: "Ashlesh Bathina",
+              yog: "YOG 2027",
+              initials: "AB",
+              img: "/ashlesh-bathina.png",
+              color: "bg-orange-500",
+              role: "Software Developer Intern",
+              company: "2xCabs",
+              stipend: "₹5k – ₹10k",
+              duration: "6 months",
+              rating: 5,
+              quote: "The process included TR1 and TR2 + HR rounds. I revised MERN fundamentals and improved my technical knowledge, confidence, and communication. This internship gave me real-world exposure and helped me grow a lot.",
+            },
+            {
+              name: "Yelkur Pujitha",
+              yog: "YOG 2027",
+              initials: "YP",
+              img: "/yelkur-pujitha.png",
+              color: "bg-pink-500",
+              role: "Associate Software Engineer",
+              company: "Bellcorp Studio",
+              stipend: "₹10k – ₹15k",
+              duration: "6 months",
+              rating: 5,
+              quote: "Worked on authentication, API integrations, frontend-backend integration with React, MongoDB, and REST APIs. Learned professional workflows, collaboration, and how to adapt in a real-world environment.",
+            },
+          ];
+
+          const TestimonialCard = ({ t }: { t: typeof testimonials[0] }) => (
+            <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow p-5 gap-3">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex items-center gap-3">
+                  {'img' in t && t.img
+                    ? <img src={t.img as string} alt={t.name} className="w-12 h-12 rounded-full object-cover object-top shrink-0 shadow border-2 border-white" />
+                    : <div className={`w-12 h-12 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm shrink-0 shadow`}>{t.initials}</div>
+                  }
+                  <div>
+                    <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
+                    <p className="text-xs font-semibold text-accent">{t.yog}</p>
+                    <p className="text-xs text-muted-foreground leading-tight">{t.role}</p>
+                    <p className="text-xs text-slate-400">{t.company}</p>
+                  </div>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-accent font-serif text-xl leading-none font-bold">"</span>
+                </div>
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed flex-1">{t.quote}</p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500 border-t border-slate-100 pt-3">
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  <Trophy className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                  <span className="font-medium text-slate-700">Stipend</span>
+                  <span>{t.stipend}</span>
+                </div>
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  <Clock className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                  <span className="font-medium text-slate-700">Duration</span>
+                  <span>{t.duration}</span>
+                </div>
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400 shrink-0" />
+                  <span className="font-medium text-slate-700">Rating</span>
+                  <span>{t.rating}/5</span>
+                </div>
+              </div>
+            </div>
+          );
+
+          return (
+            <section className="py-20 bg-slate-50">
+              <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-accent mb-3">
+                    <Star className="h-3.5 w-3.5 fill-accent" /> Success Stories
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-black text-foreground mb-3">
+                    Students Who <span className="text-accent">Made It</span>
+                  </h2>
+                  <div className="mx-auto h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent mb-4" />
+                  <p className="text-muted-foreground text-base">Real stories from NxtWave students who cleared IRP and landed internships.</p>
+                </div>
+                <div className="relative">
+                  <button
+                    onClick={() => scrollTestimonials("left")}
+                    className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 hidden md:flex w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md items-center justify-center hover:bg-accent hover:text-white hover:border-accent transition-colors"
+                    aria-label="Previous"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+                  <div
+                    ref={testimonialsRef}
+                    className="flex gap-5 overflow-x-auto scrollbar-hide pb-2 snap-x snap-mandatory"
+                  >
+                    {testimonials.map((t, i) => (
+                      <div key={i} className="w-[85vw] md:w-[calc((100%-40px)/3)] flex-none snap-start">
+                        <TestimonialCard t={t} />
+                      </div>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => scrollTestimonials("right")}
+                    className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 hidden md:flex w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md items-center justify-center hover:bg-accent hover:text-white hover:border-accent transition-colors"
+                    aria-label="Next"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                </div>
+                <p className="text-center text-xs text-slate-400 mt-3 md:hidden">Swipe to see more →</p>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Checklist Section */}
         <section id="checklist" className="py-16 bg-gradient-to-b from-white via-blue-50/30 to-white">
