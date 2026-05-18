@@ -663,6 +663,17 @@ export default function LandingPage() {
                 </div>
                 <p className="text-center text-xs text-slate-400 mt-3 md:hidden">Swipe to see more →</p>
               </div>
+              <div className="text-center mt-10">
+                <a
+                  href="https://docs.google.com/document/d/1uU0XvFUz3CAw1kGKXuoIASiLk6SOzpZEA2bSkEjLQu8/edit?tab=t.0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-white font-semibold text-sm shadow-md hover:bg-accent/90 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                  Sample Interview Questions
+                </a>
+              </div>
             </section>
           );
         })()}
