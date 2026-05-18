@@ -160,18 +160,18 @@ export default function LandingPage() {
         </section>
 
         {/* What is IRP 2.0 Section */}
-        <section className="py-20 bg-slate-50">
+        <section className="py-20 bg-blue-600">
           <div className="container mx-auto px-4 md:px-6 max-w-6xl">
             {/* Heading + illustration */}
             <div className="flex flex-col md:flex-row items-center gap-10 mb-14">
               <div className="flex-1">
-                <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">What is IRP 2.0?</h2>
-                <p className="text-base text-slate-600 leading-relaxed max-w-xl">
+                <h2 className="text-3xl md:text-4xl font-black text-white mb-4">What is IRP 2.0?</h2>
+                <p className="text-base text-blue-100 leading-relaxed max-w-xl">
                   IRP 2.0 is NxtWave Academy's structured program to help 1st and 2nd year students prepare for and access internship opportunities. It's built specifically for you — the assessments, projects, and interviews are all scoped to what you've studied at your current year level.
                 </p>
               </div>
               <div className="flex-shrink-0 w-64 md:w-72">
-                <img src="/about-student.png" alt="IRP 2.0 illustration" className="w-full object-contain" />
+                <img src="/what-is-irp-student.png" alt="IRP 2.0 illustration" className="w-full object-contain" />
               </div>
             </div>
 
