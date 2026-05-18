@@ -171,7 +171,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex-shrink-0 w-64 md:w-72">
-                <img src="/what-is-irp.png" alt="IRP 2.0 illustration" className="w-full object-contain" />
+                <img src="/about-student.png" alt="IRP 2.0 illustration" className="w-full object-contain" />
               </div>
             </div>
 
