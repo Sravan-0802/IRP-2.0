@@ -22,8 +22,11 @@ export default function LandingPage() {
     const cardW = testimonialsRef.current.querySelector("div")?.offsetWidth ?? 340;
     testimonialsRef.current.scrollBy({ left: dir === "right" ? cardW + 20 : -(cardW + 20), behavior: "smooth" });
   };
-  const allFaqItems = ["item-1","item-2","item-3","item-3b","item-4","item-5","item-6","item-7","item-7b","item-7c","item-7d","item-8","item-9","item-10","item-10b","item-10c","item-10d","item-10e","item-10f","item-11","item-11b","item-11c","item-12","item-13","item-13b","item-14","item-15","item-15b","item-15c","item-16","item-16b","item-17","item-17b","item-17c","item-17d","item-18","item-18b","item-19","item-20","item-20b","item-20c"];
-  const [faqValues, setFaqValues] = useState<string[]>(["item-1","item-4","item-8","item-11","item-13","item-16","item-18","item-19"]);
+  const allFaqItems = ["item-1","item-2","item-3","item-3b","item-4","item-5","item-6","item-7","item-7b","item-7c","item-8","item-9","item-10","item-10b","item-10c","item-10d","item-10e","item-10f","item-11","item-11b","item-11c","item-12","item-13","item-13b","item-14","item-15","item-15b","item-17b","item-18","item-18b","item-19","item-20","item-20b","item-20c"];
+  const allCategoryIds = ["eligibility","assessment","skills","projects","stipend","noc","opportunities","courses"];
+  const [faqValues, setFaqValues] = useState<string[]>([]);
+  const [openCategories, setOpenCategories] = useState<string[]>([]);
+  const toggleCategory = (id: string) => setOpenCategories(prev => prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -849,170 +852,122 @@ export default function LandingPage() {
 
             <Card className="bg-card text-card-foreground">
               <CardContent className="pt-6">
-                <div className="flex justify-end gap-3 mb-4 text-sm">
-                  <button onClick={() => setFaqValues(allFaqItems)} className="text-accent hover:underline font-medium">Expand all</button>
+                <div className="flex justify-end gap-3 mb-2 text-sm">
+                  <button onClick={() => { setOpenCategories(allCategoryIds); setFaqValues(allFaqItems); }} className="text-accent hover:underline font-medium">Expand all</button>
                   <span className="text-muted-foreground">·</span>
-                  <button onClick={() => setFaqValues([])} className="text-muted-foreground hover:text-foreground hover:underline">Collapse all</button>
+                  <button onClick={() => { setOpenCategories([]); setFaqValues([]); }} className="text-muted-foreground hover:text-foreground hover:underline">Collapse all</button>
                 </div>
-                <Accordion type="multiple" value={faqValues} onValueChange={setFaqValues} className="w-full">
-
-                  <div className="mb-4"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Eligibility & Who Can Participate</h3></div>
-                  <AccordionItem value="item-1">
-                    <AccordionTrigger className="text-left font-medium">Is IRP 2.0 for all students or only 1st and 2nd year students?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">IRP 2.0 is exclusively for YOG 2028 and YOG 2029 students — that's 1st and 2nd year students. If you recently completed your 2nd year, you are still eligible. If you are YOG 2027 or earlier, please connect with our Help Section for the appropriate process.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-2">
-                    <AccordionTrigger className="text-left font-medium">I just completed my 2nd year. Am I eligible?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. YOG 2028 students who have just completed their 2nd year are eligible to participate in IRP 2.0.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-3">
-                    <AccordionTrigger className="text-left font-medium">Are Smart Program students eligible?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">If you are a YOG 2028 or 2029 student under the Smart Program, please connect with our Help Section — eligibility is determined by YOG, not program type.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-3b">
-                    <AccordionTrigger className="text-left font-medium">What is the minimum course completion required to be eligible?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">There is no fixed percentage threshold for eligibility to register. However, you are expected to have completed the courses relevant to the level you are appearing for before the assessment date.</AccordionContent>
-                  </AccordionItem>
-
-                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Assessment Process & Structure</h3></div>
-                  <AccordionItem value="item-4">
-                    <AccordionTrigger className="text-left font-medium">Does clearing Level 1 make me eligible for internship opportunities?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">No. Clearing Level 1 alone does not make you eligible for internships. Internship opportunities unlock only after you clear both Level 1 and Level 2. Once you clear both, you become eligible for standard opportunities (₹5K–₹10K stipend range). If you are aiming for ₹25K+ stipend internships, you will additionally need to qualify for Level 3 — the Infinite Aura track.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-5">
-                    <AccordionTrigger className="text-left font-medium">What happens if I clear Level 1 but fail Level 2?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">You will not be eligible for internship opportunities until you clear Level 2 as well. Details on retake windows will be communicated separately. Reattempt for Level 2 and its timeline will be communicated whenever Level 2 reattempt happens.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-6">
-                    <AccordionTrigger className="text-left font-medium">Are all assessments online?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. All rounds under IRP 2.0 — MCQs, projects, AI Mock Interview, and Human Mock Interview — are 100% online. There are no offline rounds.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-7">
-                    <AccordionTrigger className="text-left font-medium">Will the assessment on 14th June be online?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes, the 14th June assessment (Level 1) is fully online.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-7b">
-                    <AccordionTrigger className="text-left font-medium">Is there a deadline to complete all three levels?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Specific deadlines will be communicated at each stage.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-7c">
-                    <AccordionTrigger className="text-left font-medium">Will there be a second attempt if I miss or fail the June 14th assessment?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Details on retake opportunities will be shared after Summer Batch 1. We will inform on the upcoming batch details soon thereafter. Watch your registered email for updates.</AccordionContent>
-                  </AccordionItem>
-
-                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Skills & Preparation</h3></div>
-                  <AccordionItem value="item-8">
-                    <AccordionTrigger className="text-left font-medium">What skills do I need for Level 1?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">You need: Python (fundamentals), DSA Level 1, HTML, CSS, JavaScript (Essentials), React (Getting Started). These map directly to the NxtWave courses listed in the Level 1 section above.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-9">
-                    <AccordionTrigger className="text-left font-medium">Is DSA Level 1 enough for the Python + DSA section?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. Level 1 covers DSA at a basic level — DSA Level 1 from the NxtWave platform is sufficient.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-10">
-                    <AccordionTrigger className="text-left font-medium">Should I learn DSA in Python or Java?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">The assessment default language is Python, and the DSA section is assessed in Python. You can also code in C++ or Java, but Python is recommended for alignment with the course content.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-10b">
-                    <AccordionTrigger className="text-left font-medium">Is GenAI mandatory for Level 2?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. GenAI is one of the three MCQ sections in Level 2 and will also be used extensively in your Projects for each level, alongside Backend (NodeJS + Express) and Databases.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-10c">
-                    <AccordionTrigger className="text-left font-medium">Is HTML, CSS, and JavaScript enough for Level 1, or do I need more?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">For Level 1, you need HTML, CSS, JavaScript Essentials, and React — all covered in the NxtWave curriculum. That is the scope of the FE MCQ section.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-10d">
-                    <AccordionTrigger className="text-left font-medium">Should I learn skills in parallel or one at a time?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Complete courses in the order prescribed in your NxtWave learning path. For Level 1 preparation, prioritize completing the FE courses and DSA Level 1 first.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-10e">
-                    <AccordionTrigger className="text-left font-medium">Does communication matter in the interview?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. The Human Mock Interview evaluates not just your technical output but also how well you can explain your project and reasoning. Basic clear communication in English is important.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-10f">
-                    <AccordionTrigger className="text-left font-medium">What if my English communication is not strong?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">The Mock Interviews will assess you based on your project and problem-solving ability. Focus on explaining your thought process clearly — fluency is not the primary criteria.</AccordionContent>
-                  </AccordionItem>
-
-                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Projects</h3></div>
-                  <AccordionItem value="item-11">
-                    <AccordionTrigger className="text-left font-medium">Will there be a real project in IRP 2.0?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. Both levels involve a project submission: a Frontend Project in Level 1 (12 hours) and a Full Stack + AI Project in Level 2 (24 hours).</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-11b">
-                    <AccordionTrigger className="text-left font-medium">Do I actually get valuable experience through internships or is it just for certificates?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">NxtWave internship opportunities involve real project work at partner companies. You will gain hands-on experience with actual development tasks — not just certificates. Past students have worked on real products and received stipends.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-11c">
-                    <AccordionTrigger className="text-left font-medium">Are remote internships valuable — or will I miss out by not working in-person?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Remote internships through NxtWave involve real deliverables and mentorship. The experience is comparable to in-person internships in terms of learning. You will work on actual company projects.</AccordionContent>
-                  </AccordionItem>
-
-                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Stipend & Internship Opportunities</h3></div>
-                  <AccordionItem value="item-12">
-                    <AccordionTrigger className="text-left font-medium">Are the internships paid?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. Level 2 clearance gives access to internships in the ₹5K–₹10K/month stipend range. Level 3 (Infinite Aura track) gives access to ₹25K+ stipend opportunities.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-13">
-                    <AccordionTrigger className="text-left font-medium">If I clear both Level 1 and Level 2, what stipend can I expect?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Stipends vary by company and role. After clearing both levels, you become eligible for opportunities typically in the ₹5K–₹10K/month range. Top performers who reach Level 3 status can access ₹25K+ opportunities.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-13b">
-                    <AccordionTrigger className="text-left font-medium">Are there internships for specific domains like Data Analytics, AI/ML, or Cybersecurity?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">IRP 2.0 is focused on Full Stack and Frontend development opportunities. Internships in specific domains like Data Analytics or AI/ML may be available through separate channels.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-14">
-                    <AccordionTrigger className="text-left font-medium">How long are the internships?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Internship duration varies by company and role. Typical duration is 3–6 months. Specific details will be shared when opportunities are released.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-15">
-                    <AccordionTrigger className="text-left font-medium">Will internships be remote or in-office?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Both options may be available depending on the company. Most opportunities in the current batch are remote or hybrid.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-15b">
-                    <AccordionTrigger className="text-left font-medium">How many hours per day is expected during an internship?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">This varies by company. Most internships under IRP have structured working hours similar to a full-time engagement (5–6 days a week; 9 hours a day). Hence getting an NOC from your college authorities is mandatory.</AccordionContent>
-                  </AccordionItem>
-
-                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">NOC</h3></div>
-                  <AccordionItem value="item-17b">
-                    <AccordionTrigger className="text-left font-medium">What is an NOC, why is it required, and how does it work in the IRP 2.0 process?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      <p>A No Objection Certificate (NOC) is an official letter from your college confirming they have no objection to you pursuing an internship while enrolled as a student.</p>
-                      <p className="mt-2">IRP 2.0 internship opportunities are full-time commitments — 5 to 6 days a week, up to 9 hours a day. Companies require this letter to confirm your college is aware and has no objections. Without it, you cannot accept any internship opportunity even after clearing the assessments.</p>
-                      <p className="mt-2">You do not need the NOC to appear for the assessments. Submit each registration form only once.</p>
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Where Opportunities Are Displayed</h3></div>
-                  <AccordionItem value="item-18">
-                    <AccordionTrigger className="text-left font-medium">Where will internship opportunities be shown after I clear the levels?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Internship opportunities will be displayed on the IRP 2.0 page — this will be your single destination for viewing and applying to opportunities. The Jobs Board used previously will not be used for IRP 2.0 opportunities.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-18b">
-                    <AccordionTrigger className="text-left font-medium">When will internship opportunities start appearing?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Opportunities will be made available after students have completed the Level 1 and Level 2 assessments and results are processed. Watch your email for updates.</AccordionContent>
-                  </AccordionItem>
-
-                  <div className="mb-4 mt-8"><h3 className="font-bold text-base text-primary border-b pb-2 uppercase tracking-wide text-xs">Courses & Platform</h3></div>
-                  <AccordionItem value="item-19">
-                    <AccordionTrigger className="text-left font-medium">Where do I find the courses I need to study?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">All courses are available in your NxtWave Learning Portal. The course names mapped to Level 1 and Level 2 are listed in the "Courses to Prepare" section above.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-20">
-                    <AccordionTrigger className="text-left font-medium">Will a preparation roadmap be provided?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. Preparation guidance will be shared through email and our Guidance Meets. The IRP 2.0 page will also have course mapping details.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-20b">
-                    <AccordionTrigger className="text-left font-medium">Does completing IRP contribute to Growth Cycle progress?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">IRP assessments and Growth Cycles are separate tracks. Completing courses in your Growth Cycle is important for IRP preparation, but IRP completion itself does not directly increment Growth Cycle progress.</AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-20c">
-                    <AccordionTrigger className="text-left font-medium">Can I use VS Code or other tools for the project rounds?</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">Yes. You can use your preferred IDE (VS Code, etc.) for the project rounds. The submission format will be specified when the project brief is shared.</AccordionContent>
-                  </AccordionItem>
-
-                </Accordion>
+                <div className="divide-y divide-slate-100">
+                  {(
+                    [
+                      {
+                        id: "eligibility",
+                        title: "Eligibility & Who Can Participate",
+                        questions: [
+                          { value: "item-1", q: "Is IRP 2.0 for all students or only 1st and 2nd year students?", a: "IRP 2.0 is exclusively for YOG 2028 and YOG 2029 students — that's 1st and 2nd year students. If you recently completed your 2nd year, you are still eligible. If you are YOG 2027 or earlier, please connect with our Help Section for the appropriate process." },
+                          { value: "item-2", q: "I just completed my 2nd year. Am I eligible?", a: "Yes. YOG 2028 students who have just completed their 2nd year are eligible to participate in IRP 2.0." },
+                          { value: "item-3", q: "Are Smart Program students eligible?", a: "If you are a YOG 2028 or 2029 student under the Smart Program, please connect with our Help Section — eligibility is determined by YOG, not program type." },
+                          { value: "item-3b", q: "What is the minimum course completion required to be eligible?", a: "There is no fixed percentage threshold for eligibility to register. However, you are expected to have completed the courses relevant to the level you are appearing for before the assessment date." },
+                        ],
+                      },
+                      {
+                        id: "assessment",
+                        title: "Assessment Process & Structure",
+                        questions: [
+                          { value: "item-4", q: "Does clearing Level 1 make me eligible for internship opportunities?", a: "No. Clearing Level 1 alone does not make you eligible for internships. Internship opportunities unlock only after you clear both Level 1 and Level 2. Once you clear both, you become eligible for standard opportunities (₹5K–₹10K stipend range). If you are aiming for ₹25K+ stipend internships, you will additionally need to qualify for Level 3 — the Infinite Aura track." },
+                          { value: "item-5", q: "What happens if I clear Level 1 but fail Level 2?", a: "You will not be eligible for internship opportunities until you clear Level 2 as well. Details on retake windows will be communicated separately. Reattempt for Level 2 and its timeline will be communicated whenever Level 2 reattempt happens." },
+                          { value: "item-6", q: "Are all assessments online?", a: "Yes. All rounds under IRP 2.0 — MCQs, projects, AI Mock Interview, and Human Mock Interview — are 100% online. There are no offline rounds." },
+                          { value: "item-7", q: "Will the assessment on 14th June be online?", a: "Yes, the 14th June assessment (Level 1) is fully online." },
+                          { value: "item-7b", q: "Is there a deadline to complete all three levels?", a: "Specific deadlines will be communicated at each stage." },
+                          { value: "item-7c", q: "Will there be a second attempt if I miss or fail the June 14th assessment?", a: "Details on retake opportunities will be shared after Summer Batch 1. We will inform on the upcoming batch details soon thereafter. Watch your registered email for updates." },
+                        ],
+                      },
+                      {
+                        id: "skills",
+                        title: "Skills & Preparation",
+                        questions: [
+                          { value: "item-8", q: "What skills do I need for Level 1?", a: "You need: Python (fundamentals), DSA Level 1, HTML, CSS, JavaScript (Essentials), React (Getting Started). These map directly to the NxtWave courses listed in the Level 1 section above." },
+                          { value: "item-9", q: "Is DSA Level 1 enough for the Python + DSA section?", a: "Yes. Level 1 covers DSA at a basic level — DSA Level 1 from the NxtWave platform is sufficient." },
+                          { value: "item-10", q: "Should I learn DSA in Python or Java?", a: "The assessment default language is Python, and the DSA section is assessed in Python. You can also code in C++ or Java, but Python is recommended for alignment with the course content." },
+                          { value: "item-10b", q: "Is GenAI mandatory for Level 2?", a: "Yes. GenAI is one of the three MCQ sections in Level 2 and will also be used extensively in your Projects for each level, alongside Backend (NodeJS + Express) and Databases." },
+                          { value: "item-10c", q: "Is HTML, CSS, and JavaScript enough for Level 1, or do I need more?", a: "For Level 1, you need HTML, CSS, JavaScript Essentials, and React — all covered in the NxtWave curriculum. That is the scope of the FE MCQ section." },
+                          { value: "item-10d", q: "Should I learn skills in parallel or one at a time?", a: "Complete courses in the order prescribed in your NxtWave learning path. For Level 1 preparation, prioritize completing the FE courses and DSA Level 1 first." },
+                          { value: "item-10e", q: "Does communication matter in the interview?", a: "Yes. The Human Mock Interview evaluates not just your technical output but also how well you can explain your project and reasoning. Basic clear communication in English is important." },
+                          { value: "item-10f", q: "What if my English communication is not strong?", a: "The Mock Interviews will assess you based on your project and problem-solving ability. Focus on explaining your thought process clearly — fluency is not the primary criteria." },
+                        ],
+                      },
+                      {
+                        id: "projects",
+                        title: "Projects",
+                        questions: [
+                          { value: "item-11", q: "Will there be a real project in IRP 2.0?", a: "Yes. Both levels involve a project submission: a Frontend Project in Level 1 (12 hours) and a Full Stack + AI Project in Level 2 (24 hours)." },
+                          { value: "item-11b", q: "Do I actually get valuable experience through internships or is it just for certificates?", a: "NxtWave internship opportunities involve real project work at partner companies. You will gain hands-on experience with actual development tasks — not just certificates. Past students have worked on real products and received stipends." },
+                          { value: "item-11c", q: "Are remote internships valuable — or will I miss out by not working in-person?", a: "Remote internships through NxtWave involve real deliverables and mentorship. The experience is comparable to in-person internships in terms of learning. You will work on actual company projects." },
+                        ],
+                      },
+                      {
+                        id: "stipend",
+                        title: "Stipend & Internship Opportunities",
+                        questions: [
+                          { value: "item-12", q: "Are the internships paid?", a: "Yes. Level 2 clearance gives access to internships in the ₹5K–₹10K/month stipend range. Level 3 (Infinite Aura track) gives access to ₹25K+ stipend opportunities." },
+                          { value: "item-13", q: "If I clear both Level 1 and Level 2, what stipend can I expect?", a: "Stipends vary by company and role. After clearing both levels, you become eligible for opportunities typically in the ₹5K–₹10K/month range. Top performers who reach Level 3 status can access ₹25K+ opportunities." },
+                          { value: "item-13b", q: "Are there internships for specific domains like Data Analytics, AI/ML, or Cybersecurity?", a: "IRP 2.0 is focused on Full Stack and Frontend development opportunities. Internships in specific domains like Data Analytics or AI/ML may be available through separate channels." },
+                          { value: "item-14", q: "How long are the internships?", a: "Internship duration varies by company and role. Typical duration is 3–6 months. Specific details will be shared when opportunities are released." },
+                          { value: "item-15", q: "Will internships be remote or in-office?", a: "Both options may be available depending on the company. Most opportunities in the current batch are remote or hybrid." },
+                          { value: "item-15b", q: "How many hours per day is expected during an internship?", a: "This varies by company. Most internships under IRP have structured working hours similar to a full-time engagement (5–6 days a week; 9 hours a day). Hence getting an NOC from your college authorities is mandatory." },
+                        ],
+                      },
+                      {
+                        id: "noc",
+                        title: "NOC",
+                        questions: [
+                          { value: "item-17b", q: "What is an NOC, why is it required, and how does it work in the IRP 2.0 process?", a: "A No Objection Certificate (NOC) is an official letter from your college confirming they have no objection to you pursuing an internship while enrolled as a student. IRP 2.0 internship opportunities are full-time commitments — 5 to 6 days a week, up to 9 hours a day. Companies require this letter to confirm your college is aware and has no objections. Without it, you cannot accept any internship opportunity even after clearing the assessments. You do not need the NOC to appear for the assessments. Submit each registration form only once." },
+                        ],
+                      },
+                      {
+                        id: "opportunities",
+                        title: "Where Opportunities Are Displayed",
+                        questions: [
+                          { value: "item-18", q: "Where will internship opportunities be shown after I clear the levels?", a: "Internship opportunities will be displayed on the IRP 2.0 page — this will be your single destination for viewing and applying to opportunities. The Jobs Board used previously will not be used for IRP 2.0 opportunities." },
+                          { value: "item-18b", q: "When will internship opportunities start appearing?", a: "Opportunities will be made available after students have completed the Level 1 and Level 2 assessments and results are processed. Watch your email for updates." },
+                        ],
+                      },
+                      {
+                        id: "courses",
+                        title: "Courses & Platform",
+                        questions: [
+                          { value: "item-19", q: "Where do I find the courses I need to study?", a: "All courses are available in your NxtWave Learning Portal. The course names mapped to Level 1 and Level 2 are listed in the \"Courses to Prepare\" section above." },
+                          { value: "item-20", q: "Will a preparation roadmap be provided?", a: "Yes. Preparation guidance will be shared through email and our Guidance Meets. The IRP 2.0 page will also have course mapping details." },
+                          { value: "item-20b", q: "Does completing IRP contribute to Growth Cycle progress?", a: "IRP assessments and Growth Cycles are separate tracks. Completing courses in your Growth Cycle is important for IRP preparation, but IRP completion itself does not directly increment Growth Cycle progress." },
+                          { value: "item-20c", q: "Can I use VS Code or other tools for the project rounds?", a: "Yes. You can use your preferred IDE (VS Code, etc.) for the project rounds. The submission format will be specified when the project brief is shared." },
+                        ],
+                      },
+                    ] as { id: string; title: string; questions: { value: string; q: string; a: string }[] }[]
+                  ).map(cat => {
+                    const isOpen = openCategories.includes(cat.id);
+                    return (
+                      <div key={cat.id}>
+                        <button
+                          onClick={() => toggleCategory(cat.id)}
+                          className="w-full flex items-center justify-between py-4 text-left group hover:text-accent transition-colors"
+                        >
+                          <span className="font-semibold text-sm uppercase tracking-widest text-primary group-hover:text-accent transition-colors">{cat.title}</span>
+                          <ChevronDown className={`h-4 w-4 text-slate-400 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+                        </button>
+                        {isOpen && (
+                          <Accordion type="multiple" value={faqValues} onValueChange={setFaqValues} className="w-full pb-3">
+                            {cat.questions.map(q => (
+                              <AccordionItem key={q.value} value={q.value}>
+                                <AccordionTrigger className="text-left font-medium">{q.q}</AccordionTrigger>
+                                <AccordionContent className="text-muted-foreground">{q.a}</AccordionContent>
+                              </AccordionItem>
+                            ))}
+                          </Accordion>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </CardContent>
             </Card>
           </div>
