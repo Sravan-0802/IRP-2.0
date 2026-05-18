@@ -84,13 +84,19 @@ export default function LandingPage() {
 
       <main>
         {/* Hero Section */}
-        <section id="hero" className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-900 h-[480px] md:h-[540px]">
-          {/* Mesh grid overlay */}
-          <div className="absolute inset-0 opacity-[0.07]" style={{backgroundImage:'radial-gradient(circle at 1px 1px,rgba(255,255,255,0.8) 1px,transparent 0)',backgroundSize:'32px 32px'}} />
-          {/* Glow blobs */}
-          <div className="absolute -top-20 -left-20 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-indigo-500/15 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-accent/10 rounded-full blur-3xl" />
+        <section id="hero" className="relative overflow-hidden bg-white h-[420px] md:h-[460px]">
+          {/* Background gradients */}
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_80%_at_0%_50%,_#dbeafe_0%,_transparent_70%)]" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_40%_60%_at_100%_80%,_#e0e7ff_0%,_transparent_60%)]" />
+          {/* Decorative dots */}
+          <div className="absolute top-6 right-[48%] -z-10 grid grid-cols-5 gap-2 opacity-20">
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div key={i} className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+            ))}
+          </div>
+          {/* Floating accent ring */}
+          <div className="absolute -top-10 -left-10 w-56 h-56 rounded-full border-[20px] border-blue-100/50 -z-10" />
+          <div className="absolute bottom-0 left-[30%] w-32 h-32 rounded-full border-[12px] border-indigo-100/40 -z-10" />
 
           <div className="container mx-auto max-w-6xl px-6 md:px-10 h-full">
             <div className="flex flex-row items-stretch h-full gap-0">
@@ -102,71 +108,53 @@ export default function LandingPage() {
                 transition={{ duration: 0.5 }}
                 className="flex-[55_55_0%] flex flex-col justify-center py-8 pr-0 md:pr-6"
               >
-                <div className="flex flex-row items-center gap-2 mb-5 flex-wrap">
-                  <Badge className="bg-white/15 text-white border border-white/25 backdrop-blur-sm px-3 py-1 text-xs font-semibold rounded-full whitespace-nowrap">
+                <div className="flex flex-row items-center gap-2 mb-4 flex-wrap">
+                  <Badge className="bg-blue-700 text-white border-none px-3 py-1 text-xs font-semibold rounded-full whitespace-nowrap">
                     ✦ Summer 2026 IRP 2.0 Batch — Open Now!
                   </Badge>
-                  <Badge className="bg-blue-400/20 text-blue-200 border border-blue-400/30 px-3 py-1 text-xs font-medium rounded-full whitespace-nowrap">
+                  <Badge className="bg-accent/10 text-accent border-accent/20 px-3 py-1 text-xs font-medium rounded-full whitespace-nowrap">
                     First Assessment: 14th June 2026
                   </Badge>
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-4 leading-[1.1] text-white">
+                <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-3 leading-[1.1]">
                   Internship Readiness
                   <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-300 to-indigo-300">Path 2.0</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-500">Path 2.0</span>
                 </h1>
 
-                <p className="text-base md:text-lg text-blue-100/75 mb-7 max-w-md leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground mb-6 max-w-md leading-relaxed">
                   Built exclusively for 1st &amp; 2nd Year Students (YOG 2028 &amp; 2029).
                   Earn your first stipend internship through NxtWave Academy's structured assessments and tailored path!
                 </p>
 
                 <div className="flex flex-row gap-3 flex-wrap">
-                  <Button className="bg-white text-blue-900 hover:bg-blue-50 text-sm px-6 py-2.5 rounded-full shadow-xl font-bold" onClick={() => scrollTo('register')}>
+                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-5 py-2.5 rounded-full shadow-md shadow-accent/20" onClick={() => scrollTo('register')}>
                     Register for IRP 2.0 <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                  <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm text-sm px-5 py-2.5 rounded-full" onClick={() => scrollTo('levels')}>
+                  <Button variant="outline" className="border-border text-foreground hover:bg-blue-50 text-sm px-5 py-2.5 rounded-full" onClick={() => scrollTo('levels')}>
                     View the Path
                   </Button>
                 </div>
               </motion.div>
 
-              {/* Right — illustration */}
+              {/* Right — illustration, 75% of section height */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.15 }}
                 className="flex-[45_45_0%] hidden md:flex items-end justify-center relative"
               >
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-72 h-20 bg-blue-400/20 blur-3xl rounded-full" />
+                {/* soft glow under illustration */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-12 bg-blue-300/20 blur-2xl rounded-full" />
                 <img
-                  src="/hero-illustration-transparent.png"
+                  src="/hero-illustration.png"
                   alt="Students climbing toward internship goal"
-                  className="relative w-auto object-contain object-center select-none drop-shadow-2xl"
+                  className="relative w-auto object-contain object-center mix-blend-multiply select-none"
                   style={{ height: "90%" }}
                 />
               </motion.div>
 
-            </div>
-          </div>
-        </section>
-
-        {/* Stats Strip */}
-        <section className="py-6 bg-white border-b border-slate-100 shadow-sm">
-          <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-              {[
-                { val: "100%", label: "Online — attempt from anywhere" },
-                { val: "₹5K–₹25K+", label: "Monthly stipend range" },
-                { val: "14 June", label: "First assessment date" },
-                { val: "YOG 28/29", label: "Exclusively for you" },
-              ].map((s, i) => (
-                <div key={i} className="flex flex-col items-center gap-0.5 text-center py-2">
-                  <span className="text-2xl md:text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent">{s.val}</span>
-                  <span className="text-xs text-muted-foreground leading-tight max-w-[120px]">{s.label}</span>
-                </div>
-              ))}
             </div>
           </div>
         </section>
@@ -185,18 +173,17 @@ export default function LandingPage() {
               <motion.div className="flex-1 flex flex-col"
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}>
-                <Card className="flex-1 flex flex-col rounded-2xl border-0 shadow-lg overflow-hidden">
-                  {/* Colored header band */}
-                  <div className="bg-gradient-to-br from-blue-600 to-blue-500 flex flex-col items-center pt-8 pb-6 px-6 relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-10" style={{backgroundImage:'radial-gradient(circle at 1px 1px,white 1px,transparent 0)',backgroundSize:'20px 20px'}} />
-                    <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-3 relative">
-                      <User className="h-7 w-7 text-white" />
+                <Card className="flex-1 flex flex-col rounded-2xl border border-slate-200 shadow-sm bg-white overflow-hidden">
+                  {/* Icon header */}
+                  <div className="flex flex-col items-center pt-8 pb-4 px-6">
+                    <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-3">
+                      <User className="h-7 w-7 text-blue-600" />
                     </div>
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <Badge className="bg-white/20 text-white border border-white/30 text-xs">Level 1</Badge>
-                      <span className="text-xs text-blue-100 font-medium">14 June 2026</span>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs">Level 1</Badge>
+                      <span className="text-xs text-muted-foreground font-medium">14 June 2026</span>
                     </div>
-                    <CardTitle className="text-xl font-bold text-center text-white">The Hustler</CardTitle>
+                    <CardTitle className="text-xl font-bold text-center">The Hustler</CardTitle>
                   </div>
                   <CardContent className="flex-1 text-sm flex flex-col gap-5 px-6 pb-4">
                     <div className="flex-1">
@@ -230,17 +217,16 @@ export default function LandingPage() {
               <motion.div className="flex-1 flex flex-col"
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}>
-                <Card className="flex-1 flex flex-col rounded-2xl border-0 shadow-xl overflow-hidden">
-                  <div className="bg-gradient-to-br from-accent to-indigo-500 flex flex-col items-center pt-8 pb-6 px-6 relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-10" style={{backgroundImage:'radial-gradient(circle at 1px 1px,white 1px,transparent 0)',backgroundSize:'20px 20px'}} />
-                    <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-3 relative">
-                      <span className="text-white font-bold text-base font-mono">&lt;/&gt;</span>
+                <Card className="flex-1 flex flex-col rounded-2xl border border-accent/30 shadow-md shadow-accent/10 bg-white overflow-hidden">
+                  <div className="flex flex-col items-center pt-8 pb-4 px-6">
+                    <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-3">
+                      <span className="text-accent font-bold text-base font-mono">&lt;/&gt;</span>
                     </div>
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <Badge className="bg-white/20 text-white border border-white/30 text-xs">Level 2</Badge>
-                      <Badge className="bg-white text-accent border-none text-xs px-2 py-0 font-bold">Crucial Stage</Badge>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Badge variant="outline" className="bg-accent/10 text-accent border-accent/20 text-xs">Level 2</Badge>
+                      <Badge className="bg-accent text-white border-none text-xs px-2 py-0">Crucial Stage</Badge>
                     </div>
-                    <CardTitle className="text-xl font-bold text-center text-white">The Main Character</CardTitle>
+                    <CardTitle className="text-xl font-bold text-center">The Main Character</CardTitle>
                   </div>
                   <CardContent className="flex-1 text-sm flex flex-col gap-5 px-6 pb-4">
                     <div className="flex-1">
@@ -275,17 +261,16 @@ export default function LandingPage() {
               <motion.div className="flex-1 flex flex-col"
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}>
-                <Card className="flex-1 flex flex-col rounded-2xl border-0 shadow-lg overflow-hidden">
-                  <div className="bg-gradient-to-br from-purple-700 to-indigo-600 flex flex-col items-center pt-8 pb-6 px-6 relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-10" style={{backgroundImage:'radial-gradient(circle at 1px 1px,white 1px,transparent 0)',backgroundSize:'20px 20px'}} />
-                    <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-3 relative">
-                      <Trophy className="h-7 w-7 text-white" />
+                <Card className="flex-1 flex flex-col rounded-2xl border border-purple-200 shadow-sm bg-white overflow-hidden">
+                  <div className="flex flex-col items-center pt-8 pb-4 px-6">
+                    <div className="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center mb-3">
+                      <Trophy className="h-7 w-7 text-purple-600" />
                     </div>
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <Badge className="bg-white/20 text-white border border-white/30 text-xs">Level 3</Badge>
-                      <span className="text-xs font-semibold text-purple-200">Curated Track</span>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200 text-xs">Level 3</Badge>
+                      <span className="text-xs font-semibold text-purple-500">Curated Track</span>
                     </div>
-                    <CardTitle className="text-xl font-bold text-center text-white">Infinite Aura</CardTitle>
+                    <CardTitle className="text-xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-500">Infinite Aura</CardTitle>
                   </div>
                   <CardContent className="flex-1 text-sm flex flex-col gap-5 px-6 pb-4">
                     <div className="flex-1">
@@ -604,37 +589,40 @@ export default function LandingPage() {
           ];
 
           const TestimonialCard = ({ t }: { t: typeof testimonials[0] }) => (
-            <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
-              {/* Colored top accent */}
-              <div className={`h-1 w-full ${t.color}`} />
-              <div className="p-5 flex flex-col gap-3 flex-1">
-                {/* Large decorative quote */}
-                <div className="text-6xl font-serif leading-none text-slate-100 select-none -mb-4 -mt-1">"</div>
-                <p className="text-sm text-slate-600 leading-relaxed flex-1 relative z-10">{t.quote}</p>
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs border-t border-slate-100 pt-3 mt-1">
-                  <div className="flex items-center gap-1 whitespace-nowrap bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full">
-                    <Trophy className="h-3 w-3 shrink-0" />
-                    <span className="font-semibold">{t.stipend}</span>
-                  </div>
-                  <div className="flex items-center gap-1 whitespace-nowrap bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">
-                    <Clock className="h-3 w-3 shrink-0" />
-                    <span className="font-semibold">{t.duration}</span>
-                  </div>
-                  <div className="flex items-center gap-1 whitespace-nowrap bg-yellow-50 text-yellow-700 px-2 py-0.5 rounded-full">
-                    <Star className="h-3 w-3 fill-yellow-400 text-yellow-400 shrink-0" />
-                    <span className="font-semibold">{t.rating}/5</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 border-t border-slate-100 pt-3">
+            <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow p-5 gap-3">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex items-center gap-3">
                   {'img' in t && t.img
-                    ? <img src={t.img as string} alt={t.name} className="w-11 h-11 rounded-full object-cover object-top shrink-0 shadow-md ring-2 ring-white" />
-                    : <div className={`w-11 h-11 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm shrink-0 shadow`}>{t.initials}</div>
+                    ? <img src={t.img as string} alt={t.name} className="w-12 h-12 rounded-full object-cover object-top shrink-0 shadow border-2 border-white" />
+                    : <div className={`w-12 h-12 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm shrink-0 shadow`}>{t.initials}</div>
                   }
                   <div>
                     <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
-                    <p className="text-xs text-muted-foreground leading-tight">{t.role} · <span className="text-slate-400">{t.company}</span></p>
-                    <p className="text-xs font-semibold text-accent mt-0.5">{t.yog}</p>
+                    <p className="text-xs font-semibold text-accent">{t.yog}</p>
+                    <p className="text-xs text-muted-foreground leading-tight">{t.role}</p>
+                    <p className="text-xs text-slate-400">{t.company}</p>
                   </div>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-accent font-serif text-xl leading-none font-bold">"</span>
+                </div>
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed flex-1">{t.quote}</p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500 border-t border-slate-100 pt-3">
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  <Trophy className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                  <span className="font-medium text-slate-700">Stipend</span>
+                  <span>{t.stipend}</span>
+                </div>
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  <Clock className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                  <span className="font-medium text-slate-700">Duration</span>
+                  <span>{t.duration}</span>
+                </div>
+                <div className="flex items-center gap-1 whitespace-nowrap">
+                  <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400 shrink-0" />
+                  <span className="font-medium text-slate-700">Rating</span>
+                  <span>{t.rating}/5</span>
                 </div>
               </div>
             </div>
@@ -686,10 +674,9 @@ export default function LandingPage() {
         })()}
 
         {/* Checklist Section */}
-        <section id="checklist" className="py-16 bg-gradient-to-b from-slate-50 to-white">
+        <section id="checklist" className="py-16 bg-gradient-to-b from-white via-blue-50/30 to-white">
           <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-            <div className="text-center mb-12">
-              <span className="text-xs font-bold uppercase tracking-widest text-accent mb-2 block">Before You Begin</span>
+            <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent inline-block">Pre-Assessment Checklist</h2>
               <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-accent" />
             </div>
@@ -699,43 +686,39 @@ export default function LandingPage() {
                   {
                     num: "01",
                     title: "Study & Revision",
-                    detail: "DSA basics, HTML, CSS, JS, OOP — nail your core concepts before the assessment day.",
+                    detail: "From: DSA basics, HTML, CSS, JS, OOP — all your core concepts.",
                     gradient: "from-blue-500 to-blue-600",
-                    border: "border-l-blue-400",
-                    glow: "bg-blue-50",
+                    bg: "bg-blue-50",
                   },
                   {
                     num: "02",
                     title: "Practice Regularly",
                     detail: "Solve problems on the NxtWave platform every day. Consistency beats cramming.",
                     gradient: "from-teal-400 to-emerald-500",
-                    border: "border-l-emerald-400",
-                    glow: "bg-emerald-50",
+                    bg: "bg-teal-50",
                   },
                   {
                     num: "03",
                     title: "Complete Pending Courses",
                     detail: "It is always a good idea to try to finish all the courses for each level before assessment.",
                     gradient: "from-orange-400 to-amber-500",
-                    border: "border-l-amber-400",
-                    glow: "bg-amber-50",
+                    bg: "bg-orange-50",
                   },
                   {
                     num: "04",
                     title: "Build Your Profile",
                     detail: "LinkedIn, GitHub, LeetCode, CodeChef — make sure your profiles are updated and active.",
                     gradient: "from-violet-500 to-purple-600",
-                    border: "border-l-violet-400",
-                    glow: "bg-violet-50",
+                    bg: "bg-violet-50",
                   },
-                ] as { num: string; title: string; detail: React.ReactNode; gradient: string; border: string; glow: string }[]
+                ] as { num: string; title: string; detail: React.ReactNode; gradient: string; bg: string }[]
               ).map((item, i) => (
-                <div key={i} className={`flex items-start gap-5 p-6 rounded-2xl bg-white border border-slate-100 border-l-4 ${item.border} shadow-sm hover:shadow-lg transition-all duration-300 group`}>
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform duration-300`}>
-                    <span className="text-white font-black text-lg">{item.num}</span>
+                <div key={i} className="flex items-start gap-5 p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                  <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${item.gradient} flex items-center justify-center shrink-0`}>
+                    <span className="text-white font-bold text-lg">{item.num}</span>
                   </div>
                   <div className="pt-1">
-                    <p className="font-bold text-base text-foreground mb-1.5">{item.title}</p>
+                    <p className="font-bold text-base text-foreground mb-1">{item.title}</p>
                     <p className="text-sm text-muted-foreground leading-relaxed">{item.detail}</p>
                   </div>
                 </div>
@@ -745,49 +728,45 @@ export default function LandingPage() {
         </section>
 
         {/* Registration Section */}
-        <section id="register" className="py-24 bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-900 relative overflow-hidden">
-          {/* Background decorations */}
-          <div className="absolute inset-0 opacity-[0.06]" style={{backgroundImage:'radial-gradient(circle at 1px 1px,rgba(255,255,255,0.8) 1px,transparent 0)',backgroundSize:'32px 32px'}} />
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-3xl" />
-
+        <section id="register" className="py-24 bg-gradient-to-br from-blue-50 via-indigo-50/40 to-white relative">
+          <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent pointer-events-none" />
           <div className="container mx-auto px-4 md:px-6 max-w-3xl relative z-10">
             <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Eligibility &amp; Registration</h2>
-              <p className="text-lg text-blue-200/70">Exclusively for YOG 2028 and YOG 2029 students.</p>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-accent">Eligibility & Registration</h2>
+              <p className="text-lg text-muted-foreground">Exclusively for YOG 2028 and YOG 2029 students.</p>
             </div>
 
-            <Alert variant="default" className="mb-10 border-yellow-400/30 bg-yellow-400/10 backdrop-blur-sm">
-              <Info className="h-5 w-5 text-yellow-300" />
-              <AlertTitle className="text-yellow-200 font-bold text-lg mb-2">Important Notice</AlertTitle>
-              <AlertDescription className="text-yellow-100/80 font-medium leading-relaxed">
+            <Alert variant="default" className="mb-10 border-accent/50 bg-accent/10">
+              <Info className="h-5 w-5 text-accent" />
+              <AlertTitle className="text-accent font-bold text-lg mb-2">Important Notice</AlertTitle>
+              <AlertDescription className="text-foreground/90 font-medium leading-relaxed">
                 Completing Level 1 alone does not make you eligible for internship opportunities. Internship opportunities unlock only after clearing both Level 1 AND Level 2. Students aiming for ₹25K+ stipend internships must additionally qualify for Level 3 — the Infinite Aura track.
               </AlertDescription>
             </Alert>
 
             {/* Registration Steps */}
             <div className="grid md:grid-cols-2 gap-6 mb-10">
-              <div className="flex gap-4 p-5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15">
-                <div className="bg-white text-blue-900 rounded-full w-8 h-8 flex items-center justify-center font-black shrink-0 text-sm">1</div>
+              <div className="flex gap-4 p-5 rounded-xl bg-white border border-border shadow-sm">
+                <div className="bg-accent text-white rounded-full w-8 h-8 flex items-center justify-center font-bold shrink-0 text-sm">1</div>
                 <div>
-                  <p className="font-semibold text-white mb-1">Complete Internship Profile Registration</p>
-                  <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-200 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors border border-white/20">
+                  <p className="font-semibold text-foreground mb-1">Complete Internship Profile Registration</p>
+                  <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent bg-accent/10 hover:bg-accent/20 px-3 py-1.5 rounded-lg transition-colors">
                     Open Registration Form <ExternalLink className="h-3.5 w-3.5" />
                   </a>
                 </div>
               </div>
-              <div className="flex gap-4 p-5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15">
-                <div className="bg-white text-blue-900 rounded-full w-8 h-8 flex items-center justify-center font-black shrink-0 text-sm">2</div>
+              <div className="flex gap-4 p-5 rounded-xl bg-white border border-border shadow-sm">
+                <div className="bg-accent text-white rounded-full w-8 h-8 flex items-center justify-center font-bold shrink-0 text-sm">2</div>
                 <div>
-                  <p className="font-semibold text-white mb-1">Watch your email for updates</p>
-                  <p className="text-sm text-blue-200/70">Assessment schedules, preparation resources, and result communications will all come through email.</p>
+                  <p className="font-semibold text-foreground mb-1">Watch your email for updates</p>
+                  <p className="text-sm text-muted-foreground">Assessment schedules, preparation resources, and result communications will all come through email.</p>
                 </div>
               </div>
             </div>
 
             <div className="flex justify-center">
               <a href="https://bit.ly/Internship-registration" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-white text-blue-900 hover:bg-blue-50 text-sm px-10 py-3 rounded-full shadow-2xl font-bold text-base h-auto">
+                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 text-sm px-8 py-2.5 rounded-full shadow-md shadow-accent/20">
                   Register Now <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </a>
