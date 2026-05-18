@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { 
   ArrowRight, BookOpen, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Clock, Code, 
   Database, ExternalLink, FileCode2, FileText, Info, Menu, Rocket, Server, Star, Terminal, Trophy, 
-  User, CheckCircle, Navigation, X, XCircle
+  User, CheckCircle, Navigation, X
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -44,7 +44,6 @@ export default function LandingPage() {
             <img src="/nxtwave-academy-logo.png" alt="NxtWave Academy" className="h-10 w-auto" />
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
-            <button onClick={() => scrollTo('about')} className="hover:text-accent transition-colors">About</button>
             <button onClick={() => scrollTo('levels')} className="hover:text-accent transition-colors">Levels</button>
             <button onClick={() => scrollTo('courses')} className="hover:text-accent transition-colors">Courses</button>
             <button onClick={() => scrollTo('checklist')} className="hover:text-accent transition-colors">Checklist</button>
@@ -66,7 +65,6 @@ export default function LandingPage() {
         {menuOpen && (
           <div className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur-lg px-4 py-2 flex flex-col">
             {[
-              { id: 'about', label: 'About' },
               { id: 'levels', label: 'Levels' },
               { id: 'courses', label: 'Courses' },
               { id: 'checklist', label: 'Checklist' },
@@ -158,73 +156,6 @@ export default function LandingPage() {
               </motion.div>
 
             </div>
-          </div>
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="py-16 bg-gradient-to-b from-blue-50 via-indigo-50/40 to-white">
-          <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-
-            {/* Two-column header */}
-            <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
-              <div className="flex-[3]">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-blue-700">What is IRP 2.0?</h2>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-center md:text-left">
-                  IRP 2.0 is NxtWave Academy's structured program to help 1st and 2nd year students prepare for and access internship opportunities. It's built specifically for you — the assessments, projects, and interviews are all scoped to what you've studied at your current year level.
-                </p>
-              </div>
-              <div className="flex-[2] flex items-center justify-center">
-                <img
-                  src="/about-student.png"
-                  alt="Student with laptop illustration"
-                  className="w-full max-w-[220px] md:max-w-[260px] object-contain mix-blend-multiply select-none"
-                />
-              </div>
-            </div>
-
-            {/* Before / Now cards */}
-            <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-white border border-border text-foreground shadow-sm rounded-2xl overflow-hidden">
-                <CardHeader className="pb-2 pt-6 px-6">
-                  <Badge variant="outline" className="w-fit mb-3 text-red-500 border-red-200 bg-red-50 text-xs font-semibold">Before</Badge>
-                  <CardTitle className="text-2xl font-bold">The old IRP</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3 px-6 pb-6">
-                  {[
-                    "Assessed alongside 3rd, 4th & final year students",
-                    "Common assessments regardless of year",
-                    "Online + Offline rounds (travel required)",
-                    "One-size-fits-all process",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <XCircle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground text-sm">{item}</span>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white border border-accent/20 text-foreground shadow-sm rounded-2xl overflow-hidden">
-                <CardHeader className="pb-2 pt-6 px-6">
-                  <Badge variant="outline" className="w-fit mb-3 text-accent border-accent/30 bg-accent/5 text-xs font-semibold">Now</Badge>
-                  <CardTitle className="text-2xl font-bold">IRP 2.0</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3 px-6 pb-6">
-                  {[
-                    "Tailored assessments — only what you've studied",
-                    "Year-level appropriate content",
-                    "100% Online — attempt from anywhere",
-                    "Multi-level structure with progressive unlocks",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                      <span className="text-foreground text-sm font-medium">{item}</span>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </div>
-
           </div>
         </section>
 
@@ -974,60 +905,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Contact & Help Section */}
-        <section className="pt-4 pb-10 bg-white">
-          <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-            <Card className="border-border/50 shadow-sm">
-              <CardContent className="pt-6 pb-6">
-                <div className="flex items-center gap-2 mb-1">
-                  <BookOpen className="h-5 w-5 text-accent" />
-                  <h3 className="text-lg font-bold text-foreground">Contact & Help</h3>
-                </div>
-                <p className="text-sm text-muted-foreground mb-5">For assistance regarding the Placement Journey, students can:</p>
-                <div className="grid sm:grid-cols-3 gap-4">
-                  {[
-                    {
-                      icon: User,
-                      title: "Success Coach",
-                      desc: "Contact your assigned Success Coach for personalized guidance.",
-                      link: null,
-                      linkLabel: null,
-                      sub: null,
-                    },
-                    {
-                      icon: BookOpen,
-                      title: "Help Desk",
-                      desc: "Reach out to Help Desk for any placement-related queries.",
-                      link: null,
-                      linkLabel: null,
-                      sub: null,
-                    },
-                    {
-                      icon: CheckCircle2,
-                      title: "Email Support",
-                      desc: null,
-                      link: "mailto:support@nxtwave.tech",
-                      linkLabel: "support@nxtwave.tech",
-                      sub: null,
-                    },
-                  ].map(({ icon: Icon, title, desc, link, linkLabel }, i) => (
-                    <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-slate-50 border border-slate-100">
-                      <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                        <Icon className="h-4 w-4 text-accent" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-sm text-foreground mb-0.5">{title}</p>
-                        {desc && <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>}
-                        {link && <a href={link} className="text-xs text-accent underline underline-offset-2 hover:text-accent/80">{linkLabel}</a>}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
       </main>
 
       {/* Footer */}
@@ -1038,7 +915,6 @@ export default function LandingPage() {
               <img src="/nxtwave-academy-logo.png" alt="NxtWave Academy" className="h-10 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
             </div>
             <div className="flex flex-col sm:flex-row gap-6 text-sm text-slate-400 font-medium">
-              <button onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">About</button>
               <button onClick={() => document.getElementById('levels')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">Levels</button>
               <button onClick={() => document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">Courses</button>
               <button onClick={() => document.getElementById('checklist')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">Checklist</button>
