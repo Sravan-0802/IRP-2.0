@@ -343,10 +343,11 @@ export default function LandingPage() {
                   </div>
                   <CardContent className="flex-1 text-sm flex flex-col gap-5 px-6 pb-4">
                     <div className="flex-1">
-                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><Trophy className="h-3.5 w-3.5 text-purple-500" /> How to Qualify</h4>
-                      <ul className="space-y-2.5">
-                        <li><p className="font-medium text-foreground text-sm">Clear Level 1 + Level 2</p><p className="text-muted-foreground text-xs">Pass both assessments &amp; projects</p></li>
-                        <li><p className="font-medium text-foreground text-sm">AI + Human Mock Interview</p><p className="text-muted-foreground text-xs">At each level • 1 hr each</p></li>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><Trophy className="h-3.5 w-3.5 text-purple-500" /> Eligibility Criteria</h4>
+                      <ul className="space-y-1.5 text-muted-foreground text-sm">
+                        {["Maintain CodeChef Profile", "Maintain LeetCode Profile", "A good rating in both platforms", "Strong Knowledge in DSA"].map((item, i) => (
+                          <li key={i} className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />{item}</li>
+                        ))}
                       </ul>
                     </div>
                     <div>
