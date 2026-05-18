@@ -276,7 +276,7 @@ export default function LandingPage() {
                     <div className="flex-1">
                       <h4 className="font-semibold mb-2 flex items-center gap-2 text-slate-500 text-xs uppercase tracking-wide border-b pb-2"><Trophy className="h-3.5 w-3.5 text-purple-500" /> Eligibility Criteria</h4>
                       <ul className="space-y-1.5 text-muted-foreground text-sm">
-                        {["Maintain CodeChef Profile", "Maintain LeetCode Profile", "A good rating in both platforms", "Strong Knowledge in DSA"].map((item, i) => (
+                        {["Maintain CodeChef Rating", "Maintain LeetCode Rating", "A good rating in both platforms", "Strong Knowledge in DSA"].map((item, i) => (
                           <li key={i} className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />{item}</li>
                         ))}
                       </ul>
