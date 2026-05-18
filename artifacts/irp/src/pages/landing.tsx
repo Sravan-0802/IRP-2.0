@@ -523,7 +523,6 @@ export default function LandingPage() {
           const testimonials = [
             {
               name: "Chintada Pavan Surya",
-              yog: "YOG 2027",
               initials: "CP",
               img: "/pavan-surya.png",
               color: "bg-accent",
@@ -536,7 +535,6 @@ export default function LandingPage() {
             },
             {
               name: "Malaya Kumar Pradhan",
-              yog: "YOG 2027",
               initials: "MK",
               img: "/malaya-kumar.png",
               color: "bg-teal-500",
@@ -549,7 +547,6 @@ export default function LandingPage() {
             },
             {
               name: "Abhay Soni",
-              yog: "YOG 2027",
               initials: "AS",
               img: "/abhay-soni.png",
               color: "bg-violet-500",
@@ -562,7 +559,6 @@ export default function LandingPage() {
             },
             {
               name: "Ashlesh Bathina",
-              yog: "YOG 2027",
               initials: "AB",
               img: "/ashlesh-bathina.png",
               color: "bg-orange-500",
@@ -575,7 +571,6 @@ export default function LandingPage() {
             },
             {
               name: "Yelkur Pujitha",
-              yog: "YOG 2027",
               initials: "YP",
               img: "/yelkur-pujitha.png",
               color: "bg-pink-500",
@@ -598,7 +593,6 @@ export default function LandingPage() {
                   }
                   <div>
                     <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
-                    <p className="text-xs font-semibold text-accent">{t.yog}</p>
                     <p className="text-xs text-muted-foreground leading-tight">{t.role}</p>
                     <p className="text-xs text-slate-400">{t.company}</p>
                   </div>
@@ -796,7 +790,7 @@ export default function LandingPage() {
                         id: "eligibility",
                         title: "Eligibility & Who Can Participate",
                         questions: [
-                          { value: "item-1", q: "Is IRP 2.0 for all students or only 1st and 2nd year students?", a: "IRP 2.0 is exclusively for YOG 2028 and YOG 2029 students — that's 1st and 2nd year students. If you recently completed your 2nd year, you are still eligible. If you are YOG 2027 or earlier, please connect with our Help Section for the appropriate process." },
+                          { value: "item-1", q: "Is IRP 2.0 for all students or only 1st and 2nd year students?", a: "IRP 2.0 is exclusively for YOG 2028 and YOG 2029 students — that's 1st and 2nd year students. If you recently completed your 2nd year, you are still eligible. If you are from an earlier batch, please connect with our Help Section for the appropriate process." },
                           { value: "item-2", q: "I just completed my 2nd year. Am I eligible?", a: "Yes. YOG 2028 students who have just completed their 2nd year are eligible to participate in IRP 2.0." },
                           { value: "item-3", q: "Are Smart Program students eligible?", a: "If you are a YOG 2028 or 2029 student under the Smart Program, please connect with our Help Section — eligibility is determined by YOG, not program type." },
                           { value: "item-3b", q: "What is the minimum course completion required to be eligible?", a: "There is no fixed percentage threshold for eligibility to register. However, you are expected to have completed the courses relevant to the level you are appearing for before the assessment date." },
