@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { 
@@ -22,6 +22,20 @@ export default function LandingPage() {
     const cardW = testimonialsRef.current.querySelector("div")?.offsetWidth ?? 340;
     testimonialsRef.current.scrollBy({ left: dir === "right" ? cardW + 20 : -(cardW + 20), behavior: "smooth" });
   };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const el = testimonialsRef.current;
+      if (!el) return;
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4;
+      if (atEnd) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        const cardW = el.querySelector("div")?.offsetWidth ?? 340;
+        el.scrollBy({ left: cardW + 20, behavior: "smooth" });
+      }
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
   const allFaqItems = ["item-1","item-2","item-3","item-3b","item-4","item-5","item-6","item-7","item-7b","item-7c","item-8","item-9","item-10","item-10b","item-10c","item-10d","item-10e","item-10f","item-11","item-11b","item-11c","item-12","item-13","item-13b","item-14","item-15","item-15b","item-17b","item-18","item-18b","item-19","item-20","item-20b","item-20c"];
   const allCategoryIds = ["eligibility","assessment","skills","projects","stipend","noc","opportunities","courses"];
   const [faqValues, setFaqValues] = useState<string[]>([]);
