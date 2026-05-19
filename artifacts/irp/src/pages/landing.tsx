@@ -825,7 +825,7 @@ export default function LandingPage() {
                         id: "assessment",
                         title: "Assessment Process & Structure",
                         questions: [
-                          { value: "item-4", q: "Does clearing Level 1 make me eligible for internship opportunities?", a: "No. Clearing Level 1 alone does not make you eligible for internships. Internship opportunities unlock only after you clear both Level 1 and Level 2. Once you clear both, you become eligible for standard opportunities (₹5K–₹10K stipend range). If you are aiming for ₹25K+ stipend internships, you will additionally need to qualify for Level 3 — the Infinite Aura track." },
+                          { value: "item-4", q: "Does clearing Level 1 make me eligible for internship opportunities?", a: "No. Clearing Level 1 alone does not make you eligible for internships. Internship opportunities unlock only after you clear both Level 1 and Level 2. Once you clear both, you become eligible for standard opportunities (₹5K–₹15K stipend range). If you are aiming for ₹25K+ stipend internships, you will additionally need to qualify for Level 3 — the Infinite Aura track." },
                           { value: "item-5", q: "What happens if I clear Level 1 but fail Level 2?", a: "You will not be eligible for internship opportunities until you clear Level 2 as well. Details on retake windows will be communicated separately. Reattempt for Level 2 and its timeline will be communicated whenever Level 2 reattempt happens." },
                           { value: "item-6", q: "Are all assessments online?", a: "Yes. All rounds under IRP 2.0 — MCQs, projects, AI Mock Interview, and Human Mock Interview — are 100% online. There are no offline rounds." },
                           { value: "item-7", q: "Will the assessment on 14th June be online?", a: "Yes, the 14th June assessment (Level 1) is fully online." },
@@ -860,7 +860,7 @@ export default function LandingPage() {
                         id: "stipend",
                         title: "Stipend & Internship Opportunities",
                         questions: [
-                          { value: "item-12", q: "Are the internships paid?", a: "Yes. Level 2 clearance gives access to internships in the ₹5K–₹10K/month stipend range. Level 3 (Infinite Aura track) gives access to ₹25K+ stipend opportunities." },
+                          { value: "item-12", q: "Are the internships paid?", a: "Yes. Level 2 clearance gives access to internships in the ₹5K–₹15K/month stipend range. Level 3 (Infinite Aura track) gives access to ₹25K+ stipend opportunities." },
                           { value: "item-13", q: "If I clear both Level 1 and Level 2, what stipend can I expect?", a: "Stipends vary by company and role. After clearing both levels, you become eligible for opportunities typically in the ₹5K–₹10K/month range. Top performers who reach Level 3 status can access ₹25K+ opportunities." },
                           { value: "item-13b", q: "Are there internships for specific domains like Data Analytics, AI/ML, or Cybersecurity?", a: "IRP 2.0 is focused on Full Stack and Frontend development opportunities. Internships in specific domains like Data Analytics or AI/ML may be available through separate channels." },
                           { value: "item-14", q: "How long are the internships?", a: "Internship duration varies by company and role. Typical duration is 3–6 months. Specific details will be shared when opportunities are released." },
@@ -872,7 +872,7 @@ export default function LandingPage() {
                         id: "noc",
                         title: "NOC",
                         questions: [
-                          { value: "item-17b", q: "What is an NOC, why is it required, and how does it work in the IRP 2.0 process?", a: "A No Objection Certificate (NOC) is an official letter from your college confirming they have no objection to you pursuing an internship while enrolled as a student. IRP 2.0 internship opportunities are full-time commitments — 5 to 6 days a week, up to 9 hours a day. Companies require this letter to confirm your college is aware and has no objections. Without it, you cannot accept any internship opportunity even after clearing the assessments. You do not need the NOC to appear for the assessments. Submit each registration form only once." },
+                          { value: "item-17b", q: "What is an NOC, why is it required, and how does it work in the IRP 2.0 process?", a: "A No Objection Certificate (NOC) is an official letter from your college confirming they have no objection to you pursuing an internship while enrolled as a student. IRP 2.0 internship opportunities are full-time commitments — 5 to 6 days a week, up to 9 hours a day. Companies require this letter to confirm your college is aware and has no objections. Without it, you cannot accept any internship opportunity even after clearing the assessments. You do not need the NOC to appear for the assessments." },
                         ],
                       },
                       {
