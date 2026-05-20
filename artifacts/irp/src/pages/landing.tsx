@@ -613,7 +613,23 @@ type SkylineBuilding = {
   h: number;
   windows: { x: number; y: number; cycle: boolean }[];
   antenna?: boolean;
+  /** Optional rooftop "company sign" — drawn faintly so it reads as background art */
+  brand?: string;
 };
+
+/** Curated list of tenants for the corporate skyline — order = priority on tallest towers */
+const SKYLINE_BRANDS = [
+  "GOOGLE",
+  "MICROSOFT",
+  "AMAZON",
+  "APPLE",
+  "META",
+  "SALESFORCE",
+  "NETFLIX",
+  "ADOBE",
+  "NVIDIA",
+  "IBM",
+] as const;
 
 function generateSkylineBuildings(seed = 1): SkylineBuilding[] {
   let s = seed;
@@ -646,9 +662,29 @@ function generateSkylineBuildings(seed = 1): SkylineBuilding[] {
   return out;
 }
 
+/** Tag the N tallest, sufficiently-wide buildings with brand "roof signs". */
+function assignBrandsToTallest(buildings: SkylineBuilding[], brands: readonly string[]): SkylineBuilding[] {
+  const candidates = buildings
+    .map((b, i) => ({ i, w: b.w, h: b.h }))
+    .filter((c) => c.w >= 78)
+    .sort((a, b) => b.h - a.h);
+  const tagged = new Set<number>();
+  const next = buildings.map((b) => ({ ...b }));
+  for (let k = 0; k < Math.min(brands.length, candidates.length); k++) {
+    const idx = candidates[k].i;
+    if (tagged.has(idx)) continue;
+    next[idx].brand = brands[k];
+    tagged.add(idx);
+  }
+  return next;
+}
+
 function CitySkyline() {
   const back = useMemo(() => generateSkylineBuildings(19), []);
-  const front = useMemo(() => generateSkylineBuildings(81), []);
+  const front = useMemo(
+    () => assignBrandsToTallest(generateSkylineBuildings(81), SKYLINE_BRANDS),
+    [],
+  );
 
   return (
     <div className="absolute bottom-0 left-0 right-0 h-[min(420px,48vh)] overflow-hidden pointer-events-none select-none">
@@ -682,35 +718,68 @@ function CitySkyline() {
             <stop offset="0%" stopColor="#0A1629" stopOpacity="0.95" />
             <stop offset="100%" stopColor="#122A4A" stopOpacity="1" />
           </linearGradient>
+          <linearGradient id="iit-roofsign" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="rgba(251,191,36,0)" />
+            <stop offset="35%" stopColor="rgba(251,191,36,0.55)" />
+            <stop offset="65%" stopColor="rgba(251,191,36,0.55)" />
+            <stop offset="100%" stopColor="rgba(251,191,36,0)" />
+          </linearGradient>
         </defs>
-        {front.map((b, i) => (
-          <g key={`sf-${i}`} transform={`translate(${b.x}, ${320 - b.h})`}>
-            {b.antenna && (
-              <>
-                <rect x={b.w / 2 - 1} y={-20} width={2} height={20} fill="#334155" />
-                <circle cx={b.w / 2} cy={-22} r={2.2} fill="#F59E0B" className="animate-gz-blink" />
-              </>
-            )}
-            <rect width={b.w} height={b.h} fill="url(#iit-bldg)" stroke="rgba(226,232,240,0.12)" strokeWidth={0.7} />
-            {b.windows.map((w, j) => {
-              const colors = ["#FBBF24", "#F59E0B", "#FDE68A", "#E2E8F0", "#93C5FD"];
-              const fill = colors[(i + j) % colors.length];
-              return (
-                <rect
-                  key={j}
-                  x={w.x}
-                  y={w.y}
-                  width={5}
-                  height={6}
-                  fill={fill}
-                  opacity={0.88}
-                  className={w.cycle ? "gz-window-cycle" : "gz-window"}
-                  style={{ animationDelay: `${(i * 0.11 + j * 0.12) % 6}s` }}
-                />
-              );
-            })}
-          </g>
-        ))}
+        {front.map((b, i) => {
+          const charW = Math.max(4.6, Math.min(7.2, (b.w - 14) / Math.max(b.brand?.length ?? 1, 1)));
+          const fontPx = Math.max(7, Math.min(11, charW * 1.35));
+          return (
+            <g key={`sf-${i}`} transform={`translate(${b.x}, ${320 - b.h})`}>
+              {b.antenna && (
+                <>
+                  <rect x={b.w / 2 - 1} y={-20} width={2} height={20} fill="#334155" />
+                  <circle cx={b.w / 2} cy={-22} r={2.2} fill="#F59E0B" className="animate-gz-blink" />
+                </>
+              )}
+              <rect width={b.w} height={b.h} fill="url(#iit-bldg)" stroke="rgba(226,232,240,0.12)" strokeWidth={0.7} />
+
+              {/* Faint corporate "roof sign" on the tallest towers */}
+              {b.brand && (
+                <g opacity={0.78}>
+                  <rect x={3} y={6} width={b.w - 6} height={fontPx + 6} rx={1.5} fill="rgba(8,16,32,0.55)" />
+                  <rect x={3} y={6 + fontPx + 4} width={b.w - 6} height={0.9} fill="url(#iit-roofsign)" />
+                  <text
+                    x={b.w / 2}
+                    y={6 + fontPx - 1}
+                    textAnchor="middle"
+                    fontFamily="'JetBrains Mono', monospace"
+                    fontWeight={700}
+                    fontSize={fontPx}
+                    letterSpacing={charW * 0.18}
+                    fill="#FDE68A"
+                  >
+                    {b.brand}
+                  </text>
+                </g>
+              )}
+
+              {b.windows.map((w, j) => {
+                const colors = ["#FBBF24", "#F59E0B", "#FDE68A", "#E2E8F0", "#93C5FD"];
+                const fill = colors[(i + j) % colors.length];
+                // Skip windows that would overlap the roof sign band
+                if (b.brand && w.y < 6 + fontPx + 8) return null;
+                return (
+                  <rect
+                    key={j}
+                    x={w.x}
+                    y={w.y}
+                    width={5}
+                    height={6}
+                    fill={fill}
+                    opacity={0.88}
+                    className={w.cycle ? "gz-window-cycle" : "gz-window"}
+                    style={{ animationDelay: `${(i * 0.11 + j * 0.12) % 6}s` }}
+                  />
+                );
+              })}
+            </g>
+          );
+        })}
         <line x1="0" y1="320" x2="1500" y2="320" stroke="rgba(245,158,11,0.35)" strokeWidth="0.6" />
       </svg>
       <div className="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-[#FAF7F0] via-[#FAF7F0]/90 to-transparent" />
