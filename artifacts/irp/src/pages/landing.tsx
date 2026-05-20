@@ -1082,8 +1082,12 @@ function Hero({ onCta }: { onCta: () => void }) {
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.6 + i * 0.12 }}
-                      className="flex items-center gap-3 rounded-2xl border border-black/[0.06] p-3 transition-colors hover:border-black/15"
+                      className="flex items-center gap-3 rounded-2xl border border-black/[0.06] p-3 transition-colors hover:border-black/15 cursor-pointer"
                       style={{ background: lv.bg }}
+                      onClick={() => {
+                        const el = document.getElementById(`level-${lv.code.toLowerCase()}`);
+                        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }}
                     >
                       <div
                         className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-display text-sm font-bold text-white"
@@ -1172,23 +1176,13 @@ function StatsBar() {
     <section className="relative gz-bg-cream py-20 md:py-28 overflow-hidden">
       <GlowOrb className="w-[420px] h-[420px] -top-32 left-1/3" color="lime" />
       <div className="container mx-auto max-w-6xl px-5 md:px-8 relative">
-        <div className="mb-12 flex items-end justify-between gap-4 flex-wrap">
-          <div>
-            <SectionLabel accent="#1D4ED8">// numbers don't lie</SectionLabel>
-            <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold leading-tight tracking-tight max-w-2xl">
-              The path is engineered.
-              <br />
-              <span className="font-serif-display italic gz-gradient-text">The stipends are real.</span>
-            </h2>
-          </div>
-          <p className="text-sm text-black/55 max-w-sm leading-relaxed">
-            <span className="font-semibold text-black/70">
-              {ACADEMY_PLACEMENT_STATS.allSource.companies.toLocaleString()}+ companies and{" "}
-              {ACADEMY_PLACEMENT_STATS.allSource.students.toLocaleString()}+ students placed
-            </span>{" "}
-            — all-source placements across Academy (NxtWave partners plus students who accepted offers via their own
-            external applications).
-          </p>
+        <div className="mb-12">
+          <SectionLabel accent="#1D4ED8">// numbers don't lie</SectionLabel>
+          <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold leading-tight tracking-tight max-w-2xl">
+            The path is engineered.
+            <br />
+            <span className="font-serif-display italic gz-gradient-text">The stipends are real.</span>
+          </h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
           <StatCounter value={3} label="levels / one path" accent="#1D4ED8" />
@@ -1196,20 +1190,16 @@ function StatsBar() {
           <StatCounter
             value={ACADEMY_PLACEMENT_STATS.allSource.companies}
             suffix="+"
-            label="companies · all placements"
+            label="companies"
             accent="#F43F5E"
           />
           <StatCounter
-            value={ACADEMY_PLACEMENT_STATS.allSource.students}
+            value={ACADEMY_PLACEMENT_STATS.nxtwaveDriven.students}
             suffix="+"
-            label="students placed · all sources"
+            label="students placed"
             accent="#10B981"
           />
         </div>
-        <p className="mt-8 max-w-3xl text-xs text-black/45 font-mono-ui leading-relaxed">
-          NxtWave-driven (offer accepted): {ACADEMY_PLACEMENT_STATS.nxtwaveDriven.companies}+ partner companies ·{" "}
-          {ACADEMY_PLACEMENT_STATS.nxtwaveDriven.students}+ students placed.
-        </p>
       </div>
     </section>
   );
@@ -1398,6 +1388,7 @@ function LevelsSection() {
           {LEVELS.map((lv, idx) => (
             <motion.div
               key={lv.code}
+              id={`level-${lv.code.toLowerCase()}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
