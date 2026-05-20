@@ -36,6 +36,10 @@ import {
   Brain,
   Unlock,
   Award,
+  Building2,
+  Rocket,
+  Wallet,
+  GraduationCap,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -337,6 +341,20 @@ const FAQ = [
 ] as const;
 
 const REGISTER_URL = "https://forms.ccbp.in/form/irp-2-online-registration";
+
+/** Academy placement proof — rounded for marketing; see footnotes on page for methodology */
+const ACADEMY_PLACEMENT_STATS = {
+  /** All-source: NxtWave partners + students who accepted external offers while in Academy */
+  allSource: {
+    companies: 800,
+    students: 1300,
+  },
+  /** NxtWave-driven only (offer accepted) — shown as secondary footnote */
+  nxtwaveDriven: {
+    companies: 350,
+    students: 600,
+  },
+} as const;
 
 /* =========================================================================
    REUSABLE PIECES
@@ -1033,7 +1051,10 @@ function Hero({ onCta }: { onCta: () => void }) {
 
               <div className="hidden md:flex items-center gap-2 ml-2 text-xs text-white/45">
                 <span className="font-mono-ui text-amber-200/80">{`//`}</span>
-                <span>2,000+ students from the last batch</span>
+                <span>
+                  {ACADEMY_PLACEMENT_STATS.allSource.companies.toLocaleString()}+ companies ·{" "}
+                  {ACADEMY_PLACEMENT_STATS.allSource.students.toLocaleString()}+ students placed
+                </span>
               </div>
             </motion.div>
           </div>
@@ -1160,16 +1181,35 @@ function StatsBar() {
               <span className="font-serif-display italic gz-gradient-text">The stipends are real.</span>
             </h2>
           </div>
-          <p className="text-sm text-black/55 max-w-sm">
-            From your first assessment to your first paycheck — every checkpoint is built so you actually ship.
+          <p className="text-sm text-black/55 max-w-sm leading-relaxed">
+            <span className="font-semibold text-black/70">
+              {ACADEMY_PLACEMENT_STATS.allSource.companies.toLocaleString()}+ companies and{" "}
+              {ACADEMY_PLACEMENT_STATS.allSource.students.toLocaleString()}+ students placed
+            </span>{" "}
+            — all-source placements across Academy (NxtWave partners plus students who accepted offers via their own
+            external applications).
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
           <StatCounter value={3} label="levels / one path" accent="#1D4ED8" />
           <StatCounter value={25} prefix="₹" suffix="K+" label="top monthly stipend" accent="#F59E0B" />
-          <StatCounter value={50} suffix="+" label="partner companies" accent="#F43F5E" />
-          <StatCounter value={2000} suffix="+" label="students from last batch" accent="#10B981" />
+          <StatCounter
+            value={ACADEMY_PLACEMENT_STATS.allSource.companies}
+            suffix="+"
+            label="companies · all placements"
+            accent="#F43F5E"
+          />
+          <StatCounter
+            value={ACADEMY_PLACEMENT_STATS.allSource.students}
+            suffix="+"
+            label="students placed · all sources"
+            accent="#10B981"
+          />
         </div>
+        <p className="mt-8 max-w-3xl text-xs text-black/45 font-mono-ui leading-relaxed">
+          NxtWave-driven (offer accepted): {ACADEMY_PLACEMENT_STATS.nxtwaveDriven.companies}+ partner companies ·{" "}
+          {ACADEMY_PLACEMENT_STATS.nxtwaveDriven.students}+ students placed.
+        </p>
       </div>
     </section>
   );
@@ -1222,8 +1262,9 @@ function WhyBento({ onCta }: { onCta: () => void }) {
               shipping real code.
             </h3>
             <p className="mt-5 text-white/65 text-base max-w-md">
-              Not "shadowing." Not "exposure." Authentication systems, full-stack apps, AI integrations — for actual
-              partner companies.
+              Academy has placed {ACADEMY_PLACEMENT_STATS.allSource.students.toLocaleString()}+ students across{" "}
+              {ACADEMY_PLACEMENT_STATS.allSource.companies.toLocaleString()}+ companies — real builds, real stipends, not
+              shadowing.
             </p>
             <button
               onClick={() => document.getElementById("stories")?.scrollIntoView({ behavior: "smooth" })}
@@ -2137,6 +2178,259 @@ function Footer({ onCta }: { onCta: () => void }) {
    PAGE
    ========================================================================= */
 
+/* =========================================================================
+   ELITE OUTCOMES — "Where the Top 1% Land" (dark bento, L3 prestige closer)
+   ========================================================================= */
+
+const ELITE_HERO_IMAGE =
+  "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1600&q=72";
+
+const ELITE_TILES = [
+  {
+    title: "Innovation Labs",
+    sub: "Cutting-edge engineering teams",
+    icon: Brain,
+    accent: "#A78BFA",
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
+  },
+  {
+    title: "Corporate HQs",
+    sub: "Global tech headquarters",
+    icon: Building2,
+    accent: "#60A5FA",
+    image:
+      "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=70",
+  },
+  {
+    title: "R&D Centers",
+    sub: "Where real products ship",
+    icon: Sparkles,
+    accent: "#34D399",
+    image:
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=70",
+  },
+  {
+    title: "Tech Parks",
+    sub: "Modern innovation campuses",
+    icon: Globe,
+    accent: "#F59E0B",
+    image:
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=70",
+  },
+] as const;
+
+const ELITE_STATS = [
+  {
+    icon: Wallet,
+    title: "₹25,000+/month",
+    body: "Premium stipend internships reserved only for Level 3 Infinite Aura achievers.",
+    accent: "#F59E0B",
+  },
+  {
+    icon: GraduationCap,
+    title: "Elite Mentors",
+    body: "Direct mentorship from engineers at Microsoft, Apple, Google & Salesforce.",
+    accent: "#FB7185",
+  },
+  {
+    icon: Rocket,
+    title: "Top 1% Access",
+    body: "Fast-track career opportunities exclusive to the top 1% of NxtWave students.",
+    accent: "#60A5FA",
+  },
+] as const;
+
+function EliteOutcomesSection() {
+  return (
+    <section
+      id="outcomes"
+      className="relative overflow-hidden bg-[#08070C] text-white py-20 md:py-28"
+    >
+      {/* ambient halos */}
+      <div className="pointer-events-none absolute -top-32 left-[18%] h-[440px] w-[440px] rounded-full bg-amber-500/[0.16] blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute bottom-[-6rem] right-[14%] h-[380px] w-[380px] rounded-full bg-indigo-500/[0.14] blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.18] mix-blend-overlay" aria-hidden>
+        <div className="gz-dotgrid h-full w-full" />
+      </div>
+
+      <div className="container mx-auto max-w-6xl px-5 md:px-8 relative">
+        <div className="mb-10 md:mb-12 max-w-3xl">
+          <span className="font-mono-ui text-[10px] uppercase tracking-[0.34em] font-bold text-amber-300/85">
+            // L3 · Infinite Aura · top 1% land here
+          </span>
+          <h2 className="mt-3 font-display text-4xl md:text-6xl font-bold leading-[0.95] tracking-tight">
+            Where the Top 1%{" "}
+            <span className="font-serif-display italic bg-gradient-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent">
+              Land.
+            </span>
+          </h2>
+          <p className="mt-4 text-sm md:text-base text-white/55 max-w-xl leading-relaxed">
+            Reach Level 3 and unlock{" "}
+            <span className="text-amber-300 font-semibold">₹25,000+/month</span> internships at
+            world-class engineering teams — with elite mentorship and the campuses to match.
+          </p>
+        </div>
+
+        {/* Bento grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:auto-rows-[185px]">
+          {/* Hero tile */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55 }}
+            className="group relative md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden border border-white/[0.08] min-h-[360px] flex flex-col"
+            style={{
+              background:
+                "radial-gradient(120% 80% at 0% 0%, rgba(245,158,11,0.22), transparent 60%), linear-gradient(180deg,#0E0B17,#070512)",
+            }}
+          >
+            <img
+              src={ELITE_HERO_IMAGE}
+              alt=""
+              aria-hidden
+              loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-[1200ms] group-hover:scale-[1.04]"
+              style={{ filter: "saturate(0.9) brightness(0.7)" }}
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
+
+            <div className="relative flex items-start justify-between gap-3 p-5 md:p-6">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur px-3 py-1 font-mono-ui text-[10px] uppercase tracking-[0.22em] text-white/85">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> live tenants
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-400 text-black font-bold text-[11px] px-3 py-1.5 shadow-[0_8px_30px_-12px_rgba(245,158,11,0.6)]">
+                ₹25K+/month
+              </span>
+            </div>
+
+            <div className="relative mt-auto p-5 md:p-7">
+              <div className="font-display text-xl md:text-2xl font-bold leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+                Premium Tech Campus
+              </div>
+              <p className="mt-1.5 text-sm text-white/70 max-w-sm">
+                World-class infrastructure &amp; facilities — the campuses your senior batch ships from today.
+              </p>
+            </div>
+          </motion.div>
+
+          {ELITE_TILES.map((t, i) => {
+            const Icon = t.icon;
+            return (
+              <motion.div
+                key={t.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                className="group relative rounded-3xl overflow-hidden border border-white/[0.08] p-5 md:p-6 min-h-[180px] flex flex-col gap-3 hover:border-white/[0.22] transition-colors"
+                style={{
+                  background: `radial-gradient(120% 80% at 20% -10%, ${t.accent}26, transparent 60%), linear-gradient(180deg,#100E17,#070512)`,
+                }}
+              >
+                <img
+                  src={t.image}
+                  alt=""
+                  aria-hidden
+                  loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-65 transition-transform duration-[900ms] group-hover:scale-[1.05]"
+                  style={{ filter: "saturate(0.85) brightness(0.65)" }}
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/10" />
+
+                <div className="relative">
+                  <div
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 border border-white/15 backdrop-blur"
+                    style={{ color: t.accent }}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </div>
+                </div>
+                <div className="relative mt-auto">
+                  <div className="font-display text-lg font-bold leading-tight drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]">
+                    {t.title}
+                  </div>
+                  <p className="mt-1 text-xs text-white/70">{t.sub}</p>
+                </div>
+                <div
+                  className="pointer-events-none absolute -bottom-12 -right-8 h-32 w-32 rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition-opacity"
+                  style={{ background: t.accent }}
+                  aria-hidden
+                />
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Stat strip */}
+        <div className="mt-6 md:mt-7 grid grid-cols-1 md:grid-cols-3 gap-4">
+          {ELITE_STATS.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <motion.div
+                key={s.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.45, delay: i * 0.08 }}
+                className="relative rounded-2xl border border-white/[0.08] p-5 md:p-6 flex items-start gap-4"
+                style={{
+                  background:
+                    "radial-gradient(120% 100% at 0% 0%, rgba(255,255,255,0.04), transparent 55%), linear-gradient(180deg,#0E0B17,#070512)",
+                }}
+              >
+                <div
+                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.08]"
+                  style={{ color: s.accent }}
+                >
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <div
+                    className="font-display text-lg font-bold leading-tight"
+                    style={{ color: s.accent }}
+                  >
+                    {s.title}
+                  </div>
+                  <p className="mt-1.5 text-xs md:text-sm text-white/55 leading-relaxed">{s.body}</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Mentor wall — subtle brand marquee echoing prestige */}
+        <div className="mt-8 md:mt-10 relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015]">
+          <Marquee
+            items={["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio", "Chirpn IT", "2xCabs"].map(
+              (c, i) => (
+                <span
+                  key={i}
+                  className="font-display text-2xl md:text-3xl font-bold tracking-tight text-white/55"
+                >
+                  {c} <span className="text-amber-300/70">✦</span>
+                </span>
+              ),
+            )}
+            className="py-4"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function LandingPage() {
   const onCta = () => {
     window.open(REGISTER_URL, "_blank", "noopener,noreferrer");
@@ -2156,6 +2450,7 @@ export default function LandingPage() {
         <LevelsSection />
         <CoursesSection />
         <TestimonialsSection />
+        <EliteOutcomesSection />
         <ChecklistSection />
         <RegisterSection onCta={onCta} />
         <FAQSection />
