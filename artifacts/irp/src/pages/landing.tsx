@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { 
   ArrowRight, BookOpen, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Clock, Code, 
-  Database, ExternalLink, FileCode2, FileText, Info, Menu, Rocket, Server, Star, Terminal, Trophy, 
+  Database, ExternalLink, FileCode2, FileText, Info, Linkedin, Menu, Rocket, Server, Star, Terminal, Trophy, 
   User, CheckCircle, Navigation, X
 } from "lucide-react";
 
@@ -539,6 +539,7 @@ export default function LandingPage() {
               name: "Chintada Pavan Surya",
               initials: "CP",
               img: "/pavan-surya.png",
+              linkedin: "https://www.linkedin.com/in/pavan-surya-chintada",
               color: "bg-accent",
               role: "AI Automation Engineer",
               company: "Scomedia, Playto & Bellcorp Studio",
@@ -551,6 +552,7 @@ export default function LandingPage() {
               name: "Malaya Kumar Pradhan",
               initials: "MK",
               img: "/malaya-kumar.png",
+              linkedin: "https://www.linkedin.com/in/malaya-kumar-pradhan",
               color: "bg-teal-500",
               role: "MERN Intern",
               company: "Chirpn IT Solutions",
@@ -563,6 +565,7 @@ export default function LandingPage() {
               name: "Abhay Soni",
               initials: "AS",
               img: "/abhay-soni.png",
+              linkedin: "https://www.linkedin.com/in/abhaysoni2804",
               color: "bg-violet-500",
               role: "Associate Engineer",
               company: "Bellcorp Studio",
@@ -575,6 +578,7 @@ export default function LandingPage() {
               name: "Ashlesh Bathina",
               initials: "AB",
               img: "/ashlesh-bathina.png",
+              linkedin: "https://www.linkedin.com/in/ashleshbathina",
               color: "bg-orange-500",
               role: "Software Developer Intern",
               company: "2xCabs",
@@ -587,6 +591,7 @@ export default function LandingPage() {
               name: "Yelkur Pujitha",
               initials: "YP",
               img: "/yelkur-pujitha.png",
+              linkedin: "https://www.linkedin.com/in/yelkur-pujitha",
               color: "bg-pink-500",
               role: "Associate Software Engineer",
               company: "Bellcorp Studio",
@@ -598,7 +603,7 @@ export default function LandingPage() {
           ];
 
           const TestimonialCard = ({ t }: { t: typeof testimonials[0] }) => (
-            <div className="flex flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow p-5 gap-3">
+            <div className="flex h-full flex-col bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow p-5 gap-3">
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-3">
                   {'img' in t && t.img
@@ -606,7 +611,15 @@ export default function LandingPage() {
                     : <div className={`w-12 h-12 rounded-full ${t.color} text-white flex items-center justify-center font-bold text-sm shrink-0 shadow`}>{t.initials}</div>
                   }
                   <div>
-                    <p className="font-bold text-sm text-foreground leading-tight">{t.name}</p>
+                    <a
+                      href={t.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 font-bold text-sm text-foreground leading-tight hover:text-[#0A66C2] transition-colors group"
+                    >
+                      {t.name}
+                      <Linkedin className="h-3.5 w-3.5 text-[#0A66C2] opacity-70 group-hover:opacity-100 shrink-0" />
+                    </a>
                     <p className="text-xs text-muted-foreground leading-tight">{t.role}</p>
                     <p className="text-xs text-slate-400">{t.company}</p>
                   </div>
@@ -659,10 +672,10 @@ export default function LandingPage() {
                   </button>
                   <div
                     ref={testimonialsRef}
-                    className="flex gap-5 overflow-x-auto scrollbar-hide pb-2 snap-x snap-mandatory"
+                    className="flex items-stretch gap-5 overflow-x-auto scrollbar-hide pb-2 snap-x snap-mandatory"
                   >
                     {testimonials.map((t, i) => (
-                      <div key={i} className="w-[85vw] md:w-[calc((100%-40px)/3)] flex-none snap-start">
+                      <div key={i} className="flex w-[85vw] md:w-[calc((100%-40px)/3)] flex-none snap-start">
                         <TestimonialCard t={t} />
                       </div>
                     ))}
