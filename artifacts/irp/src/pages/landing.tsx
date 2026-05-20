@@ -158,8 +158,7 @@ const COURSES_L3 = {
     { name: "CodeChef (aim for rating > 1600 for L3)", url: "https://www.codechef.com" },
     { name: "LeetCode (supporting practice)", url: "https://leetcode.com" },
   ],
-  eligibilityBlurb:
-    "L3 includes DSA L2–L4 assessments and a Full Stack Gen AI assessment on top of coursework — prepare using the paths below and the official assessment briefs when shared.",
+
 };
 
 const TESTIMONIALS = [
@@ -1600,9 +1599,6 @@ function CoursesSection() {
                 <div className="px-4 py-3 flex items-center gap-2 bg-rose-500 text-white">
                   <Trophy className="h-4 w-4" />
                   <span className="text-sm font-bold tracking-tight">Level 3 prep — DSA & platforms</span>
-                </div>
-                <div className="px-4 py-3 border-b border-rose-100 bg-rose-50/80 text-xs text-rose-900 leading-relaxed">
-                  {COURSES_L3.eligibilityBlurb}
                 </div>
                 <div className="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-rose-100">
                   <div>
