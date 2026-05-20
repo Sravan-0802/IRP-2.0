@@ -65,7 +65,7 @@ const LEVELS = [
       { label: "FE — HTML, CSS, JS, React", meta: "MCQ · 30 minutes · 30 questions" },
     ],
     post: [
-      "FE project (Topin platform) · build & submit · 12 hours",
+      "FE project · build & submit · 12 hours",
       "AI mock interview (NxtMock) · project + resume · 1 hour",
       "Human mock interview · project + resume · 1 hour",
     ],
@@ -90,7 +90,7 @@ const LEVELS = [
       { label: "Combined MCQ assessment", meta: "~2 hours total · 63 questions" },
     ],
     post: [
-      "Full stack + AI project (platform TBD) · build & submit · 24 hours",
+      "Full stack + AI project · build & submit · 24 hours",
       "AI mock interview · project + resume · 1 hour",
       "Human mock interview · project + resume · 1 hour",
     ],
