@@ -70,7 +70,7 @@ const LEVELS = [
       "Human mock interview · project + resume · 1 hour",
     ],
     unlocks: "Eligibility to appear for Level 2",
-    postHeading: "After the MCQ (same window)",
+    postHeading: "Post Assessment",
   },
   {
     n: "02",
