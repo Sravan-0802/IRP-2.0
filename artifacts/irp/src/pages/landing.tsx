@@ -2313,7 +2313,7 @@ function Footer({ onCta }: { onCta: () => void }) {
    ELITE OUTCOMES — "Where the Top 1% Land" (dark bento, L3 prestige closer)
    ========================================================================= */
 
-const ELITE_HERO_IMAGE = "/t-hub-campus.png";
+const ELITE_HERO_IMAGE = "/hero-student-desk.png";
 
 const ELITE_TILES = [
   {
