@@ -31,22 +31,26 @@ import {
   Target,
   Cpu,
   GitBranch,
-  Hash,
   MousePointerClick,
   Brain,
   Unlock,
   Award,
-  Building2,
   Rocket,
-  Wallet,
-  GraduationCap,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { PageFeedbackButton } from "@/components/page-feedback-survey";
 
 /* =========================================================================
    DATA — preserved from the original (courses, testimonials, FAQ, checklist)
    ========================================================================= */
+
+/* L1 assessment schedule — single source for copy across the page */
+const L1_ASSESSMENT_DATE = "14 Jun 2026";
+const ASSESSMENT_TARGET = new Date("2026-06-14T03:30:00.000Z");
+const ASSESSMENT_DATE_LABEL = "Sat, 14 Jun 2026";
+const L1_ASSESSMENT_SHORT = L1_ASSESSMENT_DATE;
+const L1_ASSESSMENT_FULL = ASSESSMENT_DATE_LABEL;
 
 const LEVELS = [
   {
@@ -55,7 +59,7 @@ const LEVELS = [
     label: "Level 1",
     nickname: "The Hustler",
     tagline: "Your entry point — foundational frontend and programming.",
-    date: "14 Jun 2026",
+    date: L1_ASSESSMENT_DATE,
     duration: "~2 hrs assessment",
     icon: User,
     color: "#1D4ED8",
@@ -341,8 +345,8 @@ const FAQ = [
 
 const REGISTER_URL = "https://forms.ccbp.in/form/irp-2-online-registration";
 
-/** Academy placement proof — rounded for marketing; see footnotes on page for methodology */
-const ACADEMY_PLACEMENT_STATS = {
+/** Academy internship proof — rounded for marketing; see footnotes on page for methodology */
+const ACADEMY_INTERNSHIP_STATS = {
   /** All-source: NxtWave partners + students who accepted external offers while in Academy */
   allSource: {
     companies: 160,
@@ -478,7 +482,7 @@ function MagneticButton({
 
   const palette: Record<string, string> = {
     primary:
-      "bg-black text-white border-black hover:bg-blue-600 hover:border-blue-600",
+      "bg-[#1D4ED8] text-white border-[#1D4ED8] hover:bg-[#1e40af] hover:border-[#1e40af]",
     dark: "bg-black text-white border-black",
     ghost:
       "bg-white text-black border-black/15 hover:border-black/40",
@@ -577,7 +581,144 @@ function Marquee({
   );
 }
 
-const MENTOR_BRANDS = ["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio"];
+type CountdownState = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  hasStarted: boolean;
+};
+
+function getAssessmentTimeLeft(target: Date = ASSESSMENT_TARGET): CountdownState {
+  const diff = target.getTime() - Date.now();
+  if (diff <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0, hasStarted: true };
+  }
+  return {
+    days: Math.floor(diff / 86_400_000),
+    hours: Math.floor((diff / 3_600_000) % 24),
+    minutes: Math.floor((diff / 60_000) % 60),
+    seconds: Math.floor((diff / 1_000) % 60),
+    hasStarted: false,
+  };
+}
+
+function useAssessmentCountdown(target: Date = ASSESSMENT_TARGET): CountdownState {
+  const [time, setTime] = useState<CountdownState>(() => getAssessmentTimeLeft(target));
+
+  useEffect(() => {
+    setTime(getAssessmentTimeLeft(target));
+    const id = window.setInterval(() => setTime(getAssessmentTimeLeft(target)), 1000);
+    return () => window.clearInterval(id);
+  }, [target]);
+
+  return time;
+}
+
+function L1AssessmentDateBadge({
+  className = "",
+  tone = "dark",
+}: {
+  className?: string;
+  tone?: "dark" | "light" | "amber";
+}) {
+  const label = L1_ASSESSMENT_DATE;
+  const toneClass = {
+    dark: "border-amber-300/35 bg-amber-400/10 text-amber-200",
+    light: "border-blue-200 bg-blue-50 text-blue-800",
+    amber: "border-amber-500/40 bg-amber-500/15 text-amber-950",
+  }[tone];
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono-ui text-[10px] font-black uppercase tracking-widest ${toneClass} ${className}`}
+    >
+      <Flame className="h-3 w-3 shrink-0 opacity-90" aria-hidden />
+      L1 · {label}
+    </span>
+  );
+}
+
+function CountdownUnit({
+  value,
+  label,
+  pad,
+}: {
+  value: number;
+  label: string;
+  pad: (n: number) => string;
+}) {
+  return (
+    <div className="flex flex-col items-center min-w-[2.75rem] sm:min-w-[3.25rem]">
+      <span className="font-display text-[clamp(1.75rem,6vw,2.75rem)] font-black leading-none text-white tabular-nums">
+        {pad(value)}
+      </span>
+      <span className="mt-1 font-mono-ui text-[9px] font-bold uppercase tracking-widest text-white/40">
+        {label}
+      </span>
+    </div>
+  );
+}
+
+function AssessmentCountdownCard() {
+  const { days, hours, minutes, seconds, hasStarted } = useAssessmentCountdown();
+  const pad = (n: number) => n.toString().padStart(2, "0");
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.25 }}
+      className="relative mb-8 rounded-2xl border-2 border-white/10 bg-[#0B1D3A]/90 px-4 py-4 md:px-5 md:py-5 shadow-[4px_4px_0_0_rgba(245,158,11,0.4)]"
+    >
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-rose-400/50 bg-rose-500/15 px-2.5 py-1 font-mono-ui text-[10px] font-black uppercase tracking-widest text-rose-300">
+          <span className="h-1.5 w-1.5 rounded-full bg-rose-400 animate-pulse" aria-hidden />
+          {hasStarted ? "live now" : "l1 drop"}
+        </span>
+        <p className="font-display text-sm md:text-base font-bold text-white/90 whitespace-nowrap">
+          {L1_ASSESSMENT_SHORT}
+        </p>
+      </div>
+
+      <div
+        className="mt-4 flex items-center justify-center gap-1 sm:gap-2"
+        role="timer"
+        aria-live="polite"
+        aria-label={
+          hasStarted
+            ? "Assessment is live"
+            : `Time left: ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
+        }
+      >
+        <CountdownUnit value={days} label="d" pad={pad} />
+        <span className="pb-4 font-display text-xl sm:text-2xl font-black text-amber-400/80" aria-hidden>
+          :
+        </span>
+        <CountdownUnit value={hours} label="h" pad={pad} />
+        <span className="pb-4 font-display text-xl sm:text-2xl font-black text-amber-400/80" aria-hidden>
+          :
+        </span>
+        <CountdownUnit value={minutes} label="m" pad={pad} />
+        <span className="pb-4 font-display text-xl sm:text-2xl font-black text-amber-400/80" aria-hidden>
+          :
+        </span>
+        <CountdownUnit value={seconds} label="s" pad={pad} />
+      </div>
+    </motion.div>
+  );
+}
+
+const MENTOR_BRANDS = [
+  "Microsoft",
+  "Apple",
+  "Google",
+  "Amazon",
+  "Salesforce",
+  "Flipkart",
+  "Meta",
+  "Netflix",
+  "Adobe",
+];
 
 function MentorBrandMarquee() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -749,7 +890,7 @@ function CitySkyline() {
   );
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 h-[min(420px,48vh)] overflow-hidden pointer-events-none select-none">
+    <div className="absolute bottom-0 left-0 right-0 h-[min(400px,44vh)] overflow-hidden pointer-events-none select-none">
       <div
         className="absolute bottom-0 left-0 right-0 h-2/3 bg-[linear-gradient(180deg,transparent,rgba(15,38,71,0.35)_50%,rgba(245,158,11,0.08)_85%,transparent)]"
         aria-hidden
@@ -774,7 +915,7 @@ function CitySkyline() {
           </g>
         ))}
       </svg>
-      <svg viewBox="0 0 1500 320" preserveAspectRatio="xMidYMax meet" className="absolute bottom-0 left-0 w-full h-[72%]">
+      <svg viewBox="0 0 1500 320" preserveAspectRatio="xMidYMax meet" className="absolute bottom-0 left-0 w-full h-[62%]">
         <defs>
           <linearGradient id="iit-bldg" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#0A1629" stopOpacity="0.95" />
@@ -900,6 +1041,7 @@ function NavBar({ onCta }: { onCta: () => void }) {
           ))}
         </ul>
         <div className="flex items-center gap-2">
+          <L1AssessmentDateBadge tone="light" className="hidden md:inline-flex shrink-0" />
           <button
             onClick={onCta}
             className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-black text-white px-4 py-2 text-xs font-bold tracking-tight hover:bg-blue-600 transition-colors"
@@ -932,6 +1074,9 @@ function NavBar({ onCta }: { onCta: () => void }) {
                 {it.label}
               </button>
             ))}
+            <div className="mt-3 flex justify-center">
+              <L1AssessmentDateBadge tone="light" className="text-[9px]" />
+            </div>
             <button
               onClick={() => {
                 setMenuOpen(false);
@@ -939,7 +1084,7 @@ function NavBar({ onCta }: { onCta: () => void }) {
               }}
               className="mt-2 rounded-full bg-black text-white text-sm font-bold py-3"
             >
-              Register Now →
+              Register · L1 on {L1_ASSESSMENT_DATE} →
             </button>
           </motion.div>
         )}
@@ -957,13 +1102,9 @@ function Hero({ onCta }: { onCta: () => void }) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const yBlob1 = useTransform(scrollYProgress, [0, 1], [0, -110]);
   const yBlob2 = useTransform(scrollYProgress, [0, 1], [0, 72]);
-  const skylineY = useTransform(scrollYProgress, [0, 1], [0, -48]);
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.45]);
 
   const words = ["Lock", "In.", "Level", "Up.", "Get", "Paid."];
-
-  const pill =
-    "inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.07] px-3 py-1.5 text-[11px] font-mono-ui font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm shadow-[0_0_0_1px_rgba(245,158,11,0.12)]";
 
   return (
     <section id="hero" ref={ref} className="relative overflow-hidden gz-grain bg-[#FAF7F0]">
@@ -986,13 +1127,13 @@ function Hero({ onCta }: { onCta: () => void }) {
       <HeroComet delay={0} top="15%" />
       <HeroComet delay={6} top="26%" />
 
-      <motion.div style={{ y: skylineY }} className="absolute inset-x-0 bottom-0 z-[2]">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1]">
         <CitySkyline />
-      </motion.div>
+      </div>
 
       <motion.div
         style={{ opacity: heroOpacity }}
-        className="relative z-10 container mx-auto max-w-6xl px-5 md:px-8 pt-8 md:pt-14 pb-10 md:pb-[min(200px,22vh)]"
+        className="relative z-10 container mx-auto max-w-6xl px-5 md:px-8 pt-8 md:pt-14 pb-[min(210px,23vh)]"
       >
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -1001,38 +1142,11 @@ function Hero({ onCta }: { onCta: () => void }) {
           className="mb-7 flex flex-col sm:flex-row sm:items-center sm:gap-4 gap-2"
         >
           <span className="font-serif-display text-lg md:text-xl italic text-amber-200/95">Internship Readiness Path 2.0</span>
-          <span className="hidden sm:block h-4 w-px bg-white/20" aria-hidden />
-          <span className="font-mono-ui text-[10px] uppercase tracking-[0.28em] text-white/50">Flagship cohort · Summer 2026</span>
         </motion.div>
-
-        <div className="flex flex-wrap gap-2 mb-8">
-          <motion.span initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className={pill}>
-            <span className="relative inline-flex">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="absolute inset-0 rounded-full bg-emerald-400 animate-gz-pulse-ring" />
-            </span>
-            Open for registration
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.08 }}
-            className={pill}
-          >
-            <Hash className="h-3 w-3 text-amber-300" /> YOG 2028 & 2029
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.16 }}
-            className={pill}
-          >
-            <Flame className="h-3 w-3 text-amber-300" /> L1 · 14 Jun 2026
-          </motion.span>
-        </div>
 
         <div className="flex flex-col lg:flex-row gap-10 items-start">
           <div className="flex-1 min-w-0">
+            <AssessmentCountdownCard />
             <h1 className="font-display text-[clamp(2.6rem,8vw,6.2rem)] font-bold leading-[0.92] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]">
               <motion.span
                 initial="hidden"
@@ -1067,21 +1181,11 @@ function Hero({ onCta }: { onCta: () => void }) {
               </motion.span>
             </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="mt-7 max-w-xl text-lg md:text-xl text-white leading-relaxed [text-shadow:0_2px_10px_rgba(5,13,26,1),_0_0_24px_rgba(5,13,26,0.8)]"
-            >
-              Built for 1st & 2nd year students — the same rigour you expect on campus, pointed at real companies and
-              paid internships. Three levels. Real assessments. Real projects. Stipends from ₹5K to ₹25K+.
-            </motion.p>
-
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.85 }}
-              className="mt-8 flex flex-wrap gap-3 items-center"
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="relative z-20 mt-8 flex flex-wrap gap-3 items-center"
             >
               <MagneticButton onClick={onCta} variant="primary">
                 Register for IRP 2.0
@@ -1093,7 +1197,6 @@ function Hero({ onCta }: { onCta: () => void }) {
                 <MousePointerClick className="h-4 w-4 text-amber-300" />
                 View the pathway
               </button>
-
             </motion.div>
           </div>
 
@@ -1135,6 +1238,11 @@ function Hero({ onCta }: { onCta: () => void }) {
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="text-sm font-bold leading-tight">{lv.nickname}</div>
+                        {lv.date && (
+                          <div className="mt-0.5 font-mono-ui text-[10px] font-bold uppercase tracking-wider text-black/45">
+                            {lv.code === "L1" ? L1_ASSESSMENT_SHORT : lv.date}
+                          </div>
+                        )}
                       </div>
                       <ChevronRight className="h-4 w-4 shrink-0 opacity-40" />
                     </motion.div>
@@ -1177,7 +1285,7 @@ function TickerStrip() {
     "★ SUMMER 2026 BATCH",
     "✦ REAL STIPENDS ₹5K–₹25K+",
     "★ YOG 2028 & 2029 ONLY",
-    "✦ FIRST ASSESSMENT 14 JUNE",
+    `✦ L1 ASSESSMENT · ${L1_ASSESSMENT_DATE.toUpperCase()}`,
     "★ BUILD. SHIP. STIPEND.",
     "✦ NO CAP. JUST CODE.",
   ];
@@ -1205,8 +1313,7 @@ function StatsBar() {
       <GlowOrb className="w-[420px] h-[420px] -top-32 left-1/3" color="lime" />
       <div className="container mx-auto max-w-6xl px-5 md:px-8 relative">
         <div className="mb-12">
-          <SectionLabel accent="#1D4ED8">// numbers don't lie</SectionLabel>
-          <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold leading-tight tracking-tight max-w-2xl">
+          <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight tracking-tight max-w-2xl">
             The path is engineered.
             <br />
             <span className="font-serif-display italic gz-gradient-text">The stipends are real.</span>
@@ -1216,15 +1323,15 @@ function StatsBar() {
           <StatCounter value={3} label="levels / one path" accent="#1D4ED8" />
           <StatCounter value={25} prefix="₹" suffix="K+" label="top monthly stipend" accent="#F59E0B" />
           <StatCounter
-            value={ACADEMY_PLACEMENT_STATS.allSource.companies}
+            value={ACADEMY_INTERNSHIP_STATS.allSource.companies}
             suffix="+"
             label="companies"
             accent="#F43F5E"
           />
           <StatCounter
-            value={ACADEMY_PLACEMENT_STATS.nxtwaveDriven.students}
+            value={ACADEMY_INTERNSHIP_STATS.nxtwaveDriven.students}
             suffix="+"
-            label="students placed"
+            label="students interned"
             accent="#10B981"
           />
         </div>
@@ -1247,11 +1354,10 @@ function WhyBento({ onCta }: { onCta: () => void }) {
       <div className="absolute inset-0 gz-dotgrid opacity-40" aria-hidden />
       <div className="container mx-auto max-w-6xl px-5 md:px-8 relative">
         <div className="mb-12 max-w-3xl">
-          <SectionLabel accent="#F59E0B">// why this is different</SectionLabel>
-          <h2 className="mt-3 font-display text-4xl md:text-6xl font-bold leading-[0.95] tracking-tight">
+          <h2 className="font-display text-4xl md:text-6xl font-bold leading-[0.95] tracking-tight">
             Other "internships" give certificates.
             <br />
-            <span className="font-serif-display italic gz-gradient-text">We give you a paycheck.</span>
+            <span className="font-serif-display italic gz-gradient-text">Here, you get a paycheck.</span>
           </h2>
         </div>
 
@@ -1313,7 +1419,7 @@ function WhyBento({ onCta }: { onCta: () => void }) {
           >
             <Trophy className="h-7 w-7 text-amber-700 mb-3" />
             <div className="font-display text-3xl md:text-4xl font-bold tracking-tight">Top 1%</div>
-            <p className="mt-1 text-sm text-amber-900/70">L3 cohorts unlock mentorship from top product companies like Microsoft, Apple, Google & Salesforce.</p>
+            <p className="mt-1 text-sm text-amber-900/70">L3 cohorts unlock mentorship from top product companies.</p>
           </motion.div>
 
           {/* Card 4 */}
@@ -1360,10 +1466,13 @@ function WhyBento({ onCta }: { onCta: () => void }) {
                 <GlowOrb className="w-72 h-72 -bottom-20 right-1/4" color="cyan" />
               </div>
               <div className="relative">
-                <p className="gz-tag bg-white/10 text-white/70 mb-3">// register</p>
                 <h3 className="font-display text-2xl md:text-3xl font-bold leading-tight">
                   Locked in? <span className="gz-gradient-text">Slot in for IRP 2.0.</span>
                 </h3>
+                <p className="mt-2 text-sm text-white/65 max-w-md">
+                  Level 1 assessment · <span className="font-bold text-amber-200">{L1_ASSESSMENT_FULL}</span> — register
+                  to secure your slot.
+                </p>
               </div>
               <div className="relative">
                 <MagneticButton onClick={onCta} variant="ghost" className="!bg-emerald-300 !text-black !border-emerald-300">
@@ -1382,18 +1491,38 @@ function WhyBento({ onCta }: { onCta: () => void }) {
    LEVELS
    ========================================================================= */
 
-function LevelsSection() {
+function LevelsSection({ onCta }: { onCta: () => void }) {
   return (
     <section id="levels" className="relative py-20 md:py-28 gz-bg-cream gz-grain overflow-hidden">
       <GlowOrb className="w-[380px] h-[380px] top-1/3 -left-24" color="violet" />
       <GlowOrb className="w-[420px] h-[420px] bottom-0 right-0" color="pink" />
       <div className="container mx-auto max-w-6xl px-5 md:px-8 relative">
+        <div className="mb-8 rounded-2xl border-2 border-[#1D4ED8]/25 bg-[#E0E7FF] px-5 py-4 md:px-6 md:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-[#1D4ED8]/80">
+              Next gate · register to appear
+            </p>
+            <p className="mt-1 font-display text-xl md:text-2xl font-bold text-[#0B1D3A] leading-tight">
+              Level 1 assessment · {L1_ASSESSMENT_FULL}
+            </p>
+          </div>
+          <button
+            onClick={onCta}
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#1D4ED8] text-white px-5 py-2.5 text-sm font-bold tracking-tight hover:bg-[#0B1D3A] transition-colors"
+          >
+            Register before {L1_ASSESSMENT_DATE} <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
         <div className="mb-12 flex items-end justify-between flex-wrap gap-5">
           <div>
             <SectionLabel accent="#1D4ED8">IRP 2.0 Journey</SectionLabel>
             <h2 className="mt-3 font-display text-4xl md:text-6xl font-bold leading-[0.95] tracking-tight max-w-3xl">
               The IRP 2.0 Journey — Three Levels
             </h2>
+            <p className="mt-4 text-base text-black/60 max-w-2xl">
+              L1 kicks off on <span className="font-bold text-black/85">{L1_ASSESSMENT_FULL}</span> — register to receive
+              your assessment link and prep roadmap.
+            </p>
           </div>
         </div>
 
@@ -1444,8 +1573,8 @@ function LevelsSection() {
                   {/* Row 3 — title + tagline */}
                   <div>
                     <h3 className="font-display text-2xl md:text-3xl font-bold leading-tight">{lv.nickname}</h3>
-                    <p className="mt-2 text-sm font-serif-display italic leading-snug">
-                      <span className="bg-amber-300/80 text-black/90 px-1 py-0.5 leading-relaxed box-decoration-clone">
+                    <p className="mt-3 text-sm leading-relaxed text-black/85 font-medium">
+                      <span className="inline-block rounded-lg bg-white/90 border border-black/10 px-3 py-1.5 shadow-sm">
                         {lv.tagline}
                       </span>
                     </p>
@@ -1776,9 +1905,9 @@ function TestimonialsSection() {
             href="https://docs.google.com/document/d/1uU0XvFUz3CAw1kGKXuoIASiLk6SOzpZEA2bSkEjLQu8/edit?tab=t.0"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-black text-white text-sm font-bold px-5 py-2.5 hover:bg-blue-600 transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-black text-white text-sm font-bold px-5 py-2.5 shadow-lg ring-2 ring-black/10 hover:bg-[#0A66C2] hover:ring-[#0A66C2]/30 transition-colors"
           >
-            Sample interview questions <ArrowUpRight className="h-4 w-4" />
+            Sample interview questions <ArrowUpRight className="h-4 w-4 shrink-0" />
           </a>
         </div>
       </div>
@@ -1814,15 +1943,20 @@ function TestimonialCard({ t, idx }: { t: typeof TESTIMONIALS[number]; idx: numb
               </span>
             </div>
             <div>
-              <a
-                href={t.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-display text-base font-bold leading-tight hover:text-[#0A66C2] transition-colors group"
-              >
-                {t.name}
-                <Linkedin className="h-3.5 w-3.5 text-[#0A66C2] opacity-70 group-hover:opacity-100 shrink-0" />
-              </a>
+              <div className="flex items-center gap-2">
+                <span className="font-display text-base font-bold leading-tight text-black">
+                  {t.name}
+                </span>
+                <a
+                  href={t.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${t.name} on LinkedIn`}
+                  className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-[#0A66C2] text-white hover:bg-[#004182] transition-colors shrink-0 shadow-sm ring-1 ring-[#0A66C2]/30"
+                >
+                  <Linkedin className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden />
+                </a>
+              </div>
               <p className="text-xs text-black/65 leading-tight font-medium">{t.role}</p>
               <p className="text-xs text-black/45 font-mono-ui">{t.company}</p>
             </div>
@@ -1858,7 +1992,7 @@ function TestimonialCard({ t, idx }: { t: typeof TESTIMONIALS[number]; idx: numb
    CHECKLIST
    ========================================================================= */
 
-function ChecklistSection() {
+function ChecklistSection({ onCta }: { onCta: () => void }) {
   return (
     <section id="checklist" className="relative py-20 md:py-28 bg-white overflow-hidden">
       <div className="absolute inset-0 gz-dotgrid opacity-30" aria-hidden />
@@ -1870,6 +2004,13 @@ function ChecklistSection() {
             <br />
             <span className="font-serif-display italic gz-gradient-text">Then you're ready.</span>
           </h2>
+          <p className="mt-4 text-base text-black/65 leading-relaxed">
+            Finish these before <span className="font-bold text-black/85">{L1_ASSESSMENT_FULL}</span>. Haven't registered
+            yet?{" "}
+            <button onClick={onCta} className="font-bold text-[#1D4ED8] underline-offset-2 hover:underline">
+              Lock your slot →
+            </button>
+          </p>
         </div>
         <div className="grid sm:grid-cols-2 gap-5">
           {CHECKLIST.map((c, i) => (
@@ -1921,15 +2062,24 @@ function RegisterSection({ onCta }: { onCta: () => void }) {
       <div className="container mx-auto max-w-5xl px-5 md:px-8 relative">
         <div className="grid lg:grid-cols-12 gap-10 items-end">
           <div className="lg:col-span-7">
-            <SectionLabel accent="#10B981">// the moment</SectionLabel>
-            <h2 className="mt-4 font-display text-5xl md:text-8xl font-bold leading-[0.92] tracking-tight">
+            <div className="inline-flex items-center gap-3 rounded-2xl border border-amber-400/35 bg-amber-500/10 px-4 py-3 mb-6">
+              <Clock className="h-5 w-5 shrink-0 text-amber-300" aria-hidden />
+              <div>
+                <p className="font-mono-ui text-[10px] uppercase tracking-[0.2em] font-bold text-amber-200/80">
+                  Level 1 assessment
+                </p>
+                <p className="font-display text-lg md:text-xl font-bold text-white">{L1_ASSESSMENT_FULL}</p>
+              </div>
+            </div>
+            <h2 className="font-display text-5xl md:text-8xl font-bold leading-[0.92] tracking-tight">
               Stop scrolling.
               <br />
               <span className="font-serif-display italic gz-gradient-text">Start shipping.</span>
             </h2>
             <p className="mt-6 text-base md:text-lg text-white/70 max-w-xl leading-relaxed">
-              Slots are open for the Summer 2026 cohort. Eligible if you're YOG 2028 or YOG 2029. Watch your registered
-              email for assessment + prep updates.
+              Register now for the Summer 2026 cohort (YOG 2028 & 2029). Your Level 1 assessment is on{" "}
+              <span className="font-bold text-white">{L1_ASSESSMENT_FULL}</span> — watch your registered email for the
+              hall ticket and prep updates.
             </p>
           </div>
           <div className="lg:col-span-5">
@@ -1951,7 +2101,7 @@ function RegisterSection({ onCta }: { onCta: () => void }) {
                   <div>
                     <p className="text-sm font-bold">Watch your email</p>
                     <p className="text-xs text-black/60">
-                      Assessment schedules, prep resources, and result updates land in your inbox.
+                      L1 assessment link for {L1_ASSESSMENT_FULL}, plus prep resources and result updates.
                     </p>
                   </div>
                 </div>
@@ -2142,8 +2292,11 @@ function Footer({ onCta }: { onCta: () => void }) {
               <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-white/45 mb-3">
                 // ready?
               </p>
-              <p className="font-display text-2xl font-bold leading-tight mb-4">
+              <p className="font-display text-2xl font-bold leading-tight mb-2">
                 Slot in for IRP 2.0.
+              </p>
+              <p className="text-sm text-amber-200/90 font-mono-ui mb-4">
+                L1 assessment · {L1_ASSESSMENT_FULL}
               </p>
               <button
                 onClick={onCta}
@@ -2173,54 +2326,24 @@ function Footer({ onCta }: { onCta: () => void }) {
    ELITE OUTCOMES — "Where the Top 1% Land" (dark bento, L3 prestige closer)
    ========================================================================= */
 
-const ELITE_HERO_IMAGE =
-  "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1600&q=72";
+const ELITE_HERO_IMAGE = "/t-hub-campus.png";
 
 const ELITE_TILES = [
   {
-    title: "Innovation Labs",
-    sub: "Cutting-edge engineering teams solving real-world problems.",
-    icon: Brain,
-    accent: "#A78BFA",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/1/15/MindSpace_campus_in_Hyderabad,_India.jpg",
-  },
-  {
-    title: "R&D Centers",
-    sub: "Where real products ship and ideas turn into impact.",
-    icon: Sparkles,
-    accent: "#34D399",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/e/e1/Bagmane_Tech_Park_Bangalore_India.jpg",
-  },
-  {
-    title: "Tech Parks",
-    sub: "Modern innovation campuses built for the future you.",
-    icon: Globe,
-    accent: "#F59E0B",
-    image:
-      "https://img.staticmb.com/mbcontent/images/crop/uploads/2026/5/IT-parks-in-India_0_1200.jpg.webp",
-  },
-] as const;
-
-const ELITE_STATS = [
-  {
-    icon: Wallet,
-    title: "₹25,000+/month",
-    body: "Premium stipend internships reserved only for Level 3 Infinite Aura achievers.",
-    accent: "#F59E0B",
-  },
-  {
-    icon: GraduationCap,
-    title: "Elite Mentors",
-    body: "Direct mentorship from engineers at Microsoft, Apple, Google & Salesforce.",
-    accent: "#FB7185",
-  },
-  {
-    icon: Rocket,
-    title: "Top 1% Access",
-    body: "Fast-track career opportunities exclusive to the top 1% of NxtWave students.",
+    eyebrow: "01 · build",
+    title: "Engineering Studios",
+    sub: "Ship to prod with senior engineers — not babysit Jira.",
+    icon: Cpu,
     accent: "#60A5FA",
+    image: "/top1-engineering.png",
+  },
+  {
+    eyebrow: "02 · launch",
+    title: "Product Squads",
+    sub: "Real features. Real users. Your name in the changelog.",
+    icon: Rocket,
+    accent: "#F59E0B",
+    image: "/top1-product.png",
   },
 ] as const;
 
@@ -2238,32 +2361,32 @@ function EliteOutcomesSection() {
       </div>
 
       <div className="container mx-auto max-w-6xl px-5 md:px-8 relative">
-        <div className="mb-10 md:mb-12 max-w-3xl">
-          <span className="font-mono-ui text-[10px] uppercase tracking-[0.34em] font-bold text-amber-300/85">
-            // L3 · Infinite Aura · top 1% land here
-          </span>
-          <h2 className="mt-3 font-display text-4xl md:text-6xl font-bold leading-[0.95] tracking-tight">
-            Where the Top 1%{" "}
-            <span className="font-serif-display italic bg-gradient-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent">
-              Land.
+        <div className="mb-10 md:mb-14 max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 font-mono-ui text-[10px] font-black uppercase tracking-[0.28em] text-amber-300">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-300" aria-hidden /> L3 · Infinite Aura
             </span>
-          </h2>
-          <p className="mt-4 text-sm md:text-base text-white/55 max-w-xl leading-relaxed">
-            Reach Level 3 and unlock{" "}
-            <span className="text-amber-300 font-semibold">₹25,000+/month</span> internships at
-            world-class engineering teams — with elite mentorship and the campuses to match.
-          </p>
+            <h2 className="mt-4 font-display text-4xl md:text-6xl font-bold leading-[0.95] tracking-tight">
+              Where the Top 1%{" "}
+              <span className="font-serif-display italic bg-gradient-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent">
+                Land.
+              </span>
+            </h2>
+            <p className="mt-4 text-sm md:text-base text-white/60 max-w-xl leading-relaxed">
+              Reach Level 3 and unlock{" "}
+              <span className="text-amber-300 font-semibold">₹25,000+/month</span> internships at
+              world-class engineering teams — with elite mentorship and the campuses to match.
+            </p>
         </div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:auto-rows-[185px]">
-          {/* Hero tile */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+          {/* Hero tile — T-Hub campus, spans 2 cols on md */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.55 }}
-            className="group relative md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden border border-white/[0.08] min-h-[360px] flex flex-col"
+            className="group relative md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden border border-white/[0.08] min-h-[420px] md:min-h-[560px] flex flex-col"
             style={{
               background:
                 "radial-gradient(120% 80% at 0% 0%, rgba(245,158,11,0.22), transparent 60%), linear-gradient(180deg,#0E0B17,#070512)",
@@ -2271,34 +2394,43 @@ function EliteOutcomesSection() {
           >
             <img
               src={ELITE_HERO_IMAGE}
-              alt=""
-              aria-hidden
+              alt="Premium tech campus at night"
               loading="lazy"
               decoding="async"
-              referrerPolicy="no-referrer"
               onError={(e) => {
                 e.currentTarget.style.display = "none";
               }}
-              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-[1200ms] group-hover:scale-[1.04]"
-              style={{ filter: "saturate(0.9) brightness(0.7)" }}
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-[1400ms] group-hover:scale-[1.06]"
+              style={{ filter: "saturate(1.05) brightness(0.78)" }}
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/15" />
+            <div
+              className="pointer-events-none absolute -bottom-32 -left-20 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-3xl"
+              aria-hidden
+            />
 
-            <div className="relative flex items-start justify-between gap-3 p-5 md:p-6">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur px-3 py-1 font-mono-ui text-[10px] uppercase tracking-[0.22em] text-white/85">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> live tenants
+            <div className="relative flex flex-wrap items-start justify-between gap-3 p-5 md:p-7">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur px-3 py-1.5 font-mono-ui text-[10px] font-black uppercase tracking-[0.22em] text-white">
+                <span className="relative inline-flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-70 animate-ping" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+                live · alumni inside
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-400 text-black font-bold text-[11px] px-3 py-1.5 shadow-[0_8px_30px_-12px_rgba(245,158,11,0.6)]">
-                ₹25K+/month
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-400 text-black font-black text-[11px] px-3 py-1.5 uppercase tracking-widest shadow-[0_10px_40px_-12px_rgba(245,158,11,0.7)]">
+                ₹25K+ / month
               </span>
             </div>
 
             <div className="relative mt-auto p-5 md:p-7">
-              <div className="font-display text-xl md:text-2xl font-bold leading-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-                Premium Tech Campus
+              <span className="font-mono-ui text-[10px] font-black uppercase tracking-[0.28em] text-amber-300/90">
+                Hyderabad · T-Hub
+              </span>
+              <div className="mt-2 font-display text-2xl md:text-3xl font-black leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]">
+                Built for builders who outgrow the classroom.
               </div>
-              <p className="mt-1.5 text-sm text-white/70 max-w-sm">
-                World-class infrastructure &amp; facilities — the campuses your senior batch ships from today.
+              <p className="mt-2 max-w-md text-sm text-white/75">
+                T-Hub puts you inside India's startup ecosystem — mentor access, real demo days, and a campus that signals you're internship-ready.
               </p>
             </div>
           </motion.div>
@@ -2311,43 +2443,51 @@ function EliteOutcomesSection() {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="group relative rounded-3xl overflow-hidden border border-white/[0.08] p-5 md:p-6 min-h-[180px] flex flex-col gap-3 hover:border-white/[0.22] transition-colors"
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="group relative rounded-3xl overflow-hidden border border-white/[0.08] min-h-[200px] md:min-h-[268px] flex flex-col hover:border-white/[0.25] transition-colors"
                 style={{
                   background: `radial-gradient(120% 80% at 20% -10%, ${t.accent}26, transparent 60%), linear-gradient(180deg,#100E17,#070512)`,
                 }}
               >
                 <img
                   src={t.image}
-                  alt=""
-                  aria-hidden
+                  alt={t.title}
                   loading="lazy"
                   decoding="async"
-                  referrerPolicy="no-referrer"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                   }}
-                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-65 transition-transform duration-[900ms] group-hover:scale-[1.05]"
-                  style={{ filter: "saturate(0.85) brightness(0.65)" }}
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-[900ms] group-hover:scale-[1.06]"
+                  style={{ filter: "saturate(1) brightness(0.7)" }}
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/10" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
 
-                <div className="relative">
-                  <div
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 border border-white/15 backdrop-blur"
+                <div className="relative flex items-start justify-between gap-2 p-5">
+                  <span
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/10 backdrop-blur"
                     style={{ color: t.accent }}
                   >
-                    <Icon className="h-5 w-5" />
-                  </div>
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <span
+                    className="font-mono-ui text-[10px] font-black uppercase tracking-[0.24em]"
+                    style={{ color: t.accent }}
+                  >
+                    {t.eyebrow}
+                  </span>
                 </div>
-                <div className="relative mt-auto">
-                  <div className="font-display text-lg font-bold leading-tight drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]">
+
+                <div className="relative mt-auto p-5">
+                  <div className="font-display text-lg md:text-xl font-bold leading-tight drop-shadow-[0_1px_6px_rgba(0,0,0,0.6)]">
                     {t.title}
                   </div>
-                  <p className="mt-1 text-xs text-white/70">{t.sub}</p>
+                  <p className="mt-1.5 text-[12.5px] md:text-sm text-white/80 max-w-[28ch] leading-snug">
+                    {t.sub}
+                  </p>
                 </div>
+
                 <div
-                  className="pointer-events-none absolute -bottom-12 -right-8 h-32 w-32 rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition-opacity"
+                  className="pointer-events-none absolute -bottom-12 -right-8 h-32 w-32 rounded-full blur-3xl opacity-0 group-hover:opacity-70 transition-opacity"
                   style={{ background: t.accent }}
                   aria-hidden
                 />
@@ -2356,51 +2496,16 @@ function EliteOutcomesSection() {
           })}
         </div>
 
-        {/* Stat strip */}
-        <div className="mt-6 md:mt-7 grid grid-cols-1 md:grid-cols-3 gap-4">
-          {ELITE_STATS.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <motion.div
-                key={s.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.45, delay: i * 0.08 }}
-                className="relative rounded-2xl border border-white/[0.08] p-5 md:p-6 flex items-start gap-4"
-                style={{
-                  background:
-                    "radial-gradient(120% 100% at 0% 0%, rgba(255,255,255,0.04), transparent 55%), linear-gradient(180deg,#0E0B17,#070512)",
-                }}
-              >
-                <div
-                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.08]"
-                  style={{ color: s.accent }}
-                >
-                  <Icon className="h-5 w-5" />
-                </div>
-                <div>
-                  <div
-                    className="font-display text-lg font-bold leading-tight"
-                    style={{ color: s.accent }}
-                  >
-                    {s.title}
-                  </div>
-                  <p className="mt-1.5 text-xs md:text-sm text-white/55 leading-relaxed">{s.body}</p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
         {/* Mentor wall — subtle brand marquee echoing prestige */}
         <div className="mt-8 md:mt-10 relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015]">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#08070C] to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#08070C] to-transparent z-10" />
           <Marquee
-            items={["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio", "Chirpn IT", "2xCabs"].map(
+            items={["Microsoft", "Apple", "Google", "Amazon", "Salesforce", "Flipkart", "Meta", "Adobe"].map(
               (c, i) => (
                 <span
                   key={i}
-                  className="font-display text-2xl md:text-3xl font-bold tracking-tight text-white/55"
+                  className="font-display text-2xl md:text-3xl font-bold tracking-tight text-white/60"
                 >
                   {c} <span className="text-amber-300/70">✦</span>
                 </span>
@@ -2430,14 +2535,15 @@ export default function LandingPage() {
         <TickerStrip />
         <StatsBar />
         <WhyBento onCta={onCta} />
-        <LevelsSection />
+        <LevelsSection onCta={onCta} />
         <CoursesSection />
         <TestimonialsSection />
         <EliteOutcomesSection />
-        <ChecklistSection />
+        <ChecklistSection onCta={onCta} />
         <RegisterSection onCta={onCta} />
         <FAQSection />
       </main>
+      <PageFeedbackButton />
       <Footer onCta={onCta} />
     </div>
   );
