@@ -1,17 +1,8 @@
-import { useEffect, useState } from "react";
-import { CheckCircle2, MessageSquare, Star } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { useState } from "react";
+import { CheckCircle2, MessageSquare, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const STORAGE_KEY = "irp-2-landing-page-feedback-v1";
-const ABOUT_MAX = 280;
 
 function hasSubmitted(): boolean {
   try {
@@ -25,147 +16,59 @@ function markSubmitted() {
   localStorage.setItem(STORAGE_KEY, "submitted");
 }
 
-function StarRatingInput({
-  value,
-  onChange,
-}: {
-  value: number;
-  onChange: (n: number) => void;
-}) {
-  const [hover, setHover] = useState(0);
-  const active = hover || value;
-
-  return (
-    <div
-      className="flex items-center gap-0.5"
-      role="radiogroup"
-      aria-label="Rate this page from 1 to 5 stars"
-      onMouseLeave={() => setHover(0)}
-    >
-      {[1, 2, 3, 4, 5].map((n) => (
-        <button
-          key={n}
-          type="button"
-          role="radio"
-          aria-checked={value === n}
-          aria-label={`${n} star${n === 1 ? "" : "s"}`}
-          onClick={() => onChange(n)}
-          onMouseEnter={() => setHover(n)}
-          className="rounded-lg p-1 transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]/40"
-        >
-          <Star
-            className={`h-8 w-8 transition-colors ${
-              n <= active ? "fill-amber-400 text-amber-400" : "text-black/15"
-            }`}
-          />
-        </button>
-      ))}
-    </div>
-  );
-}
-
 export function PageFeedbackButton() {
   const { toast } = useToast();
-  const [open, setOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [rating, setRating] = useState(0);
-  const [aboutYou, setAboutYou] = useState("");
-
-  useEffect(() => {
-    setSubmitted(hasSubmitted());
-  }, []);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const [submitted, setSubmitted] = useState(() => hasSubmitted());
+  const [thought, setThought] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (rating < 1) {
+    if (thought.trim().length < 3) {
       toast({
-        title: "Pick a star rating",
-        description: "Rate this page from 1 to 5 stars.",
+        title: "Type something first",
+        description: "Share at least a few words.",
         variant: "destructive",
       });
       return;
     }
-    const trimmed = aboutYou.trim();
-    if (trimmed.length < 8) {
-      toast({
-        title: "Tell us a bit about yourself",
-        description: "Add at least a short line (8+ characters).",
-        variant: "destructive",
-      });
-      return;
-    }
-
     markSubmitted();
     setSubmitted(true);
-    setRating(0);
-    setAboutYou("");
+    setThought("");
   };
 
-  const showSuccess = submitted;
-
   return (
-    <>
-      <div className="flex justify-center border-t border-black/10 bg-[#FAF7F0] py-5">
-        <button
-          type="button"
-          onClick={handleOpen}
-          className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-5 py-2.5 text-sm font-bold tracking-tight text-black/70 shadow-sm hover:border-black/25 hover:text-black transition-colors"
-        >
-          <MessageSquare className="h-4 w-4 text-[#1D4ED8]" aria-hidden />
-          Have any thoughts? Let us know here:
-        </button>
-      </div>
-
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-md rounded-2xl border-2 border-black/10 sm:rounded-2xl">
-          {showSuccess ? (
-            <div className="py-6 text-center">
-              <CheckCircle2 className="h-12 w-12 text-emerald-600 mx-auto mb-4" aria-hidden />
-              <DialogHeader className="text-center sm:text-center">
-                <DialogTitle className="font-display text-xl">You have submitted successfully.</DialogTitle>
-              </DialogHeader>
+    <div className="border-t border-black/10 bg-[#FAF7F0] py-8 px-4">
+      <div className="mx-auto max-w-xl">
+        {submitted ? (
+          <div className="flex flex-col items-center gap-2 text-center">
+            <CheckCircle2 className="h-8 w-8 text-emerald-500" />
+            <p className="text-base font-bold text-black/80">Thanks for sharing!</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+            <label className="flex items-center gap-2 text-base font-bold text-black/75">
+              <MessageSquare className="h-5 w-5 text-[#1D4ED8] shrink-0" />
+              Have any thoughts? Let us know here:
+            </label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={thought}
+                onChange={(e) => setThought(e.target.value)}
+                placeholder="Type your thoughts…"
+                className="flex-1 rounded-xl border-2 border-black/15 bg-white px-4 py-3 text-sm font-medium text-black placeholder:text-black/35 focus:border-[#1D4ED8]/50 focus:outline-none transition-colors"
+              />
+              <button
+                type="submit"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-[#1D4ED8] px-5 py-3 text-sm font-bold text-white hover:bg-[#1e40af] transition-colors shrink-0"
+              >
+                <Send className="h-4 w-4" />
+                Send
+              </button>
             </div>
-          ) : (
-            <>
-              <DialogHeader>
-                <DialogTitle className="font-display text-xl">Quick feedback</DialogTitle>
-                <DialogDescription className="text-left text-sm text-black/60">
-                  Two short questions about this page.
-                </DialogDescription>
-              </DialogHeader>
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <p className="text-sm font-bold">How do you like this page?</p>
-                  <StarRatingInput value={rating} onChange={setRating} />
-                </div>
-
-                <div className="space-y-2">
-                  <p className="text-sm font-bold">Describe yourself in a few words</p>
-                  <Textarea
-                    value={aboutYou}
-                    onChange={(e) => setAboutYou(e.target.value.slice(0, ABOUT_MAX))}
-                    placeholder="e.g. 2nd year CSE · YOG 2029"
-                    rows={3}
-                    className="resize-none rounded-xl border-2 border-black/10 text-sm"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full rounded-xl bg-black text-white font-bold py-3 text-sm hover:bg-[#1D4ED8] transition-colors"
-                >
-                  Submit
-                </button>
-              </form>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
-    </>
+          </form>
+        )}
+      </div>
+    </div>
   );
 }
