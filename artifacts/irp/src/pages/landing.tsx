@@ -45,9 +45,9 @@ import { PageFeedbackButton } from "@/components/page-feedback-survey";
    ========================================================================= */
 
 /* L1 assessment schedule — single source for copy across the page */
-const L1_ASSESSMENT_DATE = "14 Jun 2026";
+const L1_ASSESSMENT_DATE = "14th June, 2026";
 const ASSESSMENT_TARGET = new Date("2026-06-14T03:30:00.000Z");
-const ASSESSMENT_DATE_LABEL = "Sat, 14 Jun 2026";
+const ASSESSMENT_DATE_LABEL = "L1 Hustler Assessment on 14th June, 2026! Mark your calendars.";
 const L1_ASSESSMENT_SHORT = L1_ASSESSMENT_DATE;
 const L1_ASSESSMENT_FULL = ASSESSMENT_DATE_LABEL;
 
@@ -1489,7 +1489,7 @@ function WhyBento({ onCta }: { onCta: () => void }) {
                   Locked in? <span className="gz-gradient-text">Slot in for IRP 2.0.</span>
                 </h3>
                 <p className="mt-2 text-sm text-white/65 max-w-md">
-                  Level 1 assessment · <span className="font-bold text-amber-200">{L1_ASSESSMENT_FULL}</span> — register
+                  Level 1 assessment · <span className="font-bold text-amber-200">{L1_ASSESSMENT_DATE}</span> — register
                   to secure your slot.
                 </p>
               </div>
@@ -1526,7 +1526,7 @@ function LevelsSection({ onCta }: { onCta: () => void }) {
               onClick={onCta}
               className="mt-4 inline-flex items-center gap-2 rounded-full border-2 border-[#1D4ED8]/30 bg-[#E0E7FF] px-4 py-2 text-sm font-bold text-[#1D4ED8] hover:bg-[#1D4ED8] hover:text-white hover:border-[#1D4ED8] transition-all duration-200"
             >
-              L1 kicks off on {L1_ASSESSMENT_FULL} — Register <ArrowRight className="h-3.5 w-3.5" />
+              L1 kicks off on {L1_ASSESSMENT_DATE} — Register <ArrowRight className="h-3.5 w-3.5" />
             </button>
           </div>
           <AssessmentCountdownCard />
@@ -1989,7 +1989,7 @@ function ChecklistSection({ onCta }: { onCta: () => void }) {
             <span className="font-serif-display italic gz-gradient-text">Then you're ready.</span>
           </h2>
           <p className="mt-4 text-base text-black/65 leading-relaxed">
-            Finish these before <span className="font-bold text-black/85">{L1_ASSESSMENT_FULL}</span>. Haven't registered
+            Finish these before <span className="font-bold text-black/85">{L1_ASSESSMENT_DATE}</span>. Haven't registered
             yet?{" "}
             <button onClick={onCta} className="font-bold text-[#1D4ED8] underline-offset-2 hover:underline">
               Lock your slot →
@@ -2062,7 +2062,7 @@ function RegisterSection({ onCta }: { onCta: () => void }) {
             </h2>
             <p className="mt-6 text-base md:text-lg text-white/70 max-w-xl leading-relaxed">
               Register now for the Summer 2026 cohort (YOG 2028 & 2029). Your Level 1 assessment is on{" "}
-              <span className="font-bold text-white">{L1_ASSESSMENT_FULL}</span> — watch your registered email for the
+              <span className="font-bold text-white">{L1_ASSESSMENT_DATE}</span> — watch your registered email for the
               hall ticket and prep updates.
             </p>
           </div>
@@ -2085,7 +2085,7 @@ function RegisterSection({ onCta }: { onCta: () => void }) {
                   <div>
                     <p className="text-sm font-bold">Watch your email</p>
                     <p className="text-xs text-black/60">
-                      L1 assessment link for {L1_ASSESSMENT_FULL}, plus prep resources and result updates.
+                      L1 assessment link for {L1_ASSESSMENT_DATE}, plus prep resources and result updates.
                     </p>
                   </div>
                 </div>
@@ -2277,7 +2277,7 @@ function Footer({ onCta }: { onCta: () => void }) {
                 Slot in for IRP 2.0.
               </p>
               <p className="text-sm text-amber-200/90 font-mono-ui mb-4">
-                L1 assessment · {L1_ASSESSMENT_FULL}
+                L1 assessment · {L1_ASSESSMENT_DATE}
               </p>
               <button
                 onClick={onCta}
