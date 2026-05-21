@@ -1168,7 +1168,7 @@ function Hero({ onCta }: { onCta: () => void }) {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className="mt-5 max-w-xl text-base md:text-lg text-white/75 leading-relaxed"
+              className="mt-5 max-w-xl text-base md:text-lg text-white/75 leading-relaxed hidden md:block"
             >
               Internship Readiness Path 2.0 — structured assessments, real projects, and stipend-track internships for
               YOG 2028 & 2029. Level up from frontend foundations to the top 1% L3 cohort.
