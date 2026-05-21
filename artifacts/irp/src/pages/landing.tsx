@@ -1553,7 +1553,7 @@ function LevelsSection({ onCta }: { onCta: () => void }) {
             Register before {L1_ASSESSMENT_DATE} <ArrowRight className="h-4 w-4" />
           </button>
         </div>
-        <div className="mb-12 flex items-end justify-between flex-wrap gap-5">
+        <div className="mb-12 flex items-center justify-between flex-wrap gap-5">
           <div>
             <SectionLabel accent="#1D4ED8">IRP 2.0 Journey</SectionLabel>
             <h2 className="mt-3 font-display text-4xl md:text-6xl font-bold leading-[0.95] tracking-tight max-w-3xl">
