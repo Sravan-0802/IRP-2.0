@@ -1930,14 +1930,6 @@ function TestimonialsSection() {
         </div>
 
         <div className="mt-10 flex flex-wrap items-center gap-3">
-          <a
-            href="https://docs.google.com/document/d/1uU0XvFUz3CAw1kGKXuoIASiLk6SOzpZEA2bSkEjLQu8/edit?tab=t.0"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-black text-white text-sm font-bold px-5 py-2.5 shadow-lg ring-2 ring-black/10 hover:bg-[#0A66C2] hover:ring-[#0A66C2]/30 transition-colors"
-          >
-            Sample interview questions <ArrowUpRight className="h-4 w-4 shrink-0" />
-          </a>
         </div>
       </div>
     </section>
