@@ -113,10 +113,10 @@ export function PageFeedbackButton() {
         <button
           type="button"
           onClick={handleOpen}
-          className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-xs font-bold tracking-tight text-black/70 shadow-sm hover:border-black/25 hover:text-black transition-colors"
+          className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-5 py-2.5 text-sm font-bold tracking-tight text-black/70 shadow-sm hover:border-black/25 hover:text-black transition-colors"
         >
-          <MessageSquare className="h-3.5 w-3.5 text-[#1D4ED8]" aria-hidden />
-          Share feedback
+          <MessageSquare className="h-4 w-4 text-[#1D4ED8]" aria-hidden />
+          Have any thoughts? Let us know here:
         </button>
       </div>
 
