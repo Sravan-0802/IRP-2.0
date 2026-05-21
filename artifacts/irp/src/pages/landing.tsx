@@ -119,7 +119,7 @@ const LEVELS = [
     ],
     post: [
       "Internship opportunities with ₹25K+ monthly stipend",
-      "Mentorship from senior engineers at Microsoft, Apple, Google & Salesforce",
+      "Unlock mentorship from mentors of top product-based companies such as Salesforce, Google, Microsoft!",
       "Interactions with NxtWave's founding team",
     ],
     unlocks: "Curated opportunities for students who complete the full IRP path",
@@ -1438,7 +1438,7 @@ function WhyBento({ onCta }: { onCta: () => void }) {
           >
             <Trophy className="h-7 w-7 text-amber-700 mb-3" />
             <div className="font-display text-3xl md:text-4xl font-bold tracking-tight">Top 1%</div>
-            <p className="mt-1 text-sm text-amber-900/70">L3 cohorts unlock mentorship from top product companies.</p>
+            <p className="mt-1 text-sm text-amber-900/70">Unlock mentorship from mentors of top product-based companies such as Salesforce, Google, Microsoft!</p>
           </motion.div>
 
           {/* Card 4 */}
