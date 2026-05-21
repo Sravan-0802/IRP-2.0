@@ -2351,6 +2351,10 @@ function EliteOutcomesSection() {
                 Land.
               </span>
             </h2>
+            <p className="mt-4 text-sm md:text-base text-white/60 max-w-xl leading-relaxed">
+              Reach Level 3 and unlock{" "}
+              <span className="text-amber-300 font-semibold">₹25,000+/month</span> internships.
+            </p>
         </div>
 
         {/* Bento grid */}
