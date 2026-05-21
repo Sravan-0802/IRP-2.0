@@ -1726,7 +1726,6 @@ function TestimonialsSection() {
           >
             Sample interview questions <ArrowUpRight className="h-4 w-4" />
           </a>
-          <p className="text-xs text-black/50 font-mono-ui">// swipe / drag the cards to see more</p>
         </div>
       </div>
     </section>
