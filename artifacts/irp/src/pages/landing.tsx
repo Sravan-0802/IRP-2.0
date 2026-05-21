@@ -1246,7 +1246,6 @@ function Hero({ onCta }: { onCta: () => void }) {
                     <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                     irp-path
                   </span>
-                  <span className="text-amber-700/80">live</span>
                 </div>
                 <div className="space-y-3">
                   {LEVELS.map((lv, i) => (
