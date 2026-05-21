@@ -1524,8 +1524,8 @@ function LevelsSection({ onCta }: { onCta: () => void }) {
               The IRP 2.0 Journey — Three Levels
             </h2>
             <div className="mt-4 flex flex-wrap items-center gap-3">
-              <p className="text-sm font-semibold text-white/80">
-                L1 kicks off on <span className="text-white font-bold">{L1_ASSESSMENT_DATE}</span>
+              <p className="text-sm font-semibold text-black">
+                L1 kicks off on <span className="text-black font-bold">{L1_ASSESSMENT_DATE}</span>
               </p>
               <button
                 onClick={onCta}
