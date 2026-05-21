@@ -1704,20 +1704,6 @@ function CoursesSection() {
             <p className="mt-3 text-sm text-black/55 max-w-xs leading-relaxed">
               Real students. Real stipends.<br />Pick a path. Prove your skills. Get noticed.
             </p>
-            <div className="mt-5 flex items-center gap-3 flex-wrap">
-              <button
-                onClick={() => document.getElementById("levels")?.scrollIntoView({ behavior: "smooth" })}
-                className="inline-flex items-center gap-2 rounded-full bg-black text-white px-5 py-2.5 text-sm font-bold hover:bg-blue-600 transition-colors"
-              >
-                Explore Courses <ArrowUpRight className="h-3.5 w-3.5" />
-              </button>
-              <button
-                onClick={() => document.getElementById("vibe")?.scrollIntoView({ behavior: "smooth" })}
-                className="inline-flex items-center gap-2 rounded-full border-2 border-black/15 bg-white/70 px-5 py-2.5 text-sm font-bold hover:border-black/30 transition-colors"
-              >
-                <ChevronRight className="h-3.5 w-3.5" /> How It Works
-              </button>
-            </div>
           </div>
         </div>
 
