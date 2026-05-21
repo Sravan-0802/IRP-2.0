@@ -669,33 +669,68 @@ function CountdownUnit({
 }
 
 function AssessmentCountdownCard() {
-  const { days, hours, minutes, seconds, hasStarted } = useAssessmentCountdown();
-  const pad = (n: number) => n.toString().padStart(2, "0");
+  const { days, hasStarted } = useAssessmentCountdown();
+
+  const size = 148;
+  const strokeWidth = 9;
+  const r = (size - strokeWidth) / 2;
+  const circ = 2 * Math.PI * r;
+  const maxDays = 30;
+  const progress = hasStarted ? 1 : Math.min(days / maxDays, 1);
+  const dash = circ * progress;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 14 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.88 }}
+      animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, delay: 0.85 }}
-      className="w-fit rounded-2xl border-2 border-[#0B1D3A]/20 bg-[#0B1D3A]/92 px-4 py-4 shadow-[4px_4px_0_0_rgba(245,158,11,0.35)] backdrop-blur-md"
+      role="timer"
+      aria-live="polite"
+      aria-label={hasStarted ? "L1 Assessment is live" : `Starts in ${days} days`}
+      className="relative flex items-center justify-center shrink-0"
+      style={{ width: size, height: size }}
     >
-      <p className="font-mono-ui text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300 mb-3">
-        {hasStarted ? "L1 assessment · live now" : "L1 assessment in"}
-      </p>
+      {/* Track ring */}
+      <svg width={size} height={size} className="absolute inset-0 -rotate-90">
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          fill="none"
+          stroke="rgba(255,255,255,0.08)"
+          strokeWidth={strokeWidth}
+        />
+        {/* Amber progress arc */}
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          fill="none"
+          stroke="#F59E0B"
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+          strokeDasharray={`${dash} ${circ}`}
+          style={{ transition: "stroke-dasharray 1s ease" }}
+        />
+      </svg>
+
+      {/* Dark background disc */}
       <div
-        className="flex items-center gap-2 sm:gap-3"
-        role="timer"
-        aria-live="polite"
-        aria-label={
-          hasStarted
-            ? "Assessment is live"
-            : `Time left: ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
-        }
-      >
-        <CountdownUnit value={days} label="days" pad={pad} styleIndex={0} />
-        <CountdownUnit value={hours} label="hrs" pad={pad} styleIndex={1} />
-        <CountdownUnit value={minutes} label="min" pad={pad} styleIndex={2} />
-        <CountdownUnit value={seconds} label="sec" pad={pad} styleIndex={3} />
+        className="absolute inset-0 rounded-full"
+        style={{ margin: strokeWidth + 2, background: "#0B1628" }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center gap-0.5">
+        <span className="font-mono-ui text-[11px] font-semibold uppercase tracking-widest text-white/60">
+          {hasStarted ? "Live now" : "Starts in"}
+        </span>
+        <span className="font-display text-5xl font-bold leading-none text-amber-400 tabular-nums">
+          {hasStarted ? "🔥" : days}
+        </span>
+        <span className="font-mono-ui text-[11px] font-bold uppercase tracking-[0.2em] text-amber-400/80">
+          {hasStarted ? "L1 open" : "DAYS"}
+        </span>
       </div>
     </motion.div>
   );
