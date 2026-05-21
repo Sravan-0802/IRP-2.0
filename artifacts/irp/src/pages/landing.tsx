@@ -125,7 +125,7 @@ const LEVELS = [
     ],
     unlocks: "Only for students who complete the full IRP 2.0 path",
     sectionsHeading: "Eligibility pillars",
-    postHeading: "What all L3 Offers:",
+    postHeading: "What L3 Offers:",
   },
 ] as const;
 
