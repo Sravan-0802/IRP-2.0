@@ -1275,7 +1275,7 @@ function WhyBento({ onCta }: { onCta: () => void }) {
             <h3 className="font-display text-3xl md:text-5xl font-bold leading-tight">
               Past students earned
               <br />
-              <span className="gz-gradient-text">₹5K – ₹15K / month</span>
+              <span className="gz-gradient-text">₹5K – ₹35K / month</span>
               <br />
               shipping real code.
             </h3>
@@ -1313,7 +1313,7 @@ function WhyBento({ onCta }: { onCta: () => void }) {
           >
             <Trophy className="h-7 w-7 text-amber-700 mb-3" />
             <div className="font-display text-3xl md:text-4xl font-bold tracking-tight">Top 1%</div>
-            <p className="mt-1 text-sm text-amber-900/70">L3 cohorts unlock mentorship across Microsoft, Apple, Google & Salesforce.</p>
+            <p className="mt-1 text-sm text-amber-900/70">L3 cohorts unlock mentorship from top product companies like Microsoft, Apple, Google & Salesforce.</p>
           </motion.div>
 
           {/* Card 4 */}
