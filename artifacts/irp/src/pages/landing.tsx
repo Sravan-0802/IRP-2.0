@@ -1281,11 +1281,6 @@ function Hero({ onCta }: { onCta: () => void }) {
                   ))}
                 </div>
               </div>
-              <div className="absolute -top-6 -right-6 h-20 w-20 rounded-full gz-conic animate-gz-spin-slow opacity-90" />
-              <div className="absolute -top-4 -right-4 h-16 w-16 rounded-full bg-white" />
-              <div className="absolute -top-2 -right-2 flex h-12 w-12 items-center justify-center rounded-full bg-[#0B1D3A] shadow-lg">
-                <Sparkles className="h-5 w-5 animate-gz-wiggle text-amber-300" />
-              </div>
             </TiltCard>
           </motion.div>
         </div>
