@@ -1032,9 +1032,9 @@ function HeroComet({ delay = 0, top = "12%" }: { delay?: number; top?: string })
 function NavBar({ onCta }: { onCta: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const items: { id: string; label: string }[] = [
-    { id: "vibe", label: "Why IRP" },
     { id: "levels", label: "Levels" },
     { id: "courses", label: "Courses" },
+    { id: "vibe", label: "Why IRP" },
     { id: "stories", label: "Stories" },
     { id: "faq", label: "FAQ" },
   ];
