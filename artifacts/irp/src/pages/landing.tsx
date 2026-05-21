@@ -1130,7 +1130,7 @@ function Hero({ onCta }: { onCta: () => void }) {
       >
         <div className="flex flex-col lg:flex-row gap-10 items-start">
           <div className="flex-1 min-w-0">
-            <h1 className="font-display text-[clamp(2rem,5.5vw,4.25rem)] font-bold leading-[0.95] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]">
+            <h1 className="font-display text-[clamp(2.6rem,5.5vw,4.25rem)] font-bold leading-[0.95] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]">
               <motion.span
                 initial="hidden"
                 animate="show"
@@ -1158,12 +1158,22 @@ function Hero({ onCta }: { onCta: () => void }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="gz-gradient-text font-serif-display italic text-[clamp(1.65rem,4.5vw,3.25rem)]"
+                className="gz-gradient-text font-serif-display italic text-[clamp(2rem,4.5vw,3.25rem)]"
               >
                 your first stipend era.
               </motion.span>
             </h1>
 
+            {/* Mobile short paragraph */}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.55 }}
+              className="mt-5 text-sm text-white/75 leading-relaxed md:hidden"
+            >
+              Internship Readiness Path 2.0 — structured assessments, real projects.
+            </motion.p>
+            {/* Desktop full paragraph */}
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
