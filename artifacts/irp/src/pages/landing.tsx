@@ -1276,18 +1276,23 @@ function WhyBento({ onCta }: { onCta: () => void }) {
           >
             <div className="flex items-center gap-2 mb-4">
               <Award className="h-6 w-6 text-black" />
-              <span className="font-mono-ui text-[11px] uppercase tracking-[0.2em] font-bold">L3 Mentor Network</span>
+              <span className="font-mono-ui text-[11px] uppercase tracking-[0.2em] font-bold">Elite Mentors for L3</span>
             </div>
-            <Marquee
-              items={["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio"].map((c, i) => (
-                <span
-                  key={i}
-                  className="font-display text-3xl md:text-4xl font-bold tracking-tight whitespace-nowrap text-black/85"
-                >
-                  {c} ✦
-                </span>
-              ))}
-            />
+            <div className="overflow-hidden w-full">
+              <div
+                className="flex w-max items-center"
+                style={{ animation: "gz-marquee 28s linear infinite -14s" }}
+              >
+                {[...["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio"], ...["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio"]].map((c, i) => (
+                  <span
+                    key={i}
+                    className="font-display text-3xl md:text-4xl font-bold tracking-tight whitespace-nowrap text-black/85 px-6"
+                  >
+                    {c} ✦
+                  </span>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
           {/* Card 6 — quote */}
