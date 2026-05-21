@@ -1288,18 +1288,6 @@ function Hero({ onCta }: { onCta: () => void }) {
                     </motion.div>
                   ))}
                 </div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.1, duration: 0.5 }}
-                  className="mt-5 flex items-center justify-between rounded-2xl bg-[#0B1D3A] p-3 text-white"
-                >
-                  <span className="flex items-center gap-2 text-xs font-mono-ui text-white/85">
-                    <Unlock className="h-3.5 w-3.5 text-amber-300" />
-                    complete all three →
-                  </span>
-                  <span className="text-xs font-bold text-amber-300">₹25K+</span>
-                </motion.div>
               </div>
               <div className="absolute -top-6 -right-6 h-20 w-20 rounded-full gz-conic animate-gz-spin-slow opacity-90" />
               <div className="absolute -top-4 -right-4 h-16 w-16 rounded-full bg-white" />
