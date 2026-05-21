@@ -274,7 +274,6 @@ const FAQ = [
     questions: [
       { q: "Does clearing Level 1 make me eligible for internship opportunities?", a: "No. Clearing Level 1 alone does not make you eligible for internships. Internship opportunities unlock only after you clear both Level 1 and Level 2. Once you clear both, you become eligible for standard opportunities (₹5K–₹15K stipend range). If you are aiming for ₹25K+ stipend internships, you will additionally need to qualify for Level 3 — the Infinite Aura track." },
       { q: "What happens if I clear Level 1 but fail Level 2?", a: "You will not be eligible for internship opportunities until you clear Level 2 as well. Details on retake windows will be communicated separately. Reattempt for Level 2 and its timeline will be communicated whenever Level 2 reattempt happens." },
-      { q: "Are all assessments online?", a: "Yes. All rounds under IRP 2.0 — MCQs, projects, AI Mock Interview, and Human Mock Interview — are 100% online. There are no offline rounds." },
       { q: "Will the assessment on 14th June be online?", a: "Yes, the 14th June assessment (Level 1) is fully online." },
       { q: "Is there a deadline to complete all three levels?", a: "Specific deadlines will be communicated at each stage." },
       { q: "Will there be a second attempt if I miss or fail the June 14th assessment?", a: "Details on retake opportunities will be shared after Summer Batch 1. We will inform on the upcoming batch details soon thereafter. Watch your registered email for updates." },
@@ -320,14 +319,6 @@ const FAQ = [
     title: "NOC",
     questions: [
       { q: "What is an NOC, why is it required, and how does it work in the IRP 2.0 process?", a: "A No Objection Certificate (NOC) is an official letter from your college confirming they have no objection to you pursuing an internship while enrolled as a student. IRP 2.0 internship opportunities are full-time commitments — 5 to 6 days a week, up to 9 hours a day. Companies require this letter to confirm your college is aware and has no objections. Without it, you cannot accept any internship opportunity even after clearing the assessments. You do not need the NOC to appear for the assessments." },
-    ],
-  },
-  {
-    id: "opportunities",
-    title: "Where Opportunities Are Displayed",
-    questions: [
-      { q: "Where will internship opportunities be shown after I clear the levels?", a: "Internship opportunities will be displayed on the IRP 2.0 page — this will be your single destination for viewing and applying to opportunities. The Jobs Board used previously will not be used for IRP 2.0 opportunities." },
-      { q: "When will internship opportunities start appearing?", a: "Opportunities will be made available after students have completed the Level 1 and Level 2 assessments and results are processed. Watch your email for updates." },
     ],
   },
   {
