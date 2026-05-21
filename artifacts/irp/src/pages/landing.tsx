@@ -89,7 +89,7 @@ const LEVELS = [
     bg: "#FEF3C7",
     sections: [
       { label: "BE — NodeJS + Express", meta: "MCQ · 20 minutes · 20 questions" },
-      { label: "Database — SQL, NoSQL, MongoDB", meta: "MCQ + SQL coding · 80 minutes · 20 MCQ + 3 SQL" },
+      { label: "Database — SQL, NoSQL, MongoDB", meta: "20 MCQs + 3 SQL Coding Questions · 80 minutes" },
       { label: "GenAI", meta: "MCQ · 20 minutes · 20 questions" },
       { label: "Combined MCQ assessment", meta: "~2 hours total · 63 questions" },
     ],
