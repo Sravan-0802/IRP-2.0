@@ -1634,7 +1634,7 @@ function LevelsSection({ onCta }: { onCta: () => void }) {
                     style={{ background: lv.color }}
                   >
                     <Unlock className="h-4 w-4 shrink-0" />
-                    <span>Unlocks: {lv.unlocks}</span>
+                    <span>{lv.unlocks}</span>
                   </div>
                 </div>
               </TiltCard>
