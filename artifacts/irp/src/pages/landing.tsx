@@ -107,7 +107,7 @@ const LEVELS = [
     label: "Level 3",
     nickname: "Infinite Aura",
     tagline: "Top 1% track — ₹25K+ stipends & curated mentorship.",
-    date: "Clear L1 + L2",
+    date: "",
     duration: "Invite‑only cohort",
     icon: Trophy,
     color: "#F43F5E",
