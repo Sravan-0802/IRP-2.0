@@ -49,7 +49,7 @@ import { PageFeedbackButton } from "@/components/page-feedback-survey";
 const L1_ASSESSMENT_DATE = "14th June, 2026";
 const ASSESSMENT_TARGET = new Date("2026-06-14T03:30:00.000Z");
 const ASSESSMENT_DATE_LABEL = "L1 Hustler Assessment on 14th June, 2026! Mark your calendars.";
-const L1_ASSESSMENT_SHORT = L1_ASSESSMENT_DATE;
+const L1_ASSESSMENT_SHORT = `L1 Assessment on ${L1_ASSESSMENT_DATE}`;
 const L1_ASSESSMENT_FULL = ASSESSMENT_DATE_LABEL;
 
 const LEVELS = [
