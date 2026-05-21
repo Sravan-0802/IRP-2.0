@@ -2436,13 +2436,6 @@ function EliteOutcomesSection() {
             />
 
             <div className="relative flex flex-wrap items-start justify-between gap-3 p-5 md:p-7">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur px-3 py-1.5 font-mono-ui text-[10px] font-black uppercase tracking-[0.22em] text-white">
-                <span className="relative inline-flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-70 animate-ping" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                </span>
-                live · alumni inside
-              </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-400 text-black font-black text-[11px] px-3 py-1.5 uppercase tracking-widest shadow-[0_10px_40px_-12px_rgba(245,158,11,0.7)]">
                 ₹25K+ / month
               </span>
@@ -2455,9 +2448,6 @@ function EliteOutcomesSection() {
               <div className="mt-2 font-display text-2xl md:text-3xl font-black leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]">
                 Built for builders who outgrow the classroom.
               </div>
-              <p className="mt-2 max-w-md text-sm text-white/75">
-                T-Hub puts you inside India's startup ecosystem — mentor access, real demo days, and a campus that signals you're internship-ready.
-              </p>
             </div>
           </motion.div>
 
