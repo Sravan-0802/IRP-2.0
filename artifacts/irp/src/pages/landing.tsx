@@ -1516,22 +1516,6 @@ function LevelsSection({ onCta }: { onCta: () => void }) {
       <GlowOrb className="w-[380px] h-[380px] top-1/3 -left-24" color="violet" />
       <GlowOrb className="w-[420px] h-[420px] bottom-0 right-0" color="pink" />
       <div className="container mx-auto max-w-6xl px-5 md:px-8 relative">
-        <div className="mb-8 rounded-2xl border-2 border-[#1D4ED8]/25 bg-[#E0E7FF] px-5 py-4 md:px-6 md:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-[#1D4ED8]/80">
-              Next gate · register to appear
-            </p>
-            <p className="mt-1 font-display text-xl md:text-2xl font-bold text-[#0B1D3A] leading-tight">
-              Level 1 assessment · {L1_ASSESSMENT_FULL}
-            </p>
-          </div>
-          <button
-            onClick={onCta}
-            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#1D4ED8] text-white px-5 py-2.5 text-sm font-bold tracking-tight hover:bg-[#0B1D3A] transition-colors"
-          >
-            Register before {L1_ASSESSMENT_DATE} <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
         <div className="mb-12 flex items-center justify-between flex-wrap gap-5">
           <div>
             <SectionLabel accent="#1D4ED8">IRP 2.0 Journey</SectionLabel>
