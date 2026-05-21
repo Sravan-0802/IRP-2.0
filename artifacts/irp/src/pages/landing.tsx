@@ -56,7 +56,7 @@ const LEVELS = [
     nickname: "The Hustler",
     tagline: "Your entry point — foundational frontend and programming.",
     date: "14 Jun 2026",
-    duration: "~2 hrs assessment window",
+    duration: "~2 hrs assessment",
     icon: User,
     color: "#1D4ED8",
     bg: "#E0E7FF",
@@ -65,9 +65,9 @@ const LEVELS = [
       { label: "FE — HTML, CSS, JS, React", meta: "MCQ · 30 minutes · 30 questions" },
     ],
     post: [
-      "FE project · build & submit · 12 hours",
-      "AI mock interview (NxtMock) · project + resume · 1 hour",
-      "Human mock interview · project + resume · 1 hour",
+      "FE project · 12 hours",
+      "AI mock interview (NxtMock) · 1 hour",
+      "Human mock interview · 1 hour",
     ],
     unlocks: "Eligibility to appear for Level 2",
     postHeading: "Post Assessment",
@@ -90,9 +90,9 @@ const LEVELS = [
       { label: "Combined MCQ assessment", meta: "~2 hours total · 63 questions" },
     ],
     post: [
-      "Full stack + AI project · build & submit · 24 hours",
-      "AI mock interview · project + resume · 1 hour",
-      "Human mock interview · project + resume · 1 hour",
+      "Full stack + AI project · 24 hours",
+      "AI mock interview · 1 hour",
+      "Human mock interview · 1 hour",
     ],
     unlocks: "Internship opportunities (₹5K–₹15K) · access to L3 Infinite Aura",
     postHeading: "After the MCQ assessment",
@@ -1362,9 +1362,6 @@ function LevelsSection() {
               The IRP 2.0 Journey — Three Levels
             </h2>
           </div>
-          <p className="text-sm text-black/55 max-w-sm">
-            Each level mixes proctored assessments with build rounds and mock interviews. Timeline for Level 2 lands ~1 month after Level 1 (July last week tentative).
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:items-stretch">
@@ -1572,10 +1569,6 @@ function CoursesSection() {
                 <CourseList items={COURSES_L1.frontend} accent="#1D4ED8" icon={Code} title="Frontend Track" sub="5 courses" />
                 <div className="relative">
                   <CourseList items={COURSES_L1.coding} accent="#2563EB" icon={GitBranch} title="Coding Track" sub="2 courses" />
-                  <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-3 rotate-3 shadow-sm z-10 select-none transition-transform duration-300 hover:rotate-6 hover:scale-105 hover:shadow-md cursor-default">
-                    <p className="text-[11px] font-bold text-black/70 leading-snug">Code today<br />Change tomorrow</p>
-                    <span className="font-mono text-blue-500 font-bold text-sm mt-1 block">&lt;/&gt;</span>
-                  </div>
                 </div>
               </div>
               <div className="mt-4 flex items-center gap-1.5 text-[11px] font-bold font-mono-ui text-blue-600 uppercase tracking-[0.16em]">
@@ -1601,10 +1594,6 @@ function CoursesSection() {
                 <CourseList items={[...COURSES_L2.backend]} accent="#F59E0B" icon={Database} title="Backend Track" sub="4 courses" />
                 <div className="relative">
                   <CourseList items={[...COURSES_L2.genAi]} accent="#8B5CF6" icon={Star} title="Generative AI Track" sub="1 course" />
-                  <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-purple-50 border-2 border-purple-200 rounded-2xl p-3 -rotate-2 shadow-sm z-10 select-none transition-transform duration-300 hover:-rotate-6 hover:scale-105 hover:shadow-md cursor-default">
-                    <p className="text-[11px] font-bold text-black/70 leading-snug">AI isn't the<br />future.</p>
-                    <p className="text-[11px] font-bold text-purple-600 mt-0.5">It's now.</p>
-                  </div>
                 </div>
               </div>
               <div className="mt-4 flex items-center gap-1.5 text-[11px] font-bold font-mono-ui text-amber-600 uppercase tracking-[0.16em]">
@@ -1656,10 +1645,6 @@ function CoursesSection() {
                       ))}
                     </ul>
                   </div>
-                </div>
-                <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-3 rotate-1 shadow-sm z-10 select-none transition-transform duration-300 hover:rotate-3 hover:scale-105 hover:shadow-md cursor-default">
-                  <p className="text-[11px] font-bold text-black/60 leading-snug">Don't just<br />learn.</p>
-                  <p className="font-display text-xl font-black text-amber-500 mt-0.5 leading-none">BUILD.</p>
                 </div>
               </div>
             </div>
