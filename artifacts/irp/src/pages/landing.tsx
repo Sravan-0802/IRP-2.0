@@ -1101,9 +1101,13 @@ function Hero({ onCta }: { onCta: () => void }) {
 
   return (
     <section id="hero" ref={ref} className="relative overflow-hidden gz-grain bg-[#FAF7F0]">
-      <div className="absolute inset-x-0 top-0 z-20 h-1 bg-gradient-to-r from-[#0B1D3A] via-[#F59E0B] to-[#0B1D3A]" aria-hidden />
+      <div className="absolute inset-x-0 top-0 z-20 h-1 bg-gradient-to-r from-[#7C3AED] via-[#F59E0B] to-[#F43F5E]" aria-hidden />
       <div
-        className="absolute inset-x-0 top-0 z-0 h-[78%] min-h-[520px] md:min-h-[600px] bg-gradient-to-b from-[#050D1A] via-[#102A52] via-60% to-transparent"
+        className="absolute inset-x-0 top-0 z-0 h-[78%] min-h-[520px] md:min-h-[600px] bg-gradient-to-br from-[#0F0B2E] via-[#1E1B5E] via-40% to-[#3B1B5E] to-90%"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-x-0 top-0 z-0 h-[78%] min-h-[520px] md:min-h-[600px] bg-gradient-to-b from-transparent via-transparent to-[#FAF7F0]"
         aria-hidden
       />
       <div className="absolute inset-x-0 top-0 z-[1] h-[min(54vh,540px)] gz-hero-iit-grid" aria-hidden />
