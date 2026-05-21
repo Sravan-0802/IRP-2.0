@@ -947,7 +947,7 @@ function Hero({ onCta }: { onCta: () => void }) {
 
       <motion.div
         style={{ opacity: heroOpacity }}
-        className="relative z-10 container mx-auto max-w-6xl px-5 md:px-8 pt-8 md:pt-14 pb-10 md:pb-[min(400px,42vh)]"
+        className="relative z-10 container mx-auto max-w-6xl px-5 md:px-8 pt-8 md:pt-14 pb-10 md:pb-[min(200px,22vh)]"
       >
         <motion.div
           initial={{ opacity: 0, y: 8 }}
