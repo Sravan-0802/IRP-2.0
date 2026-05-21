@@ -1190,25 +1190,25 @@ function Hero({ onCta }: { onCta: () => void }) {
               </motion.span>
             </h1>
 
-            {/* Mobile short paragraph */}
-            <motion.p
+            <motion.ul
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className="mt-5 text-sm text-white/75 leading-relaxed md:hidden"
+              className="mt-5 flex flex-col gap-2"
             >
-              Internship Readiness Path 2.0 — structured assessments, real projects.
-            </motion.p>
-            {/* Desktop full paragraph */}
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.55 }}
-              className="mt-5 max-w-xl text-base md:text-lg text-white/75 leading-relaxed hidden md:block"
-            >
-              Internship Readiness Path 2.0 — structured assessments, real projects, and stipend-track internships for
-              YOG 2028 & 2029. Level up from frontend foundations to the top 1% L3 cohort.
-            </motion.p>
+              {[
+                "Real assessments",
+                "Real projects",
+                "Stipends from ₹5K to ₹25K+",
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-2.5 text-sm md:text-base text-white/85 font-medium">
+                  <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-400/20 border border-amber-400/40">
+                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </motion.ul>
 
             <motion.div
               initial={{ opacity: 0, y: 12 }}
