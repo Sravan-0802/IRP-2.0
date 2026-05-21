@@ -1274,21 +1274,20 @@ function WhyBento({ onCta }: { onCta: () => void }) {
             variants={item}
             className="col-span-12 md:col-span-7 relative rounded-3xl bg-emerald-200 p-6 md:p-7 overflow-hidden gz-magnet"
           >
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-2 mb-4">
               <Award className="h-6 w-6 text-black" />
-              <span className="font-mono-ui text-[11px] uppercase tracking-[0.2em] font-bold">elite mentors</span>
+              <span className="font-mono-ui text-[11px] uppercase tracking-[0.2em] font-bold">L3 Mentor Network</span>
             </div>
-            <Marquee
-              items={["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio"].map((c, i) => (
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 py-2">
+              {["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio"].map((c, i) => (
                 <span
                   key={i}
-                  className="font-display text-3xl md:text-5xl font-bold tracking-tight whitespace-nowrap text-black/85"
+                  className="font-display text-2xl md:text-4xl font-bold tracking-tight whitespace-nowrap text-black/85"
                 >
                   {c} ✦
                 </span>
               ))}
-              className="-mx-7"
-            />
+            </div>
           </motion.div>
 
           {/* Card 6 — quote */}
