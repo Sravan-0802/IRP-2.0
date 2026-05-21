@@ -31,7 +31,6 @@ import {
   Target,
   Cpu,
   GitBranch,
-  MousePointerClick,
   Brain,
   Unlock,
   Award,
@@ -638,23 +637,33 @@ function L1AssessmentDateBadge({
   );
 }
 
+const COUNTDOWN_UNIT_STYLES = [
+  { box: "border-blue-400/50 bg-blue-500/20 text-blue-50", label: "text-blue-300" },
+  { box: "border-amber-400/55 bg-amber-500/25 text-amber-50", label: "text-amber-300" },
+  { box: "border-emerald-400/50 bg-emerald-500/20 text-emerald-50", label: "text-emerald-300" },
+  { box: "border-rose-400/50 bg-rose-500/20 text-rose-50", label: "text-rose-300" },
+] as const;
+
 function CountdownUnit({
   value,
   label,
   pad,
+  styleIndex,
 }: {
   value: number;
   label: string;
   pad: (n: number) => string;
+  styleIndex: number;
 }) {
+  const style = COUNTDOWN_UNIT_STYLES[styleIndex % COUNTDOWN_UNIT_STYLES.length];
   return (
-    <div className="flex flex-col items-center min-w-[2.75rem] sm:min-w-[3.25rem]">
-      <span className="font-display text-[clamp(1.75rem,6vw,2.75rem)] font-black leading-none text-white tabular-nums">
+    <div className="flex flex-col items-center gap-1.5">
+      <div
+        className={`flex h-[3.25rem] w-[3.25rem] sm:h-14 sm:w-14 items-center justify-center rounded-lg border font-display text-xl sm:text-2xl font-bold tabular-nums shadow-sm ${style.box}`}
+      >
         {pad(value)}
-      </span>
-      <span className="mt-1 font-mono-ui text-[9px] font-bold uppercase tracking-widest text-white/40">
-        {label}
-      </span>
+      </div>
+      <span className={`font-mono-ui text-[9px] font-bold uppercase tracking-widest ${style.label}`}>{label}</span>
     </div>
   );
 }
@@ -667,21 +676,14 @@ function AssessmentCountdownCard() {
     <motion.div
       initial={{ opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.25 }}
-      className="relative mb-8 rounded-2xl border-2 border-white/10 bg-[#0B1D3A]/90 px-4 py-4 md:px-5 md:py-5 shadow-[4px_4px_0_0_rgba(245,158,11,0.4)]"
+      transition={{ duration: 0.6, delay: 0.85 }}
+      className="mt-8 max-w-md rounded-2xl border-2 border-[#0B1D3A]/20 bg-[#0B1D3A]/92 px-4 py-4 shadow-[4px_4px_0_0_rgba(245,158,11,0.35)] backdrop-blur-md"
     >
-      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-rose-400/50 bg-rose-500/15 px-2.5 py-1 font-mono-ui text-[10px] font-black uppercase tracking-widest text-rose-300">
-          <span className="h-1.5 w-1.5 rounded-full bg-rose-400 animate-pulse" aria-hidden />
-          {hasStarted ? "live now" : "l1 drop"}
-        </span>
-        <p className="font-display text-sm md:text-base font-bold text-white/90 whitespace-nowrap">
-          {L1_ASSESSMENT_SHORT}
-        </p>
-      </div>
-
+      <p className="font-mono-ui text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300 mb-3">
+        {hasStarted ? "L1 assessment · live now" : "L1 assessment in"}
+      </p>
       <div
-        className="mt-4 flex items-center justify-center gap-1 sm:gap-2"
+        className="flex items-center gap-2 sm:gap-3"
         role="timer"
         aria-live="polite"
         aria-label={
@@ -690,19 +692,10 @@ function AssessmentCountdownCard() {
             : `Time left: ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
         }
       >
-        <CountdownUnit value={days} label="d" pad={pad} />
-        <span className="pb-4 font-display text-xl sm:text-2xl font-black text-amber-400/80" aria-hidden>
-          :
-        </span>
-        <CountdownUnit value={hours} label="h" pad={pad} />
-        <span className="pb-4 font-display text-xl sm:text-2xl font-black text-amber-400/80" aria-hidden>
-          :
-        </span>
-        <CountdownUnit value={minutes} label="m" pad={pad} />
-        <span className="pb-4 font-display text-xl sm:text-2xl font-black text-amber-400/80" aria-hidden>
-          :
-        </span>
-        <CountdownUnit value={seconds} label="s" pad={pad} />
+        <CountdownUnit value={days} label="days" pad={pad} styleIndex={0} />
+        <CountdownUnit value={hours} label="hrs" pad={pad} styleIndex={1} />
+        <CountdownUnit value={minutes} label="min" pad={pad} styleIndex={2} />
+        <CountdownUnit value={seconds} label="sec" pad={pad} styleIndex={3} />
       </div>
     </motion.div>
   );
@@ -1135,19 +1128,9 @@ function Hero({ onCta }: { onCta: () => void }) {
         style={{ opacity: heroOpacity }}
         className="relative z-10 container mx-auto max-w-6xl px-5 md:px-8 pt-8 md:pt-14 pb-[min(210px,23vh)]"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-          className="mb-7 flex flex-col sm:flex-row sm:items-center sm:gap-4 gap-2"
-        >
-          <span className="font-serif-display text-lg md:text-xl italic text-amber-200/95">Internship Readiness Path 2.0</span>
-        </motion.div>
-
         <div className="flex flex-col lg:flex-row gap-10 items-start">
           <div className="flex-1 min-w-0">
-            <AssessmentCountdownCard />
-            <h1 className="font-display text-[clamp(2.6rem,8vw,6.2rem)] font-bold leading-[0.92] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]">
+            <h1 className="font-display text-[clamp(2rem,5.5vw,4.25rem)] font-bold leading-[0.95] tracking-tight text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]">
               <motion.span
                 initial="hidden"
                 animate="show"
@@ -1175,29 +1158,42 @@ function Hero({ onCta }: { onCta: () => void }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="gz-gradient-text font-serif-display italic"
+                className="gz-gradient-text font-serif-display italic text-[clamp(1.65rem,4.5vw,3.25rem)]"
               >
                 your first stipend era.
               </motion.span>
             </h1>
 
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.55 }}
+              className="mt-5 max-w-xl text-base md:text-lg text-white/75 leading-relaxed"
+            >
+              Internship Readiness Path 2.0 — structured assessments, real projects, and stipend-track internships for
+              YOG 2028 & 2029. Level up from frontend foundations to the top 1% L3 cohort.
+            </motion.p>
+
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="relative z-20 mt-8 flex flex-wrap gap-3 items-center"
+              transition={{ duration: 0.6, delay: 0.65 }}
+              className="relative z-20 mt-8 flex flex-col items-start gap-4"
             >
               <MagneticButton onClick={onCta} variant="primary">
                 Register for IRP 2.0
               </MagneticButton>
               <button
+                type="button"
                 onClick={() => document.getElementById("levels")?.scrollIntoView({ behavior: "smooth" })}
-                className="group inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold tracking-tight border border-[#0B1D3A] text-white bg-[#0B1D3A]/85 hover:bg-[#0B1D3A] backdrop-blur-sm transition-colors shadow-md"
+                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-white/80 hover:text-white transition-colors"
               >
-                <MousePointerClick className="h-4 w-4 text-amber-300" />
                 View the pathway
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </button>
             </motion.div>
+
+            <AssessmentCountdownCard />
           </div>
 
           {/* Right preview card stack */}
