@@ -2432,22 +2432,6 @@ function EliteOutcomesSection() {
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
 
-                <div className="relative flex items-start justify-between gap-2 p-5">
-                  <span
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 bg-white/10 backdrop-blur"
-                    style={{ color: t.accent }}
-                  >
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  {t.eyebrow && (
-                    <span
-                      className="font-mono-ui text-[10px] font-black uppercase tracking-[0.24em]"
-                      style={{ color: t.accent }}
-                    >
-                      {t.eyebrow}
-                    </span>
-                  )}
-                </div>
 
                 <div className="relative mt-auto p-5">
                   <div className="font-display text-lg md:text-xl font-bold leading-tight drop-shadow-[0_1px_6px_rgba(0,0,0,0.6)]">
