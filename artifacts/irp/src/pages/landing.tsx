@@ -2174,40 +2174,32 @@ function Footer({ onCta }: { onCta: () => void }) {
    ========================================================================= */
 
 const ELITE_HERO_IMAGE =
-  "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1600&q=72";
+  "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1600&q=72";
 
 const ELITE_TILES = [
   {
     title: "Innovation Labs",
-    sub: "Cutting-edge engineering teams",
+    sub: "Cutting-edge engineering teams solving real-world problems.",
     icon: Brain,
     accent: "#A78BFA",
     image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    title: "Corporate HQs",
-    sub: "Global tech headquarters",
-    icon: Building2,
-    accent: "#60A5FA",
-    image:
-      "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=70",
+      "https://upload.wikimedia.org/wikipedia/commons/1/15/MindSpace_campus_in_Hyderabad,_India.jpg",
   },
   {
     title: "R&D Centers",
-    sub: "Where real products ship",
+    sub: "Where real products ship and ideas turn into impact.",
     icon: Sparkles,
     accent: "#34D399",
     image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=70",
+      "https://upload.wikimedia.org/wikipedia/commons/e/e1/Bagmane_Tech_Park_Bangalore_India.jpg",
   },
   {
     title: "Tech Parks",
-    sub: "Modern innovation campuses",
+    sub: "Modern innovation campuses built for the future you.",
     icon: Globe,
     accent: "#F59E0B",
     image:
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=70",
+      "https://img.staticmb.com/mbcontent/images/crop/uploads/2026/5/IT-parks-in-India_0_1200.jpg.webp",
   },
 ] as const;
 
