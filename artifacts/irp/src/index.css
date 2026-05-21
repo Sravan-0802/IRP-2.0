@@ -321,7 +321,7 @@
 
 @layer base {
   * { @apply border-border; }
-  html, body { background-color: #FAF7F0; color: #0A0A0A; }
+  html, body { background-color: #FAF7F0; color: #0A0A0A; overflow-x: hidden; max-width: 100%; }
   body {
     @apply font-sans antialiased scroll-smooth;
     font-feature-settings: "ss01", "cv11";
