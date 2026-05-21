@@ -2398,7 +2398,7 @@ function EliteOutcomesSection() {
 
             <div className="relative mt-auto p-5 md:p-7">
               <span className="font-mono-ui text-[10px] font-black uppercase tracking-[0.28em] text-amber-300/90">
-                Hyderabad · T-Hub
+                Hyderabad
               </span>
               <div className="mt-2 font-display text-2xl md:text-3xl font-black leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]">
                 Build, launch, and grow with real-world opportunities.
