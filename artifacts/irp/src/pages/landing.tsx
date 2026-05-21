@@ -2542,9 +2542,9 @@ export default function LandingPage() {
         <Hero onCta={onCta} />
         <TickerStrip />
         <StatsBar />
-        <WhyBento onCta={onCta} />
         <LevelsSection onCta={onCta} />
         <CoursesSection />
+        <WhyBento onCta={onCta} />
         <TestimonialsSection />
         <EliteOutcomesSection />
         <ChecklistSection onCta={onCta} />
