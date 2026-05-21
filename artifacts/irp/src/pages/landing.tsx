@@ -1034,7 +1034,6 @@ function NavBar({ onCta }: { onCta: () => void }) {
           ))}
         </ul>
         <div className="flex items-center gap-2">
-          <L1AssessmentDateBadge tone="light" className="hidden md:inline-flex shrink-0" />
           <button
             onClick={onCta}
             className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-black text-white px-4 py-2 text-xs font-bold tracking-tight hover:bg-blue-600 transition-colors"
@@ -1067,9 +1066,6 @@ function NavBar({ onCta }: { onCta: () => void }) {
                 {it.label}
               </button>
             ))}
-            <div className="mt-3 flex justify-center">
-              <L1AssessmentDateBadge tone="light" className="text-[9px]" />
-            </div>
             <button
               onClick={() => {
                 setMenuOpen(false);
