@@ -65,7 +65,7 @@ const LEVELS = [
     color: "#1D4ED8",
     bg: "#E0E7FF",
     sections: [
-      { label: "Problem Solving (Python / C++)", meta: "Coding · 1.5 hours · 4 questions" },
+      { label: "Problem Solving (Python / C++)", meta: "Coding · 90 Minutes · 4 questions" },
       { label: "FE — HTML, CSS, JS, React", meta: "MCQ · 30 minutes · 30 questions" },
     ],
     post: [
