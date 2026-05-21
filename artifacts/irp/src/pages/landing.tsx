@@ -2315,7 +2315,7 @@ const ELITE_TILES = [
     sub: "",
     icon: Cpu,
     accent: "#60A5FA",
-    image: "/top1-engineering.png",
+    image: "/t-hub-campus.png",
   },
   {
     eyebrow: "",
