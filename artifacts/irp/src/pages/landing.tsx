@@ -2405,7 +2405,7 @@ function EliteOutcomesSection() {
                 Hyderabad · T-Hub
               </span>
               <div className="mt-2 font-display text-2xl md:text-3xl font-black leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]">
-                Built for builders who outgrow the classroom.
+                Build, launch, and grow with real-world opportunities.
               </div>
             </div>
           </motion.div>
