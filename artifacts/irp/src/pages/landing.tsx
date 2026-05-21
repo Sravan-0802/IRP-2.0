@@ -334,7 +334,7 @@ const FAQ = [
   },
 ] as const;
 
-const REGISTER_URL = "https://forms.ccbp.in/form/irp-2-online-registration";
+const REGISTER_URL = "https://forms.ccbp.in/form/irp-registration";
 
 /** Academy internship proof — rounded for marketing; see footnotes on page for methodology */
 const ACADEMY_INTERNSHIP_STATS = {
