@@ -124,7 +124,7 @@ const LEVELS = [
       "Interactions with NxtWave's founding team",
     ],
     unlocks: "Only for students who complete the full IRP 2.0 path",
-    sectionsHeading: "Eligibility pillars",
+    sectionsHeading: "Eligibility pillars (after clearing L1 and L2)",
     postHeading: "What L3 Offers:",
   },
 ] as const;
