@@ -98,7 +98,7 @@ const LEVELS = [
       "Human mock interview · 1 hour",
     ],
     unlocks: "Internship opportunities (₹5K–₹15K) · access to L3 Infinite Aura",
-    postHeading: "After the MCQ assessment",
+    postHeading: "Post Assessment",
   },
   {
     n: "03",
