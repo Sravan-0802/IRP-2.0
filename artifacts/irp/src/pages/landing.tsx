@@ -326,7 +326,7 @@ const FAQ = [
     title: "Courses & Platform",
     questions: [
       { q: "Where do I find the courses I need to study?", a: "All courses are available in your NxtWave Learning Portal. The course names mapped to Level 1 and Level 2 are listed in the \"Courses to Prepare\" section above." },
-      { q: "Will a preparation roadmap be provided?", a: "Yes. Preparation guidance will be shared through email and our Guidance Meets. The IRP 2.0 page will also have course mapping details." },
+      { q: "Will a preparation roadmap be provided?", a: "What to study and prepare are already outlined here in the page. Additionally we will be holding IRP 2.0 Guidance meets on our Learning Portal!" },
       { q: "Does completing IRP contribute to Growth Cycle progress?", a: "IRP assessments and Growth Cycles are separate tracks. Completing courses in your Growth Cycle is important for IRP preparation, but IRP completion itself does not directly increment Growth Cycle progress." },
       { q: "Can I use VS Code or other tools for the project rounds?", a: "Yes. You can use your preferred IDE (VS Code, etc.) for the project rounds. The submission format will be specified when the project brief is shared." },
     ],
