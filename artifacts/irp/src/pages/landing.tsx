@@ -1048,13 +1048,6 @@ function Hero({ onCta }: { onCta: () => void }) {
                 View the pathway
               </button>
 
-              <div className="hidden md:flex items-center gap-2 ml-2 text-xs text-white/45">
-                <span className="font-mono-ui text-amber-200/80">{`//`}</span>
-                <span>
-                  {ACADEMY_PLACEMENT_STATS.allSource.companies.toLocaleString()}+ companies ·{" "}
-                  {ACADEMY_PLACEMENT_STATS.allSource.students.toLocaleString()}+ students placed
-                </span>
-              </div>
             </motion.div>
           </div>
 
@@ -1300,7 +1293,7 @@ function WhyBento({ onCta }: { onCta: () => void }) {
               <span className="font-mono-ui text-[11px] uppercase tracking-[0.2em] font-bold">elite mentors</span>
             </div>
             <Marquee
-              items={["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio", "Chirpn IT", "2xCabs"].map((c, i) => (
+              items={["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio"].map((c, i) => (
                 <span
                   key={i}
                   className="font-display text-3xl md:text-5xl font-bold tracking-tight whitespace-nowrap text-black/85"
