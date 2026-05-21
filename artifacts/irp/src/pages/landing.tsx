@@ -124,7 +124,7 @@ const LEVELS = [
     ],
     unlocks: "Curated opportunities for students who complete the full IRP path",
     sectionsHeading: "Eligibility pillars",
-    postHeading: "What you unlock after L1 + L2",
+    postHeading: "What L3 has in store for you!",
   },
 ] as const;
 
