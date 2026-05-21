@@ -1014,7 +1014,7 @@ function Hero({ onCta }: { onCta: () => void }) {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="mt-7 max-w-xl text-lg md:text-xl text-white/95 leading-relaxed"
+              className="mt-7 max-w-xl text-lg md:text-xl text-white leading-relaxed [text-shadow:0_1px_6px_rgba(5,13,26,0.55)]"
             >
               Built for 1st & 2nd year students — the same rigour you expect on campus, pointed at real companies and
               paid internships. Three levels. Real assessments. Real projects. Stipends from ₹5K to ₹25K+.
@@ -1031,7 +1031,7 @@ function Hero({ onCta }: { onCta: () => void }) {
               </MagneticButton>
               <button
                 onClick={() => document.getElementById("levels")?.scrollIntoView({ behavior: "smooth" })}
-                className="group inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold tracking-tight border border-white/60 text-white bg-white/20 hover:bg-white/30 hover:border-amber-400 backdrop-blur-sm transition-colors"
+                className="group inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold tracking-tight border border-[#0B1D3A] text-white bg-[#0B1D3A]/85 hover:bg-[#0B1D3A] backdrop-blur-sm transition-colors shadow-md"
               >
                 <MousePointerClick className="h-4 w-4 text-amber-300" />
                 View the pathway
