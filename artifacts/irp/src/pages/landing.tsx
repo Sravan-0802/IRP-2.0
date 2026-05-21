@@ -912,7 +912,7 @@ function Hero({ onCta }: { onCta: () => void }) {
     <section id="hero" ref={ref} className="relative overflow-hidden gz-grain bg-[#FAF7F0]">
       <div className="absolute inset-x-0 top-0 z-20 h-1 bg-gradient-to-r from-[#0B1D3A] via-[#F59E0B] to-[#0B1D3A]" aria-hidden />
       <div
-        className="absolute inset-x-0 top-0 z-0 h-[62%] min-h-[400px] md:min-h-[480px] bg-gradient-to-b from-[#050D1A] via-[#102A52] to-transparent"
+        className="absolute inset-x-0 top-0 z-0 h-[78%] min-h-[520px] md:min-h-[600px] bg-gradient-to-b from-[#050D1A] via-[#102A52] via-60% to-transparent"
         aria-hidden
       />
       <div className="absolute inset-x-0 top-0 z-[1] h-[min(54vh,540px)] gz-hero-iit-grid" aria-hidden />
@@ -1014,7 +1014,7 @@ function Hero({ onCta }: { onCta: () => void }) {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="mt-7 max-w-xl text-lg md:text-xl text-white leading-relaxed [text-shadow:0_1px_6px_rgba(5,13,26,0.55)]"
+              className="mt-7 max-w-xl text-lg md:text-xl text-white leading-relaxed [text-shadow:0_2px_10px_rgba(5,13,26,1),_0_0_24px_rgba(5,13,26,0.8)]"
             >
               Built for 1st & 2nd year students — the same rigour you expect on campus, pointed at real companies and
               paid internships. Three levels. Real assessments. Real projects. Stipends from ₹5K to ₹25K+.
