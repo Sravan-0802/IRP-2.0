@@ -2315,7 +2315,7 @@ const ELITE_HERO_IMAGE = "/thub-campus.png";
 
 const ELITE_TILES = [
   {
-    eyebrow: "01 · build",
+    eyebrow: "",
     title: "Real desks. Real teams. Real work.",
     sub: "",
     icon: Cpu,
