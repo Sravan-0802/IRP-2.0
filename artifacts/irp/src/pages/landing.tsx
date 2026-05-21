@@ -1459,7 +1459,7 @@ function WhyBento({ onCta }: { onCta: () => void }) {
           >
             <div className="flex items-center gap-2 shrink-0">
               <Award className="h-6 w-6 text-black" />
-              <span className="font-mono-ui text-[11px] uppercase tracking-[0.2em] font-bold">Elite Mentors for L3</span>
+              <span className="font-mono-ui text-[11px] uppercase tracking-[0.2em] font-bold">Elite Mentors for L3 Cleared Cohort</span>
             </div>
             <MentorBrandMarquee />
           </motion.div>
