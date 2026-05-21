@@ -1416,7 +1416,9 @@ function LevelsSection() {
                       <span className="gz-tag bg-white/60 text-black/60">{lv.duration}</span>
                     </div>
                     <h3 className="font-display text-2xl md:text-3xl font-bold leading-tight">{lv.nickname}</h3>
-                    <p className="mt-1 text-sm text-black/60 font-serif-display italic">{lv.tagline}</p>
+                    <p className="mt-1 text-sm font-serif-display italic">
+                      <span className="bg-amber-300/80 text-black/90 px-1 py-0.5 leading-relaxed box-decoration-clone">{lv.tagline}</span>
+                    </p>
                   </div>
                   <div className="rounded-2xl bg-white/65 backdrop-blur-sm p-4 border border-black/5">
                     <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] text-black/55 mb-2">
