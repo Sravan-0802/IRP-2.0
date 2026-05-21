@@ -123,7 +123,7 @@ const LEVELS = [
       "Unlock mentorship from mentors of top product-based companies such as Salesforce, Google, Microsoft!",
       "Interactions with NxtWave's founding team",
     ],
-    unlocks: "Curated opportunities for students who complete the full IRP path",
+    unlocks: "Only for students who complete the full IRP 2.0 path",
     sectionsHeading: "Eligibility pillars",
     postHeading: "What L3 has in store for you!",
   },
