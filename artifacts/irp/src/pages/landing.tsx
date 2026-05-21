@@ -1522,10 +1522,12 @@ function LevelsSection({ onCta }: { onCta: () => void }) {
             <h2 className="mt-3 font-display text-4xl md:text-6xl font-bold leading-[0.95] tracking-tight max-w-3xl">
               The IRP 2.0 Journey — Three Levels
             </h2>
-            <p className="mt-4 text-base text-black/60 max-w-2xl">
-              L1 kicks off on <span className="font-bold text-black/85">{L1_ASSESSMENT_FULL}</span> — register to receive
-              your assessment link and prep roadmap.
-            </p>
+            <button
+              onClick={onCta}
+              className="mt-4 inline-flex items-center gap-2 rounded-full border-2 border-[#1D4ED8]/30 bg-[#E0E7FF] px-4 py-2 text-sm font-bold text-[#1D4ED8] hover:bg-[#1D4ED8] hover:text-white hover:border-[#1D4ED8] transition-all duration-200"
+            >
+              L1 kicks off on {L1_ASSESSMENT_FULL} — Register <ArrowRight className="h-3.5 w-3.5" />
+            </button>
           </div>
           <AssessmentCountdownCard />
         </div>
