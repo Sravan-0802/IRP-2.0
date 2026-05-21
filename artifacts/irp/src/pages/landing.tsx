@@ -1384,8 +1384,8 @@ function LevelsSection() {
                       <lv.icon className="h-6 w-6" />
                     </div>
                   </div>
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2 mb-2 min-h-[3.5rem] content-start">
+                  <div className="min-h-[10rem]">
+                    <div className="flex flex-wrap items-center gap-2 mb-2 min-h-[4rem] content-start">
                       <span
                         className="gz-tag"
                         style={{ background: `${lv.color}1A`, color: lv.color }}
@@ -1396,7 +1396,7 @@ function LevelsSection() {
                       <span className="gz-tag bg-white/60 text-black/60">{lv.duration}</span>
                     </div>
                     <h3 className="font-display text-2xl md:text-3xl font-bold leading-tight">{lv.nickname}</h3>
-                    <p className="mt-1 text-sm font-serif-display italic">
+                    <p className="mt-1 text-sm font-serif-display italic min-h-[2.75rem]">
                       <span className="bg-amber-300/80 text-black/90 px-1 py-0.5 leading-relaxed box-decoration-clone">{lv.tagline}</span>
                     </p>
                   </div>
