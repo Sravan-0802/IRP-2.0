@@ -2316,8 +2316,8 @@ const ELITE_HERO_IMAGE = "/thub-campus.png";
 const ELITE_TILES = [
   {
     eyebrow: "01 · build",
-    title: "Engineering Studios",
-    sub: "Ship to prod with senior engineers — not babysit Jira.",
+    title: "Real desks. Real teams. Real work.",
+    sub: "",
     icon: Cpu,
     accent: "#60A5FA",
     image: "/top1-engineering.png",
@@ -2451,9 +2451,11 @@ function EliteOutcomesSection() {
                   <div className="font-display text-lg md:text-xl font-bold leading-tight drop-shadow-[0_1px_6px_rgba(0,0,0,0.6)]">
                     {t.title}
                   </div>
-                  <p className="mt-1.5 text-[12.5px] md:text-sm text-white/80 max-w-[28ch] leading-snug">
-                    {t.sub}
-                  </p>
+                  {t.sub && (
+                    <p className="mt-1.5 text-[12.5px] md:text-sm text-white/80 max-w-[28ch] leading-snug">
+                      {t.sub}
+                    </p>
+                  )}
                 </div>
 
                 <div
