@@ -78,7 +78,7 @@ const LEVELS = [
     label: "Level 2",
     nickname: "The Main Character",
     tagline: "Backend, databases & GenAI — the full‑stack layer.",
-    date: "≈1 month after L1",
+    date: "",
     duration: "~2 hrs MCQ (+ post rounds)",
     icon: Cpu,
     color: "#F59E0B",
@@ -634,18 +634,7 @@ type SkylineBuilding = {
 };
 
 /** Curated list of tenants for the corporate skyline — order = priority on tallest towers */
-const SKYLINE_BRANDS = [
-  "GOOGLE",
-  "MICROSOFT",
-  "AMAZON",
-  "APPLE",
-  "META",
-  "SALESFORCE",
-  "NETFLIX",
-  "ADOBE",
-  "NVIDIA",
-  "IBM",
-] as const;
+const SKYLINE_BRANDS: readonly string[] = [];
 
 function generateSkylineBuildings(seed = 1): SkylineBuilding[] {
   let s = seed;
@@ -1025,7 +1014,7 @@ function Hero({ onCta }: { onCta: () => void }) {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="mt-7 max-w-xl text-lg md:text-xl text-white/75 leading-relaxed"
+              className="mt-7 max-w-xl text-lg md:text-xl text-white/95 leading-relaxed"
             >
               Built for 1st & 2nd year students — the same rigour you expect on campus, pointed at real companies and
               paid internships. Three levels. Real assessments. Real projects. Stipends from ₹5K to ₹25K+.
@@ -1042,7 +1031,7 @@ function Hero({ onCta }: { onCta: () => void }) {
               </MagneticButton>
               <button
                 onClick={() => document.getElementById("levels")?.scrollIntoView({ behavior: "smooth" })}
-                className="group inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold tracking-tight border border-white/25 text-white bg-white/[0.06] hover:bg-white/[0.12] hover:border-amber-400/50 backdrop-blur-sm transition-colors"
+                className="group inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold tracking-tight border border-white/60 text-white bg-white/20 hover:bg-white/30 hover:border-amber-400 backdrop-blur-sm transition-colors"
               >
                 <MousePointerClick className="h-4 w-4 text-amber-300" />
                 View the pathway
@@ -1089,7 +1078,6 @@ function Hero({ onCta }: { onCta: () => void }) {
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="text-sm font-bold leading-tight">{lv.nickname}</div>
-                        <div className="font-mono-ui text-[11px] text-black/55">{lv.duration}</div>
                       </div>
                       <ChevronRight className="h-4 w-4 shrink-0 opacity-40" />
                     </motion.div>
@@ -1235,9 +1223,7 @@ function WhyBento({ onCta }: { onCta: () => void }) {
               shipping real code.
             </h3>
             <p className="mt-5 text-white/65 text-base max-w-md">
-              Academy has placed {ACADEMY_PLACEMENT_STATS.allSource.students.toLocaleString()}+ students across{" "}
-              {ACADEMY_PLACEMENT_STATS.allSource.companies.toLocaleString()}+ companies — real builds, real stipends, not
-              shadowing.
+              Real builds, real stipends, not shadowing.
             </p>
             <button
               onClick={() => document.getElementById("stories")?.scrollIntoView({ behavior: "smooth" })}
@@ -1402,7 +1388,7 @@ function LevelsSection() {
                       >
                         {lv.label}
                       </span>
-                      <span className="gz-tag bg-white/60 text-black/60">{lv.date}</span>
+                      {lv.date && <span className="gz-tag bg-white/60 text-black/60">{lv.date}</span>}
                       <span className="gz-tag bg-white/60 text-black/60">{lv.duration}</span>
                     </div>
                     <h3 className="font-display text-2xl md:text-3xl font-bold leading-tight">{lv.nickname}</h3>
@@ -1410,7 +1396,7 @@ function LevelsSection() {
                       <span className="bg-amber-300/80 text-black/90 px-1 py-0.5 leading-relaxed box-decoration-clone">{lv.tagline}</span>
                     </p>
                   </div>
-                  <div className="rounded-2xl bg-white/65 backdrop-blur-sm p-4 border border-black/5">
+                  <div className="rounded-2xl bg-white/65 backdrop-blur-sm p-4 border border-black/5 flex-1">
                     <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] text-black/55 mb-2">
                       {"sectionsHeading" in lv && (lv as { sectionsHeading?: string }).sectionsHeading
                         ? (lv as { sectionsHeading: string }).sectionsHeading
