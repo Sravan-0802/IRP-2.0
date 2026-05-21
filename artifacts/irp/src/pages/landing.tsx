@@ -1124,15 +1124,6 @@ function Hero({ onCta }: { onCta: () => void }) {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.35, duration: 0.6 }}
-          className="mt-14 flex items-center gap-3 text-xs font-mono-ui uppercase tracking-[0.28em] text-white/40"
-        >
-          <span className="h-px w-12 bg-gradient-to-r from-transparent to-amber-400/60" />
-          continue to programme details<span className="animate-gz-blink text-amber-300">_</span>
-        </motion.div>
       </motion.div>
     </section>
   );
