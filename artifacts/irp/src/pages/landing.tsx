@@ -677,7 +677,7 @@ function AssessmentCountdownCard() {
       initial={{ opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.85 }}
-      className="mt-8 max-w-md rounded-2xl border-2 border-[#0B1D3A]/20 bg-[#0B1D3A]/92 px-4 py-4 shadow-[4px_4px_0_0_rgba(245,158,11,0.35)] backdrop-blur-md"
+      className="mt-8 w-fit rounded-2xl border-2 border-[#0B1D3A]/20 bg-[#0B1D3A]/92 px-4 py-4 shadow-[4px_4px_0_0_rgba(245,158,11,0.35)] backdrop-blur-md"
     >
       <p className="font-mono-ui text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300 mb-3">
         {hasStarted ? "L1 assessment · live now" : "L1 assessment in"}
