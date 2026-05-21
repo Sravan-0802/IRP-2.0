@@ -2324,8 +2324,8 @@ const ELITE_TILES = [
   },
   {
     eyebrow: "02 · launch",
-    title: "Product Squads",
-    sub: "Real features. Real users. Your name in the changelog.",
+    title: "Not a simulation. An actual internship.",
+    sub: "",
     icon: Rocket,
     accent: "#F59E0B",
     image: "/top1-product.png",
