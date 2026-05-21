@@ -2067,8 +2067,7 @@ function RegisterSection({ onCta }: { onCta: () => void }) {
             </h2>
             <p className="mt-6 text-base md:text-lg text-white/70 max-w-xl leading-relaxed">
               Register now for the Summer 2026 cohort (YOG 2028 & 2029). Your Level 1 assessment is on{" "}
-              <span className="font-bold text-white">{L1_ASSESSMENT_DATE}</span> — watch your registered email for the
-              hall ticket and prep updates.
+              <span className="font-bold text-white">{L1_ASSESSMENT_DATE}</span> — watch your registered email updates.
             </p>
           </div>
           <div className="lg:col-span-5">
