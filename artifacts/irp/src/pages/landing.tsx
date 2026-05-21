@@ -1385,7 +1385,7 @@ function LevelsSection() {
                     </div>
                   </div>
                   <div>
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <div className="flex flex-wrap items-center gap-2 mb-2 min-h-[3.5rem] content-start">
                       <span
                         className="gz-tag"
                         style={{ background: `${lv.color}1A`, color: lv.color }}
