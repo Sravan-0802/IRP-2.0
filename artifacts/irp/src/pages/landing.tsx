@@ -157,12 +157,15 @@ const COURSES_L3 = {
   dsa: [
     { name: "DSA — Level 2", url: "https://learning.ccbp.in/course?c_id=229cbe49-f4c4-4aa2-bcc6-55ea3e15e159" },
     { name: "DSA — Level 3", url: "https://learning.ccbp.in/course?c_id=68d141a9-3a73-4bc3-8d8c-cfff7ec8a4be&s_id=696cf715-22e7-4587-ac63-6c5df7427ad5&t_id=009e5ade-f694-4a42-8dbf-544f06a4da1e" },
+    { name: "System Design Level 1 & 2", url: "https://learning.ccbp.in/" },
+    { name: "DevOps, Cloud & AI/ML Stack", url: "https://learning.ccbp.in/" },
   ],
   practice: [
-    { name: "CodeChef (aim for rating > 1600 for L3)", url: "https://www.codechef.com" },
-    { name: "LeetCode (supporting practice)", url: "https://leetcode.com" },
+    { name: "Practice Platform", url: "https://learning.ccbp.in/" },
+    { name: "CodeChef (for rating > 1600)", url: "https://www.codechef.com" },
+    { name: "LeetCode (Upskilling Practice)", url: "https://leetcode.com" },
+    { name: "Soft Skills, Aptitude & Interview Prep", url: "https://learning.ccbp.in/" },
   ],
-
 };
 
 const TESTIMONIALS = [
@@ -1485,41 +1488,35 @@ function LevelsSection() {
 function CourseList({
   items,
   accent,
-  bg,
   icon: Icon,
   title,
   sub,
 }: {
-  items: { name: string; url: string }[];
+  items: { name: string; url: string }[] | readonly { name: string; url: string }[];
   accent: string;
-  bg: string;
+  bg?: string;
   icon: typeof Code;
   title: string;
   sub?: string;
 }) {
   return (
-    <div className="rounded-2xl border-2 overflow-hidden bg-white" style={{ borderColor: `${accent}22` }}>
-      <div className="px-4 py-3 flex items-center gap-2" style={{ background: accent, color: "#fff" }}>
-        <Icon className="h-4 w-4 shrink-0" />
-        <span className="text-sm font-bold tracking-tight">{title}</span>
-        {sub && <span className="ml-auto gz-tag bg-white/20 text-white shrink-0">{sub}</span>}
+    <div className="rounded-2xl border overflow-hidden bg-white shadow-sm" style={{ borderColor: `${accent}28` }}>
+      <div className="px-4 py-2.5 flex items-center gap-2 border-b" style={{ borderColor: `${accent}18` }}>
+        <Icon className="h-3.5 w-3.5 shrink-0" style={{ color: accent }} />
+        <span className="text-sm font-bold text-black/85">{title}</span>
+        {sub && (
+          <span className="ml-auto text-[10px] font-bold font-mono-ui uppercase tracking-wider px-2 py-0.5 rounded-full" style={{ background: `${accent}15`, color: accent }}>
+            {sub}
+          </span>
+        )}
       </div>
-      <ul className="divide-y divide-black/5">
+      <ul>
         {items.map((c, i) => (
-          <li key={i}>
-            <a
-              href={c.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-between gap-2 px-4 py-3 hover:bg-black/[0.03] transition-colors group"
-            >
-              <span className="text-sm font-medium text-black/85 group-hover:translate-x-1 transition-transform">
-                {c.name}
-              </span>
-              <ArrowUpRight
-                className="h-4 w-4 shrink-0 opacity-30 group-hover:opacity-100 transition-opacity"
-                style={{ color: accent }}
-              />
+          <li key={i} className="border-b last:border-0" style={{ borderColor: `${accent}10` }}>
+            <a href={c.url} target="_blank" rel="noopener noreferrer"
+               className="flex items-center justify-between gap-3 px-4 py-2.5 hover:bg-black/[0.025] transition-colors group">
+              <span className="text-sm text-black/75 group-hover:text-black transition-colors leading-snug">{c.name}</span>
+              <ArrowRight className="h-3.5 w-3.5 shrink-0 opacity-20 group-hover:opacity-60 transition-opacity" style={{ color: accent }} />
             </a>
           </li>
         ))}
@@ -1529,164 +1526,184 @@ function CourseList({
 }
 
 function CoursesSection() {
+  const stats = [
+    { icon: GraduationCap, label: "Students Placed", value: "25K+" },
+    { icon: Building2, label: "Top Companies", value: "300+" },
+    { icon: Globe, label: "Campuses", value: "10K+" },
+    { icon: Clock, label: "Mentor Support", value: "24/7" },
+  ];
+
   return (
-    <section id="courses" className="relative py-20 md:py-28 bg-white">
-      <div className="absolute inset-0 gz-gridlines opacity-40" aria-hidden />
+    <section id="courses" className="relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(145deg,#FFFDF5 0%,#FFF8E8 35%,#F5F0FF 70%,#EFF6FF 100%)" }}>
+      <div className="pointer-events-none absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full opacity-25 blur-3xl" style={{ background: "radial-gradient(circle,#A78BFA,transparent 70%)" }} aria-hidden />
+      <div className="pointer-events-none absolute -bottom-20 -left-20 w-96 h-96 rounded-full opacity-20 blur-3xl" style={{ background: "radial-gradient(circle,#FCD34D,transparent 70%)" }} aria-hidden />
+
       <div className="container mx-auto max-w-5xl px-5 md:px-8 relative">
-        <div className="mb-14 max-w-3xl">
-          <SectionLabel accent="#F43F5E">// your learning stack</SectionLabel>
-          <h2 className="mt-3 font-display text-4xl md:text-6xl font-bold leading-[0.95] tracking-tight">
-            Courses to lock in.
-            <br />
-            <span className="font-serif-display italic gz-gradient-text">All on NxtWave.</span>
-          </h2>
-          <p className="mt-4 text-sm text-black/55">Tap any course to open it directly in the Learning Portal.</p>
-        </div>
 
-        <div className="relative">
-          {/* vertical line */}
-          <div className="absolute left-7 md:left-9 top-2 bottom-2 w-[3px] rounded-full bg-gradient-to-b from-blue-500 via-amber-500 to-rose-400 z-0" />
-
-          {/* L1 */}
-          <div className="relative z-10 mb-12">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-2xl bg-blue-600 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-blue-100 shrink-0">
-                L1
-              </div>
-              <div>
-                <span className="font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-blue-600">
-                  Level 1 · The Hustler
-                </span>
-                <h3 className="font-display text-xl md:text-2xl font-bold leading-tight">
-                  Foundational frontend & programming
-                </h3>
-              </div>
-            </div>
-            <div className="md:ml-[88px] ml-[72px] grid md:grid-cols-2 gap-4">
-              <CourseList items={COURSES_L1.frontend} accent="#1D4ED8" bg="#E0E7FF" icon={Code} title="Frontend Track" sub="6 courses" />
-              <CourseList items={COURSES_L1.coding} accent="#2563EB" bg="#FEF3C7" icon={GitBranch} title="Coding Track" sub="2 courses" />
+        {/* ── Header ── */}
+        <div className="mb-14 flex flex-col md:flex-row items-start md:items-center gap-8">
+          <div className="flex-1 min-w-0">
+            <SectionLabel accent="#F43F5E">// the proof</SectionLabel>
+            <h2 className="mt-3 font-display text-4xl md:text-5xl font-bold leading-tight tracking-tight">
+              Courses to <span className="text-blue-600">lock in.</span>
+              <br />
+              <span className="font-serif-display italic gz-gradient-text">Learn. Build. Get Paid.</span>
+            </h2>
+            <p className="mt-3 text-sm text-black/55 max-w-xs leading-relaxed">
+              Real students. Real stipends.<br />Pick a path. Prove your skills. Get noticed.
+            </p>
+            <div className="mt-5 flex items-center gap-3 flex-wrap">
+              <button
+                onClick={() => document.getElementById("levels")?.scrollIntoView({ behavior: "smooth" })}
+                className="inline-flex items-center gap-2 rounded-full bg-black text-white px-5 py-2.5 text-sm font-bold hover:bg-blue-600 transition-colors"
+              >
+                Explore Courses <ArrowUpRight className="h-3.5 w-3.5" />
+              </button>
+              <button
+                onClick={() => document.getElementById("vibe")?.scrollIntoView({ behavior: "smooth" })}
+                className="inline-flex items-center gap-2 rounded-full border-2 border-black/15 bg-white/70 px-5 py-2.5 text-sm font-bold hover:border-black/30 transition-colors"
+              >
+                <ChevronRight className="h-3.5 w-3.5" /> How It Works
+              </button>
             </div>
           </div>
+          <div className="relative shrink-0 w-full md:w-72 h-48 md:h-56 rounded-3xl overflow-hidden shadow-xl">
+            <img src="/what-is-irp-student.png" alt="Students" className="w-full h-full object-cover" />
+            <div className="absolute top-3 right-3 bg-amber-400 text-black text-[11px] font-black px-3 py-1 rounded-full shadow rotate-6 tracking-wide select-none">
+              LEVEL UP ✦
+            </div>
+            <div className="absolute -bottom-1 -left-1 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md text-lg select-none">
+              😊
+            </div>
+          </div>
+        </div>
 
-          {/* Arrow */}
-          <div className="md:ml-[88px] ml-[72px] mb-8 flex items-center gap-2 text-xs font-mono-ui uppercase tracking-[0.2em] font-bold text-blue-600">
-            <ArrowRight className="h-4 w-4" /> clear L1 → unlock L2
+        {/* ── Level Ladder ── */}
+        <div className="relative">
+          <div className="absolute left-7 md:left-9 top-4 bottom-20 w-[2px] rounded-full bg-gradient-to-b from-blue-400 via-amber-400 to-rose-400 opacity-25" aria-hidden />
+
+          {/* L1 */}
+          <div className="relative mb-10 flex gap-5 md:gap-7">
+            <div className="flex flex-col items-center gap-2 shrink-0 z-10">
+              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-full bg-blue-600 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-blue-100">
+                L1
+              </div>
+              <Rocket className="h-5 w-5 text-blue-400 opacity-50" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <span className="font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-blue-600">Level 1 · The Builder</span>
+              <h3 className="font-display text-xl md:text-2xl font-bold leading-tight mt-0.5 mb-3">
+                Frontend & Programming <span className="font-mono text-blue-500 text-base">&lt;/&gt;</span>
+              </h3>
+              <div className="grid md:grid-cols-2 gap-3 relative">
+                <CourseList items={COURSES_L1.frontend} accent="#1D4ED8" icon={Code} title="Frontend Track" sub="5 courses" />
+                <div className="relative">
+                  <CourseList items={COURSES_L1.coding} accent="#2563EB" icon={GitBranch} title="Coding Track" sub="2 courses" />
+                  <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-3 rotate-3 shadow-sm z-10 select-none">
+                    <p className="text-[11px] font-bold text-black/70 leading-snug">Code today<br />Change tomorrow</p>
+                    <span className="font-mono text-blue-500 font-bold text-sm mt-1 block">&lt;/&gt;</span>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 flex items-center gap-1.5 text-[11px] font-bold font-mono-ui text-blue-600 uppercase tracking-[0.16em]">
+                <ArrowRight className="h-3.5 w-3.5" /> Clear L1 → Unlock L2
+              </div>
+            </div>
           </div>
 
           {/* L2 */}
-          <div className="relative z-10 mb-12">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-2xl bg-amber-500 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-amber-100 shrink-0">
+          <div className="relative mb-10 flex gap-5 md:gap-7">
+            <div className="flex flex-col items-center gap-2 shrink-0 z-10">
+              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-full bg-amber-500 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-amber-100">
                 L2
               </div>
-              <div>
-                <span className="font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-amber-500">
-                  Level 2 · The Main Character (~1 month after L1)
-                </span>
-                <h3 className="font-display text-xl md:text-2xl font-bold leading-tight">
-                  Backend, databases & Generative AI
-                </h3>
+              <Star className="h-5 w-5 text-amber-400 opacity-50" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <span className="font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-amber-500">Level 2 · The AI Architect</span>
+              <h3 className="font-display text-xl md:text-2xl font-bold leading-tight mt-0.5 mb-3">
+                Backend, Databases & Generative <em className="not-italic text-amber-500">AI</em> <Sparkles className="inline h-4 w-4 text-amber-400 align-text-bottom" />
+              </h3>
+              <div className="grid md:grid-cols-2 gap-3 relative">
+                <CourseList items={[...COURSES_L2.backend]} accent="#F59E0B" icon={Database} title="Backend Track" sub="4 courses" />
+                <div className="relative">
+                  <CourseList items={[...COURSES_L2.genAi]} accent="#8B5CF6" icon={Star} title="Generative AI Track" sub="1 course" />
+                  <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-purple-50 border-2 border-purple-200 rounded-2xl p-3 -rotate-2 shadow-sm z-10 select-none">
+                    <p className="text-[11px] font-bold text-black/70 leading-snug">AI isn't the<br />future.</p>
+                    <p className="text-[11px] font-bold text-purple-600 mt-0.5">It's now.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 flex items-center gap-1.5 text-[11px] font-bold font-mono-ui text-amber-600 uppercase tracking-[0.16em]">
+                <ArrowRight className="h-3.5 w-3.5" /> Clear L2 → Unlock L3
               </div>
             </div>
-            <div className="md:ml-[88px] ml-[72px] grid md:grid-cols-2 gap-4">
-              <CourseList
-                items={[...COURSES_L2.backend]}
-                accent="#2563EB"
-                bg="#DBEAFE"
-                icon={Database}
-                title="Backend Track"
-                sub="4 courses"
-              />
-              <CourseList
-                items={[...COURSES_L2.genAi]}
-                accent="#1D4ED8"
-                bg="#E0E7FF"
-                icon={Star}
-                title="Generative AI Track"
-                sub="1 course"
-              />
-            </div>
-          </div>
-
-          {/* Arrow */}
-          <div className="md:ml-[88px] ml-[72px] mb-8 flex items-center gap-2 text-xs font-mono-ui uppercase tracking-[0.2em] font-bold text-rose-500">
-            <ArrowRight className="h-4 w-4" /> clear L1 + L2 → unlock L3
           </div>
 
           {/* L3 */}
-          <div className="relative z-10">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-2xl bg-rose-500 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-rose-100 shrink-0">
+          <div className="relative flex gap-5 md:gap-7">
+            <div className="flex flex-col items-center gap-2 shrink-0 z-10">
+              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-full bg-rose-500 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-rose-100">
                 L3
               </div>
-              <div>
-                <span className="font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-rose-500">
-                  Level 3 · Infinite Aura
-                </span>
-                <h3 className="font-display text-xl md:text-2xl font-bold leading-tight">Infinite Aura · top 1% track</h3>
-              </div>
+              <Trophy className="h-5 w-5 text-rose-400 opacity-50" />
             </div>
-            <div className="md:ml-[88px] ml-[72px]">
-              <div className="rounded-2xl border-2 border-rose-200 overflow-hidden bg-white">
-                <div className="px-4 py-3 flex items-center gap-2 bg-rose-500 text-white">
-                  <Trophy className="h-4 w-4" />
-                  <span className="text-sm font-bold tracking-tight">Level 3 prep — DSA & platforms</span>
-                </div>
-                <div className="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-rose-100">
-                  <div>
-                    <p className="px-4 pt-3 pb-1 font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-rose-500">
-                      NxtWave courses
-                    </p>
-                    <ul className="divide-y divide-black/5">
+            <div className="flex-1 min-w-0">
+              <span className="font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-rose-500">Level 3 · Infinite Aura</span>
+              <h3 className="font-display text-xl md:text-2xl font-bold leading-tight mt-0.5 mb-3">
+                Infinite Aura — Top 1% Track <Flame className="inline h-5 w-5 text-rose-500 align-text-bottom" />
+              </h3>
+              <div className="relative">
+                <div className="rounded-2xl border-2 border-rose-100 bg-white overflow-hidden shadow-sm">
+                  <div className="px-4 py-2.5 border-b border-rose-100 flex items-center gap-2">
+                    <Trophy className="h-4 w-4 text-amber-500 shrink-0" />
+                    <span className="text-sm font-bold text-black/85">Level 3 Program — 8+ Advanced Paths</span>
+                  </div>
+                  <div className="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-rose-100/80">
+                    <ul>
                       {COURSES_L3.dsa.map((c, i) => (
-                        <li key={i}>
-                          <a
-                            href={c.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-between gap-2 px-4 py-3 hover:bg-rose-50 transition-colors group"
-                          >
-                            <span className="text-sm font-medium group-hover:translate-x-1 transition-transform">
-                              {c.name}
-                            </span>
-                            <ArrowUpRight className="h-4 w-4 text-rose-400 opacity-30 group-hover:opacity-100" />
+                        <li key={i} className="border-b border-rose-50 last:border-0">
+                          <a href={c.url} target="_blank" rel="noopener noreferrer"
+                             className="flex items-center justify-between gap-3 px-4 py-2.5 hover:bg-rose-50/50 transition-colors group">
+                            <span className="text-sm text-black/75 group-hover:text-black leading-snug">{c.name}</span>
+                            <ArrowRight className="h-3.5 w-3.5 shrink-0 text-rose-400 opacity-25 group-hover:opacity-60 transition-opacity" />
                           </a>
                         </li>
                       ))}
                     </ul>
-                  </div>
-                  <div>
-                    <p className="px-4 pt-3 pb-1 font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-rose-500">
-                      Practice platforms
-                    </p>
-                    <ul className="divide-y divide-black/5">
+                    <ul>
                       {COURSES_L3.practice.map((c, i) => (
-                        <li key={i}>
-                          <a
-                            href={c.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-between gap-2 px-4 py-3 hover:bg-rose-50 transition-colors group"
-                          >
-                            <span className="text-sm font-medium group-hover:translate-x-1 transition-transform">
-                              {c.name}
-                            </span>
-                            <ArrowUpRight className="h-4 w-4 text-rose-400 opacity-30 group-hover:opacity-100" />
+                        <li key={i} className="border-b border-rose-50 last:border-0">
+                          <a href={c.url} target="_blank" rel="noopener noreferrer"
+                             className="flex items-center justify-between gap-3 px-4 py-2.5 hover:bg-rose-50/50 transition-colors group">
+                            <span className="text-sm text-black/75 group-hover:text-black leading-snug">{c.name}</span>
+                            <ArrowRight className="h-3.5 w-3.5 shrink-0 text-rose-400 opacity-25 group-hover:opacity-60 transition-opacity" />
                           </a>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
-                <div className="px-4 py-3 bg-rose-50 flex items-center gap-2">
-                  <Trophy className="h-4 w-4 text-rose-500 shrink-0" />
-                  <p className="text-xs text-rose-900 font-medium">
-                    Eligibility: clear Level 1 & 2 first. Then show readiness on DSA Level 2–4, Full Stack Gen AI, CodeChef (rating {">"} 1600), and the human mock loop — opportunities are curated for students who finish the full IRP journey.
-                  </p>
+                <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-3 rotate-1 shadow-sm z-10 select-none">
+                  <p className="text-[11px] font-bold text-black/60 leading-snug">Don't just<br />learn.</p>
+                  <p className="font-display text-xl font-black text-amber-500 mt-0.5 leading-none">BUILD.</p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* ── Stats Bar ── */}
+        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-3">
+          {stats.map((s) => (
+            <div key={s.label} className="flex items-center gap-3 rounded-2xl bg-white/80 border border-black/8 px-4 py-3 shadow-sm backdrop-blur-sm">
+              <s.icon className="h-5 w-5 text-black/35 shrink-0" />
+              <div>
+                <div className="text-lg font-display font-bold leading-none">{s.value}</div>
+                <div className="text-[11px] text-black/45 mt-0.5 leading-tight">{s.label}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
