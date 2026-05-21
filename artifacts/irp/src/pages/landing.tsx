@@ -2111,9 +2111,6 @@ function RegisterSection({ onCta }: { onCta: () => void }) {
               >
                 Register for IRP 2.0 →
               </a>
-              <p className="mt-3 text-[11px] text-black/55 text-center font-mono-ui">
-                // clearing only L1 ≠ internship · clear L1 + L2 to unlock
-              </p>
             </div>
           </div>
         </div>
