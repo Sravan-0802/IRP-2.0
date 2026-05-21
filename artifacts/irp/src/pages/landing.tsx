@@ -730,7 +730,7 @@ function AssessmentCountdownCard() {
 
 const MENTOR_BRANDS = [
   "Microsoft",
-  "Apple",
+  "Swiggy",
   "Google",
   "Amazon",
   "Salesforce",
@@ -2446,7 +2446,7 @@ function EliteOutcomesSection() {
           <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#08070C] to-transparent z-10" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#08070C] to-transparent z-10" />
           <Marquee
-            items={["Microsoft", "Apple", "Google", "Amazon", "Salesforce", "Flipkart", "Meta", "Adobe"].map(
+            items={["Microsoft", "Swiggy", "Google", "Amazon", "Salesforce", "Flipkart", "Zepto", "Adobe", "Razorpay", "CRED"].map(
               (c, i) => (
                 <span
                   key={i}
