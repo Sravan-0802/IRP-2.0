@@ -1046,7 +1046,7 @@ function NavBar({ onCta }: { onCta: () => void }) {
     <header className="sticky top-3 z-50 px-3 md:px-6">
       <nav className="mx-auto max-w-6xl rounded-full px-3 md:px-4 py-2 flex items-center justify-between bg-white/90 backdrop-blur-xl border border-black/10 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.18)]">
         <button onClick={() => go("hero")} className="flex items-center gap-2 pl-1">
-          <img src="/nxtwave-academy-logo.png" alt="NxtWave Academy" className="h-8 w-auto" />
+          <img src="/nxtwave-academy-logo.png" alt="NxtWave Academy" className="h-11 w-auto" />
         </button>
         <ul className="hidden md:flex items-center gap-1 font-mono-ui text-[11px] uppercase tracking-[0.18em] font-semibold">
           {items.map((it) => (
