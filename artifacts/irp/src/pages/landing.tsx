@@ -1270,8 +1270,15 @@ function Hero({ onCta }: { onCta: () => void }) {
                       <div className="min-w-0 flex-1">
                         <div className="text-sm font-bold leading-tight">{lv.nickname}</div>
                         {lv.date && (
-                          <div className="mt-0.5 font-mono-ui text-[10px] font-bold uppercase tracking-wider text-black/45">
-                            {lv.code === "L1" ? L1_ASSESSMENT_SHORT : lv.date}
+                          <div className="mt-1">
+                            {lv.code === "L1" ? (
+                              <span className="inline-flex items-center gap-1 rounded-full bg-amber-400 px-2 py-0.5 font-mono-ui text-[9px] font-black uppercase tracking-wider text-amber-950">
+                                <Flame className="h-2.5 w-2.5 shrink-0" />
+                                {L1_ASSESSMENT_DATE}
+                              </span>
+                            ) : (
+                              <span className="font-mono-ui text-[10px] font-bold uppercase tracking-wider text-black/45">{lv.date}</span>
+                            )}
                           </div>
                         )}
                       </div>
