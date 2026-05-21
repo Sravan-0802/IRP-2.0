@@ -1252,7 +1252,7 @@ function Hero({ onCta }: { onCta: () => void }) {
                 <div className="mb-4 flex items-center justify-between border-b border-black/10 pb-3 text-[10px] font-mono-ui uppercase tracking-[0.22em] text-black/45">
                   <span className="flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                    progression.ts
+                    irp-path.ts
                   </span>
                   <span className="text-amber-700/80">live</span>
                 </div>
