@@ -1495,12 +1495,6 @@ function CourseList({
 }
 
 function CoursesSection() {
-  const stats = [
-    { icon: GraduationCap, label: "Students Placed", value: "25K+" },
-    { icon: Building2, label: "Top Companies", value: "300+" },
-    { icon: Globe, label: "Campuses", value: "10K+" },
-    { icon: Clock, label: "Mentor Support", value: "24/7" },
-  ];
 
   return (
     <section id="courses" className="relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(145deg,#FFFDF5 0%,#FFF8E8 35%,#F5F0FF 70%,#EFF6FF 100%)" }}>
@@ -1641,18 +1635,6 @@ function CoursesSection() {
           </div>
         </div>
 
-        {/* ── Stats Bar ── */}
-        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-3">
-          {stats.map((s) => (
-            <div key={s.label} className="flex items-center gap-3 rounded-2xl bg-white/80 border border-black/8 px-4 py-3 shadow-sm backdrop-blur-sm">
-              <s.icon className="h-5 w-5 text-black/35 shrink-0" />
-              <div>
-                <div className="text-lg font-display font-bold leading-none">{s.value}</div>
-                <div className="text-[11px] text-black/45 mt-0.5 leading-tight">{s.label}</div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
