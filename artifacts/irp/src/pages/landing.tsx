@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect, useLayoutEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect, useMemo, useCallback } from "react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import {
   motion,
   AnimatePresence,
@@ -139,7 +140,7 @@ const COURSES_L1 = {
   ],
   coding: [
     { name: "Programming Foundations", url: "https://learning.ccbp.in/cl-course/c6008f8d-cd91-4843-bb3f-b75d4beca046" },
-    { name: "Data Structures & Algorithms — Level 1", url: "https://learning.ccbp.in/course?c_id=058b97cb-16db-4098-8b1e-3e7cbffe1db4" },
+    { name: "DSA - Level 1", url: "https://learning.ccbp.in/course?c_id=058b97cb-16db-4098-8b1e-3e7cbffe1db4" },
   ],
 };
 
@@ -2478,9 +2479,12 @@ function EliteOutcomesSection() {
 }
 
 export default function LandingPage() {
-  const onCta = () => {
+  const { trackClick } = useAnalytics();
+
+  const onCta = useCallback(() => {
+    trackClick("register_cta", "Register Button");
     window.open(REGISTER_URL, "_blank", "noopener,noreferrer");
-  };
+  }, [trackClick]);
 
   return (
     <div className="relative min-h-screen text-black gz-bg-cream font-sans">
