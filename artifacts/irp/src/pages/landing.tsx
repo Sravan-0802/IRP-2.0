@@ -1556,15 +1556,6 @@ function CoursesSection() {
               </button>
             </div>
           </div>
-          <div className="relative shrink-0 w-full md:w-72 h-48 md:h-56 rounded-3xl overflow-hidden shadow-xl">
-            <img src="/what-is-irp-student.png" alt="Students" className="w-full h-full object-cover" />
-            <div className="absolute top-3 right-3 bg-amber-400 text-black text-[11px] font-black px-3 py-1 rounded-full shadow rotate-6 tracking-wide select-none">
-              LEVEL UP ✦
-            </div>
-            <div className="absolute -bottom-1 -left-1 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md text-lg select-none">
-              😊
-            </div>
-          </div>
         </div>
 
         {/* ── Level Ladder ── */}
