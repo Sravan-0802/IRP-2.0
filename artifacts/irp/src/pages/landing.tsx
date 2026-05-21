@@ -1200,7 +1200,7 @@ function Hero({ onCta }: { onCta: () => void }) {
               {[
                 "Real assessments",
                 "Real projects",
-                "Stipends from ₹5K to ₹25K+",
+                "Monthly Stipend from ₹5K to ₹25K+",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2.5 text-sm md:text-base text-white/85 font-medium">
                   <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-400/20 border border-amber-400/40">
