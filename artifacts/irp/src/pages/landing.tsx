@@ -345,7 +345,7 @@ const REGISTER_URL = "https://forms.ccbp.in/form/irp-2-online-registration";
 const ACADEMY_PLACEMENT_STATS = {
   /** All-source: NxtWave partners + students who accepted external offers while in Academy */
   allSource: {
-    companies: 800,
+    companies: 160,
     students: 1300,
   },
   /** NxtWave-driven only (offer accepted) — shown as secondary footnote */
