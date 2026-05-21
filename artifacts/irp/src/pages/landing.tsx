@@ -2394,11 +2394,6 @@ function EliteOutcomesSection() {
               aria-hidden
             />
 
-            <div className="relative flex flex-wrap items-start justify-between gap-3 p-5 md:p-7">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-400 text-black font-black text-[11px] px-3 py-1.5 uppercase tracking-widest shadow-[0_10px_40px_-12px_rgba(245,158,11,0.7)]">
-                ₹25K+ / month
-              </span>
-            </div>
 
             <div className="relative mt-auto p-5 md:p-7">
               <span className="font-mono-ui text-[10px] font-black uppercase tracking-[0.28em] text-amber-300/90">
