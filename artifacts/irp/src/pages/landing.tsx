@@ -2323,7 +2323,7 @@ const ELITE_TILES = [
     image: "/top1-engineering.png",
   },
   {
-    eyebrow: "02 · launch",
+    eyebrow: "",
     title: "Not a simulation. An actual internship.",
     sub: "",
     icon: Rocket,
@@ -2439,12 +2439,14 @@ function EliteOutcomesSection() {
                   >
                     <Icon className="h-4 w-4" />
                   </span>
-                  <span
-                    className="font-mono-ui text-[10px] font-black uppercase tracking-[0.24em]"
-                    style={{ color: t.accent }}
-                  >
-                    {t.eyebrow}
-                  </span>
+                  {t.eyebrow && (
+                    <span
+                      className="font-mono-ui text-[10px] font-black uppercase tracking-[0.24em]"
+                      style={{ color: t.accent }}
+                    >
+                      {t.eyebrow}
+                    </span>
+                  )}
                 </div>
 
                 <div className="relative mt-auto p-5">
