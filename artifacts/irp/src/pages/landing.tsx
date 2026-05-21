@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect, useMemo } from "react";
 import {
   motion,
   AnimatePresence,
@@ -571,6 +571,63 @@ function Marquee({
           <div key={i} className={`flex items-center gap-6 px-6 shrink-0 ${itemClassName ?? ""}`}>
             {it}
           </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const MENTOR_BRANDS = ["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio"];
+
+function MentorBrandMarquee() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [marqueeDelay, setMarqueeDelay] = useState("-14s");
+
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    const track = trackRef.current;
+    if (!container || !track) return;
+
+    const syncCenter = () => {
+      const salesforce = track.querySelector<HTMLElement>('[data-brand="Salesforce"]');
+      if (!salesforce) return;
+
+      const focusCenter = salesforce.offsetLeft + salesforce.offsetWidth / 2;
+      const containerCenter = container.offsetWidth / 2;
+      const loopWidth = track.scrollWidth / 2;
+      if (!loopWidth) return;
+
+      const duration = 28;
+      const delaySec = -(((focusCenter - containerCenter) / loopWidth) * duration);
+      setMarqueeDelay(`${delaySec}s`);
+    };
+
+    syncCenter();
+    window.addEventListener("resize", syncCenter);
+    return () => window.removeEventListener("resize", syncCenter);
+  }, []);
+
+  const brands = useMemo(() => [...MENTOR_BRANDS, ...MENTOR_BRANDS], []);
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative flex-1 flex items-center overflow-hidden w-full min-h-[3.5rem] md:min-h-[4rem] [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+    >
+      <div
+        ref={trackRef}
+        className="flex w-max items-center"
+        style={{ animation: `gz-marquee 28s linear infinite ${marqueeDelay}` }}
+      >
+        {brands.map((c, i) => (
+          <span
+            key={`${c}-${i}`}
+            {...(i < MENTOR_BRANDS.length ? { "data-brand": c } : {})}
+            className="font-display text-3xl md:text-4xl font-bold tracking-tight whitespace-nowrap text-black/85 px-6"
+          >
+            {c} ✦
+          </span>
         ))}
       </div>
     </div>
@@ -1272,33 +1329,19 @@ function WhyBento({ onCta }: { onCta: () => void }) {
           {/* Card 5 — wide marquee */}
           <motion.div
             variants={item}
-            className="col-span-12 md:col-span-7 relative rounded-3xl bg-emerald-200 p-6 md:p-7 overflow-hidden gz-magnet"
+            className="col-span-12 md:col-span-7 relative rounded-3xl bg-emerald-200 p-6 md:p-7 overflow-hidden gz-magnet flex flex-col"
           >
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 shrink-0">
               <Award className="h-6 w-6 text-black" />
               <span className="font-mono-ui text-[11px] uppercase tracking-[0.2em] font-bold">Elite Mentors for L3</span>
             </div>
-            <div className="overflow-hidden w-full">
-              <div
-                className="flex w-max items-center"
-                style={{ animation: "gz-marquee 28s linear infinite -14s" }}
-              >
-                {[...["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio"], ...["Microsoft", "Apple", "Google", "Salesforce", "Bellcorp Studio"]].map((c, i) => (
-                  <span
-                    key={i}
-                    className="font-display text-3xl md:text-4xl font-bold tracking-tight whitespace-nowrap text-black/85 px-6"
-                  >
-                    {c} ✦
-                  </span>
-                ))}
-              </div>
-            </div>
+            <MentorBrandMarquee />
           </motion.div>
 
           {/* Card 6 — quote */}
           <motion.div
             variants={item}
-            className="col-span-12 md:col-span-5 relative rounded-3xl bg-rose-100 p-6 md:p-7 overflow-hidden gz-magnet"
+            className="col-span-12 md:col-span-5 relative rounded-3xl bg-rose-100 p-6 md:p-7 overflow-hidden gz-magnet flex flex-col justify-center"
           >
             <div className="text-7xl leading-none font-serif-display text-rose-700/40 select-none">"</div>
             <p className="-mt-6 font-serif-display italic text-xl md:text-2xl leading-snug text-rose-900">
@@ -1354,7 +1397,7 @@ function LevelsSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-[auto_auto_auto_1fr_auto_auto] gap-5">
           {LEVELS.map((lv, idx) => (
             <motion.div
               key={lv.code}
@@ -1363,13 +1406,14 @@ function LevelsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="relative h-full min-h-0"
+              className="relative h-full min-h-0 md:row-span-6 md:grid md:grid-rows-subgrid md:gap-5"
             >
-              <TiltCard intensity={6} className="h-full">
+              <TiltCard intensity={6} className="h-full md:row-span-6 md:grid md:grid-rows-subgrid md:gap-5">
                 <div
-                  className="relative h-full rounded-3xl border-2 p-7 overflow-hidden flex flex-col gap-5 transition-shadow duration-300 hover:shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)]"
+                  className="relative h-full rounded-3xl border-2 p-7 overflow-hidden flex flex-col gap-5 md:row-span-6 md:grid md:grid-rows-subgrid md:gap-5 md:flex-none transition-shadow duration-300 hover:shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)]"
                   style={{ background: lv.bg, borderColor: `${lv.color}22` }}
                 >
+                  {/* Row 1 — level number + icon */}
                   <div className="flex items-center justify-between">
                     <span
                       className="font-display text-7xl md:text-8xl font-bold leading-none tracking-tighter"
@@ -1384,24 +1428,32 @@ function LevelsSection() {
                       <lv.icon className="h-6 w-6" />
                     </div>
                   </div>
-                  <div className="min-h-[10rem]">
-                    <div className="flex flex-wrap items-center gap-2 mb-2 min-h-[4rem] content-start">
-                      <span
-                        className="gz-tag"
-                        style={{ background: `${lv.color}1A`, color: lv.color }}
-                      >
-                        {lv.label}
-                      </span>
-                      {lv.date && <span className="gz-tag bg-white/60 text-black/60">{lv.date}</span>}
-                      <span className="gz-tag bg-white/60 text-black/60">{lv.duration}</span>
-                    </div>
+
+                  {/* Row 2 — level tags */}
+                  <div className="flex flex-wrap items-center gap-2 content-start">
+                    <span
+                      className="gz-tag"
+                      style={{ background: `${lv.color}1A`, color: lv.color }}
+                    >
+                      {lv.label}
+                    </span>
+                    {lv.date && <span className="gz-tag bg-white/60 text-black/60">{lv.date}</span>}
+                    <span className="gz-tag bg-white/60 text-black/60">{lv.duration}</span>
+                  </div>
+
+                  {/* Row 3 — title + tagline */}
+                  <div>
                     <h3 className="font-display text-2xl md:text-3xl font-bold leading-tight">{lv.nickname}</h3>
-                    <p className="mt-1 text-sm font-serif-display italic min-h-[2.75rem]">
-                      <span className="bg-amber-300/80 text-black/90 px-1 py-0.5 leading-relaxed box-decoration-clone">{lv.tagline}</span>
+                    <p className="mt-2 text-sm font-serif-display italic leading-snug">
+                      <span className="bg-amber-300/80 text-black/90 px-1 py-0.5 leading-relaxed box-decoration-clone">
+                        {lv.tagline}
+                      </span>
                     </p>
                   </div>
-                  <div className="rounded-2xl bg-white/65 backdrop-blur-sm p-4 border border-black/5 flex-1">
-                    <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] text-black/55 mb-2">
+
+                  {/* Row 4 — assessment / eligibility (equal height across cards) */}
+                  <div className="rounded-2xl bg-white/65 backdrop-blur-sm p-4 border border-black/5 h-full min-h-0">
+                    <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] text-black/55 mb-2 min-h-[2rem]">
                       {"sectionsHeading" in lv && (lv as { sectionsHeading?: string }).sectionsHeading
                         ? (lv as { sectionsHeading: string }).sectionsHeading
                         : "Assessment sections"}
@@ -1415,15 +1467,15 @@ function LevelsSection() {
                       ))}
                     </ul>
                   </div>
+
+                  {/* Row 5 — post-assessment / unlock details (headings align across cards) */}
                   <div>
-                    <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] text-black/55 mb-2">
-                      {"postHeading" in lv && (lv as { postHeading?: string }).postHeading
-                        ? (lv as { postHeading: string }).postHeading
-                        : "Post-assessment"}
+                    <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] text-black/55 mb-2 min-h-[2.5rem] leading-snug">
+                      {lv.postHeading}
                     </p>
                     <ul className="space-y-1.5">
                       {lv.post.map((p, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-black/75">
+                        <li key={i} className="flex items-start gap-2 text-sm text-black/75 leading-snug">
                           <span
                             className="mt-2 inline-block w-1.5 h-1.5 rounded-full shrink-0"
                             style={{ background: lv.color }}
@@ -1433,8 +1485,10 @@ function LevelsSection() {
                       ))}
                     </ul>
                   </div>
+
+                  {/* Row 6 — unlocks footer */}
                   <div
-                    className="mt-auto rounded-2xl px-4 py-3 flex items-center gap-2 text-sm font-bold text-white"
+                    className="rounded-2xl px-4 py-3 flex items-center gap-2 text-sm font-bold text-white"
                     style={{ background: lv.color }}
                   >
                     <Unlock className="h-4 w-4 shrink-0" />
