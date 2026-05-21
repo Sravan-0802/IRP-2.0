@@ -157,14 +157,10 @@ const COURSES_L3 = {
   dsa: [
     { name: "DSA — Level 2", url: "https://learning.ccbp.in/course?c_id=229cbe49-f4c4-4aa2-bcc6-55ea3e15e159" },
     { name: "DSA — Level 3", url: "https://learning.ccbp.in/course?c_id=68d141a9-3a73-4bc3-8d8c-cfff7ec8a4be&s_id=696cf715-22e7-4587-ac63-6c5df7427ad5&t_id=009e5ade-f694-4a42-8dbf-544f06a4da1e" },
-    { name: "System Design Level 1 & 2", url: "https://learning.ccbp.in/" },
-    { name: "DevOps, Cloud & AI/ML Stack", url: "https://learning.ccbp.in/" },
   ],
   practice: [
-    { name: "Practice Platform", url: "https://learning.ccbp.in/" },
-    { name: "CodeChef (for rating > 1600)", url: "https://www.codechef.com" },
-    { name: "LeetCode (Upskilling Practice)", url: "https://leetcode.com" },
-    { name: "Soft Skills, Aptitude & Interview Prep", url: "https://learning.ccbp.in/" },
+    { name: "CodeChef (aim for rating > 1600 for L3)", url: "https://www.codechef.com" },
+    { name: "LeetCode (supporting practice)", url: "https://leetcode.com" },
   ],
 };
 
@@ -1585,7 +1581,7 @@ function CoursesSection() {
           {/* L1 */}
           <div className="relative mb-10 flex gap-5 md:gap-7">
             <div className="flex flex-col items-center gap-2 shrink-0 z-10">
-              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-full bg-blue-600 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-blue-100">
+              <div className="group/badge w-14 h-14 md:w-[72px] md:h-[72px] rounded-full bg-blue-600 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-blue-100 transition-transform duration-300 hover:scale-110 hover:rotate-6 cursor-default">
                 L1
               </div>
               <Rocket className="h-5 w-5 text-blue-400 opacity-50" />
@@ -1599,7 +1595,7 @@ function CoursesSection() {
                 <CourseList items={COURSES_L1.frontend} accent="#1D4ED8" icon={Code} title="Frontend Track" sub="5 courses" />
                 <div className="relative">
                   <CourseList items={COURSES_L1.coding} accent="#2563EB" icon={GitBranch} title="Coding Track" sub="2 courses" />
-                  <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-3 rotate-3 shadow-sm z-10 select-none">
+                  <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-3 rotate-3 shadow-sm z-10 select-none transition-transform duration-300 hover:rotate-6 hover:scale-105 hover:shadow-md cursor-default">
                     <p className="text-[11px] font-bold text-black/70 leading-snug">Code today<br />Change tomorrow</p>
                     <span className="font-mono text-blue-500 font-bold text-sm mt-1 block">&lt;/&gt;</span>
                   </div>
@@ -1614,7 +1610,7 @@ function CoursesSection() {
           {/* L2 */}
           <div className="relative mb-10 flex gap-5 md:gap-7">
             <div className="flex flex-col items-center gap-2 shrink-0 z-10">
-              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-full bg-amber-500 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-amber-100">
+              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-full bg-amber-500 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-amber-100 transition-transform duration-300 hover:scale-110 hover:-rotate-6 cursor-default">
                 L2
               </div>
               <Star className="h-5 w-5 text-amber-400 opacity-50" />
@@ -1628,7 +1624,7 @@ function CoursesSection() {
                 <CourseList items={[...COURSES_L2.backend]} accent="#F59E0B" icon={Database} title="Backend Track" sub="4 courses" />
                 <div className="relative">
                   <CourseList items={[...COURSES_L2.genAi]} accent="#8B5CF6" icon={Star} title="Generative AI Track" sub="1 course" />
-                  <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-purple-50 border-2 border-purple-200 rounded-2xl p-3 -rotate-2 shadow-sm z-10 select-none">
+                  <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-purple-50 border-2 border-purple-200 rounded-2xl p-3 -rotate-2 shadow-sm z-10 select-none transition-transform duration-300 hover:-rotate-6 hover:scale-105 hover:shadow-md cursor-default">
                     <p className="text-[11px] font-bold text-black/70 leading-snug">AI isn't the<br />future.</p>
                     <p className="text-[11px] font-bold text-purple-600 mt-0.5">It's now.</p>
                   </div>
@@ -1643,7 +1639,7 @@ function CoursesSection() {
           {/* L3 */}
           <div className="relative flex gap-5 md:gap-7">
             <div className="flex flex-col items-center gap-2 shrink-0 z-10">
-              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-full bg-rose-500 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-rose-100">
+              <div className="w-14 h-14 md:w-[72px] md:h-[72px] rounded-full bg-rose-500 text-white flex items-center justify-center font-display text-base md:text-xl font-bold shadow-lg ring-4 ring-rose-100 transition-transform duration-300 hover:scale-110 hover:rotate-6 cursor-default">
                 L3
               </div>
               <Trophy className="h-5 w-5 text-rose-400 opacity-50" />
@@ -1657,7 +1653,7 @@ function CoursesSection() {
                 <div className="rounded-2xl border-2 border-rose-100 bg-white overflow-hidden shadow-sm">
                   <div className="px-4 py-2.5 border-b border-rose-100 flex items-center gap-2">
                     <Trophy className="h-4 w-4 text-amber-500 shrink-0" />
-                    <span className="text-sm font-bold text-black/85">Level 3 Program — 8+ Advanced Paths</span>
+                    <span className="text-sm font-bold text-black/85">Level 3 Prep — DSA & Practice Platforms</span>
                   </div>
                   <div className="grid sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-rose-100/80">
                     <ul>
@@ -1684,7 +1680,7 @@ function CoursesSection() {
                     </ul>
                   </div>
                 </div>
-                <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-3 rotate-1 shadow-sm z-10 select-none">
+                <div className="hidden lg:block absolute -right-[116px] top-2 w-[108px] bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-3 rotate-1 shadow-sm z-10 select-none transition-transform duration-300 hover:rotate-3 hover:scale-105 hover:shadow-md cursor-default">
                   <p className="text-[11px] font-bold text-black/60 leading-snug">Don't just<br />learn.</p>
                   <p className="font-display text-xl font-black text-amber-500 mt-0.5 leading-none">BUILD.</p>
                 </div>
