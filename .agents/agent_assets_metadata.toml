@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "Fg0RR0lqNMQx_hhwq_jtb"
@@ -36,3 +35,9 @@ id = "1zkaHUwAmqZPRNb5_vXpa"
 uri = "file://artifacts/irp/public/about-student.png"
 type = "image"
 title = "student with laptop graduation illustration"
+
+[[outputs]]
+id = "Kf062goz22WUE6tK_Y2YV"
+uri = "file://.agents/outputs/irp-analytics-report.md"
+type = "text"
+title = "IRP 2.0 Analytics Report — 22 May 2026"
