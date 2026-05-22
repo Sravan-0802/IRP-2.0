@@ -44,6 +44,17 @@ export const sessionsTable = pgTable(
   (t) => [index("sess_first_seen_idx").on(t.firstSeenAt)],
 );
 
+export const feedbackTable = pgTable(
+  "feedback",
+  {
+    id: serial("id").primaryKey(),
+    sessionId: varchar("session_id", { length: 64 }),
+    message: text("message").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (t) => [index("fb_created_idx").on(t.createdAt)],
+);
+
 export const insertPageViewSchema = createInsertSchema(pageViewsTable).omit({ id: true, createdAt: true }) as any;
 export const insertClickEventSchema = createInsertSchema(clickEventsTable).omit({ id: true, createdAt: true }) as any;
 
@@ -52,3 +63,4 @@ export type InsertClickEvent = { sessionId: string; element: string; label?: str
 export type PageView = typeof pageViewsTable.$inferSelect;
 export type ClickEvent = typeof clickEventsTable.$inferSelect;
 export type Session = typeof sessionsTable.$inferSelect;
+export type Feedback = typeof feedbackTable.$inferSelect;

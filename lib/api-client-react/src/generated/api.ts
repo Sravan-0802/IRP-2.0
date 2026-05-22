@@ -13,9 +13,18 @@ import type {
   UseQueryResult,
 } from "@tanstack/react-query";
 
+import { useMutation } from "@tanstack/react-query";
+import type {
+  MutationFunction,
+  UseMutationOptions,
+  UseMutationResult,
+} from "@tanstack/react-query";
+
 import type {
   AnalyticsSummary,
   DailyView,
+  FeedbackInput,
+  FeedbackItem,
   HealthStatus,
   SessionRow,
   TopClick,
@@ -409,3 +418,123 @@ export function useGetRecentSessions<
 
   return { ...query, queryKey: queryOptions.queryKey };
 }
+
+/**
+ * Returns all feedback messages newest first
+ * @summary Get all feedback
+ */
+export const getFeedbackUrl = () => {
+  return `/api/feedback`;
+};
+
+export const getFeedback = async (
+  options?: RequestInit,
+): Promise<FeedbackItem[]> => {
+  return customFetch<FeedbackItem[]>(getFeedbackUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetFeedbackQueryKey = () => {
+  return [`/api/feedback`] as const;
+};
+
+export const getGetFeedbackQueryOptions = <
+  TData = Awaited<ReturnType<typeof getFeedback>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getFeedback>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+  const queryKey = queryOptions?.queryKey ?? getGetFeedbackQueryKey();
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getFeedback>>> = ({
+    signal,
+  }) => getFeedback({ signal, ...requestOptions });
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getFeedback>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetFeedbackQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getFeedback>>
+>;
+export type GetFeedbackQueryError = ErrorType<unknown>;
+
+/**
+ * @summary Get all feedback
+ */
+export function useGetFeedback<
+  TData = Awaited<ReturnType<typeof getFeedback>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getFeedback>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetFeedbackQueryOptions(options);
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * Saves a visitor's feedback message
+ * @summary Submit feedback
+ */
+export const submitFeedbackUrl = () => {
+  return `/api/feedback`;
+};
+
+export const submitFeedback = async (
+  feedbackInput: FeedbackInput,
+  options?: RequestInit,
+): Promise<FeedbackItem> => {
+  return customFetch<FeedbackItem>(submitFeedbackUrl(), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(feedbackInput),
+  });
+};
+
+export const useSubmitFeedback = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof submitFeedback>>,
+    TError,
+    FeedbackInput,
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof submitFeedback>>,
+  TError,
+  FeedbackInput,
+  TContext
+> => {
+  const { mutation: mutationOptions, request: requestOptions } = options ?? {};
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof submitFeedback>>,
+    FeedbackInput
+  > = (props) => submitFeedback(props, requestOptions);
+  return useMutation<
+    Awaited<ReturnType<typeof submitFeedback>>,
+    TError,
+    FeedbackInput,
+    TContext
+  >({ mutationFn, ...mutationOptions });
+};

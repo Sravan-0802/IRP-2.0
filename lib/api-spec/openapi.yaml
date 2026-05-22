@@ -83,6 +83,39 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/SessionRow"
+  /feedback:
+    post:
+      operationId: submitFeedback
+      tags: [analytics]
+      summary: Submit feedback
+      description: Saves a visitor's feedback message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FeedbackInput"
+      responses:
+        "200":
+          description: Feedback saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FeedbackItem"
+    get:
+      operationId: getFeedback
+      tags: [analytics]
+      summary: Get all feedback
+      description: Returns all feedback messages newest first
+      responses:
+        "200":
+          description: Feedback list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FeedbackItem"
 components:
   schemas:
     HealthStatus:
@@ -159,3 +192,29 @@ components:
         - pageViewCount
         - bounced
         - duration
+    FeedbackInput:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          nullable: true
+        message:
+          type: string
+      required:
+        - message
+    FeedbackItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        sessionId:
+          type: string
+          nullable: true
+        message:
+          type: string
+        createdAt:
+          type: string
+      required:
+        - id
+        - message
+        - createdAt

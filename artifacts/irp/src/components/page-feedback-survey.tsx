@@ -3,6 +3,15 @@ import { CheckCircle2, MessageSquare, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const STORAGE_KEY = "irp-2-landing-page-feedback-v1";
+const API_BASE = import.meta.env.VITE_API_URL ?? "";
+
+function getSessionId(): string | null {
+  try {
+    return sessionStorage.getItem("irp_sid");
+  } catch {
+    return null;
+  }
+}
 
 function hasSubmitted(): boolean {
   try {
@@ -20,8 +29,9 @@ export function PageFeedbackButton() {
   const { toast } = useToast();
   const [submitted, setSubmitted] = useState(() => hasSubmitted());
   const [thought, setThought] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (thought.trim().length < 3) {
       toast({
@@ -30,6 +40,17 @@ export function PageFeedbackButton() {
         variant: "destructive",
       });
       return;
+    }
+    setLoading(true);
+    try {
+      await fetch(`${API_BASE}/api/feedback`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId: getSessionId(), message: thought.trim() }),
+      });
+    } catch {
+    } finally {
+      setLoading(false);
     }
     markSubmitted();
     setSubmitted(true);
@@ -60,10 +81,11 @@ export function PageFeedbackButton() {
               />
               <button
                 type="submit"
-                className="inline-flex items-center gap-1.5 rounded-xl bg-[#1D4ED8] px-5 py-3 text-sm font-bold text-white hover:bg-[#1e40af] transition-colors shrink-0"
+                disabled={loading}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-[#1D4ED8] px-5 py-3 text-sm font-bold text-white hover:bg-[#1e40af] transition-colors shrink-0 disabled:opacity-60"
               >
                 <Send className="h-4 w-4" />
-                Send
+                {loading ? "Sending…" : "Send"}
               </button>
             </div>
           </form>

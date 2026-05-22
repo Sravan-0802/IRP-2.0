@@ -9,6 +9,8 @@ import {
   getGetAnalyticsTopClicksQueryKey,
   useGetRecentSessions,
   getGetRecentSessionsQueryKey,
+  useGetFeedback,
+  getGetFeedbackQueryKey,
 } from "@workspace/api-client-react";
 import { CSVLink } from "react-csv";
 import {
@@ -120,6 +122,7 @@ export default function Dashboard() {
   const dailyQuery = useGetAnalyticsDaily({ query: { queryKey: getGetAnalyticsDailyQueryKey() } });
   const topClicksQuery = useGetAnalyticsTopClicks({ query: { queryKey: getGetAnalyticsTopClicksQueryKey() } });
   const recentSessionsQuery = useGetRecentSessions({ query: { queryKey: getGetRecentSessionsQueryKey() } });
+  const feedbackQuery = useGetFeedback({ query: { queryKey: getGetFeedbackQueryKey() } });
 
   const loading = summaryQuery.isLoading || summaryQuery.isFetching ||
     dailyQuery.isLoading || dailyQuery.isFetching ||
@@ -140,6 +143,7 @@ export default function Dashboard() {
     queryClient.invalidateQueries({ queryKey: getGetAnalyticsDailyQueryKey() });
     queryClient.invalidateQueries({ queryKey: getGetAnalyticsTopClicksQueryKey() });
     queryClient.invalidateQueries({ queryKey: getGetRecentSessionsQueryKey() });
+    queryClient.invalidateQueries({ queryKey: getGetFeedbackQueryKey() });
   };
 
   useEffect(() => {
@@ -651,6 +655,57 @@ export default function Dashboard() {
                     </div>
                   </div>
                 )}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Feedback */}
+        <Card className="mt-6">
+          <CardHeader className="px-6 pt-6 pb-4 flex-row items-center justify-between space-y-0 border-b border-border/50">
+            <div>
+              <CardTitle className="text-base">Student Feedback</CardTitle>
+              <p className="text-[12px] text-muted-foreground mt-0.5">
+                {feedbackQuery.isLoading ? "" : `${feedbackQuery.data?.length ?? 0} response${(feedbackQuery.data?.length ?? 0) !== 1 ? "s" : ""} total`}
+              </p>
+            </div>
+            {!feedbackQuery.isLoading && feedbackQuery.data && feedbackQuery.data.length > 0 && (
+              <CSVLink
+                data={feedbackQuery.data}
+                filename="student-feedback.csv"
+                className="print:hidden flex items-center gap-1.5 text-[12px] px-3 h-[26px] rounded-[6px] transition-colors hover:opacity-80 font-medium"
+                style={{ backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "#F0F1F2", color: isDark ? "#c8c9cc" : "#4b5563" }}
+              >
+                <Download className="w-3.5 h-3.5" />
+                Export
+              </CSVLink>
+            )}
+          </CardHeader>
+          <CardContent className="p-0">
+            {feedbackQuery.isLoading ? (
+              <div className="p-6 space-y-3">
+                {[...Array(3)].map((_, i) => <Skeleton key={i} className="h-14 w-full" />)}
+              </div>
+            ) : !feedbackQuery.data || feedbackQuery.data.length === 0 ? (
+              <div className="flex items-center justify-center h-32 text-muted-foreground text-sm">
+                No feedback submitted yet
+              </div>
+            ) : (
+              <div className="divide-y divide-border/50">
+                {feedbackQuery.data.map((item) => (
+                  <div key={item.id} className="px-6 py-4 flex items-start gap-4">
+                    <div className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold mt-0.5"
+                      style={{ backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "#F0F1F2", color: isDark ? "#c8c9cc" : "#4b5563" }}>
+                      {item.id}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm leading-relaxed">{item.message}</p>
+                      <p className="text-[11px] text-muted-foreground mt-1">
+                        {new Date(item.createdAt).toLocaleString()}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
           </CardContent>

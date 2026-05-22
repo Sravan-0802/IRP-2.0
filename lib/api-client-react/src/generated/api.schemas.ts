@@ -37,3 +37,15 @@ export interface SessionRow {
   duration: number;
   referrer?: string | null;
 }
+
+export interface FeedbackInput {
+  sessionId?: string | null;
+  message: string;
+}
+
+export interface FeedbackItem {
+  id: number;
+  sessionId?: string | null;
+  message: string;
+  createdAt: string;
+}
