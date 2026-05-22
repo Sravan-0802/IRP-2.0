@@ -174,43 +174,74 @@ export default function Dashboard() {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
 
+  const sessionsData = useMemo(() => {
+    if (!recentSessionsQuery.data) return [];
+    const sorted = [...recentSessionsQuery.data].sort(
+      (a, b) => new Date(a.firstSeenAt).getTime() - new Date(b.firstSeenAt).getTime()
+    );
+    return sorted.map((s, i) => ({ ...s, visitorNum: i + 1 }));
+  }, [recentSessionsQuery.data]);
+
+  const visitorChartData = useMemo(() => {
+    return sessionsData.map((s) => ({
+      name: `Visitor ${s.visitorNum}`,
+      minutes: parseFloat((s.duration / 60).toFixed(1)),
+      pageViews: s.pageViewCount,
+    }));
+  }, [sessionsData]);
+
   const columns: ColumnDef<any>[] = [
     {
-      accessorKey: "lastSeenAt",
-      header: "Time",
+      id: "visitorNum",
+      header: "Visitor",
+      cell: ({ row }) => (
+        <span className="text-sm font-semibold" style={{ color: CHART_COLORS.blue }}>
+          #{row.original.visitorNum}
+        </span>
+      ),
+    },
+    {
+      accessorKey: "firstSeenAt",
+      header: "Arrived",
       cell: ({ row }) => {
-        const d = new Date(row.original.lastSeenAt);
+        const d = new Date(row.original.firstSeenAt);
         return <span className="text-sm whitespace-nowrap">{d.toLocaleString()}</span>;
-      }
+      },
+    },
+    {
+      accessorKey: "duration",
+      header: "Time Spent",
+      cell: ({ row }) => (
+        <span className="text-sm font-medium">{formatTime(row.original.duration)}</span>
+      ),
     },
     {
       accessorKey: "pageViewCount",
       header: "Page Views",
-      cell: ({ row }) => <span className="text-sm font-medium">{row.original.pageViewCount}</span>
-    },
-    {
-      accessorKey: "duration",
-      header: "Duration",
-      cell: ({ row }) => <span className="text-sm">{formatTime(row.original.duration)}</span>
+      cell: ({ row }) => <span className="text-sm">{row.original.pageViewCount}</span>,
     },
     {
       accessorKey: "bounced",
       header: "Status",
       cell: ({ row }) => (
-        row.original.bounced ? 
+        row.original.bounced ?
         <span className="px-2 py-1 rounded text-[11px] font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">Bounced</span> :
         <span className="px-2 py-1 rounded text-[11px] font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Engaged</span>
-      )
+      ),
     },
     {
       accessorKey: "referrer",
       header: "Referrer",
-      cell: ({ row }) => <span className="text-sm text-muted-foreground truncate max-w-[200px] block" title={row.original.referrer || "Direct"}>{row.original.referrer || "Direct"}</span>
-    }
+      cell: ({ row }) => (
+        <span className="text-sm text-muted-foreground truncate max-w-[200px] block" title={row.original.referrer || "Direct"}>
+          {row.original.referrer ? "Via link" : "Direct"}
+        </span>
+      ),
+    },
   ];
 
   const table = useReactTable({
-    data: recentSessionsQuery.data || [],
+    data: sessionsData,
     columns,
     state: { sorting, globalFilter },
     onSortingChange: setSorting,
@@ -325,7 +356,7 @@ export default function Dashboard() {
                 <>
                   <div className="flex items-center gap-2 text-muted-foreground mb-1">
                     <Users className="w-4 h-4" />
-                    <p className="text-sm">Total Sessions</p>
+                    <p className="text-sm">Unique Visitors</p>
                   </div>
                   <p className="text-2xl font-bold" style={{ color: CHART_COLORS.blue }}>{summaryQuery.data?.totalSessions.toLocaleString()}</p>
                 </>
@@ -478,6 +509,68 @@ export default function Dashboard() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Time Spent per Visitor */}
+        <Card className="mb-6">
+          <CardHeader className="px-5 pt-5 pb-3 flex-row items-center justify-between space-y-0">
+            <div>
+              <CardTitle className="text-base">Time Spent per Visitor</CardTitle>
+              <p className="text-[12px] text-muted-foreground mt-0.5">
+                {loading ? "" : `${sessionsData.length} unique visitor${sessionsData.length !== 1 ? "s" : ""} total`}
+              </p>
+            </div>
+            {!loading && visitorChartData.length > 0 && (
+              <CSVLink
+                data={visitorChartData}
+                filename="visitor-time-spent.csv"
+                className="print:hidden flex items-center justify-center w-[26px] h-[26px] rounded-[6px] transition-colors hover:opacity-80"
+                style={{ backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "#F0F1F2", color: isDark ? "#c8c9cc" : "#4b5563" }}
+                aria-label="Export as CSV"
+              >
+                <Download className="w-3.5 h-3.5" />
+              </CSVLink>
+            )}
+          </CardHeader>
+          <CardContent className="px-2">
+            {loading ? (
+              <div className="p-4"><Skeleton className="w-full h-[200px]" /></div>
+            ) : visitorChartData.length === 0 ? (
+              <div className="flex items-center justify-center h-[200px] text-muted-foreground text-sm">No visitor data yet</div>
+            ) : (
+              <ResponsiveContainer width="100%" height={Math.max(120, visitorChartData.length * 52)} debounce={0}>
+                <BarChart data={visitorChartData} layout="vertical" margin={{ top: 10, right: 40, left: 10, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke={gridColor} horizontal={false} />
+                  <XAxis
+                    type="number"
+                    tick={{ fontSize: 12, fill: tickColor }}
+                    stroke={tickColor}
+                    tickFormatter={(v) => `${v}m`}
+                    label={{ value: "Minutes", position: "insideRight", offset: -4, fontSize: 11, fill: tickColor }}
+                  />
+                  <YAxis dataKey="name" type="category" tick={{ fontSize: 12, fill: tickColor }} stroke={tickColor} width={80} />
+                  <Tooltip
+                    content={({ active, payload, label }) => {
+                      if (!active || !payload || payload.length === 0) return null;
+                      const d = payload[0].payload;
+                      return (
+                        <div style={{ backgroundColor: "#fff", borderRadius: "6px", padding: "10px 14px", border: "1px solid #e0e0e0", fontSize: "13px", color: "#1a1a1a" }}>
+                          <div style={{ fontWeight: 600, marginBottom: 4 }}>{label}</div>
+                          <div>Time spent: <strong>{d.minutes} min</strong></div>
+                          <div>Page views: <strong>{d.pageViews}</strong></div>
+                        </div>
+                      );
+                    }}
+                    isAnimationActive={false}
+                    cursor={false}
+                  />
+                  <Bar dataKey="minutes" name="Minutes" fill={CHART_COLORS.green} fillOpacity={0.85} radius={[0, 4, 4, 0]} isAnimationActive={false}
+                    label={{ position: "right", fontSize: 12, fill: tickColor, formatter: (v: number) => `${v}m` }}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            )}
+          </CardContent>
+        </Card>
 
         {/* Sessions Table */}
         <Card>
