@@ -44,11 +44,11 @@ export const sessionsTable = pgTable(
   (t) => [index("sess_first_seen_idx").on(t.firstSeenAt)],
 );
 
-export const insertPageViewSchema = createInsertSchema(pageViewsTable).omit({ id: true, createdAt: true });
-export const insertClickEventSchema = createInsertSchema(clickEventsTable).omit({ id: true, createdAt: true });
+export const insertPageViewSchema = createInsertSchema(pageViewsTable).omit({ id: true, createdAt: true }) as any;
+export const insertClickEventSchema = createInsertSchema(clickEventsTable).omit({ id: true, createdAt: true }) as any;
 
-export type InsertPageView = z.infer<typeof insertPageViewSchema>;
-export type InsertClickEvent = z.infer<typeof insertClickEventSchema>;
+export type InsertPageView = { sessionId: string; url: string; referrer?: string | null; userAgent?: string | null; country?: string | null };
+export type InsertClickEvent = { sessionId: string; element: string; label?: string | null; url: string };
 export type PageView = typeof pageViewsTable.$inferSelect;
 export type ClickEvent = typeof clickEventsTable.$inferSelect;
 export type Session = typeof sessionsTable.$inferSelect;

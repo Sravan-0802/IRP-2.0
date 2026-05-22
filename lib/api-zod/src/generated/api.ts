@@ -14,3 +14,57 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * Returns aggregated analytics for the last 30 days
+ * @summary Get analytics summary
+ */
+export const GetAnalyticsSummaryResponse = zod.object({
+  totalSessions: zod.number(),
+  totalPageViews: zod.number(),
+  totalClicks: zod.number(),
+  bounceRate: zod.number(),
+  avgDurationSeconds: zod.number(),
+});
+
+/**
+ * Returns daily page view counts for the last 30 days
+ * @summary Get daily page views
+ */
+export const GetAnalyticsDailyResponseItem = zod.object({
+  date: zod.string(),
+  views: zod.number(),
+});
+export const GetAnalyticsDailyResponse = zod.array(
+  GetAnalyticsDailyResponseItem,
+);
+
+/**
+ * Returns top clicked elements in the last 30 days
+ * @summary Get top click events
+ */
+export const GetAnalyticsTopClicksResponseItem = zod.object({
+  element: zod.string(),
+  label: zod.string().nullish(),
+  count: zod.number(),
+});
+export const GetAnalyticsTopClicksResponse = zod.array(
+  GetAnalyticsTopClicksResponseItem,
+);
+
+/**
+ * Returns the 50 most recent sessions
+ * @summary Get recent sessions
+ */
+export const GetRecentSessionsResponseItem = zod.object({
+  id: zod.string(),
+  firstSeenAt: zod.string(),
+  lastSeenAt: zod.string(),
+  pageViewCount: zod.number(),
+  bounced: zod.number(),
+  duration: zod.number(),
+  referrer: zod.string().nullish(),
+});
+export const GetRecentSessionsResponse = zod.array(
+  GetRecentSessionsResponseItem,
+);

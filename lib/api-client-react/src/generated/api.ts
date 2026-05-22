@@ -13,7 +13,13 @@ import type {
   UseQueryResult,
 } from "@tanstack/react-query";
 
-import type { HealthStatus } from "./api.schemas";
+import type {
+  AnalyticsSummary,
+  DailyView,
+  HealthStatus,
+  SessionRow,
+  TopClick,
+} from "./api.schemas";
 
 import { customFetch } from "../custom-fetch";
 import type { ErrorType } from "../custom-fetch";
@@ -92,6 +98,310 @@ export function useHealthCheck<
   request?: SecondParameter<typeof customFetch>;
 }): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
   const queryOptions = getHealthCheckQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * Returns aggregated analytics for the last 30 days
+ * @summary Get analytics summary
+ */
+export const getGetAnalyticsSummaryUrl = () => {
+  return `/api/analytics/summary`;
+};
+
+export const getAnalyticsSummary = async (
+  options?: RequestInit,
+): Promise<AnalyticsSummary> => {
+  return customFetch<AnalyticsSummary>(getGetAnalyticsSummaryUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetAnalyticsSummaryQueryKey = () => {
+  return [`/api/analytics/summary`] as const;
+};
+
+export const getGetAnalyticsSummaryQueryOptions = <
+  TData = Awaited<ReturnType<typeof getAnalyticsSummary>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getAnalyticsSummary>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetAnalyticsSummaryQueryKey();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getAnalyticsSummary>>
+  > = ({ signal }) => getAnalyticsSummary({ signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getAnalyticsSummary>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetAnalyticsSummaryQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getAnalyticsSummary>>
+>;
+export type GetAnalyticsSummaryQueryError = ErrorType<unknown>;
+
+/**
+ * @summary Get analytics summary
+ */
+
+export function useGetAnalyticsSummary<
+  TData = Awaited<ReturnType<typeof getAnalyticsSummary>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getAnalyticsSummary>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetAnalyticsSummaryQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * Returns daily page view counts for the last 30 days
+ * @summary Get daily page views
+ */
+export const getGetAnalyticsDailyUrl = () => {
+  return `/api/analytics/daily`;
+};
+
+export const getAnalyticsDaily = async (
+  options?: RequestInit,
+): Promise<DailyView[]> => {
+  return customFetch<DailyView[]>(getGetAnalyticsDailyUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetAnalyticsDailyQueryKey = () => {
+  return [`/api/analytics/daily`] as const;
+};
+
+export const getGetAnalyticsDailyQueryOptions = <
+  TData = Awaited<ReturnType<typeof getAnalyticsDaily>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getAnalyticsDaily>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetAnalyticsDailyQueryKey();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getAnalyticsDaily>>
+  > = ({ signal }) => getAnalyticsDaily({ signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getAnalyticsDaily>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetAnalyticsDailyQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getAnalyticsDaily>>
+>;
+export type GetAnalyticsDailyQueryError = ErrorType<unknown>;
+
+/**
+ * @summary Get daily page views
+ */
+
+export function useGetAnalyticsDaily<
+  TData = Awaited<ReturnType<typeof getAnalyticsDaily>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getAnalyticsDaily>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetAnalyticsDailyQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * Returns top clicked elements in the last 30 days
+ * @summary Get top click events
+ */
+export const getGetAnalyticsTopClicksUrl = () => {
+  return `/api/analytics/clicks`;
+};
+
+export const getAnalyticsTopClicks = async (
+  options?: RequestInit,
+): Promise<TopClick[]> => {
+  return customFetch<TopClick[]>(getGetAnalyticsTopClicksUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetAnalyticsTopClicksQueryKey = () => {
+  return [`/api/analytics/clicks`] as const;
+};
+
+export const getGetAnalyticsTopClicksQueryOptions = <
+  TData = Awaited<ReturnType<typeof getAnalyticsTopClicks>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getAnalyticsTopClicks>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetAnalyticsTopClicksQueryKey();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getAnalyticsTopClicks>>
+  > = ({ signal }) => getAnalyticsTopClicks({ signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getAnalyticsTopClicks>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetAnalyticsTopClicksQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getAnalyticsTopClicks>>
+>;
+export type GetAnalyticsTopClicksQueryError = ErrorType<unknown>;
+
+/**
+ * @summary Get top click events
+ */
+
+export function useGetAnalyticsTopClicks<
+  TData = Awaited<ReturnType<typeof getAnalyticsTopClicks>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getAnalyticsTopClicks>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetAnalyticsTopClicksQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * Returns the 50 most recent sessions
+ * @summary Get recent sessions
+ */
+export const getGetRecentSessionsUrl = () => {
+  return `/api/analytics/sessions/recent`;
+};
+
+export const getRecentSessions = async (
+  options?: RequestInit,
+): Promise<SessionRow[]> => {
+  return customFetch<SessionRow[]>(getGetRecentSessionsUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetRecentSessionsQueryKey = () => {
+  return [`/api/analytics/sessions/recent`] as const;
+};
+
+export const getGetRecentSessionsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getRecentSessions>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getRecentSessions>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetRecentSessionsQueryKey();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getRecentSessions>>
+  > = ({ signal }) => getRecentSessions({ signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getRecentSessions>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetRecentSessionsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getRecentSessions>>
+>;
+export type GetRecentSessionsQueryError = ErrorType<unknown>;
+
+/**
+ * @summary Get recent sessions
+ */
+
+export function useGetRecentSessions<
+  TData = Awaited<ReturnType<typeof getRecentSessions>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getRecentSessions>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetRecentSessionsQueryOptions(options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;

@@ -8,3 +8,32 @@
 export interface HealthStatus {
   status: string;
 }
+
+export interface AnalyticsSummary {
+  totalSessions: number;
+  totalPageViews: number;
+  totalClicks: number;
+  bounceRate: number;
+  avgDurationSeconds: number;
+}
+
+export interface DailyView {
+  date: string;
+  views: number;
+}
+
+export interface TopClick {
+  element: string;
+  label?: string | null;
+  count: number;
+}
+
+export interface SessionRow {
+  id: string;
+  firstSeenAt: string;
+  lastSeenAt: string;
+  pageViewCount: number;
+  bounced: number;
+  duration: number;
+  referrer?: string | null;
+}

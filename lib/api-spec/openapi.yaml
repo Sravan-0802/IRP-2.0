@@ -1,6 +1,5 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
   description: API specification
@@ -10,6 +9,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: analytics
+    description: Analytics operations
 paths:
   /healthz:
     get:
@@ -24,6 +25,64 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /analytics/summary:
+    get:
+      operationId: getAnalyticsSummary
+      tags: [analytics]
+      summary: Get analytics summary
+      description: Returns aggregated analytics for the last 30 days
+      responses:
+        "200":
+          description: Analytics summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnalyticsSummary"
+  /analytics/daily:
+    get:
+      operationId: getAnalyticsDaily
+      tags: [analytics]
+      summary: Get daily page views
+      description: Returns daily page view counts for the last 30 days
+      responses:
+        "200":
+          description: Daily views array
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DailyView"
+  /analytics/clicks:
+    get:
+      operationId: getAnalyticsTopClicks
+      tags: [analytics]
+      summary: Get top click events
+      description: Returns top clicked elements in the last 30 days
+      responses:
+        "200":
+          description: Top clicks array
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TopClick"
+  /analytics/sessions/recent:
+    get:
+      operationId: getRecentSessions
+      tags: [analytics]
+      summary: Get recent sessions
+      description: Returns the 50 most recent sessions
+      responses:
+        "200":
+          description: Recent sessions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SessionRow"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +92,70 @@ components:
           type: string
       required:
         - status
-
+    AnalyticsSummary:
+      type: object
+      properties:
+        totalSessions:
+          type: integer
+        totalPageViews:
+          type: integer
+        totalClicks:
+          type: integer
+        bounceRate:
+          type: integer
+        avgDurationSeconds:
+          type: integer
+      required:
+        - totalSessions
+        - totalPageViews
+        - totalClicks
+        - bounceRate
+        - avgDurationSeconds
+    DailyView:
+      type: object
+      properties:
+        date:
+          type: string
+        views:
+          type: integer
+      required:
+        - date
+        - views
+    TopClick:
+      type: object
+      properties:
+        element:
+          type: string
+        label:
+          type: string
+          nullable: true
+        count:
+          type: integer
+      required:
+        - element
+        - count
+    SessionRow:
+      type: object
+      properties:
+        id:
+          type: string
+        firstSeenAt:
+          type: string
+        lastSeenAt:
+          type: string
+        pageViewCount:
+          type: integer
+        bounced:
+          type: integer
+        duration:
+          type: integer
+        referrer:
+          type: string
+          nullable: true
+      required:
+        - id
+        - firstSeenAt
+        - lastSeenAt
+        - pageViewCount
+        - bounced
+        - duration

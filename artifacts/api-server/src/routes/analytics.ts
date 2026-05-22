@@ -143,4 +143,55 @@ router.get("/analytics/summary", async (_req, res) => {
   }
 });
 
+router.get("/analytics/daily", async (_req, res) => {
+  try {
+    const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    const dailyViews = await db
+      .select({
+        date: sql<string>`DATE(${pageViewsTable.createdAt})`,
+        views: count(),
+      })
+      .from(pageViewsTable)
+      .where(gte(pageViewsTable.createdAt, since))
+      .groupBy(sql`DATE(${pageViewsTable.createdAt})`)
+      .orderBy(sql`DATE(${pageViewsTable.createdAt})`);
+    res.json(dailyViews);
+  } catch (e) {
+    res.status(500).json({ error: "Internal error" });
+  }
+});
+
+router.get("/analytics/clicks", async (_req, res) => {
+  try {
+    const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    const topClicks = await db
+      .select({
+        element: clickEventsTable.element,
+        label: clickEventsTable.label,
+        count: count(),
+      })
+      .from(clickEventsTable)
+      .where(gte(clickEventsTable.createdAt, since))
+      .groupBy(clickEventsTable.element, clickEventsTable.label)
+      .orderBy(desc(count()))
+      .limit(20);
+    res.json(topClicks);
+  } catch (e) {
+    res.status(500).json({ error: "Internal error" });
+  }
+});
+
+router.get("/analytics/sessions/recent", async (_req, res) => {
+  try {
+    const recent = await db
+      .select()
+      .from(sessionsTable)
+      .orderBy(desc(sessionsTable.firstSeenAt))
+      .limit(50);
+    res.json(recent);
+  } catch (e) {
+    res.status(500).json({ error: "Internal error" });
+  }
+});
+
 export default router;
