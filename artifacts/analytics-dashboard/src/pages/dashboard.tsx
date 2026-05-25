@@ -258,7 +258,7 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="min-h-screen bg-background px-5 py-4 pt-[32px] pb-[32px] pl-[24px] pr-[24px] overflow-x-hidden">
+    <div className="min-h-screen bg-background px-5 py-4 pt-[32px] pb-[32px] pl-[24px] pr-[24px] overflow-x-hidden" style={{ willChange: "scroll-position", WebkitOverflowScrolling: "touch" }}>
       <div className="max-w-[1400px] mx-auto">
         <div className="mb-8 flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
           <div className="pt-2">
@@ -458,11 +458,11 @@ export default function Dashboard() {
                 </CSVLink>
               )}
             </CardHeader>
-            <CardContent className="px-2">
+            <CardContent className="px-2" style={{ contain: "layout style" }}>
               {loading ? (
                 <div className="p-4"><Skeleton className="w-full h-[300px]" /></div>
               ) : (
-                <ResponsiveContainer width="100%" height={320} debounce={0}>
+                <ResponsiveContainer width="100%" height={320} debounce={50}>
                   <AreaChart data={dailyDataFormatted} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                     <defs>
                       <linearGradient id="gradientViews" x1="0" y1="0" x2="0" y2="1">
@@ -496,11 +496,11 @@ export default function Dashboard() {
                 </CSVLink>
               )}
             </CardHeader>
-            <CardContent className="px-2">
+            <CardContent className="px-2" style={{ contain: "layout style" }}>
               {loading ? (
                 <div className="p-4"><Skeleton className="w-full h-[300px]" /></div>
               ) : (
-                <ResponsiveContainer width="100%" height={320} debounce={0}>
+                <ResponsiveContainer width="100%" height={320} debounce={50}>
                   <BarChart data={topClicksQuery.data?.slice(0, 8)} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={gridColor} horizontal={false} />
                     <XAxis type="number" tick={{ fontSize: 12, fill: tickColor }} stroke={tickColor} />
@@ -535,13 +535,13 @@ export default function Dashboard() {
               </CSVLink>
             )}
           </CardHeader>
-          <CardContent className="px-2">
+          <CardContent className="px-2" style={{ contain: "layout style" }}>
             {loading ? (
               <div className="p-4"><Skeleton className="w-full h-[200px]" /></div>
             ) : visitorChartData.length === 0 ? (
               <div className="flex items-center justify-center h-[200px] text-muted-foreground text-sm">No visitor data yet</div>
             ) : (
-              <ResponsiveContainer width="100%" height={Math.max(120, visitorChartData.length * 52)} debounce={0}>
+              <ResponsiveContainer width="100%" height={Math.max(120, visitorChartData.length * 52)} debounce={50}>
                 <BarChart data={visitorChartData} layout="vertical" margin={{ top: 10, right: 40, left: 10, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke={gridColor} horizontal={false} />
                   <XAxis
