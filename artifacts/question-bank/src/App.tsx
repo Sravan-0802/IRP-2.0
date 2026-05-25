@@ -15,24 +15,15 @@ export default function App() {
   const [sort, setSort] = useState<SortOption>("most-asked");
   const [selectedSubtopic, setSelectedSubtopic] = useState("");
 
-  // All questions for the selected topic (used for stats/filters)
   const topicQuestions = useMemo(
     () => questions.filter((q) => q.topic === selectedTopic),
     [selectedTopic]
   );
 
-  // Filtered questions based on all active filters
   const filteredQuestions = useMemo(() => {
     let result = topicQuestions;
-
-    if (highImportanceOnly) {
-      result = result.filter((q) => q.highImportance);
-    }
-
-    if (selectedSubtopic) {
-      result = result.filter((q) => q.subtopic === selectedSubtopic);
-    }
-
+    if (highImportanceOnly) result = result.filter((q) => q.highImportance);
+    if (selectedSubtopic) result = result.filter((q) => q.subtopic === selectedSubtopic);
     if (search.trim()) {
       const term = search.trim().toLowerCase();
       result = result.filter(
@@ -42,21 +33,16 @@ export default function App() {
           q.companies.some((c) => c.toLowerCase().includes(term))
       );
     }
-
     return result;
   }, [topicQuestions, highImportanceOnly, selectedSubtopic, search]);
 
-  // Group by company and sort
   const companyGroups = useMemo(() => {
     let groups = groupByCompany(filteredQuestions);
-
     if (sort === "alphabetical") {
       groups = [...groups].sort((a, b) => a.company.localeCompare(b.company));
     } else if (sort === "high-importance-first") {
       groups = [...groups].sort((a, b) => b.highImportanceCount - a.highImportanceCount);
     }
-    // "most-asked" is already the default sort from groupByCompany
-
     return groups;
   }, [filteredQuestions, sort]);
 
@@ -70,7 +56,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-[#fef9f4] bg-grain font-sans">
       <Header
         search={search}
         onSearchChange={setSearch}
@@ -91,11 +77,11 @@ export default function App() {
           onSubtopicChange={setSelectedSubtopic}
         />
 
-        <div className="max-w-5xl mx-auto px-4 pb-12">
+        <div className="max-w-5xl mx-auto px-4 pb-16">
           {companyGroups.length === 0 ? (
             <EmptyState hasSearch={hasFilters} />
           ) : (
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               {companyGroups.map((group, index) => (
                 <CompanyCard
                   key={group.company}
@@ -107,6 +93,17 @@ export default function App() {
             </div>
           )}
         </div>
+
+        <footer className="border-t-2 border-black bg-black text-white py-6">
+          <div className="max-w-5xl mx-auto px-4 flex items-center justify-between flex-wrap gap-2">
+            <p className="font-display font-bold text-sm lowercase">
+              made with <span className="text-pink-400">♥</span> by nxtwave academy
+            </p>
+            <p className="font-display font-bold text-xs text-lime-300 uppercase tracking-widest">
+              go get that bag ✦
+            </p>
+          </div>
+        </footer>
       </main>
     </div>
   );

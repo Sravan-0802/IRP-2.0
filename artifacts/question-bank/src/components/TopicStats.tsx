@@ -1,4 +1,5 @@
 import { Question } from "../data/questions";
+import { Flame, Building2, Layers, Database } from "lucide-react";
 
 interface TopicStatsProps {
   topicName: string;
@@ -11,26 +12,43 @@ export function TopicStats({ topicName, questions }: TopicStatsProps) {
   const subtopics = new Set(questions.map((q) => q.subtopic)).size;
 
   return (
-    <div className="max-w-5xl mx-auto px-4 pt-6 pb-4">
-      <h2 className="text-lg font-bold text-gray-900 mb-0.5">{topicName}</h2>
-      <p className="text-sm text-gray-500 mb-4">
-        {questions.length} questions &middot; {subtopics} subtopics &middot; grouped by company
-      </p>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <StatCard label="High importance" value={highImportanceCount} />
-        <StatCard label="Companies asking" value={companies} />
-        <StatCard label="Subtopics" value={subtopics} />
-        <StatCard label="Total questions" value={questions.length} />
+    <div className="max-w-5xl mx-auto px-4 pt-8 pb-5">
+      <div className="flex items-baseline gap-3 mb-1 flex-wrap">
+        <h2 className="font-display font-black text-3xl text-black lowercase">
+          {topicName}
+        </h2>
+        <span className="font-display font-bold text-sm text-black/50">
+          // grouped by company
+        </span>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5">
+        <StatCard label="high importance" value={highImportanceCount} color="bg-pink-300" icon={<Flame className="w-4 h-4" strokeWidth={2.5} />} />
+        <StatCard label="companies" value={companies} color="bg-lime-300" icon={<Building2 className="w-4 h-4" strokeWidth={2.5} />} />
+        <StatCard label="subtopics" value={subtopics} color="bg-purple-300" icon={<Layers className="w-4 h-4" strokeWidth={2.5} />} />
+        <StatCard label="total q's" value={questions.length} color="bg-cyan-300" icon={<Database className="w-4 h-4" strokeWidth={2.5} />} />
       </div>
     </div>
   );
 }
 
-function StatCard({ label, value }: { label: string; value: number }) {
+function StatCard({
+  label,
+  value,
+  color,
+  icon,
+}: {
+  label: string;
+  value: number;
+  color: string;
+  icon: React.ReactNode;
+}) {
   return (
-    <div className="bg-gray-100 rounded-md px-3 py-2.5">
-      <p className="text-xs text-gray-500 mb-1">{label}</p>
-      <p className="text-2xl font-medium text-gray-900">{value}</p>
+    <div className={`${color} border-2 border-black rounded-xl px-4 py-3 shadow-brut-sm`}>
+      <div className="flex items-center gap-1.5 mb-1">
+        {icon}
+        <p className="font-display font-bold text-xs uppercase tracking-wide">{label}</p>
+      </div>
+      <p className="font-display font-black text-3xl text-black">{value}</p>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
 @layer base {
@@ -10,8 +10,13 @@
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #f9fafb;
-    color: #111827;
+    background-color: #fef9f4;
+    color: #0a0a0a;
+  }
+
+  .font-display {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -26,5 +31,30 @@
 
   input[type="search"]::-webkit-search-cancel-button {
     display: none;
+  }
+
+  .shadow-brut {
+    box-shadow: 4px 4px 0 0 #0a0a0a;
+  }
+  .shadow-brut-sm {
+    box-shadow: 2px 2px 0 0 #0a0a0a;
+  }
+  .shadow-brut-lg {
+    box-shadow: 6px 6px 0 0 #0a0a0a;
+  }
+
+  .bg-grain {
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(132, 204, 22, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.06) 0%, transparent 40%);
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
   }
 }

@@ -6,6 +6,22 @@ interface TopicPillsProps {
   onSelect: (topic: string) => void;
 }
 
+const PILL_COLORS = [
+  "bg-lime-300",
+  "bg-pink-300",
+  "bg-purple-300",
+  "bg-amber-300",
+  "bg-cyan-300",
+];
+
+const SHORT_NAMES: Record<string, string> = {
+  "Frontend": "frontend",
+  "Programming": "programming",
+  "Data Structures & Algorithms": "dsa",
+  "Behavioral & Communication": "behavioral",
+  "Resume/Project Based Questions": "resume + projects",
+};
+
 export function TopicPills({ selected, onSelect }: TopicPillsProps) {
   const countByTopic = Object.fromEntries(
     topics.map((t) => [
@@ -15,22 +31,31 @@ export function TopicPills({ selected, onSelect }: TopicPillsProps) {
   );
 
   return (
-    <div className="border-b border-gray-200 bg-white">
+    <div className="bg-[#fef9f4] border-b-2 border-black">
       <div className="max-w-5xl mx-auto px-4">
-        <div className="flex gap-2 overflow-x-auto py-3 scrollbar-hide">
-          {topics.map((topic) => {
+        <div className="flex gap-3 overflow-x-auto py-4 scrollbar-hide">
+          {topics.map((topic, i) => {
             const isSelected = selected === topic.name;
+            const color = PILL_COLORS[i % PILL_COLORS.length];
+            const short = SHORT_NAMES[topic.name] ?? topic.name.toLowerCase();
             return (
               <button
                 key={topic.slug}
                 onClick={() => onSelect(topic.name)}
-                className={`flex-shrink-0 px-3 py-1.5 rounded-full text-sm border transition-colors whitespace-nowrap ${
+                className={`flex-shrink-0 px-4 py-2 rounded-full font-display font-bold text-sm lowercase border-2 border-black transition-all whitespace-nowrap flex items-center gap-2 ${
                   isSelected
-                    ? "bg-indigo-100 text-indigo-900 border-indigo-300 font-medium"
-                    : "bg-white text-gray-600 border-gray-200 hover:border-gray-300 hover:text-gray-800"
+                    ? `${color} shadow-brut -translate-x-[2px] -translate-y-[2px]`
+                    : "bg-white shadow-brut-sm hover:-translate-x-[1px] hover:-translate-y-[1px]"
                 }`}
               >
-                {topic.name} &middot; {countByTopic[topic.name] ?? 0}
+                <span>{short}</span>
+                <span
+                  className={`text-xs font-black px-1.5 py-0.5 rounded-full ${
+                    isSelected ? "bg-black text-white" : "bg-gray-100 text-black"
+                  }`}
+                >
+                  {countByTopic[topic.name] ?? 0}
+                </span>
               </button>
             );
           })}

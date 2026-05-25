@@ -4,18 +4,18 @@ interface EmptyStateProps {
 
 export function EmptyState({ hasSearch }: EmptyStateProps) {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-20 flex flex-col items-center text-center">
-      <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-        <div className="w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center">
-          <span className="text-gray-400 text-lg font-light">?</span>
-        </div>
+    <div className="max-w-5xl mx-auto px-4 py-16 flex flex-col items-center text-center">
+      <div className="bg-purple-300 border-2 border-black rounded-2xl px-6 py-8 shadow-brut max-w-md">
+        <div className="font-display font-black text-6xl mb-2">¯\_(ツ)_/¯</div>
+        <p className="font-display font-black text-xl text-black mb-1 lowercase">
+          nothing here
+        </p>
+        <p className="text-sm text-black/70 font-medium">
+          {hasSearch
+            ? "try a different search, switch topics, or reset the filters."
+            : "try a different topic."}
+        </p>
       </div>
-      <p className="text-base font-medium text-gray-700 mb-1">No questions match</p>
-      <p className="text-sm text-gray-500">
-        {hasSearch
-          ? "Try a different search term, topic, or clear the filters."
-          : "Try a different topic or clear the search."}
-      </p>
     </div>
   );
 }
