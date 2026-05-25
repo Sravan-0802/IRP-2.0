@@ -11,13 +11,12 @@ export function Header({ search, onSearchChange, totalQuestions }: HeaderProps) 
     <header className="sticky top-0 z-20 bg-white border-b border-gray-200">
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         <div className="min-w-0">
-          <div className="flex items-center gap-2 mb-0.5">
-            <div className="w-6 h-6 rounded bg-indigo-600 flex items-center justify-center flex-shrink-0">
-              <span className="text-white text-xs font-semibold">N</span>
-            </div>
-            <span className="text-xs font-medium tracking-widest text-gray-400 uppercase">
-              NxtWave Academy
-            </span>
+          <div className="mb-1.5">
+            <img
+              src={`${import.meta.env.BASE_URL}nxtwave-academy-logo.png`}
+              alt="NxtWave Academy"
+              className="h-7 w-auto"
+            />
           </div>
           <p className="text-lg font-bold text-gray-900 leading-tight">
             Internship preparation intelligence
