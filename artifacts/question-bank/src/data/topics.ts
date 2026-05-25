@@ -5,9 +5,9 @@ export interface Topic {
 }
 
 export const topics: Topic[] = [
-  { name: "Resume/Project Based Questions", slug: "resume-project", color: "indigo" },
-  { name: "Behavioral & Communication", slug: "behavioral", color: "teal" },
+  { name: "Frontend", slug: "frontend", color: "indigo" },
   { name: "Programming", slug: "programming", color: "violet" },
   { name: "Data Structures & Algorithms", slug: "dsa", color: "blue" },
-  { name: "Frontend", slug: "frontend", color: "indigo" },
+  { name: "Behavioral & Communication", slug: "behavioral", color: "teal" },
+  { name: "Resume/Project Based Questions", slug: "resume-project", color: "indigo" },
 ];
