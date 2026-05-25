@@ -1,0 +1,139 @@
+Build a single-page React app called "NxtWave Interview Question Bank" that helps 
+internship-bound students browse 512 real interview questions, organized by topic 
+and grouped by the companies that asked them.
+
+=== TECH STACK ===
+- Vite + React (JavaScript, not TypeScript)
+- Tailwind CSS for styling
+- No backend, no database — all data in a single JS file (src/data/questions.js)
+- Single page, fully client-side
+
+=== DATA STRUCTURE ===
+Create src/data/questions.js exporting an array of question objects:
+{
+  id: 1,
+  topic: "Frontend",              // 12 topics total
+  subtopic: "Hooks",
+  question: "What is useEffect?...",
+  companies: ["CMB Greens", "Dragbin"],   // 1 or more
+  highImportance: true            // boolean
+}
+
+The 12 topics are exactly:
+1. Resume/Project Based Questions
+2. Behavioral & Communication
+3. Programming
+4. Data Structures & Algorithms
+5. Frontend
+6. Backend
+7. Database
+8. System Design & Architecture
+9. Gen AI / Machine Learning
+10. DevOps & Tools
+11. Core CS
+12. Business & Domain Knowledge
+
+I will paste the full questions dataset separately. For now, seed it with at 
+least 20 sample questions across 4-5 topics so the UI is testable.
+
+=== PAGE LAYOUT ===
+
+HEADER (sticky top, white bg, bottom border)
+- Left: small indigo square with "N" + small caps text "NxtWave Academy"
+- Below that: "Internship Preparation Intelligence" (20px, bold)
+- Subtitle: "512 real questions · 12 topics · collected from internship interviews"
+- Right: search input with magnifier icon, placeholder "Search questions..."
+
+TOPIC FILTER BAR (below header, horizontal scroll on mobile)
+- One pill per topic showing: "Topic name · {count}"
+- Selected pill: indigo background (#4F46E5 → use bg-indigo-100, text-indigo-900, border-indigo-300)
+- Unselected: white bg, gray border, gray text
+- Default selected: "Frontend"
+
+TOPIC HEADER SECTION
+- Topic name (18px bold) + meta line: "{N} questions · {N} subtopics · grouped by company"
+- 4-card stat strip in a grid:
+  • High importance count
+  • Companies asking
+  • Subtopics
+  • Total questions
+- Stat cards: light gray bg (bg-gray-100), rounded-md, label 12px gray on top, 
+  number 22px medium below.
+
+SUB-FILTER ROW (just below stats)
+- Toggle button: "All companies" / "High importance only" (dark navy when active)
+- Sort dropdown: "Most asked" / "Alphabetical" / "High importance first"
+- Subtopic dropdown: "All subtopics" + every subtopic in that topic
+
+COMPANY CARDS (vertical list, main content)
+- Group all questions in the selected topic BY COMPANY
+- One card per company, sorted by question count descending
+- Card style: white bg, 0.5px gray border, rounded-lg, padding 1rem 1.25rem, 12px gap between cards
+- Card HEADER (always visible):
+  • Left: 36px square avatar with company initials, colored bg (rotate through 
+    indigo, teal, coral, blue, amber based on index), white text, medium weight
+  • Company name (15px medium)
+  • Subline: "{N} {Topic} questions · {N} high importance" (12px gray)
+  • Right: chevron-down (expanded) or chevron-right (collapsed)
+- Card BODY (when expanded):
+  • List each question from this company in this topic
+  • HIGH IMPORTANCE questions: 3px amber left border, light amber bg (bg-amber-50), 
+    "HIGH" pill (amber bg, white text, 10px), subtopic label in dark amber, 
+    question text in dark amber/brown
+  • REGULAR questions: light gray bg (bg-gray-50), subtopic label in tiny gray 
+    uppercase, question text normal
+  • If >4 questions, show first 4 + "+ N more from {Company}" link in indigo
+
+EMPTY STATE
+- When no questions match search/filter: centered illustration placeholder + 
+  "No questions match. Try a different topic or clear the search."
+
+=== BEHAVIOR ===
+- Clicking a topic pill switches the view (no page reload, no routing needed)
+- Search filters across question text, subtopic name, AND company name
+- Search + topic filter + high-importance toggle + subtopic dropdown all combine
+- Clicking a company card header expands/collapses just that card
+- By default, the top 2 companies (most questions) in the topic are expanded; 
+  rest are collapsed
+- Make the expand/collapse animation smooth (Tailwind transition-all + max-height)
+- Mobile responsive: stat strip becomes 2x2 grid below 640px, topic pills 
+  horizontal-scroll, company cards full width
+
+=== STYLE NOTES (NxtWave brand) ===
+- Primary accent: indigo (#4F46E5 / #1F1B4D for dark navy)
+- High importance: amber/orange (#F59E0B)
+- Body font: Inter (Google Fonts)
+- NO emojis anywhere in the UI (NxtWave style preference)
+- NO em dashes in any UI copy
+- Sentence case for all headings and labels (never Title Case, never ALL CAPS 
+  except the small "HIGH" pill)
+- Generous whitespace, clean borders, flat surfaces. No gradients, no drop shadows.
+- Rounded corners: rounded-md for small elements, rounded-lg for cards
+
+=== FILE STRUCTURE ===
+src/
+  App.jsx                          (main component, holds state)
+  components/
+    Header.jsx
+    TopicPills.jsx
+    TopicStats.jsx
+    SubFilters.jsx
+    CompanyCard.jsx
+    QuestionItem.jsx
+    EmptyState.jsx
+  data/
+    questions.js                   (the 512-question dataset)
+    topics.js                      (topic metadata: name, slug, color)
+  utils/
+    groupByCompany.js              (helper to group questions by company within a topic)
+  index.css                        (tailwind imports + font import)
+  main.jsx
+
+=== DELIVERABLES ===
+- All files set up so `npm run dev` works in Replit immediately
+- README.md with: how to run, how to add more questions to the dataset, how 
+  to add a new topic
+- A note in README that the full 512-question dataset will be added next
+
+Start with the structure and the 20-sample dataset. I'll paste in the full 
+question list afterwards.
