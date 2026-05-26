@@ -2339,7 +2339,7 @@ function EliteOutcomesSection() {
   return (
     <section
       id="outcomes"
-      className="relative overflow-hidden bg-[#08070C] text-white py-20 md:py-28"
+      className="relative overflow-hidden bg-[#1a1825] text-white py-20 md:py-28"
     >
       {/* ambient halos */}
       <div className="pointer-events-none absolute -top-32 left-[18%] h-[440px] w-[440px] rounded-full bg-amber-500/[0.16] blur-3xl" aria-hidden />
@@ -2387,10 +2387,10 @@ function EliteOutcomesSection() {
               onError={(e) => {
                 e.currentTarget.style.display = "none";
               }}
-              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-[1400ms] group-hover:scale-[1.06]"
-              style={{ filter: "saturate(1.05) brightness(0.78)" }}
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-100 transition-transform duration-[1400ms] group-hover:scale-[1.06]"
+              style={{ filter: "saturate(1.1) brightness(0.95)" }}
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/15" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             <div
               className="pointer-events-none absolute -bottom-32 -left-20 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-3xl"
               aria-hidden
@@ -2426,10 +2426,10 @@ function EliteOutcomesSection() {
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                   }}
-                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-[900ms] group-hover:scale-[1.06]"
-                  style={{ filter: "saturate(1) brightness(0.7)" }}
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-100 transition-transform duration-[900ms] group-hover:scale-[1.06]"
+                  style={{ filter: "saturate(1.1) brightness(0.9)" }}
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
 
                 <div className="relative mt-auto p-5">
@@ -2455,8 +2455,8 @@ function EliteOutcomesSection() {
 
         {/* Mentor wall — subtle brand marquee echoing prestige */}
         <div className="mt-8 md:mt-10 relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015]">
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#08070C] to-transparent z-10" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#08070C] to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#1a1825] to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#1a1825] to-transparent z-10" />
           <Marquee
             items={["Microsoft", "Swiggy", "Google", "Amazon", "Salesforce", "Flipkart", "Zepto", "Adobe", "Razorpay", "CRED"].map(
               (c, i) => (
