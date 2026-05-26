@@ -38,6 +38,25 @@ export interface SessionRow {
   referrer?: string | null;
 }
 
+export interface ScrollBucket {
+  bucket: string;
+  sessions: number;
+  pct: number;
+}
+
+export interface ScrollPage {
+  url: string;
+  sessions: number;
+  avgDepth: number;
+}
+
+export interface ScrollAnalytics {
+  totalSessions: number;
+  avgDepth: number;
+  distribution: ScrollBucket[];
+  byPage: ScrollPage[];
+}
+
 export interface FeedbackInput {
   sessionId?: string | null;
   message: string;

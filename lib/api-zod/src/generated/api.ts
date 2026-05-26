@@ -53,6 +53,29 @@ export const GetAnalyticsTopClicksResponse = zod.array(
 );
 
 /**
+ * Returns scroll-depth distribution and per-page averages over the last 30 days
+ * @summary Get scroll depth analytics
+ */
+export const GetAnalyticsScrollResponse = zod.object({
+  totalSessions: zod.number(),
+  avgDepth: zod.number(),
+  distribution: zod.array(
+    zod.object({
+      bucket: zod.string(),
+      sessions: zod.number(),
+      pct: zod.number(),
+    }),
+  ),
+  byPage: zod.array(
+    zod.object({
+      url: zod.string(),
+      sessions: zod.number(),
+      avgDepth: zod.number(),
+    }),
+  ),
+});
+
+/**
  * Returns the 50 most recent sessions
  * @summary Get recent sessions
  */
@@ -68,3 +91,31 @@ export const GetRecentSessionsResponseItem = zod.object({
 export const GetRecentSessionsResponse = zod.array(
   GetRecentSessionsResponseItem,
 );
+
+/**
+ * Saves a visitor's feedback message
+ * @summary Submit feedback
+ */
+export const SubmitFeedbackBody = zod.object({
+  sessionId: zod.string().nullish(),
+  message: zod.string(),
+});
+
+export const SubmitFeedbackResponse = zod.object({
+  id: zod.number(),
+  sessionId: zod.string().nullish(),
+  message: zod.string(),
+  createdAt: zod.string(),
+});
+
+/**
+ * Returns all feedback messages newest first
+ * @summary Get all feedback
+ */
+export const GetFeedbackResponseItem = zod.object({
+  id: zod.number(),
+  sessionId: zod.string().nullish(),
+  message: zod.string(),
+  createdAt: zod.string(),
+});
+export const GetFeedbackResponse = zod.array(GetFeedbackResponseItem);

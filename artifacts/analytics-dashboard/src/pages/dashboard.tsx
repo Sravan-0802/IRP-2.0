@@ -7,6 +7,8 @@ import {
   getGetAnalyticsDailyQueryKey,
   useGetAnalyticsTopClicks,
   getGetAnalyticsTopClicksQueryKey,
+  useGetAnalyticsScroll,
+  getGetAnalyticsScrollQueryKey,
   useGetRecentSessions,
   getGetRecentSessionsQueryKey,
   useGetFeedback,
@@ -121,6 +123,7 @@ export default function Dashboard() {
   const summaryQuery = useGetAnalyticsSummary({ query: { queryKey: getGetAnalyticsSummaryQueryKey() } });
   const dailyQuery = useGetAnalyticsDaily({ query: { queryKey: getGetAnalyticsDailyQueryKey() } });
   const topClicksQuery = useGetAnalyticsTopClicks({ query: { queryKey: getGetAnalyticsTopClicksQueryKey() } });
+  const scrollQuery = useGetAnalyticsScroll({ query: { queryKey: getGetAnalyticsScrollQueryKey() } });
   const recentSessionsQuery = useGetRecentSessions({ query: { queryKey: getGetRecentSessionsQueryKey() } });
   const feedbackQuery = useGetFeedback({ query: { queryKey: getGetFeedbackQueryKey() } });
 
@@ -142,6 +145,7 @@ export default function Dashboard() {
     queryClient.invalidateQueries({ queryKey: getGetAnalyticsSummaryQueryKey() });
     queryClient.invalidateQueries({ queryKey: getGetAnalyticsDailyQueryKey() });
     queryClient.invalidateQueries({ queryKey: getGetAnalyticsTopClicksQueryKey() });
+    queryClient.invalidateQueries({ queryKey: getGetAnalyticsScrollQueryKey() });
     queryClient.invalidateQueries({ queryKey: getGetRecentSessionsQueryKey() });
     queryClient.invalidateQueries({ queryKey: getGetFeedbackQueryKey() });
   };
@@ -509,6 +513,90 @@ export default function Dashboard() {
                     <Bar dataKey="count" name="Clicks" fill={CHART_COLORS.purple} fillOpacity={0.8} activeBar={{ fillOpacity: 1 }} isAnimationActive={false} radius={[0, 4, 4, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Scroll Depth */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+          <Card className="lg:col-span-2">
+            <CardHeader className="px-5 pt-5 pb-3 flex-row items-center justify-between space-y-0">
+              <div>
+                <CardTitle className="text-base">Scroll Depth on Landing Page</CardTitle>
+                <p className="text-[12px] text-muted-foreground mt-0.5">
+                  {scrollQuery.isLoading
+                    ? ""
+                    : `${scrollQuery.data?.totalSessions ?? 0} session${(scrollQuery.data?.totalSessions ?? 0) !== 1 ? "s" : ""} tracked · avg ${scrollQuery.data?.avgDepth ?? 0}% reached`}
+                </p>
+              </div>
+              {!scrollQuery.isLoading && scrollQuery.data && scrollQuery.data.distribution.length > 0 && (
+                <CSVLink
+                  data={scrollQuery.data.distribution}
+                  filename="scroll-depth.csv"
+                  className="print:hidden flex items-center justify-center w-[26px] h-[26px] rounded-[6px] transition-colors hover:opacity-80"
+                  style={{ backgroundColor: isDark ? "rgba(255,255,255,0.1)" : "#F0F1F2", color: isDark ? "#c8c9cc" : "#4b5563" }}
+                  aria-label="Export scroll depth as CSV"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                </CSVLink>
+              )}
+            </CardHeader>
+            <CardContent className="px-2" style={{ contain: "layout style" }}>
+              {scrollQuery.isLoading ? (
+                <div className="p-4"><Skeleton className="w-full h-[260px]" /></div>
+              ) : (
+                <ResponsiveContainer width="100%" height={280} debounce={50}>
+                  <BarChart data={scrollQuery.data?.distribution ?? []} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke={gridColor} vertical={false} />
+                    <XAxis dataKey="bucket" tick={{ fontSize: 12, fill: tickColor }} stroke={tickColor} />
+                    <YAxis tick={{ fontSize: 12, fill: tickColor }} stroke={tickColor} />
+                    <Tooltip content={<CustomTooltip />} isAnimationActive={false} cursor={{ fill: 'rgba(0,0,0,0.05)', stroke: 'none' }} />
+                    <Bar dataKey="sessions" name="Sessions" fill={CHART_COLORS.green} fillOpacity={0.85} activeBar={{ fillOpacity: 1 }} isAnimationActive={false} radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="px-5 pt-5 pb-3 space-y-0">
+              <CardTitle className="text-base">Avg Depth by Page</CardTitle>
+              <p className="text-[12px] text-muted-foreground mt-0.5">
+                How far visitors read each page
+              </p>
+            </CardHeader>
+            <CardContent className="px-5 pb-5">
+              {scrollQuery.isLoading ? (
+                <Skeleton className="w-full h-[240px]" />
+              ) : (scrollQuery.data?.byPage.length ?? 0) === 0 ? (
+                <p className="text-sm text-muted-foreground py-8 text-center">
+                  No scroll data yet
+                </p>
+              ) : (
+                <div className="flex flex-col gap-3">
+                  {scrollQuery.data!.byPage.map((p) => (
+                    <div key={p.url}>
+                      <div className="flex items-baseline justify-between gap-2 mb-1">
+                        <span className="text-sm font-medium truncate" title={p.url}>
+                          {p.url === "/" ? "Home" : p.url}
+                        </span>
+                        <span className="text-xs text-muted-foreground whitespace-nowrap">
+                          {p.avgDepth}% · {p.sessions} session{p.sessions !== 1 ? "s" : ""}
+                        </span>
+                      </div>
+                      <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                        <div
+                          className="h-full rounded-full transition-all"
+                          style={{
+                            width: `${p.avgDepth}%`,
+                            backgroundColor: CHART_COLORS.green,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               )}
             </CardContent>
           </Card>

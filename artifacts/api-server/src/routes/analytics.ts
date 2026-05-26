@@ -4,6 +4,7 @@ import {
   pageViewsTable,
   clickEventsTable,
   sessionsTable,
+  scrollEventsTable,
 } from "@workspace/db/schema";
 import { eq, gte, sql, count, desc } from "drizzle-orm";
 
@@ -176,6 +177,82 @@ router.get("/analytics/clicks", async (_req, res) => {
       .orderBy(desc(count()))
       .limit(20);
     res.json(topClicks);
+  } catch (e) {
+    res.status(500).json({ error: "Internal error" });
+  }
+});
+
+router.post("/analytics/scroll", async (req, res) => {
+  try {
+    const { sessionId, url, depth } = req.body;
+    if (!sessionId || !url || typeof depth !== "number") {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+    const clamped = Math.max(0, Math.min(100, Math.round(depth)));
+    await db.insert(scrollEventsTable).values({ sessionId, url, depth: clamped });
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: "Internal error" });
+  }
+});
+
+router.get("/analytics/scroll", async (_req, res) => {
+  try {
+    const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
+    // Per-session per-url max depth, then bucket those into milestones.
+    const perSession = await db
+      .select({
+        sessionId: scrollEventsTable.sessionId,
+        url: scrollEventsTable.url,
+        maxDepth: sql<number>`MAX(${scrollEventsTable.depth})`,
+      })
+      .from(scrollEventsTable)
+      .where(gte(scrollEventsTable.createdAt, since))
+      .groupBy(scrollEventsTable.sessionId, scrollEventsTable.url);
+
+    const buckets = [
+      { label: "Reached 25%", min: 25, count: 0 },
+      { label: "Reached 50%", min: 50, count: 0 },
+      { label: "Reached 75%", min: 75, count: 0 },
+      { label: "Reached 100%", min: 100, count: 0 },
+    ];
+    let depthSum = 0;
+    for (const row of perSession) {
+      const d = Number(row.maxDepth) || 0;
+      depthSum += d;
+      for (const b of buckets) if (d >= b.min) b.count += 1;
+    }
+    const totalSessions = perSession.length;
+    const avgDepth = totalSessions > 0 ? Math.round(depthSum / totalSessions) : 0;
+
+    // Per-page average depth (top pages).
+    const perPage: Record<string, { sum: number; count: number }> = {};
+    for (const row of perSession) {
+      const key = row.url;
+      if (!perPage[key]) perPage[key] = { sum: 0, count: 0 };
+      perPage[key].sum += Number(row.maxDepth) || 0;
+      perPage[key].count += 1;
+    }
+    const byPage = Object.entries(perPage)
+      .map(([url, v]) => ({
+        url,
+        sessions: v.count,
+        avgDepth: Math.round(v.sum / v.count),
+      }))
+      .sort((a, b) => b.sessions - a.sessions)
+      .slice(0, 10);
+
+    res.json({
+      totalSessions,
+      avgDepth,
+      distribution: buckets.map((b) => ({
+        bucket: b.label,
+        sessions: b.count,
+        pct: totalSessions > 0 ? Math.round((b.count / totalSessions) * 100) : 0,
+      })),
+      byPage,
+    });
   } catch (e) {
     res.status(500).json({ error: "Internal error" });
   }

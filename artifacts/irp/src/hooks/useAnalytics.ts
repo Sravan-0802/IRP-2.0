@@ -41,7 +41,67 @@ export function useAnalytics() {
       });
     }, 30_000);
 
-    return () => clearInterval(heartbeatInterval);
+    // Scroll depth tracking: send the max % of the page reached so far
+    // whenever the user crosses a 25 / 50 / 75 / 100 milestone.
+    const sentMilestones = new Set<number>();
+    let maxDepth = 0;
+
+    const computeDepth = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const viewport = window.innerHeight || document.documentElement.clientHeight;
+      const docHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight,
+      );
+      const scrollable = Math.max(docHeight - viewport, 1);
+      const pct = Math.min(100, Math.round(((scrollTop + viewport) / docHeight) * 100));
+      if (scrollable < 100) return 100; // page fits in viewport = 100% seen
+      return pct;
+    };
+
+    let rafScheduled = false;
+    const onScroll = () => {
+      if (rafScheduled) return;
+      rafScheduled = true;
+      requestAnimationFrame(() => {
+        rafScheduled = false;
+        const depth = computeDepth();
+        if (depth > maxDepth) maxDepth = depth;
+        for (const milestone of [25, 50, 75, 100]) {
+          if (maxDepth >= milestone && !sentMilestones.has(milestone)) {
+            sentMilestones.add(milestone);
+            post("/analytics/scroll", {
+              sessionId: sid,
+              url: window.location.pathname,
+              depth: milestone,
+            });
+          }
+        }
+      });
+    };
+
+    // Capture initial state (e.g. short pages already fully visible).
+    setTimeout(onScroll, 500);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+
+    const onUnload = () => {
+      if (maxDepth > 0 && !sentMilestones.has(maxDepth)) {
+        post("/analytics/scroll", {
+          sessionId: sid,
+          url: window.location.pathname,
+          depth: maxDepth,
+        });
+      }
+    };
+    window.addEventListener("beforeunload", onUnload);
+
+    return () => {
+      clearInterval(heartbeatInterval);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("beforeunload", onUnload);
+    };
   }, []);
 
   const trackClick = useCallback((element: string, label?: string) => {

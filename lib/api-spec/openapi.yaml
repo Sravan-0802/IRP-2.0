@@ -68,6 +68,19 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/TopClick"
+  /analytics/scroll:
+    get:
+      operationId: getAnalyticsScroll
+      tags: [analytics]
+      summary: Get scroll depth analytics
+      description: Returns scroll-depth distribution and per-page averages over the last 30 days
+      responses:
+        "200":
+          description: Scroll depth analytics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScrollAnalytics"
   /analytics/sessions/recent:
     get:
       operationId: getRecentSessions
@@ -192,6 +205,42 @@ components:
         - pageViewCount
         - bounced
         - duration
+    ScrollBucket:
+      type: object
+      properties:
+        bucket:
+          type: string
+        sessions:
+          type: integer
+        pct:
+          type: integer
+      required: [bucket, sessions, pct]
+    ScrollPage:
+      type: object
+      properties:
+        url:
+          type: string
+        sessions:
+          type: integer
+        avgDepth:
+          type: integer
+      required: [url, sessions, avgDepth]
+    ScrollAnalytics:
+      type: object
+      properties:
+        totalSessions:
+          type: integer
+        avgDepth:
+          type: integer
+        distribution:
+          type: array
+          items:
+            $ref: "#/components/schemas/ScrollBucket"
+        byPage:
+          type: array
+          items:
+            $ref: "#/components/schemas/ScrollPage"
+      required: [totalSessions, avgDepth, distribution, byPage]
     FeedbackInput:
       type: object
       properties:

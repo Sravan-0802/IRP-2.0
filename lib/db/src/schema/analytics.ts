@@ -44,6 +44,18 @@ export const sessionsTable = pgTable(
   (t) => [index("sess_first_seen_idx").on(t.firstSeenAt)],
 );
 
+export const scrollEventsTable = pgTable(
+  "scroll_events",
+  {
+    id: serial("id").primaryKey(),
+    sessionId: varchar("session_id", { length: 64 }).notNull(),
+    url: text("url").notNull(),
+    depth: integer("depth").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (t) => [index("se_session_idx").on(t.sessionId), index("se_created_idx").on(t.createdAt)],
+);
+
 export const feedbackTable = pgTable(
   "feedback",
   {
@@ -64,3 +76,4 @@ export type PageView = typeof pageViewsTable.$inferSelect;
 export type ClickEvent = typeof clickEventsTable.$inferSelect;
 export type Session = typeof sessionsTable.$inferSelect;
 export type Feedback = typeof feedbackTable.$inferSelect;
+export type ScrollEvent = typeof scrollEventsTable.$inferSelect;
