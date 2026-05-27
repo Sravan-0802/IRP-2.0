@@ -36,6 +36,10 @@ import {
   Unlock,
   Award,
   Rocket,
+  Bot,
+  Users,
+  FolderOpen,
+  Building2,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -69,9 +73,9 @@ const LEVELS = [
       { label: "FE — HTML, CSS, JS, React", meta: "MCQ · 30 minutes · 30 questions" },
     ],
     post: [
-      "FE project · 12 hours",
-      "AI mock interview (NxtMock) · 1 hour",
-      "Human mock interview · 1 hour",
+      { icon: FolderOpen, label: "FE Project", meta: "12 hrs" },
+      { icon: Bot, label: "AI Mock Interview", meta: "1 hr" },
+      { icon: Users, label: "Human Mock Interview", meta: "1 hr" },
     ],
     unlocks: "Eligibility to appear for Level 2",
     postHeading: "Post Assessment",
@@ -94,9 +98,9 @@ const LEVELS = [
       { label: "Combined MCQ assessment", meta: "~2 hours total · 63 questions" },
     ],
     post: [
-      "Full stack + AI project · 24 hours",
-      "AI mock interview · 1 hour",
-      "Human mock interview · 1 hour",
+      { icon: FolderOpen, label: "Full Stack + AI Project", meta: "24 hrs" },
+      { icon: Bot, label: "AI Mock Interview", meta: "1 hr" },
+      { icon: Users, label: "Human Mock Interview", meta: "1 hr" },
     ],
     unlocks: "Internship opportunities (₹5K–₹15K) + Access to L3 Infinite Aura",
     postHeading: "Post Assessment",
@@ -119,9 +123,9 @@ const LEVELS = [
       { label: "Human mock interview", meta: "Project + resume depth" },
     ],
     post: [
-      "Internship opportunities with ₹25K+ monthly stipend",
-      "Unlock mentorship from mentors of top product-based companies such as Salesforce, Google, Microsoft!",
-      "Interactions with NxtWave's founding team",
+      { icon: Award, label: "Internship opportunities with ₹25K+ stipend" },
+      { icon: Building2, label: "Mentorship from top product companies" },
+      { icon: Star, label: "Interactions with NxtWave's founding team" },
     ],
     unlocks: "Only for students who complete the full IRP 2.0 path",
     sectionsHeading: "Eligibility pillars (after clearing L1 and L2)",
@@ -1616,16 +1620,26 @@ function LevelsSection({ onCta }: { onCta: () => void }) {
                     <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] text-black/55 mb-2 min-h-[2.5rem] leading-snug">
                       {lv.postHeading}
                     </p>
-                    <ul className="space-y-1.5">
-                      {lv.post.map((p, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-black/75 leading-snug">
-                          <span
-                            className="mt-2 inline-block w-1.5 h-1.5 rounded-full shrink-0"
-                            style={{ background: lv.color }}
-                          />
-                          {p}
-                        </li>
-                      ))}
+                    <ul className="space-y-2.5">
+                      {lv.post.map((p, i) => {
+                        const Icon = p.icon;
+                        return (
+                          <li key={i} className="flex items-start gap-2.5 leading-snug">
+                            <span
+                              className="mt-0.5 inline-flex items-center justify-center w-7 h-7 rounded-lg shrink-0"
+                              style={{ background: `${lv.color}1f`, color: lv.color }}
+                            >
+                              <Icon className="h-3.5 w-3.5" />
+                            </span>
+                            <div className="min-w-0">
+                              <p className="text-sm font-bold text-black/85 leading-tight">{p.label}</p>
+                              {"meta" in p && p.meta && (
+                                <p className="text-[11px] text-black/55 font-mono-ui mt-0.5">{p.meta}</p>
+                              )}
+                            </div>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
 
