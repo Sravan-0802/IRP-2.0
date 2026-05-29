@@ -76,6 +76,17 @@ export const GetAnalyticsScrollResponse = zod.object({
 });
 
 /**
+ * Returns bounced/engaged and direct/via-link counts for the last 30 days
+ * @summary Get sessions breakdown
+ */
+export const GetSessionsBreakdownResponse = zod.object({
+  bounced: zod.number(),
+  engaged: zod.number(),
+  direct: zod.number(),
+  viaLink: zod.number(),
+});
+
+/**
  * Returns the 50 most recent sessions
  * @summary Get recent sessions
  */

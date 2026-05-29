@@ -24,6 +24,7 @@ import type {
   HealthStatus,
   ScrollAnalytics,
   SessionRow,
+  SessionsBreakdown,
   TopClick,
 } from "./api.schemas";
 
@@ -408,6 +409,82 @@ export function useGetAnalyticsScroll<
   request?: SecondParameter<typeof customFetch>;
 }): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
   const queryOptions = getGetAnalyticsScrollQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * Returns bounced/engaged and direct/via-link counts for the last 30 days
+ * @summary Get sessions breakdown
+ */
+export const getGetSessionsBreakdownUrl = () => {
+  return `/api/analytics/sessions/breakdown`;
+};
+
+export const getSessionsBreakdown = async (
+  options?: RequestInit,
+): Promise<SessionsBreakdown> => {
+  return customFetch<SessionsBreakdown>(getGetSessionsBreakdownUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetSessionsBreakdownQueryKey = () => {
+  return [`/api/analytics/sessions/breakdown`] as const;
+};
+
+export const getGetSessionsBreakdownQueryOptions = <
+  TData = Awaited<ReturnType<typeof getSessionsBreakdown>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getSessionsBreakdown>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetSessionsBreakdownQueryKey();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getSessionsBreakdown>>
+  > = ({ signal }) => getSessionsBreakdown({ signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getSessionsBreakdown>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetSessionsBreakdownQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getSessionsBreakdown>>
+>;
+export type GetSessionsBreakdownQueryError = ErrorType<unknown>;
+
+/**
+ * @summary Get sessions breakdown
+ */
+
+export function useGetSessionsBreakdown<
+  TData = Awaited<ReturnType<typeof getSessionsBreakdown>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getSessionsBreakdown>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetSessionsBreakdownQueryOptions(options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;

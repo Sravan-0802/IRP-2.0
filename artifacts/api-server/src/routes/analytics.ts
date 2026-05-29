@@ -258,6 +258,30 @@ router.get("/analytics/scroll", async (_req, res) => {
   }
 });
 
+router.get("/analytics/sessions/breakdown", async (_req, res) => {
+  try {
+    const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
+    const rows = await db
+      .select({
+        bounced: sessionsTable.bounced,
+        referrer: sessionsTable.referrer,
+      })
+      .from(sessionsTable)
+      .where(gte(sessionsTable.firstSeenAt, since));
+
+    let bounced = 0, engaged = 0, direct = 0, viaLink = 0;
+    for (const r of rows) {
+      if (r.bounced === 1) bounced++; else engaged++;
+      if (r.referrer) viaLink++; else direct++;
+    }
+
+    res.json({ bounced, engaged, direct, viaLink });
+  } catch (e) {
+    res.status(500).json({ error: "Internal error" });
+  }
+});
+
 router.get("/analytics/sessions/recent", async (_req, res) => {
   try {
     const recent = await db

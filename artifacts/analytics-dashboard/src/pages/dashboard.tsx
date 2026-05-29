@@ -9,6 +9,8 @@ import {
   getGetAnalyticsTopClicksQueryKey,
   useGetAnalyticsScroll,
   getGetAnalyticsScrollQueryKey,
+  useGetSessionsBreakdown,
+  getGetSessionsBreakdownQueryKey,
   useGetRecentSessions,
   getGetRecentSessionsQueryKey,
   useGetFeedback,
@@ -124,6 +126,7 @@ export default function Dashboard() {
   const dailyQuery = useGetAnalyticsDaily({ query: { queryKey: getGetAnalyticsDailyQueryKey() } });
   const topClicksQuery = useGetAnalyticsTopClicks({ query: { queryKey: getGetAnalyticsTopClicksQueryKey() } });
   const scrollQuery = useGetAnalyticsScroll({ query: { queryKey: getGetAnalyticsScrollQueryKey() } });
+  const breakdownQuery = useGetSessionsBreakdown({ query: { queryKey: getGetSessionsBreakdownQueryKey() } });
   const recentSessionsQuery = useGetRecentSessions({ query: { queryKey: getGetRecentSessionsQueryKey() } });
   const feedbackQuery = useGetFeedback({ query: { queryKey: getGetFeedbackQueryKey() } });
 
@@ -135,10 +138,10 @@ export default function Dashboard() {
   useEffect(() => {
     if (loading) {
       setIsSpinning(true);
-    } else {
-      const t = setTimeout(() => setIsSpinning(false), 600);
-      return () => clearTimeout(t);
+      return;
     }
+    const t = setTimeout(() => setIsSpinning(false), 600);
+    return () => clearTimeout(t);
   }, [loading]);
 
   const handleRefresh = () => {
@@ -596,6 +599,97 @@ export default function Dashboard() {
                       </div>
                     </div>
                   ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Session Breakdown — Bounced/Engaged + Direct/Via Link */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          {/* Bounced vs Engaged */}
+          <Card>
+            <CardHeader className="px-5 pt-5 pb-3 space-y-0">
+              <CardTitle className="text-base">Bounced vs Engaged</CardTitle>
+              <p className="text-[12px] text-muted-foreground mt-0.5">
+                {breakdownQuery.isLoading ? "" : `${(breakdownQuery.data?.bounced ?? 0) + (breakdownQuery.data?.engaged ?? 0)} sessions in last 30 days`}
+              </p>
+            </CardHeader>
+            <CardContent className="px-5 pb-5">
+              {breakdownQuery.isLoading ? (
+                <Skeleton className="w-full h-[220px]" />
+              ) : (
+                <div className="flex flex-col items-center gap-4">
+                  <ResponsiveContainer width="100%" height={180} debounce={50}>
+                    <PieChart>
+                      <Pie
+                        data={[
+                          { name: "Bounced", value: breakdownQuery.data?.bounced ?? 0 },
+                          { name: "Engaged", value: breakdownQuery.data?.engaged ?? 0 },
+                        ]}
+                        cx="50%" cy="50%" innerRadius={52} outerRadius={80}
+                        dataKey="value" isAnimationActive={false}
+                      >
+                        <Cell fill="#F87171" />
+                        <Cell fill={CHART_COLORS.green} />
+                      </Pie>
+                      <Tooltip content={<CustomTooltip />} isAnimationActive={false} />
+                    </PieChart>
+                  </ResponsiveContainer>
+                  <div className="flex items-center gap-6 text-sm">
+                    <span className="flex items-center gap-1.5">
+                      <span className="inline-block w-3 h-3 rounded-full" style={{ background: "#F87171" }} />
+                      Bounced <strong>{breakdownQuery.data?.bounced ?? 0}</strong>
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="inline-block w-3 h-3 rounded-full" style={{ background: CHART_COLORS.green }} />
+                      Engaged <strong>{breakdownQuery.data?.engaged ?? 0}</strong>
+                    </span>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Direct vs Via Link */}
+          <Card>
+            <CardHeader className="px-5 pt-5 pb-3 space-y-0">
+              <CardTitle className="text-base">Traffic Source</CardTitle>
+              <p className="text-[12px] text-muted-foreground mt-0.5">
+                {breakdownQuery.isLoading ? "" : `Direct vs via link in last 30 days`}
+              </p>
+            </CardHeader>
+            <CardContent className="px-5 pb-5">
+              {breakdownQuery.isLoading ? (
+                <Skeleton className="w-full h-[220px]" />
+              ) : (
+                <div className="flex flex-col items-center gap-4">
+                  <ResponsiveContainer width="100%" height={180} debounce={50}>
+                    <PieChart>
+                      <Pie
+                        data={[
+                          { name: "Direct", value: breakdownQuery.data?.direct ?? 0 },
+                          { name: "Via link", value: breakdownQuery.data?.viaLink ?? 0 },
+                        ]}
+                        cx="50%" cy="50%" innerRadius={52} outerRadius={80}
+                        dataKey="value" isAnimationActive={false}
+                      >
+                        <Cell fill={CHART_COLORS.blue} />
+                        <Cell fill={CHART_COLORS.purple} />
+                      </Pie>
+                      <Tooltip content={<CustomTooltip />} isAnimationActive={false} />
+                    </PieChart>
+                  </ResponsiveContainer>
+                  <div className="flex items-center gap-6 text-sm">
+                    <span className="flex items-center gap-1.5">
+                      <span className="inline-block w-3 h-3 rounded-full" style={{ background: CHART_COLORS.blue }} />
+                      Direct <strong>{breakdownQuery.data?.direct ?? 0}</strong>
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="inline-block w-3 h-3 rounded-full" style={{ background: CHART_COLORS.purple }} />
+                      Via link <strong>{breakdownQuery.data?.viaLink ?? 0}</strong>
+                    </span>
+                  </div>
                 </div>
               )}
             </CardContent>

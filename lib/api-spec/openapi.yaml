@@ -81,6 +81,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ScrollAnalytics"
+  /analytics/sessions/breakdown:
+    get:
+      operationId: getSessionsBreakdown
+      tags: [analytics]
+      summary: Get sessions breakdown
+      description: Returns bounced/engaged and direct/via-link counts for the last 30 days
+      responses:
+        "200":
+          description: Sessions breakdown
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SessionsBreakdown"
   /analytics/sessions/recent:
     get:
       operationId: getRecentSessions
@@ -241,6 +254,18 @@ components:
           items:
             $ref: "#/components/schemas/ScrollPage"
       required: [totalSessions, avgDepth, distribution, byPage]
+    SessionsBreakdown:
+      type: object
+      properties:
+        bounced:
+          type: integer
+        engaged:
+          type: integer
+        direct:
+          type: integer
+        viaLink:
+          type: integer
+      required: [bounced, engaged, direct, viaLink]
     FeedbackInput:
       type: object
       properties:

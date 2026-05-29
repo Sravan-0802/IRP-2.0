@@ -15,4 +15,5 @@ export * from "./scrollAnalytics";
 export * from "./scrollBucket";
 export * from "./scrollPage";
 export * from "./sessionRow";
+export * from "./sessionsBreakdown";
 export * from "./topClick";

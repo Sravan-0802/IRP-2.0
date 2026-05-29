@@ -57,6 +57,13 @@ export interface ScrollAnalytics {
   byPage: ScrollPage[];
 }
 
+export interface SessionsBreakdown {
+  bounced: number;
+  engaged: number;
+  direct: number;
+  viaLink: number;
+}
+
 export interface FeedbackInput {
   sessionId?: string | null;
   message: string;
