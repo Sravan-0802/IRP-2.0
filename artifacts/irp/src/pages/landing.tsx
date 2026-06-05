@@ -36,10 +36,15 @@ import {
   Unlock,
   Award,
   Rocket,
+  Building2,
+  Mic,
+  Users,
+  Briefcase,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { PageFeedbackButton } from "@/components/page-feedback-survey";
+import { IRP_DASHBOARD_URL } from "@/lib/app-links";
 
 /* =========================================================================
    DATA — preserved from the original (courses, testimonials, FAQ, checklist)
@@ -91,7 +96,6 @@ const LEVELS = [
       { label: "BE — NodeJS + Express", meta: "MCQ · 20 minutes · 20 questions" },
       { label: "Database — SQL, NoSQL, MongoDB", meta: "20 MCQs + 3 SQL Coding Questions · 80 minutes" },
       { label: "GenAI", meta: "MCQ · 20 minutes · 20 questions" },
-      { label: "Combined MCQ assessment", meta: "~2 hours total · 63 questions" },
     ],
     post: [
       "Full stack + AI project · 24 hours",
@@ -123,7 +127,7 @@ const LEVELS = [
       "Unlock mentorship from mentors of top product-based companies such as Salesforce, Google, Microsoft!",
       "Interactions with NxtWave's founding team",
     ],
-    unlocks: "Only for students who complete the full IRP 2.0 path",
+    unlocks: "",
     sectionsHeading: "Eligibility pillars (after clearing L1 and L2)",
     postHeading: "What L3 Offers:",
   },
@@ -1062,6 +1066,12 @@ function NavBar({ onCta }: { onCta: () => void }) {
           ))}
         </ul>
         <div className="flex items-center gap-2">
+          <a
+            href={IRP_DASHBOARD_URL}
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-black/15 bg-white px-4 py-2 text-xs font-bold tracking-tight text-black/70 hover:border-black/30 hover:text-black transition-colors"
+          >
+            Dashboard
+          </a>
           <button
             onClick={onCta}
             className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-black text-white px-4 py-2 text-xs font-bold tracking-tight hover:bg-blue-600 transition-colors"
@@ -1094,6 +1104,13 @@ function NavBar({ onCta }: { onCta: () => void }) {
                 {it.label}
               </button>
             ))}
+            <a
+              href={IRP_DASHBOARD_URL}
+              onClick={() => setMenuOpen(false)}
+              className="mt-2 rounded-full border border-black/15 bg-white text-center text-sm font-bold py-3"
+            >
+              Student Dashboard →
+            </a>
             <button
               onClick={() => {
                 setMenuOpen(false);
@@ -1120,6 +1137,7 @@ function Hero({ onCta }: { onCta: () => void }) {
   const yBlob1 = useTransform(scrollYProgress, [0, 1], [0, -110]);
   const yBlob2 = useTransform(scrollYProgress, [0, 1], [0, 72]);
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.45]);
+  const [expandedLevel, setExpandedLevel] = useState<string | null>(null);
 
   const words = ["Lock", "In.", "Level", "Up.", "Get", "Paid."];
 
@@ -1249,43 +1267,96 @@ function Hero({ onCta }: { onCta: () => void }) {
                   </span>
                 </div>
                 <div className="space-y-3">
-                  {LEVELS.map((lv, i) => (
-                    <motion.div
-                      key={lv.code}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.6 + i * 0.12 }}
-                      className="flex items-center gap-3 rounded-2xl border border-black/[0.06] p-3 transition-colors hover:border-black/15 cursor-pointer"
-                      style={{ background: lv.bg }}
-                      onClick={() => {
-                        const el = document.getElementById(`level-${lv.code.toLowerCase()}`);
-                        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-                      }}
-                    >
-                      <div
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-display text-sm font-bold text-white"
-                        style={{ background: lv.color }}
+                  {LEVELS.map((lv, i) => {
+                    const isOpen = expandedLevel === lv.code;
+                    return (
+                      <motion.div
+                        key={lv.code}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.6 + i * 0.12 }}
+                        className="overflow-hidden rounded-2xl border border-black/[0.06] transition-colors hover:border-black/15"
+                        style={{ background: lv.bg }}
                       >
-                        {lv.code}
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="text-sm font-bold leading-tight">{lv.nickname}</div>
-                        {lv.date && (
-                          <div className="mt-1">
-                            {lv.code === "L1" ? (
-                              <span className="inline-flex items-center gap-1 rounded-full bg-amber-400 px-2 py-0.5 font-mono-ui text-[9px] font-black uppercase tracking-wider text-amber-950">
-                                <Flame className="h-2.5 w-2.5 shrink-0" />
-                                {L1_ASSESSMENT_DATE}
-                              </span>
-                            ) : (
-                              <span className="font-mono-ui text-[10px] font-bold uppercase tracking-wider text-black/45">{lv.date}</span>
+                        <button
+                          type="button"
+                          aria-expanded={isOpen}
+                          onClick={() => setExpandedLevel(isOpen ? null : lv.code)}
+                          className="flex w-full items-center gap-3 p-3 text-left"
+                        >
+                          <div
+                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-display text-sm font-bold text-white"
+                            style={{ background: lv.color }}
+                          >
+                            {lv.code}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <div className="text-sm font-bold leading-tight">{lv.nickname}</div>
+                            {lv.date && (
+                              <div className="mt-1">
+                                {lv.code === "L1" ? (
+                                  <span className="inline-flex items-center gap-1 rounded-full bg-amber-400 px-2 py-0.5 font-mono-ui text-[9px] font-black uppercase tracking-wider text-amber-950">
+                                    <Flame className="h-2.5 w-2.5 shrink-0" />
+                                    {L1_ASSESSMENT_DATE}
+                                  </span>
+                                ) : (
+                                  <span className="font-mono-ui text-[10px] font-bold uppercase tracking-wider text-black/45">
+                                    {lv.date}
+                                  </span>
+                                )}
+                              </div>
                             )}
                           </div>
-                        )}
-                      </div>
-                      <ChevronRight className="h-4 w-4 shrink-0 opacity-40" />
-                    </motion.div>
-                  ))}
+                          <ChevronDown
+                            className={`h-4 w-4 shrink-0 text-black/40 transition-transform duration-200 ${
+                              isOpen ? "rotate-0" : "-rotate-90"
+                            }`}
+                          />
+                        </button>
+
+                        <AnimatePresence initial={false}>
+                          {isOpen ? (
+                            <motion.div
+                              key="panel"
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.25, ease: "easeInOut" }}
+                              className="overflow-hidden"
+                            >
+                              <div className="border-t border-black/10 px-3 pb-3 pt-2.5">
+                                <p className="text-xs leading-relaxed text-black/65">{lv.tagline}</p>
+                                <p className="mt-2 font-mono-ui text-[10px] font-bold uppercase tracking-wider text-black/45">
+                                  {lv.duration}
+                                </p>
+                                <ul className="mt-2.5 space-y-1">
+                                  {lv.sections.map((section) => (
+                                    <li key={section.label} className="text-[11px] leading-snug text-black/55">
+                                      · {section.label}
+                                    </li>
+                                  ))}
+                                </ul>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    document.getElementById("levels")?.scrollIntoView({ behavior: "smooth" });
+                                    window.setTimeout(() => {
+                                      document
+                                        .getElementById(`level-${lv.code.toLowerCase()}`)
+                                        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                                    }, 350);
+                                  }}
+                                  className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-black/70 transition-colors hover:text-black"
+                                >
+                                  View full details <ChevronDown className="h-3.5 w-3.5" />
+                                </button>
+                              </div>
+                            </motion.div>
+                          ) : null}
+                        </AnimatePresence>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
             </TiltCard>
@@ -1510,137 +1581,375 @@ function WhyBento({ onCta }: { onCta: () => void }) {
 }
 
 /* =========================================================================
-   LEVELS
+   PATHS — outcomes + two routes (standard vs wildcard)
    ========================================================================= */
 
-function LevelsSection({ onCta }: { onCta: () => void }) {
+const WILDCARD_GATE_ICONS = [Brain, Cpu, Star, Mic] as const;
+const WILDCARD_UNLOCK_ICONS = [Building2, Users, Rocket] as const;
+
+/* Per-level palette — keeps the whole journey on one coherent colour system */
+const LEVEL_THEME = {
+  L1: { accent: "#2563EB", soft: "#EFF4FF", ring: "rgba(37,99,235,0.16)" },
+  L2: { accent: "#7C3AED", soft: "#F4EEFF", ring: "rgba(124,58,237,0.16)" },
+  L3: { accent: "#E0531F", soft: "#FFF1EA", ring: "rgba(224,83,31,0.18)" },
+} as const;
+
+function PathLevelCard({
+  level,
+  step,
+}: {
+  level: (typeof LEVELS)[number];
+  step: number;
+}) {
+  const Icon = level.icon;
+  const theme = LEVEL_THEME[level.code as keyof typeof LEVEL_THEME] ?? LEVEL_THEME.L1;
+  const sectionsHeading =
+    "sectionsHeading" in level && level.sectionsHeading
+      ? level.sectionsHeading
+      : "Assessment sections";
+
   return (
-    <section id="levels" className="relative py-20 md:py-28 gz-bg-cream gz-grain overflow-hidden">
-      <GlowOrb className="w-[380px] h-[380px] top-1/3 -left-24" color="violet" />
-      <GlowOrb className="w-[420px] h-[420px] bottom-0 right-0" color="pink" />
-      <div className="container mx-auto max-w-6xl px-5 md:px-8 relative">
-        <div className="mb-12 flex items-center justify-between flex-wrap gap-5">
-          <div>
-            <SectionLabel accent="#1D4ED8">IRP 2.0 Journey</SectionLabel>
-            <h2 className="mt-3 font-display text-4xl md:text-6xl font-bold leading-[0.95] tracking-tight max-w-3xl">
-              The IRP 2.0 Journey — Three Levels
-            </h2>
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <p className="text-sm font-semibold text-black">
-                L1 kicks off on <span className="text-black font-bold">{L1_ASSESSMENT_DATE}</span>
-              </p>
-              <button
-                onClick={onCta}
-                className="inline-flex items-center gap-2 rounded-full bg-[#1D4ED8] text-white px-4 py-2 text-sm font-bold hover:bg-[#0B1D3A] transition-colors"
-              >
-                Register <ArrowRight className="h-3.5 w-3.5" />
-              </button>
-            </div>
+    <div
+      id={`level-${level.code.toLowerCase()}`}
+      className="relative scroll-mt-28 overflow-hidden rounded-3xl border bg-white shadow-[0_18px_44px_-28px_rgba(15,23,42,0.45)]"
+      style={{ borderColor: theme.ring }}
+    >
+      {/* top accent strip */}
+      <div className="h-1.5 w-full" style={{ background: theme.accent }} />
+
+      <div className="p-5 md:p-6">
+        {/* header */}
+        <div className="flex items-start gap-4">
+          <div
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-white shadow-sm"
+            style={{ background: theme.accent }}
+          >
+            <Icon className="h-5 w-5" />
           </div>
-          <AssessmentCountdownCard />
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2">
+              <span
+                className="font-mono-ui text-[10px] font-black uppercase tracking-[0.18em]"
+                style={{ color: theme.accent }}
+              >
+                Step {step} · {level.label}
+              </span>
+            </div>
+            <h4 className="mt-1 font-display text-xl font-bold text-[#0f172a] md:text-2xl">
+              {level.nickname}
+            </h4>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-[auto_auto_auto_1fr_auto_auto] gap-5">
-          {LEVELS.map((lv, idx) => (
+        <p className="mt-3 text-sm font-medium leading-relaxed text-slate-600">{level.tagline}</p>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {level.date ? (
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold"
+              style={{ background: theme.soft, color: theme.accent }}
+            >
+              <Clock className="h-3 w-3" />
+              {level.date}
+            </span>
+          ) : null}
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold text-slate-500">
+            <Clock className="h-3 w-3" />
+            {level.duration}
+          </span>
+        </div>
+
+        {/* sections */}
+        <div className="mt-4 rounded-2xl p-4" style={{ background: theme.soft }}>
+          <p
+            className="font-mono-ui text-[10px] font-black uppercase tracking-[0.18em]"
+            style={{ color: theme.accent }}
+          >
+            {sectionsHeading}
+          </p>
+          <ul className="mt-3 space-y-2.5">
+            {level.sections.map((s) => (
+              <li key={s.label} className="flex items-start gap-2.5">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" style={{ color: theme.accent }} />
+                <div>
+                  <p className="text-sm font-bold leading-tight text-[#0f172a]">{s.label}</p>
+                  <p className="mt-0.5 font-mono-ui text-[11px] text-slate-500">{s.meta}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* post / what you get */}
+        <div className="mt-4">
+          <p className="font-mono-ui text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
+            {level.postHeading}
+          </p>
+          <ul className="mt-2 space-y-1.5">
+            {level.post.map((item) => (
+              <li key={item} className="flex items-start gap-2 text-sm leading-snug text-slate-600">
+                <span
+                  className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full"
+                  style={{ background: theme.accent }}
+                />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {level.unlocks ? (
+          <div
+            className="mt-5 flex items-center gap-2 rounded-2xl px-4 py-3 text-sm font-bold"
+            style={{ background: theme.soft, color: theme.accent }}
+          >
+            <Unlock className="h-4 w-4 shrink-0" />
+            <span>{level.unlocks}</span>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function PathColumn({
+  badge,
+  badgeColor,
+  badgeBg,
+  title,
+  subtitle,
+  highlight,
+  children,
+}: {
+  badge: string;
+  badgeColor: string;
+  badgeBg: string;
+  title?: string;
+  subtitle?: React.ReactNode;
+  highlight?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className={`flex flex-col gap-5 rounded-[28px] border p-4 md:p-6 ${
+        highlight
+          ? "border-[#E85D33]/35 bg-white shadow-[0_28px_60px_-28px_rgba(232,93,51,0.55)] ring-2 ring-[#E85D33]/25"
+          : "border-slate-200/80 bg-white shadow-[0_20px_50px_-30px_rgba(15,23,42,0.35)]"
+      }`}
+    >
+      <div>
+        <span
+          className="inline-flex rounded-full px-3.5 py-1.5 font-mono-ui text-[11px] font-black uppercase tracking-[0.18em]"
+          style={{ color: badgeColor, background: badgeBg }}
+        >
+          {badge}
+        </span>
+        {title ? (
+          <h3 className="mt-3 font-display text-2xl font-bold text-[#0f172a] md:text-[1.75rem]">{title}</h3>
+        ) : null}
+        {subtitle ? (
+          <p className="mt-2 text-sm font-medium leading-relaxed text-slate-600">{subtitle}</p>
+        ) : null}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function WildcardCard({
+  level,
+}: {
+  level: (typeof LEVELS)[number];
+}) {
+  return (
+    <div id="level-l3" className="flex scroll-mt-28 flex-col gap-4">
+      <div className="overflow-hidden rounded-3xl shadow-[0_32px_64px_-24px_rgba(0,0,0,0.55)] ring-2 ring-[#E85D33]/40">
+        {/* Orange header */}
+        <div className="relative bg-gradient-to-br from-[#F0652A] via-[#E85D33] to-[#C2410C] px-6 py-6 text-white">
+          <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-amber-200/25 blur-3xl" aria-hidden />
+          <p className="relative font-mono-ui text-[11px] font-black uppercase tracking-[0.2em] text-white">
+            {level.label} · Direct Entry · Open to all
+          </p>
+          <h4 className="relative mt-3 font-display text-3xl font-black tracking-tight md:text-4xl">
+            {level.nickname}
+          </h4>
+          <p className="relative mt-2.5 text-base font-medium leading-relaxed text-white/95">
+            {level.tagline}
+          </p>
+          <span className="relative mt-4 inline-flex rounded-full border-2 border-white/50 bg-white/20 px-4 py-2 text-xs font-bold text-white">
+            {level.duration}
+          </span>
+        </div>
+
+        {/* Dark body */}
+        <div className="bg-gradient-to-b from-[#0f172a] to-[#070b14] px-6 py-6 text-white">
+          <p className="font-mono-ui text-[11px] font-black uppercase tracking-[0.2em] text-sky-300/70">
+            {level.sectionsHeading ?? "Clear all 4 to enter"}
+          </p>
+
+          <div className="mt-5 grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+            {level.sections.map((section, index) => {
+              const GateIcon = WILDCARD_GATE_ICONS[index] ?? Star;
+              return (
+                <div
+                  key={section.label}
+                  className="rounded-2xl border border-slate-600/60 bg-slate-800/90 p-4 shadow-inner"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E85D33]/25 text-[#FF9B6A] ring-1 ring-[#E85D33]/50">
+                    <GateIcon className="h-5 w-5" />
+                  </div>
+                  <p className="mt-3 text-sm font-bold leading-snug text-white">{section.label}</p>
+                  <p className="mt-1 font-mono-ui text-[11px] font-semibold text-slate-400">{section.meta}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <p className="mt-6 font-mono-ui text-[11px] font-black uppercase tracking-[0.2em] text-sky-300/70">
+            {level.postHeading}
+          </p>
+          <div className="mt-4 space-y-3">
+            {level.post.map((item, index) => {
+              const UnlockIcon = WILDCARD_UNLOCK_ICONS[index] ?? Award;
+              return (
+                <div key={item} className="flex items-start gap-3 text-sm font-semibold leading-snug text-white">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#E85D33]/20 text-[#FF9B6A]">
+                    <UnlockIcon className="h-4 w-4" />
+                  </div>
+                  <span className="pt-1">{item}</span>
+                </div>
+              );
+            })}
+          </div>
+
+          {level.unlocks ? (
+            <div className="mt-6 flex items-center gap-3 rounded-2xl border-2 border-[#E85D33] bg-[#1a0f0a]/80 px-4 py-3.5 shadow-[0_0_24px_rgba(232,93,51,0.35)]">
+              <Unlock className="h-5 w-5 shrink-0 text-[#FF9B6A]" />
+              <span className="text-sm font-bold leading-snug text-white">{level.unlocks}</span>
+            </div>
+          ) : null}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        disabled
+        className="flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#F0652A]/75 to-[#E85D33]/75 px-6 py-4 text-base font-black text-white/90 shadow-[0_12px_32px_-8px_rgba(232,93,51,0.45)]"
+      >
+        Coming soon
+      </button>
+    </div>
+  );
+}
+
+function PathsSection({ onCta }: { onCta: () => void }) {
+  const l1 = LEVELS[0];
+  const l2 = LEVELS[1];
+  const l3 = LEVELS[2];
+
+  return (
+    <section id="levels" className="relative overflow-hidden gz-bg-cream py-16 md:py-24">
+      <GlowOrb className="pointer-events-none absolute top-1/3 -left-24 h-[380px] w-[380px]" color="violet" />
+      <GlowOrb className="pointer-events-none absolute bottom-0 right-0 h-[420px] w-[420px]" color="pink" />
+      <div className="container relative mx-auto max-w-6xl px-4 sm:px-5 md:px-8">
+        <div className="mb-10 max-w-3xl">
+          <SectionLabel accent="#2563EB">IRP 2.0 Journey</SectionLabel>
+          <h2 className="mt-3 font-display text-4xl font-bold leading-[0.95] tracking-tight text-[#0f172a] md:text-6xl">
+            One path. <span className="gz-gradient-text">Two ways to win.</span>
+          </h2>
+          <p className="mt-3 text-sm font-semibold text-slate-600">
+            L1 kicks off on <span className="font-bold text-[#0f172a]">{L1_ASSESSMENT_DATE}</span>
+          </p>
+        </div>
+
+        {/* ── Two paths ── */}
+        <div>
+          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="font-mono-ui text-[11px] font-black uppercase tracking-[0.24em] text-slate-500">
+                Two paths to get there
+              </p>
+              <h2 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-[#0f172a] md:text-5xl">
+                Choose your route
+              </h2>
+            </div>
+            <AssessmentCountdownCard />
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
+            {/* Path 1 — Standard */}
             <motion.div
-              key={lv.code}
-              id={`level-${lv.code.toLowerCase()}`}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="relative h-full min-h-0 md:row-span-6 md:grid md:grid-rows-subgrid md:gap-5"
             >
-              <TiltCard intensity={6} className="h-full md:row-span-6 md:grid md:grid-rows-subgrid md:gap-5">
-                <div
-                  className="relative h-full rounded-3xl border-2 p-7 overflow-hidden flex flex-col gap-5 md:row-span-6 md:grid md:grid-rows-subgrid md:gap-5 md:flex-none transition-shadow duration-300 hover:shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)]"
-                  style={{ background: lv.bg, borderColor: `${lv.color}22` }}
-                >
-                  {/* Row 1 — level number + icon */}
-                  <div className="flex items-center justify-between">
-                    <span
-                      className="font-display text-7xl md:text-8xl font-bold leading-none tracking-tighter"
-                      style={{ color: lv.color, opacity: 0.18 }}
-                    >
-                      {lv.n}
-                    </span>
-                    <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-lg"
-                      style={{ background: lv.color }}
-                    >
-                      <lv.icon className="h-6 w-6" />
+              <PathColumn
+                badge="Path 1 · The Standard Route"
+                badgeColor="#2563EB"
+                badgeBg="rgba(37,99,235,0.10)"
+              >
+                <div className="relative flex flex-col gap-5">
+                  {/* connecting rail */}
+                  <div className="pointer-events-none absolute left-6 top-10 bottom-28 hidden w-px bg-gradient-to-b from-[#2563EB]/40 via-[#7C3AED]/40 to-transparent sm:block" />
+                  <PathLevelCard level={l1} step={1} />
+                  <PathLevelCard level={l2} step={2} />
+                </div>
+
+                <div>
+                  <p className="mb-4 font-display text-base font-black uppercase tracking-wide text-[#0f172a] md:text-lg">
+                    After L2, you choose
+                  </p>
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <div className="rounded-2xl border border-[#10b981]/30 bg-white p-4 shadow-sm">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#10b981]/12 text-[#059669]">
+                        <Briefcase className="h-4 w-4" />
+                      </div>
+                      <p className="mt-2.5 text-sm font-bold text-[#0f172a]">Take the Internship</p>
+                      <p className="mt-1 text-xs leading-relaxed text-slate-500">
+                        Internship opportunities (₹15K–₹25K)
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-slate-700/80 bg-[#0f172a] p-4 shadow-sm">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#E85D33]/20 text-[#FF9B6A]">
+                        <Flame className="h-4 w-4" />
+                      </div>
+                      <p className="mt-2.5 text-sm font-bold text-white">Push for the Top</p>
+                      <p className="mt-1 text-xs leading-relaxed text-slate-400">
+                        Access to L3 Infinite Aura
+                      </p>
                     </div>
                   </div>
-
-                  {/* Row 2 — level tags */}
-                  <div className="flex flex-wrap items-center gap-2 content-start">
-                    <span
-                      className="gz-tag"
-                      style={{ background: `${lv.color}1A`, color: lv.color }}
-                    >
-                      {lv.label}
-                    </span>
-                    {lv.date && <span className="gz-tag bg-white/60 text-black/60">{lv.date}</span>}
-                    <span className="gz-tag bg-white/60 text-black/60">{lv.duration}</span>
-                  </div>
-
-                  {/* Row 3 — title + tagline */}
-                  <div>
-                    <h3 className="font-display text-2xl md:text-3xl font-bold leading-tight">{lv.nickname}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-black/85 font-medium">
-                      <span className="inline-block rounded-lg bg-white/90 border border-black/10 px-3 py-1.5 shadow-sm">
-                        {lv.tagline}
-                      </span>
-                    </p>
-                  </div>
-
-                  {/* Row 4 — assessment / eligibility (equal height across cards) */}
-                  <div className="rounded-2xl bg-white/65 backdrop-blur-sm p-4 border border-black/5 h-full min-h-0">
-                    <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] text-black/55 mb-2 min-h-[2rem]">
-                      {"sectionsHeading" in lv && (lv as { sectionsHeading?: string }).sectionsHeading
-                        ? (lv as { sectionsHeading: string }).sectionsHeading
-                        : "Assessment sections"}
-                    </p>
-                    <ul className="space-y-2">
-                      {lv.sections.map((s, i) => (
-                        <li key={i}>
-                          <p className="text-sm font-bold leading-tight">{s.label}</p>
-                          <p className="text-[11px] text-black/55 font-mono-ui">{s.meta}</p>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Row 5 — post-assessment / unlock details (headings align across cards) */}
-                  <div>
-                    <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] text-black/55 mb-2 min-h-[2.5rem] leading-snug">
-                      {lv.postHeading}
-                    </p>
-                    <ul className="space-y-1.5">
-                      {lv.post.map((p, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-black/75 leading-snug">
-                          <span
-                            className="mt-2 inline-block w-1.5 h-1.5 rounded-full shrink-0"
-                            style={{ background: lv.color }}
-                          />
-                          {p}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Row 6 — unlocks footer */}
-                  <div
-                    className="rounded-2xl px-4 py-3 flex items-center gap-2 text-sm font-bold text-white"
-                    style={{ background: lv.color }}
-                  >
-                    <Unlock className="h-4 w-4 shrink-0" />
-                    <span>{lv.unlocks}</span>
-                  </div>
                 </div>
-              </TiltCard>
+
+                <button
+                  type="button"
+                  onClick={onCta}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#2563EB] px-5 py-3.5 text-sm font-bold text-white transition-colors hover:bg-[#1e40af]"
+                >
+                  Register for L1 <ArrowRight className="h-4 w-4" />
+                </button>
+              </PathColumn>
             </motion.div>
-          ))}
+
+            {/* Path 2 — Wildcard */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ delay: 0.1 }}
+            >
+              <PathColumn
+                highlight
+                badge="Path 2 · The Wildcard"
+                badgeColor="#C2410C"
+                badgeBg="rgba(232,93,51,0.14)"
+                title="Think you're top 1%?"
+                subtitle="Skip L1 & L2. Go straight for Infinite Aura — if you can clear all four gates."
+              >
+                <WildcardCard level={l3} />
+              </PathColumn>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -2479,32 +2788,43 @@ function EliteOutcomesSection() {
 export default function LandingPage() {
   const { trackClick } = useAnalytics();
 
-  const onCta = useCallback(() => {
+  const trackRegister = useCallback(() => {
     trackClick("register_cta", "Register Button");
+  }, [trackClick]);
+
+  const onRegister = useCallback(() => {
+    trackRegister();
     window.open(REGISTER_URL, "_blank", "noopener,noreferrer");
+  }, [trackRegister]);
+
+  const scrollToRegister = useCallback(() => {
+    trackClick("register_scroll", "Scroll to Register");
+    document
+      .getElementById("register")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [trackClick]);
 
   return (
-    <div className="relative min-h-screen text-black gz-bg-cream font-sans">
+    <div className="relative min-h-screen pb-20 text-black gz-bg-cream font-sans">
       <div className="gz-noise-overlay" aria-hidden />
       <ScrollProgress />
       <CursorGlow />
-      <NavBar onCta={onCta} />
+      <NavBar onCta={scrollToRegister} />
       <main>
-        <Hero onCta={onCta} />
+        <Hero onCta={scrollToRegister} />
         <TickerStrip />
         <StatsBar />
-        <LevelsSection onCta={onCta} />
+        <PathsSection onCta={scrollToRegister} />
         <CoursesSection />
-        <WhyBento onCta={onCta} />
+        <WhyBento onCta={scrollToRegister} />
         <TestimonialsSection />
         <EliteOutcomesSection />
-        <ChecklistSection onCta={onCta} />
-        <RegisterSection onCta={onCta} />
+        <ChecklistSection onCta={scrollToRegister} />
+        <RegisterSection onCta={trackRegister} />
         <FAQSection />
       </main>
       <PageFeedbackButton />
-      <Footer onCta={onCta} />
+      <Footer onCta={onRegister} />
     </div>
   );
 }
