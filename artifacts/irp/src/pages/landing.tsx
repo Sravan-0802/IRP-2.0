@@ -50,12 +50,17 @@ import { IRP_DASHBOARD_URL } from "@/lib/app-links";
    DATA — preserved from the original (courses, testimonials, FAQ, checklist)
    ========================================================================= */
 
-/* L1 assessment schedule — single source for copy across the page */
-const L1_ASSESSMENT_DATE = "14th June, 2026";
-const ASSESSMENT_TARGET = new Date("2026-06-14T03:30:00.000Z");
-const ASSESSMENT_DATE_LABEL = "L1 Hustler Assessment on 14th June, 2026! Mark your calendars.";
-const L1_ASSESSMENT_SHORT = `L1 Assessment on ${L1_ASSESSMENT_DATE}`;
-const L1_ASSESSMENT_FULL = ASSESSMENT_DATE_LABEL;
+/* L1 assessment schedule — Cycle 2 */
+const L1_ASSESSMENT_DATE = "5th July 2026";
+const ASSESSMENT_TARGET = new Date("2026-07-05T03:30:00.000Z");
+const ASSESSMENT_DATE_LABEL =
+  "IRP 2.0 Assessment for Level 1 – The Hustler (Cycle 2) on 5th July 2026";
+const L1_ASSESSMENT_BANNER =
+  "We are conducting our IRP 2.0 Assessment for Level 1 – The Hustler (Cycle 2) on 5th July 2026. If you are interested and willing to appear, please confirm your availability by registering through the Assessments Calendar.";
+/** Flip to true when the next L1 assessment cycle registration opens. */
+const L1_CYCLE2_BANNER_VISIBLE = false;
+const L1_ASSESSMENT_SHORT = `L1 Assessment · Cycle 2 · ${L1_ASSESSMENT_DATE}`;
+const L1_ASSESSMENT_FULL = `${ASSESSMENT_DATE_LABEL}. Mark your calendars.`;
 
 const LEVELS = [
   {
@@ -1124,6 +1129,35 @@ function NavBar({ onCta }: { onCta: () => void }) {
         )}
       </AnimatePresence>
     </header>
+  );
+}
+
+/* =========================================================================
+   CYCLE 2 ASSESSMENT BANNER
+   ========================================================================= */
+
+function Cycle2AssessmentBanner() {
+  if (!L1_CYCLE2_BANNER_VISIBLE) return null;
+
+  return (
+    <div className="relative z-30 border-b border-amber-400/30 bg-gradient-to-r from-[#1E1B5E] via-[#312e81] to-[#4c1d95] text-white">
+      <div className="container mx-auto max-w-6xl px-5 md:px-8 py-4 md:py-5">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="min-w-0">
+            <p className="font-mono-ui text-[10px] uppercase tracking-[0.22em] font-bold text-amber-200/90">
+              Level 1 · The Hustler · Cycle 2
+            </p>
+            <p className="mt-1 font-display text-base md:text-lg font-bold leading-snug">{L1_ASSESSMENT_BANNER}</p>
+          </div>
+          <a
+            href={IRP_DASHBOARD_URL}
+            className="inline-flex shrink-0 items-center justify-center rounded-full bg-amber-300 px-5 py-2.5 text-sm font-bold text-black transition-colors hover:bg-amber-200"
+          >
+            Open Assessments Calendar →
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -2810,6 +2844,7 @@ export default function LandingPage() {
       <ScrollProgress />
       <CursorGlow />
       <NavBar onCta={scrollToRegister} />
+      <Cycle2AssessmentBanner />
       <main>
         <Hero onCta={scrollToRegister} />
         <TickerStrip />
